@@ -1,4 +1,5 @@
 return {
+	{ "vmchale/dhall-vim", ft = "dhall" },
 	{ "preservim/vimux" },
 	{
 		"christoomey/vim-tmux-navigator",

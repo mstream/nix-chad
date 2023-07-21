@@ -31,10 +31,8 @@
           # This should be set to the desired user name.
           username = "my-user";
         };
-      # your system's CPU architecture
-      system = "aarch64-darwin";
     in
-    nix-chad.lib.${system}.chad config;
+    nix-chad.lib.chad config;
 }
 ```
 
