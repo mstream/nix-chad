@@ -23,34 +23,6 @@ return {
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		event = "VimEnter",
-		config = function()
-			vim.defer_fn(function()
-				require("copilot").setup({
-					suggestion = {
-						keymap = {
-							accept = "<c-g>",
-							accept_word = false,
-							accept_line = false,
-							next = "<c-j>",
-							prev = "<c-k>",
-							dismiss = "<c-f>",
-						},
-					},
-				})
-			end, 100)
-		end,
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		event = "VeryLazy",
-		dependencies = { "zbirenbaum/copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
 	{ "tpope/vim-fugitive" },
 	{ "tpope/vim-rhubarb" },
 	{ "lewis6991/gitsigns.nvim" },
@@ -274,7 +246,6 @@ return {
 			return vim.tbl_deep_extend("force", require("plugins.configs.cmp"), {
 				sources = {
 					{ name = "luasnip" },
-					{ name = "copilot" },
 					{ name = "nvim_lsp" },
 					{ name = "buffer" },
 					{ name = "nvim_lua" },
