@@ -2,9 +2,15 @@
 
 ![nix-chad logo](nix-chad.png)
 
+## Prerequisites
+
+- Nix 2.4+
+
 ## Configuring
 
 ```nix
+# flake.nix
+
 {
   description = "My Nix MacOS Environment";
 
@@ -38,6 +44,6 @@
 
 ## Running
 
-```sh
+```bash
 nix run github:mstream/nix-chad/main#switch
 ```
