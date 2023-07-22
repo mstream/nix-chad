@@ -78,6 +78,8 @@ in
     perl
     pinentry
     podman
+    python311
+    python311Packages.grip
     pwgen
     ripgrep
     spago
