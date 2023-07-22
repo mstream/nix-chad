@@ -8,7 +8,7 @@ An opinionated MacOS setup focused on software development.
 
 - Nix 2.4+
 
-## Configuring
+## Configuration
 
 ### Intializing from a template
 
@@ -56,10 +56,19 @@ Update any config entries to your liking:
 }
 ```
 
-## Running
+### Applying
 
-Run from the directory where `flake.nix` file resides:
+After any change to configuration, run from the directory where
+`flake.nix` file resides:
 
 ```bash
 nix run .#switch
+```
+
+## Updating
+
+To stay up to date witch changes to Nix Chad, run periodically:
+
+```bash
+nix flake update
 ```
