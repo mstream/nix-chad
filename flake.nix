@@ -55,6 +55,10 @@
         )
         { }
         supportedSystems;
+      templates.default = {
+        description = "A default template";
+        path = ./templates/default;
+      };
     }
     //
     flake-utils.lib.eachSystem
