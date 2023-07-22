@@ -10,13 +10,15 @@
 
 ### Intializing from a template
 
+Run from a directory of your choice:
+
 ```bash
 nix flake init --template github:mstream/nix-chad/main#default
 ```
 
 ### Tweaking
 
-Update any config entries to your liking.
+Update any config entries to your liking:
 
 ```nix
 # flake.nix
@@ -54,7 +56,7 @@ Update any config entries to your liking.
 
 ## Running
 
-Run from the directory where `flake.nix` file resides.
+Run from the directory where `flake.nix` file resides:
 
 ```bash
 nix run .#switch
