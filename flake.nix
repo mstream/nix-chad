@@ -50,6 +50,10 @@
         (acc: system:
           let pkgs = import nixpkgs { inherit system; };
           in pkgs.lib.recursiveUpdate acc {
+            apps.${system}.switch = flake-utils.lib.mkApp
+              {
+                drv = import ./packages/switch/default.nix { inherit pkgs system; };
+              };
             darwinConfigurations.macbook.${system} = mk-darwin-config system config;
           }
         )
@@ -59,18 +63,5 @@
         description = "A default template";
         path = ./templates/default;
       };
-    }
-    //
-    flake-utils.lib.eachSystem
-      supportedSystems
-      (system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        {
-          apps.switch = flake-utils.lib.mkApp
-            {
-              drv = import ./packages/switch/default.nix { inherit pkgs system; };
-            };
-        });
+    };
 }
