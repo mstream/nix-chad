@@ -2,6 +2,8 @@
 
 ![nix-chad logo](nix-chad.png)
 
+An opinionated MacOS setup focused on software development.
+
 ## Prerequisites
 
 - Nix 2.4+
