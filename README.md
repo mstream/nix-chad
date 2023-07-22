@@ -54,6 +54,8 @@ Update any config entries to your liking.
 
 ## Running
 
+Run from the directory where `flake.nix` file resides.
+
 ```bash
-nix run github:mstream/nix-chad/main#switch
+nix run .#switch
 ```
