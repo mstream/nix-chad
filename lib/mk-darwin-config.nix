@@ -11,7 +11,7 @@
 , ...
 }:
 system:
-{ defaultGpgKey, fontSize, manageHomebrew, username }:
+config:
 darwin.lib.darwinSystem {
   inherit system;
   modules = [
@@ -19,23 +19,27 @@ darwin.lib.darwinSystem {
     ../modules/documentation/default.nix
     ../modules/environment/default.nix
     ../modules/fonts/default.nix
-    ({ pkgs, ... }: (import ../modules/home-manager/default.nix {
-      inherit defaultGpgKey fontSize pkgs username;
-      easy-ps = import easy-purescript-nix { inherit pkgs; };
-      version = home-manager-version;
-    }))
-    (import ../modules/homebrew/default.nix manageHomebrew)
-    ({ pkgs, ... }:
-      (import ../modules/nix/default.nix { inherit pkgs system; }))
-    (_: import ../modules/nixpkgs/default.nix { inherit nur; })
-    ../modules/programs/default.nix
-    (_: import ../modules/services/default.nix { })
-    (import ../modules/system/default.nix { inherit fontSize; })
-    (_: import ../modules/users/default.nix { inherit username; })
+    ({ pkgs, ... }: (import ../modules/home-manager
+      {
+        inherit pkgs;
+        easy-ps = import easy-purescript-nix { inherit pkgs; };
+        version = home-manager-version;
+      }
+      config
+    ))
+    (import ../modules/homebrew/default.nix
+      { inherit (config) manageHomebrew; }
+    )
+    ({ pkgs, ... }: (import ../modules/nix { inherit pkgs system; }))
+    (import ../modules/nixpkgs { inherit nur; })
+    (import ../modules/programs)
+    (import ../modules/services)
+    (import ../modules/system { inherit (config) fontSize; })
+    (import ../modules/users { inherit (config) username; })
     nix-homebrew.darwinModules.nix-homebrew
     {
       nix-homebrew = {
-        enable = manageHomebrew;
+        enable = config.manageHomebrew;
         enableRosetta = true;
         mutableTaps = false;
         taps = {
@@ -43,7 +47,7 @@ darwin.lib.darwinSystem {
           "homebrew/homebrew-core" = homebrew-core;
           "homebrew/homebrew-cask" = homebrew-cask;
         };
-        user = username;
+        user = config.username;
       };
     }
   ];

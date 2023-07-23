@@ -1,46 +1,47 @@
-{ defaultGpgKey, easy-ps, fontSize, pkgs, username, version, ... }:
+{ easy-ps, pkgs, version, ... }:
+{ defaultGpgKey, fontSize, homeDirectories, username, ... }:
 let
   nvchad = pkgs.callPackage ../../packages/nvchad { };
-
+  userDefinedDirectories = (builtins.foldl'
+    (acc: dir:
+      {
+        idx = acc.idx + 1;
+        result =
+          acc.result
+          // {
+            "homeDirectory${builtins.toString acc.idx}" = {
+              recursive = true;
+              target = "${dir}/.keep";
+              text = "";
+            };
+          };
+      }
+    )
+    { idx = 0; result = { }; }
+    homeDirectories).result;
+  homeFiles = pkgs.lib.recursiveUpdate
+    {
+      gnupgGpgAgent = {
+        recursive = true;
+        target = ".gnupg/gpg-agent.conf";
+        text = ''
+          enable-ssh-support
+          default-cache-ttl 60
+          max-cache-ttl 120
+        '';
+      };
+      gnupgSshControl = {
+        recursive = true;
+        target = ".gnupg/sshcontrol";
+        text = ''
+          ${defaultGpgKey}
+        '';
+      };
+    }
+    userDefinedDirectories;
 in
 {
-  home.stateVersion = version;
-
-  home.file.ownProjects = {
-    recursive = true;
-    target = "Development/projects/${username}/.keep";
-    text = "";
-  };
-
-  home.file.skyProjects = {
-    recursive = true;
-    target = "Development/projects/sky-uk/.keep";
-    text = "";
-  };
-
-  home.file.otherProjects = {
-    recursive = true;
-    target = "Development/projects/other/.keep";
-    text = "";
-  };
-
-  home.file.gnupgGpgAgent = {
-    recursive = true;
-    target = ".gnupg/gpg-agent.conf";
-    text = ''
-      enable-ssh-support
-      default-cache-ttl 60
-      max-cache-ttl 120
-    '';
-  };
-
-  home.file.gnupgSshControl = {
-    recursive = true;
-    target = ".gnupg/sshcontrol";
-    text = ''
-      ${defaultGpgKey}
-    '';
-  };
+  home.file = homeFiles;
 
   home.packages = with pkgs; [
     awscli
@@ -89,6 +90,8 @@ in
     unixtools.watch
     yarn
   ];
+
+  home.stateVersion = version;
 
   xdg.configFile."nvim" = {
     source = "${nvchad}";

@@ -1,11 +1,14 @@
-{ defaultGpgKey, easy-ps, fontSize, pkgs, username, version, ... }:
+{ easy-ps, pkgs, version, ... }:
+config:
 {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
 
-  home-manager.users."${username}" = (import ./user-config.nix {
-    inherit defaultGpgKey easy-ps fontSize pkgs username version;
-  });
+  home-manager.users."${config.username}" = import ./user-config.nix
+    {
+      inherit easy-ps pkgs version;
+    }
+    config;
 }

@@ -1,6 +1,5 @@
-enable: {
+{ manageHomebrew }: {
   homebrew = {
-    inherit enable;
     brews = [ ];
     casks = [
       "discord"
@@ -14,6 +13,7 @@ enable: {
       "steam"
       "thunderbird"
     ];
+    enable = manageHomebrew;
     extraConfig = ''
       cask "firefox", args: { language: "en-GB" }
     '';

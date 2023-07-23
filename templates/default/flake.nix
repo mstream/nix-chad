@@ -18,6 +18,16 @@
           # A desired font size in tools that have a mean to set it fixed. 
           fontSize = 24;
 
+          # A list of desirect directories to be created in the home 
+          # directory of the user. 
+          # It is up to the user to provide the contents of these
+          # directories.
+          homeDirectories = [
+            "Development/exercises"
+            "Development/presentations"
+            "Development/projects"
+          ];
+
           # Install homebrew and let it manage propertiary software.
           manageHomebrew = true;
 
