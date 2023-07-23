@@ -32,12 +32,14 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { flake-utils, nixpkgs, ... }@inputs:
+  outputs = { easy-purescript-nix, flake-utils, nixpkgs, nur, ... }@inputs:
     let
       supportedSystems = with flake-utils.lib.system; [
         aarch64-darwin
         x86_64-darwin
       ];
+
+      forEachSupportedSystem = f: builtins.foldl' f { } supportedSystems;
 
       # This should be manually adjusted to match the home-manager's 
       # flake release revision frome the flake.nix inputs section.
@@ -46,7 +48,7 @@
         (inputs // { inherit home-manager-version; });
     in
     {
-      lib.chad = config: builtins.foldl'
+      lib.chad = config: forEachSupportedSystem
         (acc: system:
           let pkgs = import nixpkgs { inherit system; };
           in pkgs.lib.recursiveUpdate acc {
@@ -56,12 +58,29 @@
               };
             darwinConfigurations.macbook.${system} = mk-darwin-config system config;
           }
-        )
-        { }
-        supportedSystems;
+        );
       templates.default = {
         description = "A default template";
         path = ./templates/default;
       };
+      tests = forEachSupportedSystem
+        (acc: system:
+          let
+            pkgs = import nixpkgs
+              {
+                inherit system;
+                overlays = import ./overlays/nixpkgs.nix { inherit nur; };
+              };
+            violations = import ./test.nix
+              {
+                inherit pkgs;
+                easy-ps = import easy-purescript-nix { inherit pkgs; };
+                version = home-manager-version;
+              };
+          in
+          if violations == [ ]
+          then "all tests passed"
+          else throw (builtins.toJSON violations)
+        );
     };
 }
