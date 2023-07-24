@@ -16,9 +16,7 @@ darwin.lib.darwinSystem {
   inherit system;
   modules = [
     home-manager.darwinModule
-    ../modules/documentation/default.nix
-    ../modules/environment/default.nix
-    ../modules/fonts/default.nix
+    ../modules/default.nix
     ({ pkgs, ... }: (import ../modules/home-manager
       {
         inherit pkgs;
@@ -33,7 +31,6 @@ darwin.lib.darwinSystem {
     ({ pkgs, ... }: (import ../modules/nix { inherit pkgs system; }))
     (import ../modules/nixpkgs { inherit nur; })
     (import ../modules/programs)
-    (import ../modules/services)
     (import ../modules/system { inherit (config) fontSize; })
     (import ../modules/users { inherit (config) username; })
     nix-homebrew.darwinModules.nix-homebrew
