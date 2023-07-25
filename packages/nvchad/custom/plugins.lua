@@ -1,5 +1,6 @@
 return {
 	{ "vmchale/dhall-vim", ft = "dhall" },
+	{ "hashivim/vim-terraform", ft = "terraform" },
 	{ "preservim/vimux" },
 	{
 		"christoomey/vim-tmux-navigator",
