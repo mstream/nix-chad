@@ -86,6 +86,7 @@ in
     spago
     statix
     tectonic
+    terraform
     tree
     unixtools.watch
     yarn
