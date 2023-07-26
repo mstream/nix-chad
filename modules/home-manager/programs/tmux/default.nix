@@ -13,4 +13,5 @@
   historyLimit = 5000;
   keyMode = "vi";
   prefix = "'C-Space'";
+  sensibleOnTop = false;
 }
