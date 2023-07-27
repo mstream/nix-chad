@@ -1,3 +1,6 @@
+let
+  zshCustomFilePath = "$HOME/.zsh_custom";
+in
 {
   autocd = false;
   cdpath = [ ];
@@ -21,6 +24,7 @@
     unsetopt extended_glob
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     gpgconf --launch gpg-agent
+    [[ -e ${zshCustomFilePath} ]] && source ${zshCustomFilePath}
   '';
   initExtraBeforeCompInit = "";
   initExtraFirst = "";
