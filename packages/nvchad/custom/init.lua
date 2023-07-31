@@ -40,3 +40,9 @@ vim.wo.relativenumber = true
 vim.opt.relativenumber = true
 vim.opt.colorcolumn = tostring(document_width + 1)
 vim.opt.guicursor = ""
+
+vim.filetype.add({
+	extension = {
+		purs = "purescript",
+	},
+})

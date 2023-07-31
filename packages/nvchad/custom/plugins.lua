@@ -2,6 +2,7 @@ return {
 	{ "vmchale/dhall-vim", ft = "dhall" },
 	{ "hashivim/vim-terraform", ft = "terraform" },
 	{ "preservim/vimux" },
+	{ "purescript-contrib/purescript-vim", ft = "purescript" },
 	{
 		"christoomey/vim-tmux-navigator",
 		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight" },
@@ -104,8 +105,13 @@ return {
 			}
 			for _, lsp in ipairs(servers) do
 				lspconfig[lsp].setup({
-					on_attach = on_attach,
 					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = lsp == "purescriptls" and {
+						purescript = {
+							formatter = "purs-tidy",
+						},
+					} or {},
 				})
 			end
 		end,
@@ -199,6 +205,7 @@ return {
 					"java-language-server",
 					"json-lsp",
 					"lua-language-server",
+					"purescript-language-server",
 					"prettier",
 					"prettierd",
 					"pyright",
