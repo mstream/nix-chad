@@ -1,5 +1,5 @@
 { easy-ps, pkgs, version, ... }:
-{ defaultGpgKey, fontSize, homeDirectories, username, ... }:
+chadConfig@{ defaultGpgKey, fontSize, homeDirectories, username, ... }:
 let
   nvchad = pkgs.callPackage ../../packages/nvchad { };
   userDefinedDirectories = (builtins.foldl'
@@ -99,24 +99,18 @@ in
   };
 
   programs = {
-    alacritty = import ./programs/alacritty/default.nix {
-      inherit fontSize;
-    };
+    alacritty = import ./programs/alacritty/default.nix chadConfig;
     bat = import ./programs/bat/default.nix;
     browserpass = import ./programs/browserpass/default.nix;
     direnv = import ./programs/direnv/default.nix;
-    firefox = (import ./programs/firefox/default.nix {
-      inherit fontSize pkgs username;
-    });
-    git = (import ./programs/git/default.nix { inherit username; });
-    gpg = (import ./programs/gpg/default.nix { inherit defaultGpgKey; });
+    firefox = import ./programs/firefox/default.nix (chadConfig // { inherit pkgs; });
+    git = (import ./programs/git/default.nix chadConfig);
+    gpg = (import ./programs/gpg/default.nix chadConfig);
     jq = import ./programs/jq/default.nix;
     neovim = (import ./programs/neovim/default.nix { inherit pkgs; });
     password-store = import ./programs/password-store/default.nix;
-    thunderbird = (import ./programs/thunderbird/default.nix {
-      inherit pkgs username;
-    });
+    thunderbird = (import ./programs/thunderbird/default.nix (chadConfig // { inherit pkgs; }));
     tmux = import ./programs/tmux/default.nix;
-    zsh = import ./programs/zsh/default.nix;
+    zsh = import ./programs/zsh/default.nix chadConfig;
   };
 }

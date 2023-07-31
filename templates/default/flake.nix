@@ -33,6 +33,12 @@
 
           # This should be set to the desired user name.
           username = "my-user";
+
+          # Additional initialization for your ZSH sessions
+          zshInitExtra = ''
+            export VAR1=val1
+            export VAR2=val2
+          '';
         };
     in
     nix-chad.lib.chad config;

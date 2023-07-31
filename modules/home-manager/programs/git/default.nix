@@ -1,4 +1,4 @@
-{ username }: {
+{ username, ... }: {
   aliases = {
     br = "branch";
     ci = "commit";
@@ -19,7 +19,7 @@
       editor = "vim";
     };
     init = {
-      defaultBranch = "master"; 
+      defaultBranch = "master";
     };
   };
   ignores = [ ".direnv" ".DS_Store" "*~" "*.swp" ];
