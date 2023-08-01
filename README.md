@@ -4,6 +4,22 @@
 
 An opinionated MacOS setup focused on software development.
 
+## Features
+
+### Neovim programming/configuration languages support
+
+| language   | code actions | completion | diagnotics | formatting | syntax highlighting |
+| :--------- | :----------: | :--------: | :--------: | :--------: | :-----------------: |
+| bash       |      +       |     +      |     +      |     +      |          +          |
+| dhall      |      -       |     +      |     +      |     -      |          +          |
+| javascript |      +       |     +      |     +      |     +      |          +          |
+| lua        |      +       |     +      |     +      |     +      |          +          |
+| markdown   |      -       |     -      |     +      |     +      |          +          |
+| nix        |      -       |     -      |     +      |     +      |          +          |
+| purescript |      +       |     +      |     +      |     +      |          +          |
+| typescript |      +       |     +      |     +      |     +      |          +          |
+| yaml       |      +       |     -      |     +      |     +      |          +          |
+
 ## Prerequisites
 
 - Nix 2.4+

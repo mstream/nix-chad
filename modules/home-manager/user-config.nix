@@ -1,6 +1,74 @@
 { easy-ps, pkgs, version, ... }:
-chadConfig@{ defaultGpgKey, fontSize, homeDirectories, username, ... }:
+chadConfig@{ defaultGpgKey, homeDirectories, ... }:
 let
+  lsps = with pkgs; [
+    dhall-lsp-server
+    java-language-server
+    lua-language-server
+    nodePackages.bash-language-server
+    nodePackages.markdownlint-cli
+    nodePackages.purescript-language-server
+    nodePackages.typescript-language-server
+    nodePackages.yaml-language-server
+    rnix-lsp
+  ];
+  otherPackages = with pkgs; [
+    awscli
+    aws-sam-cli
+    bat
+    cachix
+    colima
+    cargo
+    coreutils
+    deadnix
+    dhall
+    docker
+    easy-ps.purs
+    easy-ps.purs-tidy
+    exercism
+    ffmpeg
+    inkscape
+    gimp
+    git-crypt
+    gradle
+    heroku
+    jdk
+    kubectl
+    lua5_4
+    luajitPackages.luacheck
+    maven
+    mdl
+    mplayer
+    nixfmt
+    nixpkgs-fmt
+    nmap
+    nodejs
+    nodePackages.htmlhint
+    nodePackages.prettier
+    nodePackages.prettier_d_slim
+    nodePackages.purty
+    nodePackages.pyright
+    nodePackages.typescript
+    pandoc
+    perl
+    pinentry
+    podman
+    python311
+    python311Packages.grip
+    pwgen
+    ripgrep
+    shellcheck
+    shfmt
+    spago
+    statix
+    stylua
+    taplo
+    tectonic
+    terraform
+    tree
+    unixtools.watch
+    yarn
+  ];
   nvchad = pkgs.callPackage ../../packages/nvchad { };
   userDefinedDirectories = (builtins.foldl'
     (acc: dir:
@@ -43,54 +111,7 @@ in
 {
   home.file = homeFiles;
 
-  home.packages = with pkgs; [
-    awscli
-    aws-sam-cli
-    bat
-    cachix
-    colima
-    cargo
-    coreutils
-    dhall
-    docker
-    easy-ps.purs
-    easy-ps.purs-tidy
-    exercism
-    ffmpeg
-    inkscape
-    gimp
-    git-crypt
-    gradle
-    heroku
-    jdk
-    kubectl
-    lua5_4
-    maven
-    mplayer
-    nixfmt
-    nixpkgs-fmt
-    nmap
-    nodejs
-    nodePackages.htmlhint
-    nodePackages.prettier
-    nodePackages.purty
-    nodePackages.typescript
-    pandoc
-    perl
-    pinentry
-    podman
-    python311
-    python311Packages.grip
-    pwgen
-    ripgrep
-    spago
-    statix
-    tectonic
-    terraform
-    tree
-    unixtools.watch
-    yarn
-  ];
+  home.packages = lsps ++ otherPackages;
 
   home.stateVersion = version;
 

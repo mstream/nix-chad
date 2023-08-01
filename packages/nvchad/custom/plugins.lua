@@ -1,18 +1,32 @@
 return {
-	{ "vmchale/dhall-vim", ft = "dhall" },
-	{ "hashivim/vim-terraform", ft = "terraform" },
-	{ "preservim/vimux" },
-	{ "purescript-contrib/purescript-vim", ft = "purescript" },
+	{
+		"akinsho/toggleterm.nvim",
+		event = "VeryLazy",
+		cmd = { "ToggleTerm" },
+		version = "*",
+		config = true,
+	},
 	{
 		"christoomey/vim-tmux-navigator",
-		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight" },
-		keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+		},
+		keys = {
+			"<C-h>",
+			"<C-j>",
+			"<C-k>",
+			"<C-l>",
+		},
 	},
-	{ "JoosepAlviste/nvim-ts-context-commentstring" },
-	{ "nvim-treesitter/nvim-treesitter-textobjects" },
-	{ "mrjones2014/nvim-ts-rainbow" },
-	{ "nvim-treesitter/nvim-treesitter-context" },
-
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").add_default_mappings()
+		end,
+	},
 	{
 		"glepnir/lspsaga.nvim",
 		event = "BufRead",
@@ -25,43 +39,23 @@ return {
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	},
-	{ "tpope/vim-fugitive" },
-	{ "tpope/vim-rhubarb" },
-	{ "lewis6991/gitsigns.nvim" },
 	{
-		"Pocco81/TrueZen.nvim",
-		cmd = { "TZNarrow", "TZFocus", "TZMinimalist", "TZAtaraxis" },
-		config = true,
+		"hashivim/vim-terraform",
+		ft = "terraform",
 	},
 	{
-		"nathom/filetype.nvim",
+		"hrsh7th/nvim-cmp",
 		opts = function()
-			return {
-				overrides = {
-					extensions = {
-						mdx = "markdown",
-					},
-					function_complex = {
-						[".*blade.php"] = function()
-							vim.bo.filetype = "blade"
-						end,
-					},
+			return vim.tbl_deep_extend("force", require("plugins.configs.cmp"), {
+				sources = {
+					{ name = "luasnip" },
+					{ name = "nvim_lsp" },
+					{ name = "buffer" },
+					{ name = "nvim_lua" },
+					{ name = "path" },
 				},
-			}
+			})
 		end,
-	},
-	{
-		"akinsho/toggleterm.nvim",
-		event = "VeryLazy",
-		cmd = { "ToggleTerm" },
-		version = "*",
-		config = true,
-	},
-	{
-		"tpope/vim-surround",
-		dependencies = {
-			"tpope/vim-repeat",
-		},
 	},
 	{
 		"iamcco/markdown-preview.nvim",
@@ -72,56 +66,13 @@ return {
 		ft = { "markdown" },
 	},
 	{
-		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings()
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function(_, _)
-			require("plugins.configs.lspconfig")
-			local on_attach = require("plugins.configs.lspconfig").on_attach
-			local capabilities = require("plugins.configs.lspconfig").capabilities
-			local lspconfig = require("lspconfig")
-			local servers = {
-				"bashls",
-				"clangd",
-				"cssls",
-				"dhall_lsp_server",
-				"eslint",
-				"hls",
-				"html",
-				"java_language_server",
-				"jsonls",
-				"lua_ls",
-				"purescriptls",
-				"pyright",
-				"rnix",
-				"rust_analyzer",
-				"tailwindcss",
-				"tsserver",
-				"yamlls",
-			}
-			for _, lsp in ipairs(servers) do
-				lspconfig[lsp].setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-					settings = lsp == "purescriptls" and {
-						purescript = {
-							formatter = "purs-tidy",
-						},
-					} or {},
-				})
-			end
-		end,
+		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			"mason.nvim",
 		},
 		opts = function()
 			local null_ls = require("null-ls")
@@ -133,12 +84,20 @@ return {
 			return {
 				debug = false,
 				sources = {
-					completion.spell,
-					code_actions.gitsigns,
-					formatting.stylua,
-					formatting.prettier.with({
-						extra_filetypes = { "svelte" },
+					code_actions.eslint_d.with({
+						filetypes = {
+							"javascript",
+							"javascriptreact",
+							"typescript",
+							"typescriptreact",
+							"vue",
+							"svelte",
+						},
 					}),
+					code_actions.gitsigns,
+					code_actions.statix,
+					completion.spell,
+					diagnostics.deadnix,
 					diagnostics.eslint_d.with({
 						condition = function(utils)
 							return utils.root_has_file(".eslintrc.js") or utils.root_has_file(".eslintrc.cjs")
@@ -152,24 +111,18 @@ return {
 							"svelte",
 						},
 					}),
-					code_actions.eslint_d.with({
-						filetypes = {
-							"javascript",
-							"javascriptreact",
-							"typescript",
-							"typescriptreact",
-							"vue",
-							"svelte",
-						},
-					}),
-					diagnostics.php,
-					formatting.blade_formatter,
+					diagnostics.luacheck,
+					diagnostics.markdownlint,
+					diagnostics.mdl,
 					formatting.black,
-					formatting.shfmt,
 					formatting.jq,
-					formatting.rustfmt,
-					formatting.clang_format,
+					formatting.prettier.with({
+						extra_filetypes = { "svelte" },
+					}),
 					formatting.nixpkgs_fmt,
+					formatting.purs_tidy,
+					formatting.shfmt,
+					formatting.stylua,
 					formatting.taplo,
 				},
 				on_attach = function(current_client, bufnr)
@@ -193,35 +146,62 @@ return {
 		end,
 	},
 	{
-		"williamboman/mason.nvim",
+		"lewis6991/gitsigns.nvim",
+	},
+	{
+		"mrjones2014/nvim-ts-rainbow",
+	},
+	{
+		"nathom/filetype.nvim",
 		opts = function()
 			return {
-				ensure_installed = {
-					"bash-language-server",
-					"clangd",
-					"css-lsp",
-					"eslint-lsp",
-					"html-lsp",
-					"java-language-server",
-					"json-lsp",
-					"lua-language-server",
-					"purescript-language-server",
-					"prettier",
-					"prettierd",
-					"pyright",
-					"rnix-lsp",
-					"rust-analyzer",
-					"rustfmt",
-					"shellcheck",
-					"shfmt",
-					"stylua",
-					"tailwindcss-language-server",
-					"taplo",
-					"typescript-language-server",
-					"yaml-language-server",
+				overrides = {
+					extensions = {
+						mdx = "markdown",
+					},
+					function_complex = {
+						[".*blade.php"] = function()
+							vim.bo.filetype = "blade"
+						end,
+					},
 				},
 			}
 		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function(_, _)
+			require("plugins.configs.lspconfig")
+			local on_attach = require("plugins.configs.lspconfig").on_attach
+			local capabilities = require("plugins.configs.lspconfig").capabilities
+			local lspconfig = require("lspconfig")
+			local servers = {
+				"bashls",
+				"dhall_lsp_server",
+				"eslint",
+				"lua_ls",
+				"purescriptls",
+				"pyright",
+				"rnix",
+				"tsserver",
+				"yamlls",
+			}
+			for _, lsp in ipairs(servers) do
+				lspconfig[lsp].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+				})
+			end
+			-- TODO: broken
+			-- lspconfig["java_language_server"].setup({
+			-- 	capabilities = capabilities,
+			-- 	cmd = { "java-language-server" },
+			-- 	on_attach = on_attach,
+			-- })
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -249,17 +229,34 @@ return {
 		end,
 	},
 	{
-		"hrsh7th/nvim-cmp",
-		opts = function()
-			return vim.tbl_deep_extend("force", require("plugins.configs.cmp"), {
-				sources = {
-					{ name = "luasnip" },
-					{ name = "nvim_lsp" },
-					{ name = "buffer" },
-					{ name = "nvim_lua" },
-					{ name = "path" },
-				},
-			})
-		end,
+		"nvim-treesitter/nvim-treesitter-textobjects",
+	},
+	{
+		"Pocco81/TrueZen.nvim",
+		cmd = { "TZNarrow", "TZFocus", "TZMinimalist", "TZAtaraxis" },
+		config = true,
+	},
+	{
+		"preservim/vimux",
+	},
+	{
+		"purescript-contrib/purescript-vim",
+		ft = "purescript",
+	},
+	{
+		"tpope/vim-fugitive",
+	},
+	{
+		"tpope/vim-rhubarb",
+	},
+	{
+		"tpope/vim-surround",
+		dependencies = {
+			"tpope/vim-repeat",
+		},
+	},
+	{
+		"vmchale/dhall-vim",
+		ft = "dhall",
 	},
 }

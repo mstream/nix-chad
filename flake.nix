@@ -42,7 +42,7 @@
       forEachSupportedSystem = f: builtins.foldl' f { } supportedSystems;
 
       # This should be manually adjusted to match the home-manager's 
-      # flake release revision from the flake.nix inputs section.
+      # flake release revision frome the flake.nix inputs section.
       home-manager-version = "23.05";
       mk-darwin-config = import ./lib/mk-darwin-config.nix
         (inputs // { inherit home-manager-version; });
