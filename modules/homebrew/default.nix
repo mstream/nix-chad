@@ -2,6 +2,7 @@
   homebrew = {
     brews = [ ];
     casks = [
+      "brave-browser"
       "discord"
       "docker"
       "firefox"
