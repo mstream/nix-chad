@@ -16,21 +16,31 @@ let
     awscli
     aws-sam-cli
     bat
+    black
     cachix
     colima
     cargo
+    cbfmt
+    checkstyle
+    codespell
+    commitlint
     coreutils
     deadnix
+    deno
     dhall
     docker
     easy-ps.purs
     easy-ps.purs-tidy
+    editorconfig-checker
     exercism
     ffmpeg
-    inkscape
+    gawk
     gimp
     git-crypt
+    google-java-format
     gradle
+    hadolint
+    inkscape
     heroku
     jdk
     kubectl
@@ -43,21 +53,30 @@ let
     nixpkgs-fmt
     nmap
     nodejs
+    nodePackages.alex
+    nodePackages.fixjson
     nodePackages.htmlhint
+    nodePackages.jsonlint
     nodePackages.prettier
     nodePackages.prettier_d_slim
     nodePackages.purty
     nodePackages.pyright
+    nodePackages.stylelint
+    nodePackages.textlint
     nodePackages.typescript
+    nodePackages.write-good
     pandoc
     perl
     pinentry
     podman
+    proselint
     python311
     python311Packages.grip
     pwgen
     ripgrep
+    treefmt
     shellcheck
+    shellharden
     shfmt
     spago
     statix
@@ -65,8 +84,13 @@ let
     taplo
     tectonic
     terraform
+    tfsec
     tree
+    typos
     unixtools.watch
+    xmlformat
+    yamlfix
+    yamllint
     yarn
   ];
   nvchad = pkgs.callPackage ../../packages/nvchad { };

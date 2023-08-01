@@ -13,6 +13,7 @@
       "slack"
       "steam"
       "thunderbird"
+      "vlc"
     ];
     enable = manageHomebrew;
     extraConfig = ''

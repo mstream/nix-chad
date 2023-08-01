@@ -76,10 +76,10 @@ return {
 		},
 		opts = function()
 			local null_ls = require("null-ls")
-			local formatting = null_ls.builtins.formatting
-			local diagnostics = null_ls.builtins.diagnostics
 			local code_actions = null_ls.builtins.code_actions
 			local completion = null_ls.builtins.completion
+			local diagnostics = null_ls.builtins.diagnostics
+			local formatting = null_ls.builtins.formatting
 			local lsp_formatting_group = vim.api.nvim_create_augroup("LspFormatting", {})
 			return {
 				debug = false,
@@ -95,9 +95,16 @@ return {
 						},
 					}),
 					code_actions.gitsigns,
+					code_actions.proselint,
+					code_actions.shellcheck,
 					code_actions.statix,
 					completion.spell,
+					completion.tags,
+					diagnostics.actionlint,
+					diagnostics.checkstyle,
+					diagnostics.codespell,
 					diagnostics.deadnix,
+					diagnostics.editorconfig_checker,
 					diagnostics.eslint_d.with({
 						condition = function(utils)
 							return utils.root_has_file(".eslintrc.js") or utils.root_has_file(".eslintrc.cjs")
@@ -111,19 +118,45 @@ return {
 							"svelte",
 						},
 					}),
+					diagnostics.hadolint,
+					diagnostics.jsonlint,
 					diagnostics.luacheck,
 					diagnostics.markdownlint,
 					diagnostics.mdl,
+					diagnostics.proselint,
+					diagnostics.shellcheck,
+					diagnostics.statix,
+					diagnostics.stylelint,
+					diagnostics.terraform_validate,
+					diagnostics.textlint,
+					diagnostics.tfsec,
+					diagnostics.tsc,
+					diagnostics.typos,
+					diagnostics.write_good,
+					diagnostics.yamllint,
 					formatting.black,
+					formatting.cbfmt,
+					formatting.codespell,
+					formatting.fixjson,
+					formatting.google_java_format,
 					formatting.jq,
+					formatting.markdownlint,
+					formatting.nixpkgs_fmt,
 					formatting.prettier.with({
 						extra_filetypes = { "svelte" },
 					}),
-					formatting.nixpkgs_fmt,
 					formatting.purs_tidy,
+					formatting.shellharden,
 					formatting.shfmt,
+					formatting.stylelint,
 					formatting.stylua,
 					formatting.taplo,
+					formatting.terraform_fmt,
+					formatting.textlint,
+					formatting.treefmt,
+					formatting.trim_newlines,
+					formatting.trim_whitespace,
+					formatting.yamlfix,
 				},
 				on_attach = function(current_client, bufnr)
 					if current_client.supports_method("textDocument/formatting") then

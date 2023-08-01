@@ -8,17 +8,18 @@ An opinionated MacOS setup focused on software development.
 
 ### Neovim programming/configuration languages support
 
-| language   | code actions | completion | diagnotics | formatting | syntax highlighting |
-| :--------- | :----------: | :--------: | :--------: | :--------: | :-----------------: |
-| bash       |      +       |     +      |     +      |     +      |          +          |
-| dhall      |      -       |     +      |     +      |     +      |          +          |
-| javascript |      +       |     +      |     +      |     +      |          +          |
-| lua        |      +       |     +      |     +      |     +      |          +          |
-| markdown   |      -       |     -      |     +      |     +      |          +          |
-| nix        |      -       |     -      |     +      |     +      |          +          |
-| purescript |      +       |     +      |     +      |     +      |          +          |
-| typescript |      +       |     +      |     +      |     +      |          +          |
-| yaml       |      +       |     -      |     +      |     +      |          +          |
+| language   | code actions | completion | diagnostics | formatting | syntax highlighting |
+| :--------- | :----------: | :--------: | :---------: | :--------: | :-----------------: |
+| bash       |      +       |     +      |      +      |     +      |          +          |
+| dhall      |      -       |     +      |      +      |     +      |          +          |
+| javascript |      +       |     +      |      +      |     +      |          +          |
+| lua        |      +       |     +      |      +      |     +      |          +          |
+| markdown   |      -       |     -      |      +      |     +      |          +          |
+| nix        |      -       |     -      |      +      |     +      |          +          |
+| purescript |      +       |     +      |      +      |     +      |          +          |
+| python     |      -       |     +      |      +      |     +      |          +          |
+| typescript |      +       |     +      |      +      |     +      |          +          |
+| yaml       |      +       |     -      |      +      |     +      |          +          |
 
 ## Prerequisites
 
@@ -26,7 +27,7 @@ An opinionated MacOS setup focused on software development.
 
 ## Configuration
 
-### Intializing from a template
+### Initializing from a template
 
 Run from a directory of your choice:
 
@@ -60,9 +61,9 @@ Update any config entries to your liking:
           # A desired font size in tools that have a mean to set it fixed.
           fontSize = 24;
 
-          # A list of desirect directories to be created in the home
+          # A list of desired folders to be created in the home
           # directory of the user.
-          # It is up to the user to provide the contents of these
+          # It's up to the user to provide the contents of these
           # directories.
           homeDirectories = [
             "Development/exercises"
@@ -70,7 +71,7 @@ Update any config entries to your liking:
             "Development/projects"
           ];
 
-          # Install homebrew and let it manage propertiary software.
+          # Install homebrew and let it manage proprietary software.
           manageHomebrew = true;
 
           # This should be set to the desired user name.
