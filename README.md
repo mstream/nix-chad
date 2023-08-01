@@ -11,7 +11,7 @@ An opinionated MacOS setup focused on software development.
 | language   | code actions | completion | diagnotics | formatting | syntax highlighting |
 | :--------- | :----------: | :--------: | :--------: | :--------: | :-----------------: |
 | bash       |      +       |     +      |     +      |     +      |          +          |
-| dhall      |      -       |     +      |     +      |     -      |          +          |
+| dhall      |      -       |     +      |     +      |     +      |          +          |
 | javascript |      +       |     +      |     +      |     +      |          +          |
 | lua        |      +       |     +      |     +      |     +      |          +          |
 | markdown   |      -       |     -      |     +      |     +      |          +          |

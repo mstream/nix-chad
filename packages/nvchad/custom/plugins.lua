@@ -186,6 +186,7 @@ return {
 				"tsserver",
 				"yamlls",
 			}
+			vim.g.dhall_format = 1
 			for _, lsp in ipairs(servers) do
 				lspconfig[lsp].setup({
 					capabilities = capabilities,

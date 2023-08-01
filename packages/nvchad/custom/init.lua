@@ -1,3 +1,4 @@
+vim.g.dhall_format = 1
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local document_width = 72
