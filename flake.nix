@@ -64,7 +64,12 @@
             {
               ${system}.lints = lint-nix.lib.lint-nix {
                 inherit pkgs;
-                linters = { };
+                linters = {
+                  shellcheck = {
+                    cmd = "${pkgs.shellcheck}/bin/shellcheck $filename";
+                    ext = ".sh";
+                  };
+                };
                 formatters = {
                   beautysh = {
                     cmd = "${pkgs.beautysh}/bin/beautysh --check $filename";
