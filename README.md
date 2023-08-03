@@ -1,5 +1,7 @@
 # Nix Chad
 
+[![Release and deploy](https://github.com/mstream/nix-chad/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/mstream/nix-chad/actions/workflows/lint.yml?query=branch%3Amain)
+
 ![nix-chad logo](nix-chad.png)
 
 An opinionated MacOS setup focused on software development.
