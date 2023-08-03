@@ -70,6 +70,10 @@
                     cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt --check $filename";
                     ext = ".nix";
                   };
+                  stylua = {
+                    cmd = "${pkgs.stylua}/bin/stylua --check $filename";
+                    ext = ".lua";
+                  };
                 };
                 src = ./.;
               };
