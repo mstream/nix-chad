@@ -65,6 +65,10 @@
               ${system}.lints = lint-nix.lib.lint-nix {
                 inherit pkgs;
                 linters = {
+                  deadnix = {
+                    cmd = "${pkgs.deadnix}/bin/deadnix $filename";
+                    ext = ".nix";
+                  };
                   luacheck = {
                     cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck $filename --globals vim";
                     ext = ".lua";
@@ -72,6 +76,10 @@
                   shellcheck = {
                     cmd = "${pkgs.shellcheck}/bin/shellcheck $filename";
                     ext = ".sh";
+                  };
+                  statix = {
+                    cmd = "${pkgs.statix}/bin/statix check -- $filename";
+                    ext = ".nix";
                   };
                 };
                 formatters = {
