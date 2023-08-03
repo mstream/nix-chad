@@ -3,10 +3,10 @@
   viAlias = true;
   vimAlias = true;
   vimdiffAlias = true;
-  extraConfig = 
-      ''
+  extraConfig =
+    ''
       	lua require('init')
-      '';
+    '';
   plugins = with pkgs.vimPlugins; [
     cmp-buffer
     cmp-calc

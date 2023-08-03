@@ -27,28 +27,55 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lint-nix.url = "github:xc-jp/lint.nix";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     nixpkgs.url = "github:nixos/nixpkgs/23.05";
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs@{ easy-purescript-nix, flake-utils, nixpkgs, nur, ... }:
+  outputs = inputs@{ easy-purescript-nix, flake-utils, lint-nix, nixpkgs, nur, ... }:
     let
+      ciSystems = with flake-utils.lib.system; [
+        aarch64-darwin
+        x86_64-darwin
+        x86_64-linux
+      ];
+
       supportedSystems = with flake-utils.lib.system; [
         aarch64-darwin
         x86_64-darwin
       ];
 
-      forEachSupportedSystem = f: builtins.foldl' f { } supportedSystems;
+      forEachSystem = systems: f: builtins.foldl' f { } systems;
 
-      # This should be manually adjusted to match the home-manager's 
-      # flake release revision frome the flake.nix inputs section.
+      # This should be manually adjusted to match the home-manager's
+      # flake release revision from the flake.nix inputs section.
       home-manager-version = "23.05";
       mk-darwin-config = import ./lib/mk-darwin-config.nix
         (inputs // { inherit home-manager-version; });
     in
     {
-      lib.chad = config: forEachSupportedSystem
+      legacyPackages = forEachSystem ciSystems
+        (acc: system:
+          let
+            pkgs = import nixpkgs { inherit system; };
+          in
+          pkgs.lib.recursiveUpdate acc
+            {
+              ${system}.lints = lint-nix.lib.lint-nix {
+                inherit pkgs;
+                linters = { };
+                formatters = {
+                  nixpkgs-fmt = {
+                    cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt --check $filename";
+                    ext = ".nix";
+                  };
+                };
+                src = ./.;
+              };
+            }
+        );
+      lib.chad = config: forEachSystem supportedSystems
         (acc: system:
           let pkgs = import nixpkgs { inherit system; };
           in pkgs.lib.recursiveUpdate acc {
@@ -63,8 +90,8 @@
         description = "A default template";
         path = ./templates/default;
       };
-      tests = forEachSupportedSystem
-        (acc: system:
+      tests = forEachSystem ciSystems
+        (_: system:
           let
             pkgs = import nixpkgs
               {

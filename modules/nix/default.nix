@@ -9,8 +9,8 @@
     '';
     package = pkgs.nix;
     settings = {
-      substituters = [];
-      trusted-public-keys = [];
+      substituters = [ ];
+      trusted-public-keys = [ ];
     };
   };
 }

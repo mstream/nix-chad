@@ -159,6 +159,21 @@
         "type": "github"
       }
     },
+    "lint-nix": {
+      "locked": {
+        "lastModified": 1685612071,
+        "narHash": "sha256-0D0eeifUc3yLZN36r09BH1THMnk7S5L+kEECbJ2VW5Q=",
+        "owner": "xc-jp",
+        "repo": "lint.nix",
+        "rev": "61738b3c5ec356894ff5e9550dea049ed4d2b66c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xc-jp",
+        "repo": "lint.nix",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -267,6 +282,7 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "lint-nix": "lint-nix",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_3",
         "nur": "nur"

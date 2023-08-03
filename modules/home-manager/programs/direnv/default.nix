@@ -1,5 +1,5 @@
 {
-  config = {};
+  config = { };
   enable = true;
   enableZshIntegration = true;
   nix-direnv = {
