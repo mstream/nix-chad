@@ -16,6 +16,7 @@ let
     awscli
     aws-sam-cli
     bat
+    beautysh
     black
     cachix
     colima

@@ -135,6 +135,7 @@ return {
 					diagnostics.write_good,
 					diagnostics.yamllint,
 					formatting.black,
+					formatting.beautysh,
 					formatting.cbfmt,
 					formatting.codespell,
 					formatting.fixjson,

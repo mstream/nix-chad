@@ -66,6 +66,10 @@
                 inherit pkgs;
                 linters = { };
                 formatters = {
+                  beautysh = {
+                    cmd = "${pkgs.beautysh}/bin/beautysh --check $filename";
+                    ext = ".sh";
+                  };
                   nixpkgs-fmt = {
                     cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt --check $filename";
                     ext = ".nix";
