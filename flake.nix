@@ -33,7 +33,7 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs@{ easy-purescript-nix, flake-utils, lint-nix, nixpkgs, nur, ... }:
+  outputs = inputs@{ flake-utils, nixpkgs, nur, ... }:
     let
       ciSystems = with flake-utils.lib.system; [
         aarch64-darwin
@@ -51,8 +51,11 @@
       # This should be manually adjusted to match the home-manager's
       # flake release revision from the flake.nix inputs section.
       home-manager-version = "23.05";
+
       mk-darwin-config = import ./lib/mk-darwin-config.nix
         (inputs // { inherit home-manager-version; });
+
+
     in
     {
       legacyPackages = forEachSystem ciSystems
@@ -62,40 +65,9 @@
           in
           pkgs.lib.recursiveUpdate acc
             {
-              ${system}.lints = lint-nix.lib.lint-nix {
+              ${system}.lints = inputs.lint-nix.lib.lint-nix {
                 inherit pkgs;
-                linters = {
-                  deadnix = {
-                    cmd = "${pkgs.deadnix}/bin/deadnix $filename";
-                    ext = ".nix";
-                  };
-                  luacheck = {
-                    cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck $filename --globals vim";
-                    ext = ".lua";
-                  };
-                  shellcheck = {
-                    cmd = "${pkgs.shellcheck}/bin/shellcheck $filename";
-                    ext = ".sh";
-                  };
-                  statix = {
-                    cmd = "${pkgs.statix}/bin/statix check -- $filename";
-                    ext = ".nix";
-                  };
-                };
-                formatters = {
-                  beautysh = {
-                    cmd = "${pkgs.beautysh}/bin/beautysh --check $filename";
-                    ext = ".sh";
-                  };
-                  nixpkgs-fmt = {
-                    cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt --check $filename";
-                    ext = ".nix";
-                  };
-                  stylua = {
-                    cmd = "${pkgs.stylua}/bin/stylua --check $filename";
-                    ext = ".lua";
-                  };
-                };
+                inherit (import ./lint-conf.nix { inherit pkgs; }) formatters linters;
                 src = ./.;
               };
             }
@@ -126,7 +98,7 @@
             violations = import ./test.nix
               {
                 inherit pkgs;
-                easy-ps = import easy-purescript-nix { inherit pkgs; };
+                easy-ps = import inputs.easy-purescript-nix { inherit pkgs; };
                 version = home-manager-version;
               };
           in
