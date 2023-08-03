@@ -65,6 +65,10 @@
               ${system}.lints = lint-nix.lib.lint-nix {
                 inherit pkgs;
                 linters = {
+                  luacheck = {
+                    cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck $filename --globals vim";
+                    ext = ".lua";
+                  };
                   shellcheck = {
                     cmd = "${pkgs.shellcheck}/bin/shellcheck $filename";
                     ext = ".sh";
