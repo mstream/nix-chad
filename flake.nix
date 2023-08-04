@@ -11,9 +11,9 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
@@ -23,9 +23,9 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
     };
     lint-nix.url = "github:xc-jp/lint.nix";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";

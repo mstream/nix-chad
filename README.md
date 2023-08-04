@@ -10,18 +10,19 @@ An opinionated MacOS setup focused on software development.
 
 ### Neovim programming/configuration languages support
 
-| language   | code actions | completion | diagnostics | formatting | syntax highlighting |
-| :--------- | :----------: | :--------: | :---------: | :--------: | :-----------------: |
-| bash       |      +       |     +      |      +      |     +      |          +          |
-| dhall      |      -       |     +      |      +      |     +      |          +          |
-| javascript |      +       |     +      |      +      |     +      |          +          |
-| lua        |      +       |     +      |      +      |     +      |          +          |
-| markdown   |      -       |     -      |      +      |     +      |          +          |
-| nix        |      -       |     -      |      +      |     +      |          +          |
-| purescript |      +       |     +      |      +      |     +      |          +          |
-| python     |      -       |     +      |      +      |     +      |          +          |
-| typescript |      +       |     +      |      +      |     +      |          +          |
-| yaml       |      +       |     -      |      +      |     +      |          +          |
+| language   | actions | completion | diagnostics | formatting | highlighting |
+| :--------- | :-----: | :--------: | :---------: | :--------: | :----------: |
+| bash       |    +    |     +      |      +      |     +      |      +       |
+| dhall      |    -    |     +      |      +      |     +      |      +       |
+| json       |    -    |     -      |      +      |     +      |      +       |
+| javascript |    +    |     +      |      +      |     +      |      +       |
+| lua        |    +    |     +      |      +      |     +      |      +       |
+| markdown   |    -    |     -      |      +      |     +      |      +       |
+| nix        |    -    |     -      |      +      |     +      |      +       |
+| purescript |    +    |     +      |      +      |     +      |      +       |
+| python     |    -    |     +      |      +      |     +      |      +       |
+| typescript |    +    |     +      |      +      |     +      |      +       |
+| yaml       |    +    |     -      |      +      |     +      |      +       |
 
 ## Prerequisites
 
