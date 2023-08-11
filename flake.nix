@@ -95,7 +95,7 @@
                 inherit system;
                 overlays = import ./overlays/nixpkgs.nix { inherit nur; };
               };
-            violations = import ./test.nix
+            violations = import ./test
               {
                 inherit pkgs;
                 easy-ps = import inputs.easy-purescript-nix { inherit pkgs; };

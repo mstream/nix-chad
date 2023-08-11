@@ -1,6 +1,5 @@
 { darwin
 , easy-purescript-nix
-, flake-utils
 , homebrew-bundle
 , homebrew-cask
 , homebrew-core

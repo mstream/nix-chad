@@ -1,5 +1,5 @@
 { easy-ps, pkgs, version, ... }:
-chadConfig@{ defaultGpgKey, homeDirectories, ... }:
+chadConfig@{ defaultGpgKey, extraPackages, homeDirectories, ... }:
 let
   lsps = with pkgs; [
     dhall-lsp-server
@@ -94,6 +94,9 @@ let
     yamllint
     yarn
   ];
+  customPackages = builtins.map
+    (packageName: pkgs.${packageName})
+    extraPackages;
   nvchad = pkgs.callPackage ../../packages/nvchad { };
   userDefinedDirectories = (builtins.foldl'
     (acc: dir:
@@ -136,7 +139,7 @@ in
 {
   home.file = homeFiles;
 
-  home.packages = lsps ++ otherPackages;
+  home.packages = lsps ++ otherPackages ++ customPackages;
 
   home.stateVersion = version;
 
