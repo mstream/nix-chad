@@ -115,25 +115,28 @@ let
     )
     { idx = 0; result = { }; }
     homeDirectories).result;
+
+  gnupgDirectories = if defaultGpgKey == null then { } else {
+    gnupgGpgAgent = {
+      recursive = true;
+      target = ".gnupg/gpg-agent.conf";
+      text = ''
+        enable-ssh-support
+        default-cache-ttl 60
+        max-cache-ttl 120
+      '';
+    };
+    gnupgSshControl = {
+      recursive = true;
+      target = ".gnupg/sshcontrol";
+      text = ''
+        ${defaultGpgKey}
+      '';
+    };
+  };
+
   homeFiles = pkgs.lib.recursiveUpdate
-    {
-      gnupgGpgAgent = {
-        recursive = true;
-        target = ".gnupg/gpg-agent.conf";
-        text = ''
-          enable-ssh-support
-          default-cache-ttl 60
-          max-cache-ttl 120
-        '';
-      };
-      gnupgSshControl = {
-        recursive = true;
-        target = ".gnupg/sshcontrol";
-        text = ''
-          ${defaultGpgKey}
-        '';
-      };
-    }
+    gnupgDirectories
     userDefinedDirectories;
 in
 {

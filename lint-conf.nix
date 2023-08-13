@@ -23,6 +23,10 @@
       cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck $filename --globals vim";
       ext = ".lua";
     };
+    markdown-link-check = {
+      cmd = "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check $filename";
+      ext = ".md";
+    };
     shellcheck = {
       cmd = "${pkgs.shellcheck}/bin/shellcheck $filename";
       ext = ".sh";
@@ -30,6 +34,10 @@
     statix = {
       cmd = "${pkgs.statix}/bin/statix check -- $filename";
       ext = ".nix";
+    };
+    typos = {
+      cmd = "${pkgs.typos}/bin/typos $filename";
+      ext = ".md";
     };
   };
 }

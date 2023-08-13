@@ -1,7 +1,14 @@
 { easy-ps, pkgs, version, ... }:
 let
+  homebrew = import ../modules/homebrew;
   userConfig = import ../modules/home-manager/user-config.nix;
-  actual = userConfig
+  actualHomebrew = homebrew {
+    extraCasks = [
+      "discord"
+    ];
+    manageHomebrew = true;
+  };
+  actualUserConfig = userConfig
     { inherit easy-ps pkgs version; }
     {
       defaultGpgKey = "gpg1";
@@ -47,7 +54,17 @@ pkgs.lib.runTests
         text = "";
       };
     };
-    expr = actual.home.file;
+    expr = actualUserConfig.home.file;
+  };
+  testHomebrewCasks = {
+    expected = [
+      "docker"
+      "firefox"
+      "google-chrome"
+      "thunderbird"
+      "discord"
+    ];
+    expr = actualHomebrew.homebrew.casks;
   };
   testHomePackages = {
     expected = with pkgs; [
@@ -142,6 +159,6 @@ pkgs.lib.runTests
       yarn
       cowsay
     ];
-    expr = actual.home.packages;
+    expr = actualUserConfig.home.packages;
   };
 }

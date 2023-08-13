@@ -1,20 +1,12 @@
-{ manageHomebrew }: {
+{ extraCasks, manageHomebrew, ... }: {
   homebrew = {
     brews = [ ];
     casks = [
-      "brave-browser"
-      "discord"
       "docker"
       "firefox"
       "google-chrome"
-      "inkscape"
-      "intellij-idea"
-      "microsoft-teams"
-      "slack"
-      "steam"
       "thunderbird"
-      "vlc"
-    ];
+    ] ++ extraCasks;
     enable = manageHomebrew;
     extraConfig = ''
       cask "firefox", args: { language: "en-GB" }

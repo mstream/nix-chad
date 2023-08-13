@@ -1,5 +1,5 @@
 { defaultGpgKey, ... }: {
-  enable = true;
+  enable = defaultGpgKey != null;
   settings = {
     no-auto-key-retrieve = true;
     no-comments = true;

@@ -55,6 +55,15 @@
       mk-darwin-config = import ./lib/mk-darwin-config.nix
         (inputs // { inherit home-manager-version; });
 
+      configDefaults = {
+        defaultGpgKey = null;
+        extraCasks = [ ];
+        extraPackages = [ ];
+        fontSize = 16;
+        homeDirectories = [ ];
+        manageHomebrew = false;
+        zshInitExtra = "";
+      };
 
     in
     {
@@ -80,7 +89,9 @@
               {
                 drv = import ./packages/switch/default.nix { inherit pkgs system; };
               };
-            darwinConfigurations.macbook.${system} = mk-darwin-config system config;
+            darwinConfigurations.macbook.${system} = mk-darwin-config
+              system
+              (pkgs.lib.attrsets.recursiveUpdate configDefaults config);
           }
         );
       templates.default = {

@@ -24,14 +24,12 @@ darwin.lib.darwinSystem {
       }
       config
     ))
-    (import ../modules/homebrew/default.nix
-      { inherit (config) manageHomebrew; }
-    )
+    (import ../modules/homebrew/default.nix config)
     ({ pkgs, ... }: (import ../modules/nix { inherit pkgs system; }))
     (import ../modules/nixpkgs { inherit nur; })
     (import ../modules/programs)
-    (import ../modules/system { inherit (config) fontSize; })
-    (import ../modules/users { inherit (config) username; })
+    (import ../modules/system config)
+    (import ../modules/users config)
     nix-homebrew.darwinModules.nix-homebrew
     {
       nix-homebrew = {

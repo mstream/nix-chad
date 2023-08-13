@@ -15,9 +15,17 @@
           # manually.
           defaultGpgKey = "BE318F09150F6CB0724FFEC0319EE1D7FC029354";
 
-          # A list of packages from nixpkgs repository
+          # Given the "manageHomebrew" option is enabled,
+          # this list declares homebrew cask to be installed
+          # on your computer.
+          # Available cask names can be found here:
+          # https://formulae.brew.sh/cask/
+          extraCasks = [
+            "discord"
+          ];
+
           extraPackages = [
-            "cowsay"
+            cowsay
           ];
 
           # A desired font size in tools that have a mean to set it fixed.
@@ -33,7 +41,7 @@
             "Development/projects"
           ];
 
-          # Install homebrew and let it manage propertiary software.
+          # Install homebrew and let it manage proprietary software.
           manageHomebrew = true;
 
           # This should be set to the desired user name.
