@@ -289,6 +289,7 @@ return {
 		dependencies = {
 			"tpope/vim-repeat",
 		},
+		event = "BufEnter",
 	},
 	{
 		"vmchale/dhall-vim",
