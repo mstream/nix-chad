@@ -60,6 +60,7 @@ let
     nodePackages.jsonlint
     nodePackages.prettier
     nodePackages.prettier_d_slim
+    nodePackages.pulp
     nodePackages.purty
     nodePackages.pyright
     nodePackages.stylelint
