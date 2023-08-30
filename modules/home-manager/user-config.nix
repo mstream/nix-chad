@@ -55,6 +55,7 @@ let
     nmap
     nodejs
     nodePackages.alex
+    nodePackages.bower
     nodePackages.fixjson
     nodePackages.htmlhint
     nodePackages.jsonlint
