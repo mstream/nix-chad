@@ -44,6 +44,7 @@ let
     inkscape
     heroku
     jdk
+    jupyter
     kubectl
     lua5_4
     luajitPackages.luacheck
