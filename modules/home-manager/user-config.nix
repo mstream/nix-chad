@@ -76,6 +76,7 @@ let
     proselint
     python311
     python311Packages.grip
+    python311Packages.pip
     pwgen
     ripgrep
     treefmt
