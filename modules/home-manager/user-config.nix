@@ -29,6 +29,7 @@ let
     deadnix
     deno
     dhall
+    discord
     docker
     easy-ps.purs
     easy-ps.purs-tidy
@@ -41,8 +42,8 @@ let
     google-java-format
     gradle
     hadolint
-    inkscape
     heroku
+    inkscape
     jdk
     jetbrains.idea-ultimate
     jupyter
