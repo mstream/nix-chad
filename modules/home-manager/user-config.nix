@@ -83,6 +83,7 @@ let
     shellcheck
     shellharden
     shfmt
+    slack
     spago
     statix
     stylua
