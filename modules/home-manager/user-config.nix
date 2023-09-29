@@ -44,6 +44,7 @@ let
     inkscape
     heroku
     jdk
+    jetbrains.idea-ultimate
     jupyter
     kubectl
     lua5_4
