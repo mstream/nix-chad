@@ -88,6 +88,7 @@ let
     statix
     stylua
     taplo
+    teams
     tectonic
     terraform
     tfsec
