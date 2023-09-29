@@ -97,6 +97,7 @@ let
     yamlfix
     yamllint
     yarn
+    vscode
   ];
   customPackages = builtins.map
     (packageName: pkgs.${packageName})
@@ -168,6 +169,7 @@ in
     password-store = import ./programs/password-store/default.nix;
     thunderbird = import ./programs/thunderbird/default.nix (chadConfig // { inherit pkgs; });
     tmux = import ./programs/tmux/default.nix;
+    vscode = import ./programs/vscode/default.nix { inherit pkgs; };
     zsh = import ./programs/zsh/default.nix chadConfig;
   };
 }

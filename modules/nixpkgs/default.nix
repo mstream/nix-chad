@@ -2,7 +2,7 @@
   nixpkgs = {
     config = {
       allowBroken = false;
-      allowUnfree = false;
+      allowUnfree = true;
     };
     overlays = import ../../overlays/nixpkgs.nix { inherit nur; };
   };
