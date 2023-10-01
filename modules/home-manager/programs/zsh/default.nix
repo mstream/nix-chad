@@ -33,7 +33,7 @@
   plugins = [ ];
   prezto = {
     autosuggestions.color = "fg=blue";
-    caseSensitive = false;
+    caseSensitive = true;
     color = true;
     editor = {
       dotExpansion = true;
