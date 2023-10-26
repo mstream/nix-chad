@@ -29,7 +29,6 @@ let
     deadnix
     deno
     dhall
-    discord
     docker
     easy-ps.purs
     easy-ps.purs-tidy
