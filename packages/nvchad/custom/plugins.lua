@@ -138,7 +138,6 @@ return {
 					formatting.beautysh,
 					formatting.cbfmt,
 					formatting.codespell,
-					formatting.fixjson,
 					formatting.google_java_format,
 					formatting.jq,
 					formatting.markdownlint,

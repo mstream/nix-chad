@@ -96,6 +96,7 @@ pkgs.lib.runTests
       dhall
       discord
       docker
+      dprint
       easy-ps.purs
       easy-ps.purs-tidy
       editorconfig-checker
