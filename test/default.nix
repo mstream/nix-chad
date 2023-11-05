@@ -4,7 +4,8 @@ let
   userConfig = import ../modules/home-manager/user-config.nix;
   actualHomebrew = homebrew {
     extraCasks = [
-      "discord"
+      "some-extra-cask-1"
+      "some-extra-cask-2"
     ];
     manageHomebrew = true;
   };
@@ -58,11 +59,11 @@ pkgs.lib.runTests
   };
   testHomebrewCasks = {
     expected = [
-      "docker"
       "firefox"
       "google-chrome"
       "thunderbird"
-      "discord"
+      "some-extra-cask-1"
+      "some-extra-cask-2"
     ];
     expr = actualHomebrew.homebrew.casks;
   };
@@ -93,6 +94,7 @@ pkgs.lib.runTests
       deadnix
       deno
       dhall
+      discord
       docker
       easy-ps.purs
       easy-ps.purs-tidy
@@ -105,9 +107,11 @@ pkgs.lib.runTests
       google-java-format
       gradle
       hadolint
-      inkscape
       heroku
+      inkscape
       jdk
+      jetbrains.idea-ultimate
+      jupyter
       kubectl
       lua5_4
       luajitPackages.luacheck
@@ -119,11 +123,13 @@ pkgs.lib.runTests
       nmap
       nodejs
       nodePackages.alex
+      nodePackages.bower
       nodePackages.fixjson
       nodePackages.htmlhint
       nodePackages.jsonlint
       nodePackages.prettier
       nodePackages.prettier_d_slim
+      nodePackages.pulp
       nodePackages.purty
       nodePackages.pyright
       nodePackages.stylelint
@@ -137,16 +143,19 @@ pkgs.lib.runTests
       proselint
       python311
       python311Packages.grip
+      python311Packages.pip
       pwgen
       ripgrep
       treefmt
       shellcheck
       shellharden
       shfmt
+      slack
       spago
       statix
       stylua
       taplo
+      teams
       tectonic
       terraform
       tfsec
@@ -157,6 +166,7 @@ pkgs.lib.runTests
       yamlfix
       yamllint
       yarn
+      vscode
       cowsay
     ];
     expr = actualUserConfig.home.packages;

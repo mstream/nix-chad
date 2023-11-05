@@ -1,23 +1,24 @@
 ---
+name: Check
+on:
+  pull_request:
+    branches: [main]
 jobs:
-  release-and-deploy:
+  linting-and-testing:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
+      - name: Check out the repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Nix
-        uses: cachix/install-nix-action@v22
+        uses: cachix/install-nix-action@v18
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            substituters = https://cache.nixos.org/
+          nix_path: nixpkgs=channel:nixos-unstable
       - name: Run linters
         run: nix build .#lints.all-checks --show-trace
       - name: Run flake checks
         run: nix flake check --show-trace
-    timeout-minutes: 10
-name: Lint
-on:
-  push:
-    branches: [main]

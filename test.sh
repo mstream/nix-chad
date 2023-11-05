@@ -7,7 +7,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 nix build --show-trace "${SCRIPT_DIR}#lints.all-checks"
 
-nix eval --show-trace "${SCRIPT_DIR}/test/#tests"
+NIXPKGS_ALLOW_UNFREE=1 nix eval --impure --show-trace "${SCRIPT_DIR}/test/#tests"
 
 INSTALLABLE=darwinConfigurations.macbook.aarch64-darwin.system
 

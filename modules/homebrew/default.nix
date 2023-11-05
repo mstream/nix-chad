@@ -2,7 +2,6 @@
   homebrew = {
     brews = [ ];
     casks = [
-      "docker"
       "firefox"
       "google-chrome"
       "thunderbird"
