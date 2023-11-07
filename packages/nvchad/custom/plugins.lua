@@ -139,7 +139,6 @@ return {
 					formatting.cbfmt,
 					formatting.codespell,
 					formatting.google_java_format,
-					formatting.jq,
 					formatting.markdownlint,
 					formatting.nixpkgs_fmt,
 					formatting.prettier.with({
