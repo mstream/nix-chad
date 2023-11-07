@@ -21,6 +21,7 @@
     init = {
       defaultBranch = "master";
     };
+    push = { default = "simple"; };
   };
   ignores = [ ".direnv" ".DS_Store" "*~" "*.swp" ];
   userEmail = "maciej.laciak@gmail.com";
