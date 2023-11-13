@@ -139,9 +139,9 @@ return {
 					formatting.cbfmt,
 					formatting.codespell,
 					formatting.google_java_format,
-					formatting.markdownlint,
+					--formatting.markdownlint,
 					formatting.nixpkgs_fmt,
-					formatting.prettier.with({
+					formatting.p.prettierignorerettier.with({
 						extra_filetypes = { "svelte" },
 					}),
 					formatting.purs_tidy,
