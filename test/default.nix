@@ -151,7 +151,6 @@ pkgs.lib.runTests
       shellharden
       shfmt
       slack
-      spago
       statix
       stylua
       taplo

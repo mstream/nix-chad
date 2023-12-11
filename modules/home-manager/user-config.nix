@@ -86,7 +86,6 @@ let
     shellharden
     shfmt
     slack
-    spago
     statix
     stylua
     taplo
