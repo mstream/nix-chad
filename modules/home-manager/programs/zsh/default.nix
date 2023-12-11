@@ -77,7 +77,6 @@
       theme = "sorin";
     };
     syntaxHighlighting = {
-      enable = true;
       styles = {
         comment = "fg=white";
       };
@@ -93,4 +92,7 @@
     ll = "ls -l";
   };
   shellGlobalAliases = { };
+  syntaxHighlighting = {
+    enable = true;
+  };
 }
