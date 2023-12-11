@@ -7,7 +7,6 @@
   enable = true;
   enableAutosuggestions = true;
   enableCompletion = true;
-  enableSyntaxHighlighting = true;
   envExtra = ''
   '';
   history = {
@@ -78,6 +77,7 @@
       theme = "sorin";
     };
     syntaxHighlighting = {
+      enable = true;
       styles = {
         comment = "fg=white";
       };
