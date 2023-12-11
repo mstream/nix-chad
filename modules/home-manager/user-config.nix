@@ -12,7 +12,6 @@ let
     nodePackages.yaml-language-server
     rnix-lsp
   ];
-  pythonEnvironment = pkgs.python3.withPackages (p: [ p.grip p.pip ]);
   otherPackages = with pkgs; [
     awscli
     aws-sam-cli
@@ -78,7 +77,7 @@ let
     poetry
     proselint
     pwgen
-    pythonEnvironment
+    python3
     ripgrep
     treefmt
     shellcheck
