@@ -12,7 +12,7 @@ let
     nodePackages.yaml-language-server
     rnix-lsp
   ];
-  pythonEnvironment = pkgs.python3Full.withPackages (p: [ p.grip p.pip ]);
+  pythonEnvironment = pkgs.python3.withPackages (p: [ p.grip p.pip ]);
   otherPackages = with pkgs; [
     awscli
     aws-sam-cli
