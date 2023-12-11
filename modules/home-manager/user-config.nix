@@ -54,7 +54,6 @@ let
     luajitPackages.luacheck
     maven
     mdl
-    mplayer
     nixfmt
     nixpkgs-fmt
     nmap

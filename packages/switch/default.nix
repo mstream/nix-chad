@@ -1,6 +1,7 @@
 { pkgs, system, ... }:
 let
   script = "
+    set -e
     nix build --experimental-features 'nix-command flakes' --show-trace '.#darwinConfigurations.macbook.${system}.system'
     rm -rf ~/.cache/nvim
     rm -rf ~/.config/nvim                                                                                                                          ✘ 130 main ⬆

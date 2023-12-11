@@ -118,7 +118,6 @@ pkgs.lib.runTests
       luajitPackages.luacheck
       maven
       mdl
-      mplayer
       nixfmt
       nixpkgs-fmt
       nmap
