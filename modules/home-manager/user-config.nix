@@ -77,7 +77,6 @@ let
     poetry
     proselint
     pwgen
-    python3
     ripgrep
     treefmt
     shellcheck

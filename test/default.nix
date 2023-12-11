@@ -140,7 +140,6 @@ pkgs.lib.runTests
       pinentry
       podman
       proselint
-      python3
       pwgen
       ripgrep
       treefmt
