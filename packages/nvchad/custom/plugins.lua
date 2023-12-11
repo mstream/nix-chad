@@ -136,7 +136,6 @@ return {
 					diagnostics.yamllint,
 					formatting.black,
 					formatting.beautysh,
-					formatting.cbfmt,
 					formatting.codespell,
 					formatting.google_java_format,
 					formatting.nixpkgs_fmt,

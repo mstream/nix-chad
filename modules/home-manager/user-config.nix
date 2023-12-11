@@ -22,7 +22,6 @@ let
     cachix
     colima
     cargo
-    cbfmt
     checkstyle
     codespell
     commitlint
