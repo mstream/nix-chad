@@ -21,7 +21,6 @@ let
     cachix
     colima
     cargo
-    cbfmt
     checkstyle
     codespell
     commitlint
@@ -53,7 +52,6 @@ let
     luajitPackages.luacheck
     maven
     mdl
-    mplayer
     nixfmt
     nixpkgs-fmt
     nmap
@@ -76,10 +74,8 @@ let
     perl
     pinentry
     podman
+    poetry
     proselint
-    python311
-    python311Packages.grip
-    python311Packages.pip
     pwgen
     ripgrep
     treefmt
@@ -87,7 +83,6 @@ let
     shellharden
     shfmt
     slack
-    spago
     statix
     stylua
     taplo

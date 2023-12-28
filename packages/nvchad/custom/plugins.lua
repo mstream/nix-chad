@@ -136,10 +136,8 @@ return {
 					diagnostics.yamllint,
 					formatting.black,
 					formatting.beautysh,
-					formatting.cbfmt,
 					formatting.codespell,
 					formatting.google_java_format,
-					formatting.markdownlint,
 					formatting.nixpkgs_fmt,
 					formatting.prettier.with({
 						extra_filetypes = { "svelte" },

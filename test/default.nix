@@ -86,7 +86,6 @@ pkgs.lib.runTests
       cachix
       colima
       cargo
-      cbfmt
       checkstyle
       codespell
       commitlint
@@ -118,7 +117,6 @@ pkgs.lib.runTests
       luajitPackages.luacheck
       maven
       mdl
-      mplayer
       nixfmt
       nixpkgs-fmt
       nmap
@@ -142,9 +140,6 @@ pkgs.lib.runTests
       pinentry
       podman
       proselint
-      python311
-      python311Packages.grip
-      python311Packages.pip
       pwgen
       ripgrep
       treefmt
@@ -152,7 +147,6 @@ pkgs.lib.runTests
       shellharden
       shfmt
       slack
-      spago
       statix
       stylua
       taplo

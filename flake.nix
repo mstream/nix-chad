@@ -12,7 +12,7 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     homebrew-bundle = {
@@ -29,7 +29,7 @@
     };
     lint-nix.url = "github:xc-jp/lint.nix";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    nixpkgs.url = "github:nixos/nixpkgs/23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/23.11";
     nur.url = "github:nix-community/NUR";
   };
 

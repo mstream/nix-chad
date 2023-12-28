@@ -25,7 +25,7 @@
           ];
 
           extraPackages = [
-            cowsay
+            "cowsay"
           ];
 
           # A desired font size in tools that have a mean to set it fixed.

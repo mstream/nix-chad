@@ -7,7 +7,6 @@
   enable = true;
   enableAutosuggestions = true;
   enableCompletion = true;
-  enableSyntaxHighlighting = true;
   envExtra = ''
   '';
   history = {
@@ -93,4 +92,7 @@
     ll = "ls -l";
   };
   shellGlobalAliases = { };
+  syntaxHighlighting = {
+    enable = true;
+  };
 }
