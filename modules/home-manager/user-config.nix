@@ -77,6 +77,7 @@ let
     poetry
     proselint
     pwgen
+    (python3.withPackages (ps: with ps; [ tkinter ]))
     ripgrep
     treefmt
     shellcheck
