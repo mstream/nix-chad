@@ -77,6 +77,7 @@ let
     proselint
     pwgen
     (python3.withPackages (ps: with ps; [ tkinter ]))
+    qemu
     ripgrep
     treefmt
     shellcheck

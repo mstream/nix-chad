@@ -1,6 +1,6 @@
 { extraCasks, manageHomebrew, ... }: {
   homebrew = {
-    brews = [ "qemu" ];
+    brews = [ ];
     casks = [
       "firefox"
       "google-chrome"
