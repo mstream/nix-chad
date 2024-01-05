@@ -95,6 +95,7 @@ let
     typos
     unixtools.watch
     xmlformat
+    xz
     yamlfix
     yamllint
     yarn
