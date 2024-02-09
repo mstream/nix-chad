@@ -46,7 +46,6 @@ let
     inkscape
     jdk
     jetbrains.idea-ultimate
-    kicad
     kubectl
     lua5_4
     luajitPackages.luacheck

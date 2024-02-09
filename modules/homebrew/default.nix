@@ -2,9 +2,7 @@
   homebrew = {
     brews = [ ];
     casks = [
-      "applepi-baker"
       "firefox"
-      "google-chrome"
       "thunderbird"
     ] ++ extraCasks;
     enable = manageHomebrew;
