@@ -12,6 +12,9 @@ let
     nodePackages.yaml-language-server
     rnix-lsp
   ];
+  localPackages = [
+    (pkgs.callPackage ../../packages/mermaid-filter { }).nodeDependencies
+  ];
   otherPackages = with pkgs; [
     awscli
     aws-sam-cli
@@ -60,6 +63,7 @@ let
     nodePackages.fixjson
     nodePackages.htmlhint
     nodePackages.jsonlint
+    nodePackages.node2nix
     nodePackages.prettier
     nodePackages.prettier_d_slim
     nodePackages.pulp
@@ -149,7 +153,7 @@ in
 {
   home.file = homeFiles;
 
-  home.packages = lsps ++ otherPackages ++ customPackages;
+  home.packages = lsps ++ otherPackages ++ customPackages ++ localPackages;
 
   home.stateVersion = version;
 
