@@ -37,6 +37,7 @@ let
     easy-ps.purs
     easy-ps.purs-tidy
     editorconfig-checker
+    eslint_d
     exercism
     ffmpeg
     gawk
