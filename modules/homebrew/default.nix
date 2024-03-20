@@ -3,7 +3,6 @@
     brews = [ ];
     casks = [
       "firefox"
-      "google-chrome"
       "thunderbird"
     ] ++ extraCasks;
     enable = manageHomebrew;

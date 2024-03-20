@@ -12,6 +12,9 @@ let
     nodePackages.yaml-language-server
     rnix-lsp
   ];
+  localPackages = [
+    (pkgs.callPackage ../../packages/mermaid-filter { }).nodeDependencies
+  ];
   otherPackages = with pkgs; [
     awscli
     aws-sam-cli
@@ -34,6 +37,7 @@ let
     easy-ps.purs
     easy-ps.purs-tidy
     editorconfig-checker
+    eslint_d
     exercism
     ffmpeg
     gawk
@@ -46,7 +50,6 @@ let
     inkscape
     jdk
     jetbrains.idea-ultimate
-    jupyter
     kubectl
     lua5_4
     luajitPackages.luacheck
@@ -61,6 +64,7 @@ let
     nodePackages.fixjson
     nodePackages.htmlhint
     nodePackages.jsonlint
+    nodePackages.node2nix
     nodePackages.prettier
     nodePackages.prettier_d_slim
     nodePackages.pulp
@@ -77,6 +81,8 @@ let
     poetry
     proselint
     pwgen
+    (python3.withPackages (ps: with ps; [ tkinter ]))
+    qemu
     ripgrep
     treefmt
     shellcheck
@@ -94,6 +100,7 @@ let
     typos
     unixtools.watch
     xmlformat
+    xz
     yamlfix
     yamllint
     yarn
@@ -147,7 +154,7 @@ in
 {
   home.file = homeFiles;
 
-  home.packages = lsps ++ otherPackages ++ customPackages;
+  home.packages = lsps ++ otherPackages ++ customPackages ++ localPackages;
 
   home.stateVersion = version;
 

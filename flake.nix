@@ -35,6 +35,8 @@
 
   outputs = inputs@{ flake-utils, nixpkgs, nur, ... }:
     let
+      name = "nix-chad";
+
       ciSystems = with flake-utils.lib.system; [
         aarch64-darwin
         x86_64-darwin
@@ -67,6 +69,22 @@
 
     in
     {
+      devShells = forEachSystem ciSystems
+        (acc: system:
+          let
+            pkgs = import nixpkgs { inherit system; };
+          in
+          pkgs.lib.recursiveUpdate acc
+            {
+              ${system}.default = pkgs.mkShell {
+                inherit name;
+                buildInputs = [ pkgs.node2nix ];
+                shellHook = ''
+                  PS1="\[\e[33m\][\[\e[m\]\[\e[34;40m\]${name}:\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] "
+                '';
+              };
+            }
+        );
       legacyPackages = forEachSystem ciSystems
         (acc: system:
           let

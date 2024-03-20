@@ -141,6 +141,7 @@ pkgs.lib.runTests
       podman
       proselint
       pwgen
+      qemu
       ripgrep
       treefmt
       shellcheck
