@@ -1,4 +1,4 @@
-{ easy-ps, pkgs, version, ... }:
+{ pkgs, version, ... }:
 config:
 {
   home-manager = {
@@ -8,7 +8,7 @@ config:
 
   home-manager.users."${config.username}" = import ./user-config.nix
     {
-      inherit easy-ps pkgs version;
+      inherit pkgs version;
     }
     config;
 }

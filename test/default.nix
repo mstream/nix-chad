@@ -1,26 +1,20 @@
-{ easy-ps, pkgs, version, ... }:
+{ pkgs, version, ... }:
 let
   homebrew = import ../modules/homebrew;
   userConfig = import ../modules/home-manager/user-config.nix;
   actualHomebrew = homebrew {
-    extraCasks = [
-      "some-extra-cask-1"
-      "some-extra-cask-2"
-    ];
+    extraCasks = [ "some-extra-cask-1" "some-extra-cask-2" ];
     manageHomebrew = true;
   };
-  actualUserConfig = userConfig
-    { inherit easy-ps pkgs version; }
-    {
-      defaultGpgKey = "gpg1";
-      extraPackages = [ "cowsay" ];
-      fontSize = 123;
-      homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];
-      username = "user1";
-    };
+  actualUserConfig = userConfig { inherit pkgs version; } {
+    defaultGpgKey = "gpg1";
+    extraPackages = [ "cowsay" ];
+    fontSize = 123;
+    homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];
+    username = "user1";
+  };
 in
-pkgs.lib.runTests
-{
+pkgs.lib.runTests {
   testHomeFiles = {
     expected = {
       gnupgGpgAgent = {
@@ -58,112 +52,53 @@ pkgs.lib.runTests
     expr = actualUserConfig.home.file;
   };
   testHomebrewCasks = {
-    expected = [
-      "firefox"
-      "google-chrome"
-      "thunderbird"
-      "some-extra-cask-1"
-      "some-extra-cask-2"
-    ];
+    expected =
+      [ "firefox" "thunderbird" "some-extra-cask-1" "some-extra-cask-2" ];
     expr = actualHomebrew.homebrew.casks;
   };
   testHomePackages = {
     expected = with pkgs; [
-      dhall-lsp-server
-      java-language-server
-      lua-language-server
-      nodePackages.bash-language-server
+      fd
+      ripgrep
+      djlint
+      google-java-format
+      jq
       nodePackages.markdownlint-cli
+      nodePackages.prettier
+      nodePackages.purs-tidy
+      python311Packages.autopep8
+      python311Packages.flake8
+      python311Packages.mdformat
+      shellcheck
+      shfmt
+      python311Packages.yamllint
+      dhall-lsp-server
+      dockerfile-language-server-nodejs
+      lua-language-server
+      efm-langserver
+      java-language-server
+      marksman
+      nixd
+      nodePackages.bash-language-server
       nodePackages.purescript-language-server
       nodePackages.typescript-language-server
+      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-json-languageserver
       nodePackages.yaml-language-server
-      rnix-lsp
-      awscli
-      aws-sam-cli
+      python311Packages.jedi-language-server
+      typescript
+      luajitPackages.jsregexp
       bat
-      beautysh
-      black
-      cachix
-      colima
-      cargo
-      checkstyle
-      codespell
-      commitlint
       coreutils
-      deadnix
-      deno
-      dhall
-      discord
-      docker
-      dprint
-      easy-ps.purs
-      easy-ps.purs-tidy
       editorconfig-checker
-      exercism
-      ffmpeg
       gawk
-      gimp
-      git-crypt
-      google-java-format
-      gradle
-      hadolint
-      heroku
-      inkscape
-      jdk
       jetbrains.idea-ultimate
-      jupyter
-      kubectl
-      lua5_4
-      luajitPackages.luacheck
-      maven
-      mdl
-      nixfmt
-      nixpkgs-fmt
       nmap
-      nodejs
-      nodePackages.alex
-      nodePackages.bower
-      nodePackages.fixjson
-      nodePackages.htmlhint
-      nodePackages.jsonlint
-      nodePackages.prettier
-      nodePackages.prettier_d_slim
-      nodePackages.pulp
-      nodePackages.purty
-      nodePackages.pyright
-      nodePackages.stylelint
-      nodePackages.textlint
-      nodePackages.typescript
-      nodePackages.write-good
-      pandoc
-      perl
-      pinentry
-      podman
-      proselint
-      pwgen
-      qemu
-      ripgrep
-      treefmt
-      shellcheck
-      shellharden
-      shfmt
-      slack
-      statix
-      stylua
-      taplo
-      teams
-      tectonic
-      terraform
-      tfsec
+      nodePackages.node2nix
       tree
-      typos
       unixtools.watch
-      xmlformat
-      yamlfix
-      yamllint
-      yarn
-      vscode
       cowsay
+      (pkgs.callPackage ../packages/mermaid-filter { }).nodeDependencies
     ];
     expr = actualUserConfig.home.packages;
   };

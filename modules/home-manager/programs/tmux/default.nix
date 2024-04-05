@@ -7,6 +7,7 @@
     bind j select-pane -D
     bind k select-pane -U
     bind l select-pane -R
+    set -g focus-events on
     set -s escape-time 0
     set-option -g default-terminal "screen-256color"
   '';
