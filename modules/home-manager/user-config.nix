@@ -104,6 +104,8 @@ let
     yamlfix
     yamllint
     yarn
+    vim
+    vimPlugins.unison
     vscode
   ];
   customPackages = builtins.map
