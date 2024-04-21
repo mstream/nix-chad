@@ -1,6 +1,6 @@
 # Nix Chad
 
-[![Release and deploy](https://github.com/mstream/nix-chad/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/mstream/nix-chad/actions/workflows/lint.yml?query=branch%3Amain)
+[![Release and deploy](https://github.com/mstream/nix-chad/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/mstream/nix-chad/actions/workflows/check.yml?query=branch%3Amain)
 
 ![nix-chad logo](nix-chad.png)
 
@@ -10,23 +10,28 @@ An opinionated MacOS setup focused on software development.
 
 ### Neovim programming/configuration languages support
 
+![nvim dhall example screenshot](nvim-dhall-example.png)
+
 | language   | actions | completion | diagnostics | formatting | highlighting |
 | :--------- | :-----: | :--------: | :---------: | :--------: | :----------: |
-| bash       |    +    |     +      |      +      |     +      |      +       |
-| dhall      |    -    |     +      |      +      |     +      |      +       |
-| json       |    -    |     -      |      +      |     +      |      +       |
-| javascript |    +    |     +      |      +      |     +      |      +       |
-| lua        |    +    |     +      |      +      |     +      |      +       |
-| markdown   |    -    |     -      |      +      |     +      |      +       |
-| nix        |    -    |     -      |      +      |     +      |      +       |
-| purescript |    +    |     +      |      +      |     +      |      +       |
-| python     |    -    |     +      |      +      |     +      |      +       |
-| typescript |    +    |     +      |      +      |     +      |      +       |
-| yaml       |    +    |     -      |      +      |     +      |      +       |
+| bash       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| dhall      |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| docker     |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| html       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| java       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| json       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| javascript |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
+| lua        |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
+| markdown   |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
+| nix        |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| purescript |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
+| python     |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
+| typescript |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
+| yaml       |    ☑    |     ☒      |      ☑      |     ☑      |      ☑       |
 
 ## Prerequisites
 
-- Nix 2.4+
+- [Nix 2.4+](https://nixos.org/manual/nix/stable/)
 
 ## Configuration
 

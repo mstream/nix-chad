@@ -19,7 +19,6 @@ darwin.lib.darwinSystem {
     ({ pkgs, ... }: (import ../modules/home-manager
       {
         inherit pkgs;
-        easy-ps = import easy-purescript-nix { inherit pkgs; };
         version = home-manager-version;
       }
       config
@@ -38,8 +37,8 @@ darwin.lib.darwinSystem {
         mutableTaps = false;
         taps = {
           "homebrew/homebrew-bundle" = homebrew-bundle;
-          "homebrew/homebrew-core" = homebrew-core;
           "homebrew/homebrew-cask" = homebrew-cask;
+          "homebrew/homebrew-core" = homebrew-core;
         };
         user = config.username;
       };

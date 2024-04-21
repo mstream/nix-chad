@@ -69,71 +69,57 @@
 
     in
     {
-      devShells = forEachSystem ciSystems
-        (acc: system:
-          let
-            pkgs = import nixpkgs { inherit system; };
-          in
-          pkgs.lib.recursiveUpdate acc
-            {
-              ${system}.default = pkgs.mkShell {
-                inherit name;
-                buildInputs = [ pkgs.node2nix ];
-                shellHook = ''
-                  PS1="\[\e[33m\][\[\e[m\]\[\e[34;40m\]${name}:\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] "
-                '';
-              };
-            }
-        );
-      legacyPackages = forEachSystem ciSystems
-        (acc: system:
-          let
-            pkgs = import nixpkgs { inherit system; };
-          in
-          pkgs.lib.recursiveUpdate acc
-            {
-              ${system}.lints = inputs.lint-nix.lib.lint-nix {
-                inherit pkgs;
-                inherit (import ./lint-conf.nix { inherit pkgs; }) formatters linters;
-                src = ./.;
-              };
-            }
-        );
-      lib.chad = config: forEachSystem supportedSystems
-        (acc: system:
+      devShells = forEachSystem ciSystems (acc: system:
+        let pkgs = import nixpkgs { inherit system; };
+        in pkgs.lib.recursiveUpdate acc {
+          ${system}.default = pkgs.mkShell {
+            inherit name;
+            buildInputs = [ pkgs.node2nix ];
+            shellHook = ''
+              PS1="\[\e[33m\][\[\e[m\]\[\e[34;40m\]${name}:\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] "
+            '';
+          };
+        });
+      legacyPackages = forEachSystem ciSystems (acc: system:
+        let pkgs = import nixpkgs { inherit system; };
+        in pkgs.lib.recursiveUpdate acc {
+          ${system}.lints = inputs.lint-nix.lib.lint-nix {
+            inherit pkgs;
+            inherit (import ./lint-conf.nix { inherit pkgs; })
+              formatters linters;
+            src = ./.;
+          };
+        });
+      lib.chad = config:
+        forEachSystem supportedSystems (acc: system:
           let pkgs = import nixpkgs { inherit system; };
           in pkgs.lib.recursiveUpdate acc {
-            apps.${system}.switch = flake-utils.lib.mkApp
-              {
-                drv = import ./packages/switch/default.nix { inherit pkgs system; };
-              };
-            darwinConfigurations.macbook.${system} = mk-darwin-config
-              system
+            apps.${system}.switch = flake-utils.lib.mkApp {
+              drv =
+                import ./packages/switch/default.nix { inherit pkgs system; };
+            };
+            darwinConfigurations.macbook.${system} = mk-darwin-config system
               (pkgs.lib.attrsets.recursiveUpdate configDefaults config);
-          }
-        );
+          });
       templates.default = {
         description = "A default template";
         path = ./templates/default;
       };
-      tests = forEachSystem ciSystems
-        (_: system:
-          let
-            pkgs = import nixpkgs
-              {
-                inherit system;
-                overlays = import ./overlays/nixpkgs.nix { inherit nur; };
-              };
-            violations = import ./test
-              {
-                inherit pkgs;
-                easy-ps = import inputs.easy-purescript-nix { inherit pkgs; };
-                version = home-manager-version;
-              };
-          in
-          if violations == [ ]
-          then "all tests passed"
-          else throw (builtins.toJSON violations)
-        );
+      tests = forEachSystem ciSystems (_: system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config = { allowUnfree = true; };
+            overlays = import ./overlays/nixpkgs.nix { inherit nur; };
+          };
+          violations = import ./test {
+            inherit pkgs;
+            version = home-manager-version;
+          };
+        in
+        if violations == [ ] then
+          "all tests passed"
+        else
+          throw (builtins.toJSON violations));
     };
 }
