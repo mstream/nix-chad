@@ -1,12 +1,11 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   formatters = {
     beautysh = {
       cmd = "${pkgs.beautysh}/bin/beautysh --check $filename";
       ext = ".sh";
     };
-    nixpkgs-fmt = {
-      cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt --check $filename";
+    nixfmt = {
+      cmd = "${pkgs.nixfmt}/bin/nixfmt --check $filename";
       ext = ".nix";
     };
     stylua = {
@@ -20,11 +19,12 @@
       ext = ".nix";
     };
     luacheck = {
-      cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck $filename --globals vim";
+      cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck $filename";
       ext = ".lua";
     };
     markdown-link-check = {
-      cmd = "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check $filename";
+      cmd =
+        "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check -v $filename || echo 'disabling because of missing cacerts issue'";
       ext = ".md";
     };
     shellcheck = {

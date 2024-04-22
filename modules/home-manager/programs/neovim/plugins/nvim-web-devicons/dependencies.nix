@@ -1,1 +1,1 @@
-{pkgs, ...}: with pkgs; [nerdfonts]
+{ pkgs, ... }: with pkgs; [ nerdfonts ]

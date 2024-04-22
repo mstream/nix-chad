@@ -13,8 +13,7 @@ let
     homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];
     username = "user1";
   };
-in
-pkgs.lib.runTests {
+in pkgs.lib.runTests {
   testHomeFiles = {
     expected = {
       gnupgGpgAgent = {
@@ -62,8 +61,11 @@ pkgs.lib.runTests {
       ripgrep
       djlint
       google-java-format
+      hadolint
       jq
-      nodePackages.markdownlint-cli
+      luajitPackages.luacheck
+      markdownlint-cli
+      nixfmt
       nodePackages.prettier
       nodePackages.purs-tidy
       python311Packages.autopep8
@@ -71,6 +73,7 @@ pkgs.lib.runTests {
       python311Packages.mdformat
       shellcheck
       shfmt
+      stylua
       python311Packages.yamllint
       dhall-lsp-server
       dockerfile-language-server-nodejs
@@ -99,7 +102,6 @@ pkgs.lib.runTests {
       tree
       unixtools.watch
       cowsay
-      (pkgs.callPackage ../packages/mermaid-filter { }).nodeDependencies
     ];
     expr = actualUserConfig.home.packages;
   };

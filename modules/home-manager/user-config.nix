@@ -1,8 +1,6 @@
 { pkgs, version, ... }:
 chadConfig@{ defaultGpgKey, extraPackages, homeDirectories, ... }:
 let
-  localPackages =
-    [ (pkgs.callPackage ../../packages/mermaid-filter { }).nodeDependencies ];
   nvimPackages = pkgs.callPackage ./programs/neovim/dependencies.nix { };
   otherPackages = with pkgs; [
     bat
@@ -17,54 +15,48 @@ let
   ];
   customPackages =
     builtins.map (packageName: pkgs.${packageName}) extraPackages;
-  userDefinedDirectories = (builtins.foldl'
-    (acc: dir: {
-      idx = acc.idx + 1;
-      result = acc.result // {
-        "homeDirectory${builtins.toString acc.idx}" = {
-          recursive = true;
-          target = "${dir}/.keep";
-          text = "";
-        };
-      };
-    })
-    {
-      idx = 0;
-      result = { };
-    }
-    homeDirectories).result;
-
-  gnupgDirectories =
-    if defaultGpgKey == null then
-      { }
-    else {
-      gnupgGpgAgent = {
+  userDefinedDirectories = (builtins.foldl' (acc: dir: {
+    idx = acc.idx + 1;
+    result = acc.result // {
+      "homeDirectory${builtins.toString acc.idx}" = {
         recursive = true;
-        target = ".gnupg/gpg-agent.conf";
-        text = ''
-          enable-ssh-support
-          default-cache-ttl 60
-          max-cache-ttl 120
-        '';
-      };
-      gnupgSshControl = {
-        recursive = true;
-        target = ".gnupg/sshcontrol";
-        text = ''
-          ${defaultGpgKey}
-        '';
+        target = "${dir}/.keep";
+        text = "";
       };
     };
+  }) {
+    idx = 0;
+    result = { };
+  } homeDirectories).result;
+
+  gnupgDirectories = if defaultGpgKey == null then
+    { }
+  else {
+    gnupgGpgAgent = {
+      recursive = true;
+      target = ".gnupg/gpg-agent.conf";
+      text = ''
+        enable-ssh-support
+        default-cache-ttl 60
+        max-cache-ttl 120
+      '';
+    };
+    gnupgSshControl = {
+      recursive = true;
+      target = ".gnupg/sshcontrol";
+      text = ''
+        ${defaultGpgKey}
+      '';
+    };
+  };
 
   homeFiles = pkgs.lib.recursiveUpdate gnupgDirectories userDefinedDirectories;
-in
-{
-  home.file = homeFiles;
-
-  home.packages = nvimPackages ++ otherPackages ++ customPackages
-    ++ localPackages;
-
-  home.stateVersion = version;
+in {
+  home = {
+    file = homeFiles;
+    packages = nvimPackages ++ otherPackages ++ customPackages;
+    stateVersion = version;
+  };
 
   programs = {
     alacritty = import ./programs/alacritty/default.nix chadConfig;

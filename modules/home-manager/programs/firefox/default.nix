@@ -1,9 +1,9 @@
-{ firefoxBookmarks, fontSize, pkgs, username, ... }: {
+{ bookmarks, fontSize, pkgs, username, ... }: {
   enable = true;
   package = pkgs.runCommand "firefox-0.0.0" { } "mkdir $out";
   profiles = {
     "${username}" = {
-      bookmarks = firefoxBookmarks;
+      inherit bookmarks;
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         browserpass
         privacy-badger
