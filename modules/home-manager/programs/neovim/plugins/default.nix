@@ -1,5 +1,7 @@
 {pkgs, ...}:
 [
+  (import ./which-key-nvim { inherit pkgs; })
+  (import ./auto-hlsearch-nvim { inherit pkgs; })
   (import ./vim-airline { inherit pkgs; })
   (import ./vim-airline-themes { inherit pkgs; })
   (import ./gruvbox-nvim { inherit pkgs; })
@@ -16,7 +18,6 @@
   (import ./cmp-path { inherit pkgs; })
   (import ./nvim-cmp { inherit pkgs; })
   (import ./nvim-treesitter { inherit pkgs; })
-  (import ./vim-devicons { inherit pkgs; })
   (import ./nvim-web-devicons { inherit pkgs; })
   (import ./trouble-nvim { inherit pkgs; })
   (import ./nerdtree { inherit pkgs; })

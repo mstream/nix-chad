@@ -1,5 +1,5 @@
 { pkgs, ... }: {
   config = builtins.readFile(./config.lua);
-  plugin = pkgs.vimPlugins.vim-devicons;
+  plugin = pkgs.vimPlugins.which-key-nvim;
   type = "lua";
 }

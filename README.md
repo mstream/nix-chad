@@ -8,7 +8,9 @@ An opinionated MacOS setup focused on software development.
 
 ## Features
 
-### Neovim programming/configuration languages support
+### Neovim
+
+#### programming/configuration languages support
 
 ![nvim dhall example screenshot](nvim-dhall-example.png)
 
@@ -28,6 +30,12 @@ An opinionated MacOS setup focused on software development.
 | python     |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
 | typescript |    ☑    |     ☑      |      ☑      |     ☑      |      ☑       |
 | yaml       |    ☑    |     ☒      |      ☑      |     ☑      |      ☑       |
+
+#### discoverable key mappings
+
+After pressing `\` key a window enumerating all key mappings appears.
+The same windows shows when user starts but does not finish a key 
+sequence which has some action assigned to it. 
 
 ## Prerequisites
 
