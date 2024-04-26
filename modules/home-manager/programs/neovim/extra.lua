@@ -48,7 +48,7 @@ vim.opt.colorcolumn = tostring(document_width + 1)
 vim.opt.fillchars = { eob = ' ' }
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 1
+vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldnestmax = 4
 vim.opt.guicursor = ''

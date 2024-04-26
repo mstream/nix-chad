@@ -53,18 +53,8 @@ which_key.register({
   ['K'] = { desc = "Display information about symbol under cursor" },
   ['n'] = { desc = "Search next matching pattern" },
   ['N'] = { desc = "Search previous matching pattern" },
-  ['x'] = {
-    name = "debug",
-    ['xx'] = { desc = "Toggle debug window" }
-  },
   ['z'] = {
     name = "fold",
-    ['za'] = { desc = "Toggle fold (non-recursive)" },
-    ['zA'] = { desc = "Toggle fold (recursive)" },
-    ['zc'] = { desc = "Close fold (non-recursive)" },
-    ['zC'] = { desc = "Close fold (recursive)" },
-    ['zo'] = { desc = "Open fold (non-recursive)" },
-    ['zO'] = { desc = "Open fold (recursive)" },
   },
   ['<C-A>'] = { desc = "Incrment number under cursor" },
   ['<C-X>'] = { desc = "Decremen number under cursor" },
