@@ -16,7 +16,6 @@
           "Development/projects/other"
           "Development/projects/sky-uk"
         ];
-        manageHomebrew = true;
         username = "mstream";
         zshInitExtra = ''
           export DOCKER_HOST=tcp://10.47.140.18:2375

@@ -1,11 +1,6 @@
 { pkgs, version, ... }:
 let
-  homebrew = import ../modules/homebrew;
   userConfig = import ../modules/home-manager/user-config.nix;
-  actualHomebrew = homebrew {
-    extraCasks = [ "some-extra-cask-1" "some-extra-cask-2" ];
-    manageHomebrew = true;
-  };
   actualUserConfig = userConfig { inherit pkgs version; } {
     defaultGpgKey = "gpg1";
     extraPackages = [ "cowsay" ];
@@ -49,11 +44,6 @@ in pkgs.lib.runTests {
       };
     };
     expr = actualUserConfig.home.file;
-  };
-  testHomebrewCasks = {
-    expected =
-      [ "firefox" "thunderbird" "some-extra-cask-1" "some-extra-cask-2" ];
-    expr = actualHomebrew.homebrew.casks;
   };
   testHomePackages = {
     expected = with pkgs; [

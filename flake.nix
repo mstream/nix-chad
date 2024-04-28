@@ -11,20 +11,7 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
     lint-nix.url = "github:xc-jp/lint.nix";
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     nixpkgs.url = "github:nixos/nixpkgs/23.11";
     nur.url = "github:nix-community/NUR";
   };
@@ -52,12 +39,11 @@
         (inputs // { inherit home-manager-version; });
 
       configDefaults = {
+        browserBookmarks = [ ];
         defaultGpgKey = null;
-        extraCasks = [ ];
         extraPackages = [ ];
         fontSize = 16;
         homeDirectories = [ ];
-        manageHomebrew = false;
         zshInitExtra = "";
       };
 
