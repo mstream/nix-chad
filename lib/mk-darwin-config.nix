@@ -1,7 +1,19 @@
 { darwin, easy-purescript-nix, homebrew-bundle, homebrew-cask, homebrew-core
 , home-manager, home-manager-version, nix-homebrew, nur, ... }:
 system: config:
-darwin.lib.darwinSystem {
+let
+  defaultConfig = {
+    browserBookmarks = [ ];
+    defaultGpgKey = null;
+    extraCasks = [ ];
+    extraPackages = [ ];
+    fontSize = 12;
+    homeDirectories = [ ];
+    manageHomebrew = false;
+    zshInitExtra = "";
+  };
+  configWithDefaults = defaultConfig // config;
+in darwin.lib.darwinSystem {
   inherit system;
   modules = [
     home-manager.darwinModule
@@ -10,17 +22,17 @@ darwin.lib.darwinSystem {
       (import ../modules/home-manager {
         inherit pkgs;
         version = home-manager-version;
-      } config))
-    (import ../modules/homebrew/default.nix config)
+      } configWithDefaults))
+    (import ../modules/homebrew/default.nix configWithDefaults)
     ({ pkgs, ... }: (import ../modules/nix { inherit pkgs system; }))
     (import ../modules/nixpkgs { inherit nur; })
     (import ../modules/programs)
-    (import ../modules/system config)
-    (import ../modules/users config)
+    (import ../modules/system configWithDefaults)
+    (import ../modules/users configWithDefaults)
     nix-homebrew.darwinModules.nix-homebrew
     {
       nix-homebrew = {
-        enable = config.manageHomebrew;
+        enable = configWithDefaults.manageHomebrew;
         enableRosetta = true;
         mutableTaps = false;
         taps = {
@@ -28,7 +40,7 @@ darwin.lib.darwinSystem {
           "homebrew/homebrew-cask" = homebrew-cask;
           "homebrew/homebrew-core" = homebrew-core;
         };
-        user = config.username;
+        user = configWithDefaults.username;
       };
     }
   ];

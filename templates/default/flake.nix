@@ -6,6 +6,9 @@
   outputs = { nix-chad, ... }:
     let
       config = {
+        # Browser bookmarks
+        browserBookmarks = [ ];
+
         # An ID of a key to be used for GPG signing by default.
         # This is expected to be different for individuals.
         # The key is not part of this repository and has to be provided

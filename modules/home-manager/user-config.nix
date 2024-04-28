@@ -71,6 +71,7 @@ in {
     jq = import ./programs/jq/default.nix;
     neovim = import ./programs/neovim/default.nix { inherit pkgs; };
     password-store = import ./programs/password-store/default.nix;
+    qutebrowser = import ./programs/qutebrowser/default.nix chadConfig;
     thunderbird = import ./programs/thunderbird/default.nix
       (chadConfig // { inherit pkgs; });
     tmux = import ./programs/tmux/default.nix;

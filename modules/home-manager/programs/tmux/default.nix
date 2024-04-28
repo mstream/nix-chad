@@ -10,6 +10,7 @@
     set -g focus-events on
     set -s escape-time 0
     set-option -g default-terminal "screen-256color"
+    set-option -sa terminal-features ",*:RGB"
   '';
   historyLimit = 5000;
   keyMode = "vi";
