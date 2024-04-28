@@ -1,10 +1,6 @@
 { pkgs, system, ... }:
 let
-  script = "
-    set -e
-    nix build --experimental-features 'nix-command flakes' --show-trace '.#darwinConfigurations.macbook.${system}.system'
-    ./result/sw/bin/darwin-rebuild switch --flake '.#macbook.${system}'
-  ";
+  script =
+    "\n    set -e\n    nix build --experimental-features 'nix-command flakes' --show-trace '.#darwinConfigurations.macbook.${system}.system'\n    ./result/sw/bin/darwin-rebuild switch --flake '.#macbook.${system}'\n  ";
   scriptBin = pkgs.writeShellScriptBin "switch" script;
-in
-scriptBin
+in scriptBin

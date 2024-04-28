@@ -1,1 +1,1 @@
-require 'auto-hlsearch'.setup()
+require("auto-hlsearch").setup()

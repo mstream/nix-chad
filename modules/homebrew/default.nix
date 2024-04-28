@@ -1,10 +1,7 @@
 { extraCasks, manageHomebrew, ... }: {
   homebrew = {
     brews = [ ];
-    casks = [
-      "firefox"
-      "thunderbird"
-    ] ++ extraCasks;
+    casks = [ "firefox" "thunderbird" ] ++ extraCasks;
     enable = manageHomebrew;
     extraConfig = ''
       cask "firefox", args: { language: "en-GB" }

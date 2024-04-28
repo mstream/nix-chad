@@ -1,28 +1,16 @@
-{ darwin
-, easy-purescript-nix
-, homebrew-bundle
-, homebrew-cask
-, homebrew-core
-, home-manager
-, home-manager-version
-, nix-homebrew
-, nur
-, ...
-}:
-system:
-config:
+{ darwin, easy-purescript-nix, homebrew-bundle, homebrew-cask, homebrew-core
+, home-manager, home-manager-version, nix-homebrew, nur, ... }:
+system: config:
 darwin.lib.darwinSystem {
   inherit system;
   modules = [
     home-manager.darwinModule
     ../modules/default.nix
-    ({ pkgs, ... }: (import ../modules/home-manager
-      {
+    ({ pkgs, ... }:
+      (import ../modules/home-manager {
         inherit pkgs;
         version = home-manager-version;
-      }
-      config
-    ))
+      } config))
     (import ../modules/homebrew/default.nix config)
     ({ pkgs, ... }: (import ../modules/nix { inherit pkgs system; }))
     (import ../modules/nixpkgs { inherit nur; })

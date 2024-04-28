@@ -1,3 +1,1 @@
-{
-  services.nix-daemon.enable = true;
-}
+{ services.nix-daemon.enable = true; }

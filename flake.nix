@@ -67,8 +67,7 @@
         zshInitExtra = "";
       };
 
-    in
-    {
+    in {
       devShells = forEachSystem ciSystems (acc: system:
         let pkgs = import nixpkgs { inherit system; };
         in pkgs.lib.recursiveUpdate acc {
@@ -116,8 +115,7 @@
             inherit pkgs;
             version = home-manager-version;
           };
-        in
-        if violations == [ ] then
+        in if violations == [ ] then
           "all tests passed"
         else
           throw (builtins.toJSON violations));

@@ -18,9 +18,7 @@
       autocrlf = "input";
       editor = "vim";
     };
-    init = {
-      defaultBranch = "master";
-    };
+    init = { defaultBranch = "master"; };
     push = {
       autoSetupRemote = true;
       default = "simple";

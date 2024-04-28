@@ -1,1 +1,1 @@
-{pkgs, ...}: with pkgs; [ luajitPackages.jsregexp ]
+{ pkgs, ... }: with pkgs; [ luajitPackages.jsregexp ]

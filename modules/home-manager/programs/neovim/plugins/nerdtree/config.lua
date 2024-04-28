@@ -1,2 +1,4 @@
-vim.keymap.set('n', '<C-n>', '<cmd>NERDTreeToggle<CR>', { desc = 'Nvimtree Toggle window' })
-vim.keymap.set('n', '<leader>e', '<cmd>NERDTreeFocus<CR>', { desc = 'Nvimtree Focus window' })
+-- luacheck: globals registerDirectoryTreeMapping
+
+registerDirectoryTreeMapping("t", "<cmd>NERDTreeToggle<CR>", "Toggle", { mode = "n" })
+registerDirectoryTreeMapping("f", "<cmd>NERDTreeFocus<CR>", "Focus", { mode = "n" })

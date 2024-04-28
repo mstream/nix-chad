@@ -1,4 +1,4 @@
-{ firefoxBookmarks, fontSize, pkgs, username, ... }: {
+{ firefoxBookmarks ? [ ], fontSize, pkgs, username, ... }: {
   enable = true;
   package = pkgs.runCommand "firefox-0.0.0" { } "mkdir $out";
   profiles = {
