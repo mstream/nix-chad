@@ -138,8 +138,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
-
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts(""))
 
     if sc.declarationProvider then
@@ -160,12 +158,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
       )
     end
 
-    registerGoToMapping(
-      'i',
-      vim.lsp.buf.implementation,
-      'Implementation',
-      { buffer = ev.buff, mode = 'n', }
-    )
+    if sc.implementationProvider then
+      registerGoToMapping(
+        'i',
+        vim.lsp.buf.implementation,
+        'Implementation',
+        { buffer = ev.buff, mode = 'n', }
+      )
+    end
 
     if sc.renameProvider then
       registerRefactorMapping(
@@ -176,14 +176,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
       )
     end
 
-    vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, opts(""))
-    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts(""))
-    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts(""))
-    vim.keymap.set("n", "<leader>wl", function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts(""))
-    vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts(""))
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts(""))
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts(""))
+    if sc.codeActionProvider then
+      registerRefactorMapping(
+        'a',
+        vim.lsp.buf.rename,
+        'Actions',
+        { buffer = ev.buf, mode = 'n', }
+      )
+    end
   end,
 })

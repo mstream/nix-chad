@@ -20,7 +20,7 @@ let test =
 
         let expected
             : Natural
-            = 4
+            = 3
 
         in  expected === actual
 

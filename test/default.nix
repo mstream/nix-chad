@@ -88,6 +88,7 @@ pkgs.lib.runTests {
       python311Packages.jedi-language-server
       typescript
       luajitPackages.jsregexp
+      nerdfonts
       bat
       coreutils
       editorconfig-checker

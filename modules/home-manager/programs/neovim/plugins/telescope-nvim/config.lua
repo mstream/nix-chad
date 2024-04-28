@@ -32,14 +32,14 @@ registerFindMapping(
 )
 
 registerFindMapping(
-  'gcm',
+  'gc',
   telescope_builtin.git_commits,
   'Git Commits',
   { mode = 'n' }
 )
 
 registerFindMapping(
-  'glc',
+  'gl',
   telescope_builtin.git_status,
   'Git Local Changes',
   { mode = 'n' }
