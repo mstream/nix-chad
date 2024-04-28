@@ -34,8 +34,8 @@ An opinionated MacOS setup focused on software development.
 #### discoverable key mappings
 
 After pressing `\` key a window enumerating all key mappings appears.
-The same windows shows when user starts but does not finish a key 
-sequence which has some action assigned to it. 
+The same windows shows when user starts but does not finish a key
+sequence which has some action assigned to it.
 
 ## Prerequisites
 

@@ -1,8 +1,6 @@
 { fontSize, ... }:
-let
-  family = "JetbrainsMono Nerd Font";
-in
-{
+let family = "JetbrainsMono Nerd Font";
+in {
   enable = true;
   settings = {
     font = {
@@ -54,9 +52,7 @@ in
       decorations = "full";
       dynamic_padding = true;
       opacity = 0.95;
-      scrolling = {
-        history = 0;
-      };
+      scrolling = { history = 0; };
       startup_mode = "Windowed";
     };
   };

@@ -1,7 +1,9 @@
-require'gruvbox'.setup{
-  contrast = 'hard',
-  terminal_colors = true,
-  transparent_mode = false,
-}
+-- luacheck: globals vim
 
-vim.cmd'colorscheme gruvbox'
+require("gruvbox").setup({
+	contrast = "hard",
+	terminal_colors = true,
+	transparent_mode = false,
+})
+
+vim.cmd("colorscheme gruvbox")

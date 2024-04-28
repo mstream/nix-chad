@@ -1,5 +1,4 @@
-{ zshInitExtra, ... }:
-{
+{ zshInitExtra, ... }: {
   autocd = false;
   cdpath = [ ];
   completionInit = "autoload -U compinit && compinit";
@@ -7,8 +6,7 @@
   enable = true;
   enableAutosuggestions = true;
   enableCompletion = true;
-  envExtra = ''
-  '';
+  envExtra = "";
   history = {
     ignoreDups = true;
     ignoreSpace = true;
@@ -76,14 +74,8 @@
       pwdLength = "short";
       theme = "sorin";
     };
-    syntaxHighlighting = {
-      styles = {
-        comment = "fg=white";
-      };
-    };
-    utility = {
-      safeOps = true;
-    };
+    syntaxHighlighting = { styles = { comment = "fg=white"; }; };
+    utility = { safeOps = true; };
   };
   profileExtra = "";
   sessionVariables = { };
@@ -92,7 +84,5 @@
     ll = "ls -l";
   };
   shellGlobalAliases = { };
-  syntaxHighlighting = {
-    enable = true;
-  };
+  syntaxHighlighting = { enable = true; };
 }

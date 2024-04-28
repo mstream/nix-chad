@@ -1,11 +1,6 @@
 { pkgs, version, ... }:
 let
-  homebrew = import ../modules/homebrew;
   userConfig = import ../modules/home-manager/user-config.nix;
-  actualHomebrew = homebrew {
-    extraCasks = [ "some-extra-cask-1" "some-extra-cask-2" ];
-    manageHomebrew = true;
-  };
   actualUserConfig = userConfig { inherit pkgs version; } {
     defaultGpgKey = "gpg1";
     extraPackages = [ "cowsay" ];
@@ -13,8 +8,7 @@ let
     homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];
     username = "user1";
   };
-in
-pkgs.lib.runTests {
+in pkgs.lib.runTests {
   testHomeFiles = {
     expected = {
       gnupgGpgAgent = {
@@ -51,19 +45,17 @@ pkgs.lib.runTests {
     };
     expr = actualUserConfig.home.file;
   };
-  testHomebrewCasks = {
-    expected =
-      [ "firefox" "thunderbird" "some-extra-cask-1" "some-extra-cask-2" ];
-    expr = actualHomebrew.homebrew.casks;
-  };
   testHomePackages = {
     expected = with pkgs; [
       fd
       ripgrep
       djlint
       google-java-format
+      hadolint
       jq
-      nodePackages.markdownlint-cli
+      luajitPackages.luacheck
+      markdownlint-cli
+      nixfmt
       nodePackages.prettier
       nodePackages.purs-tidy
       python311Packages.autopep8
@@ -71,6 +63,7 @@ pkgs.lib.runTests {
       python311Packages.mdformat
       shellcheck
       shfmt
+      stylua
       python311Packages.yamllint
       dhall-lsp-server
       dockerfile-language-server-nodejs
@@ -99,7 +92,6 @@ pkgs.lib.runTests {
       tree
       unixtools.watch
       cowsay
-      (pkgs.callPackage ../packages/mermaid-filter { }).nodeDependencies
     ];
     expr = actualUserConfig.home.packages;
   };

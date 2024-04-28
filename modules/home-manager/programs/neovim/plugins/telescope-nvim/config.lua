@@ -1,46 +1,18 @@
-local telescope = require 'telescope'
-local telescope_builtin = require 'telescope.builtin'
+-- luacheck: globals registerFindMapping
 
-telescope.setup {}
+local telescope = require("telescope")
+local telescope_builtin = require("telescope.builtin")
 
-registerFindMapping(
-  'b',
-  telescope_builtin.buffers,
-  'Buffers',
-  { mode = 'n' }
-)
+telescope.setup({})
 
-registerFindMapping(
-  'f',
-  telescope_builtin.find_files,
-  'Files',
-  { mode = 'n' }
-)
+registerFindMapping("b", telescope_builtin.buffers, "Buffers", { mode = "n" })
 
-registerFindMapping(
-  'h',
-  telescope_builtin.help_tags,
-  'Help',
-  { mode = 'n' }
-)
+registerFindMapping("f", telescope_builtin.find_files, "Files", { mode = "n" })
 
-registerFindMapping(
-  'w',
-  telescope_builtin.live_grep,
-  'Words',
-  { mode = 'n' }
-)
+registerFindMapping("h", telescope_builtin.help_tags, "Help", { mode = "n" })
 
-registerFindMapping(
-  'gc',
-  telescope_builtin.git_commits,
-  'Git Commits',
-  { mode = 'n' }
-)
+registerFindMapping("w", telescope_builtin.live_grep, "Words", { mode = "n" })
 
-registerFindMapping(
-  'gl',
-  telescope_builtin.git_status,
-  'Git Local Changes',
-  { mode = 'n' }
-)
+registerFindMapping("gc", telescope_builtin.git_commits, "Git Commits", { mode = "n" })
+
+registerFindMapping("gl", telescope_builtin.git_status, "Git Local Changes", { mode = "n" })
