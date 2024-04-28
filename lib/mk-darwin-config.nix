@@ -1,5 +1,5 @@
-{ darwin, easy-purescript-nix, homebrew-bundle, homebrew-cask, homebrew-core
-, home-manager, home-manager-version, nix-homebrew, nur, ... }:
+{ darwin, homebrew-bundle, homebrew-cask, homebrew-core, home-manager
+, home-manager-version, nix-homebrew, nur, ... }:
 system: config:
 let
   defaultConfig = {

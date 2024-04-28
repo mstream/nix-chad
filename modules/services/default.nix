@@ -1,1 +1,6 @@
-{ services.nix-daemon.enable = true; }
+{
+  services = {
+    nix-daemon = import ./nix-daemon;
+    yabai = import ./yabai;
+  };
+}
