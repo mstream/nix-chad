@@ -130,27 +130,59 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 
   callback = function(ev)
+    local sc = vim.lsp.get_client_by_id(ev.data.client_id).server_capabilities
+
     local function opts(desc)
       return { buffer = ev.buf, desc = desc }
     end
 
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
-    vim.keymap.set("n", "gd", vim.lsp.buf.declaration, opts("Go to definition"))
-
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts(""))
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts(""))
-    vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, opts(""))
-    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts(""))
-    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts(""))
-    vim.keymap.set("n", "<leader>wl", function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts(""))
-    vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts(""))
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts(""))
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts(""))
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts(""))
+
+    if sc.declarationProvider then
+      registerGoToMapping(
+        'd',
+        vim.lsp.buf.declaration,
+        'Declaration',
+        { buffer = ev.buff, mode = 'n', }
+      )
+    end
+
+    if sc.definitionProvider then
+      registerGoToMapping(
+        'D',
+        vim.lsp.buf.definition,
+        'Definition',
+        { buffer = ev.buff, mode = 'n', }
+      )
+    end
+
+    if sc.implementationProvider then
+      registerGoToMapping(
+        'i',
+        vim.lsp.buf.implementation,
+        'Implementation',
+        { buffer = ev.buff, mode = 'n', }
+      )
+    end
+
+    if sc.renameProvider then
+      registerRefactorMapping(
+        'n',
+        vim.lsp.buf.rename,
+        'Name',
+        { buffer = ev.buf, mode = 'n', }
+      )
+    end
+
+    if sc.codeActionProvider then
+      registerRefactorMapping(
+        'a',
+        vim.lsp.buf.rename,
+        'Actions',
+        { buffer = ev.buf, mode = 'n', }
+      )
+    end
   end,
 })

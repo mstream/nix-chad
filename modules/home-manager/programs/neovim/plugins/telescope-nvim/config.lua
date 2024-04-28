@@ -1,10 +1,46 @@
-local builtin = require'telescope.builtin'
+local telescope = require 'telescope'
+local telescope_builtin = require 'telescope.builtin'
 
-require'telescope'.setup{}
+telescope.setup {}
 
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>cm', builtin.git_commits, {})
-vim.keymap.set('n', '<leader>gt', builtin.git_status, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
+registerFindMapping(
+  'b',
+  telescope_builtin.buffers,
+  'Buffers',
+  { mode = 'n' }
+)
+
+registerFindMapping(
+  'f',
+  telescope_builtin.find_files,
+  'Files',
+  { mode = 'n' }
+)
+
+registerFindMapping(
+  'h',
+  telescope_builtin.help_tags,
+  'Help',
+  { mode = 'n' }
+)
+
+registerFindMapping(
+  'w',
+  telescope_builtin.live_grep,
+  'Words',
+  { mode = 'n' }
+)
+
+registerFindMapping(
+  'gc',
+  telescope_builtin.git_commits,
+  'Git Commits',
+  { mode = 'n' }
+)
+
+registerFindMapping(
+  'gl',
+  telescope_builtin.git_status,
+  'Git Local Changes',
+  { mode = 'n' }
+)
