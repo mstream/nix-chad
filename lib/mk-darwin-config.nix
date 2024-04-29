@@ -1,4 +1,5 @@
-{ darwin, home-manager, home-manager-version, nur, ... }: system: config:
+{ darwin, home-manager, home-manager-version, nur, ... }:
+system: config:
 darwin.lib.darwinSystem {
   inherit system;
   modules = [
