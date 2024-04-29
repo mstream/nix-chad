@@ -1,6 +1,7 @@
--- luacheck: globals registerGoToMapping registerRefactorMapping vim
+-- luacheck: globals on_server_capability register_find_mapping register_go_to_mapping register_refactor_mapping register_top_level_mapping vim
 
 local lspconfig = require("lspconfig")
+local telescope_builtin = require("telescope.builtin")
 
 local servers = {
 	"bashls",
@@ -135,34 +136,48 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 
 	callback = function(ev)
-		local sc = vim.lsp.get_client_by_id(ev.data.client_id).server_capabilities
+		local opts = { buffer = ev.buf, mode = "n" }
 
-		local function opts(desc)
-			return { buffer = ev.buf, desc = desc }
+		register_top_level_mapping("K", vim.lsp.buf.hover, "Display information about symbol under cursor", opts)
+
+		local function on_completion_support()
+			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 		end
 
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts(""))
-
-		if sc.declarationProvider then
-			registerGoToMapping("d", vim.lsp.buf.declaration, "Declaration", { buffer = ev.buff, mode = "n" })
+		local function on_declaration_support()
+			register_go_to_mapping("d", vim.lsp.buf.declaration, "Declaration", opts)
 		end
 
-		if sc.definitionProvider then
-			registerGoToMapping("D", vim.lsp.buf.definition, "Definition", { buffer = ev.buff, mode = "n" })
+		local function on_definition_support()
+			local what = "Definition"
+			register_find_mapping("D", telescope_builtin.lsp_definitions, what, opts)
+			register_go_to_mapping("D", vim.lsp.buf.definition, what, opts)
+			vim.bo[ev.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
 		end
 
-		if sc.implementationProvider then
-			registerGoToMapping("i", vim.lsp.buf.implementation, "Implementation", { buffer = ev.buff, mode = "n" })
+		local function on_implementation_support()
+			local what = "Implementation"
+			register_find_mapping("i", telescope_builtin.lsp_definitions, what, opts)
+			register_go_to_mapping("i", vim.lsp.buf.implementation, what, opts)
 		end
 
-		if sc.renameProvider then
-			registerRefactorMapping("n", vim.lsp.buf.rename, "Name", { buffer = ev.buf, mode = "n" })
+		local function on_rename_support()
+			register_refactor_mapping("n", vim.lsp.buf.rename, "Name", opts)
 		end
 
-		if sc.codeActionProvider then
-			registerRefactorMapping("a", vim.lsp.buf.rename, "Actions", { buffer = ev.buf, mode = "n" })
+		local function on_code_actions_support()
+			register_refactor_mapping("a", vim.lsp.buf.rename, "Actions", opts)
 		end
+
+		local capability_callbacks = {
+			["completionProvider"] = on_completion_support,
+			["declarationProvider"] = on_declaration_support,
+			["definitionProvider"] = on_definition_support,
+			["implementationProvider"] = on_implementation_support,
+			["renameProvider"] = on_rename_support,
+			["codeActionProvider"] = on_code_actions_support,
+		}
+
+		on_server_capability(ev, capability_callbacks)
 	end,
 })

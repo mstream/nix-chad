@@ -1,4 +1,4 @@
--- luacheck: globals registerDirectoryTreeMapping
+-- luacheck: globals register_directory_tree_mapping
 
-registerDirectoryTreeMapping("t", "<cmd>NERDTreeToggle<CR>", "Toggle", { mode = "n" })
-registerDirectoryTreeMapping("f", "<cmd>NERDTreeFocus<CR>", "Focus", { mode = "n" })
+register_directory_tree_mapping("t", "<cmd>NERDTreeToggle<CR>", "Toggle", { mode = "n" })
+register_directory_tree_mapping("f", "<cmd>NERDTreeFocus<CR>", "Focus", { mode = "n" })

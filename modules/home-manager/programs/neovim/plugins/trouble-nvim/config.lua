@@ -1,5 +1,5 @@
--- luacheck: globals registerDebugMapping
+-- luacheck: globals register_debug_mapping
 
 local trouble = require("trouble")
 
-registerDebugMapping("t", trouble.toggle, "window toggle", { mode = "n" })
+register_debug_mapping("t", trouble.toggle, "window toggle", { mode = "n" })

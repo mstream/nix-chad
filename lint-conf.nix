@@ -19,7 +19,8 @@
       ext = ".nix";
     };
     luacheck = {
-      cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck $filename";
+      cmd =
+        "${pkgs.luajitPackages.luacheck}/bin/luacheck --no-max-comment-line-length --no-max-line-length $filename";
       ext = ".lua";
     };
     markdown-link-check = {
