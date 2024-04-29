@@ -89,7 +89,7 @@
           pkgs = import inputs.nixpkgs {
             inherit system;
             config = { allowUnfree = true; };
-            overlays = import ./overlays/nixpkgs.nix { nur = inputs.nur; };
+            overlays = import ./overlays/nixpkgs.nix { inherit (inputs) nur; };
           };
           violations = import ./test {
             inherit pkgs;

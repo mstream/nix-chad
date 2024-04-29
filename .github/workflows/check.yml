@@ -8,16 +8,16 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Nix
-        uses: cachix/install-nix-action@v18
+        uses: cachix/install-nix-action@v26
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             substituters = https://cache.nixos.org/
-          nix_path: nixpkgs=channel:nixos-unstable
+          nix_path: nixpkgs=channel:nixos-23.11
       - name: Run linters
         run: nix build .#lints.all-checks --show-trace
       - name: Run flake checks
