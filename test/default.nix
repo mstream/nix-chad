@@ -49,6 +49,7 @@ in pkgs.lib.runTests {
     expected = with pkgs; [
       fd
       ripgrep
+      tree-sitter
       djlint
       google-java-format
       hadolint
