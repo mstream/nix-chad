@@ -1,7 +1,7 @@
 -- luacheck: globals vim
 -- luacheck: no unused
 
-local log_level = 4
+local log_level = 0
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = vim.api.nvim_create_augroup("LoggingLevelInfo", {}),
@@ -20,10 +20,10 @@ local function create_logger(name)
 	local function noop() end
 
 	return {
-		debug = (log_level >= 4 and { print_message } or noop)[1],
-		error = (log_level >= 1 and { print_message } or noop)[1],
-		info = (log_level >= 3 and { print_message } or noop)[1],
-		warn = (log_level >= 2 and { print_message } or noop)[1],
+		debug = (log_level >= 4 and { print_message } or { noop })[1],
+		error = (log_level >= 1 and { print_message } or { noop })[1],
+		info = (log_level >= 3 and { print_message } or { noop })[1],
+		warn = (log_level >= 2 and { print_message } or { noop })[1],
 	}
 end
 
@@ -76,6 +76,8 @@ local modes = { "c", "i", "l", "n", "o", "s", "t", "v", "x" }
 
 for _, mode in ipairs(modes) do
 	disable_arrow_keys(mode)
+	disable_mapping(mode, "<C-n>")
+	disable_mapping(mode, "<C-p>")
 end
 
 vim.g.dhall_format = 1

@@ -12,46 +12,18 @@ in {
       italic.family = family;
       italic.style = "Italic";
     };
-    key_bindings = [
-      {
-        key = "H";
-        mods = "ALT";
-        chars = "\\x1bh";
-      }
-      {
-        key = "J";
-        mods = "ALT";
-        chars = "\\x1bj";
-      }
-      {
-        key = "K";
-        mods = "ALT";
-        chars = "\\x1bk";
-      }
-      {
-        key = "L";
-        mods = "ALT";
-        chars = "\\x1bl";
-      }
-      {
-        key = "Left";
-        mods = "ALT";
-        chars = "\\x1b\\x62";
-      }
-      {
-        key = "Right";
-        mods = "ALT";
-        chars = "\\x1b\\x66";
-      }
-    ];
+    key_bindings = [ ];
     shell = {
       program = "zsh";
-      args = [ "-l" "-c" "tmux attach || tmux" ];
+      args = [ "-l" "-c" "zellij attach --index 0 || zellij" ];
     };
     window = {
+      blur = true;
       decorations = "full";
       dynamic_padding = true;
-      opacity = 0.95;
+      dynamic_title = true;
+      opacity = 0.9;
+      option_as_alt = "Both";
       scrolling = { history = 0; };
       startup_mode = "Windowed";
     };

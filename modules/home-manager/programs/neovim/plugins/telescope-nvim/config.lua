@@ -1,9 +1,24 @@
--- luacheck: globals register_find_mapping
+-- luacheck: globals register_find_mapping register_top_level_mapping
 
 local telescope = require("telescope")
+local telescope_actions = require("telescope.actions")
 local telescope_builtin = require("telescope.builtin")
 
-telescope.setup({})
+local telescope_mappins = {
+	["<C-d>"] = telescope_actions.move_selection_next,
+	["<C-u>"] = telescope_actions.move_selection_previous,
+	["<C-A-d>"] = telescope_actions.preview_scrolling_down,
+	["<C-A-u>"] = telescope_actions.preview_scrolling_up,
+}
+
+telescope.setup({
+	defaults = {
+		mappings = {
+			i = telescope_mappins,
+			n = telescope_mappins,
+		},
+	},
+})
 
 register_find_mapping("f", telescope_builtin.find_files, "Files", { mode = "n" })
 
