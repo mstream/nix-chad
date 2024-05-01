@@ -76,6 +76,7 @@ in {
       (chadConfig // { inherit pkgs; });
     tmux = import ./programs/tmux/default.nix;
     vscode = import ./programs/vscode/default.nix { inherit pkgs; };
+    zellij = import ./programs/zellij/default.nix;
     zsh = import ./programs/zsh/default.nix chadConfig;
   };
 }

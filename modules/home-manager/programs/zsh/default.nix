@@ -49,7 +49,6 @@
       "environment"
       "homebrew"
       "terminal"
-      "tmux"
       "editor"
       "history"
       "directory"

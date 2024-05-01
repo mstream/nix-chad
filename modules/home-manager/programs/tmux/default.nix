@@ -1,7 +1,7 @@
 {
   baseIndex = 1;
   clock24 = true;
-  enable = true;
+  enable = false;
   extraConfig = ''
     bind h select-pane -L
     bind j select-pane -D

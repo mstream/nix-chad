@@ -66,8 +66,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			["z"] = {
 				name = "fold",
 			},
-			["<C-A>"] = { desc = "Incrment number under cursor" },
-			["<C-X>"] = { desc = "Decremen number under cursor" },
+			["<C-a>"] = { desc = "Incrment number under cursor" },
+			["<C-d>"] = { desc = "Move window down" },
+			["<C-u>"] = { desc = "Move window up" },
+			["<C-x>"] = { desc = "Decremen number under cursor" },
 		})
 
 		register_top_level_mapping("\\", "<cmd>WhichKey<CR>", "Show Key Mappings", { mode = "n" })
