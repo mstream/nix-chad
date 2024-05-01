@@ -22,7 +22,7 @@ let
       };
       unbind = [ "Ctrl h" ];
     };
-    "shared_except \"locked\" \"normal\"" = { unbind = [ "Enter" ]; };
+    "shared_except \"locked\" \"normal\"" = { };
     "shared_except \"locked\" \"pane\"" = { };
     "shared_except \"locked\" \"resize\"" = {
       bind = {
