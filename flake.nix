@@ -44,6 +44,7 @@
         extraPackages = [ ];
         fontSize = 16;
         homeDirectories = [ ];
+        manageWindows = false;
         remapCapsLock = true;
         remapLeftArrow = false;
         zshInitExtra = "";

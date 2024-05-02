@@ -1,11 +1,14 @@
-{ remapCapsLock, remapLeftArrow, zshInitExtra, ... }: 
-let userKeyMapping = (if remapLeftArrow then [{
-        HIDKeyboardModifierMappingSrc = 30064771152;
-        HIDKeyboardModifierMappingDst = 30064771300;
-      }] else []) ++ (if remapCapsLock then [{
-        HIDKeyboardModifierMappingSrc =30064771129;
-        HIDKeyboardModifierMappingDst = 30064771113;
-      }] else []);
+{ remapCapsLock, remapLeftArrow, zshInitExtra, ... }:
+let
+  userKeyMapping = (if remapLeftArrow then [{
+    HIDKeyboardModifierMappingSrc = 30064771152;
+    HIDKeyboardModifierMappingDst = 30064771300;
+  }] else
+    [ ]) ++ (if remapCapsLock then [{
+      HIDKeyboardModifierMappingSrc = 30064771129;
+      HIDKeyboardModifierMappingDst = 30064771113;
+    }] else
+      [ ]);
 in {
   autocd = false;
   cdpath = [ ];
@@ -27,7 +30,9 @@ in {
     unsetopt extended_glob
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     gpgconf --launch gpg-agent
-    hidutil property --set '{"UserKeyMapping":${builtins.toJSON userKeyMapping}}' > /dev/null
+    hidutil property --set '{"UserKeyMapping":${
+      builtins.toJSON userKeyMapping
+    }}' > /dev/null
     ${zshInitExtra}
   '';
   initExtraBeforeCompInit = "";

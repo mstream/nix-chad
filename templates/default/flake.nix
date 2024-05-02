@@ -29,12 +29,16 @@
           "Development/projects"
         ];
 
+        # Make windows always occupy a maximum amount of space on desktop.
+        # Perform binary split if there are more than one window.
+        manageWindows = true;
+
         # Treat caps lock key as Escape key
         remapCapsLock = true;
 
         # Treat left arrow key as right Control key 
         remapLeftArrow = false;
-        
+
         # This should be set to the desired user name.
         username = "my-user";
 
