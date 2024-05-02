@@ -13,6 +13,7 @@ darwin.lib.darwinSystem {
     ({ pkgs, ... }: (import ../modules/nix { inherit pkgs system; }))
     (import ../modules/nixpkgs { inherit nur; })
     (import ../modules/programs)
+    (import ../modules/services config)
     (import ../modules/system config)
     (import ../modules/users config)
   ];
