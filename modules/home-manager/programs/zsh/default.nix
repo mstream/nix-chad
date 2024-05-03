@@ -33,6 +33,9 @@ in {
     hidutil property --set '{"UserKeyMapping":${
       builtins.toJSON userKeyMapping
     }}' > /dev/null
+    hidutil property --set '{"UserKeyMapping":${
+      builtins.toJSON userKeyMapping
+    }}' > /dev/null
     ${zshInitExtra}
   '';
   initExtraBeforeCompInit = "";
