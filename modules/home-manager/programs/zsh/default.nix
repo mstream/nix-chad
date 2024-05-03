@@ -27,19 +27,13 @@ in {
   };
   historySubstringSearch = { };
   initExtra = ''
-        unsetopt extended_glob
-        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-        gpgconf --launch gpg-agent
-        hidutil property --set '{"UserKeyMapping":${
-          builtins.toJSON userKeyMapping
-        }}' > /dev/null
-    <<<<<<< HEAD
-        hidutil property --set '{"UserKeyMapping":${
-          builtins.toJSON userKeyMapping
-        }}' > /dev/null
-    =======
-    >>>>>>> 1f1e77b (add option of switching off windows management)
-        ${zshInitExtra}
+    unsetopt extended_glob
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    gpgconf --launch gpg-agent
+    hidutil property --set '{"UserKeyMapping":${
+      builtins.toJSON userKeyMapping
+    }}' > /dev/null
+    ${zshInitExtra}
   '';
   initExtraBeforeCompInit = "";
   initExtraFirst = "";
