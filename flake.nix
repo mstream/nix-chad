@@ -47,6 +47,7 @@
         manageWindows = false;
         remapCapsLock = true;
         remapLeftArrow = false;
+        terminalKeyBindings = [ ];
         zshInitExtra = "";
       };
 
