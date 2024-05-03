@@ -15,22 +15,10 @@ let
     "tmux" = { };
     "tab" = { };
     "shared_except \"locked\"" = { unbind = [ "Ctrl q" ]; };
-    "shared_except \"locked\" \"move\"" = {
-      bind = {
-        _args = [ "Ctrl m" ];
-        SwitchToMode = "move";
-      };
-      unbind = [ "Ctrl h" ];
-    };
+    "shared_except \"locked\" \"move\"" = { };
     "shared_except \"locked\" \"normal\"" = { };
     "shared_except \"locked\" \"pane\"" = { };
-    "shared_except \"locked\" \"resize\"" = {
-      bind = {
-        _args = [ "Ctrl r" ];
-        SwitchToMode = "resize";
-      };
-      unbind = [ "Ctrl n" ] ++ arrowKeys;
-    };
+    "shared_except \"locked\" \"resize\"" = { };
     "shared_except \"locked\" \"scroll\"" = { };
     "shared_except \"locked\" \"session\"" = { };
     "shared_except \"locked\" \"tab\"" = { };
