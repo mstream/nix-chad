@@ -39,6 +39,9 @@
         # Treat left arrow key as right Control key 
         remapLeftArrow = false;
 
+        # Custom key bindings for Alacritty
+        terminalKeyBindings = [ ];
+
         # This should be set to the desired user name.
         username = "my-user";
 

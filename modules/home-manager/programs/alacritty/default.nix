@@ -1,4 +1,4 @@
-{ fontSize, ... }:
+{ fontSize, terminalKeyBindings, ... }:
 let family = "JetbrainsMono Nerd Font";
 in {
   enable = true;
@@ -12,7 +12,7 @@ in {
       italic.family = family;
       italic.style = "Italic";
     };
-    key_bindings = [ ];
+    key_bindings = terminalKeyBindings;
     shell = {
       program = "zsh";
       args = [ "-l" "-c" "zellij attach --index 0 || zellij" ];
