@@ -1,12 +1,26 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.chad;
+let
+  cfg = config.chad;
+  bookmarkModule = {
+    options = {
+      title = { type = types.str; };
+      url = { type = types.str; };
+    };
+  };
+  keyBindingModule = {
+    options = {
+      chars = { type = types.str; };
+      key = { type = types.str; };
+      mods = { type = types.str; };
+    };
+  };
 in {
   options = {
     chad = {
       browser = {
         bookmarks = mkOption {
-          type = types.listOf types.str;
+          type = types.listOf (types.submodule bookmarkModule);
           default = [ ];
           example = [{
             title = "Nix Chad";
@@ -84,13 +98,13 @@ in {
       };
       terminal = {
         keyBindings = mkOption {
-          type = types.listOf types.str;
+          type = types.listOf (types.submodule keyBindingModule);
           default = [ ];
-          example = [
-            "Development/exercises"
-            "Development/presentations"
-            "Development/projects"
-          ];
+          example = [{
+            chars = "\\u000c";
+            key = "K";
+            mods = "Control";
+          }];
           description = ''
             Additonal key bindings for terminal emulator. 
           '';
