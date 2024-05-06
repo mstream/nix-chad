@@ -1,9 +1,10 @@
+_:
 let
   arrowKeys = [ "Down" "Left" "Right" "Up" ];
   keybinds = {
     "entersearch" = { };
     "locked" = { };
-    "move" = { };
+    "move" = { unbind = [ "Ctrl h" ]; };
     "normal" = { unbind = builtins.map (k: "Alt ${k}") arrowKeys; };
     "pane" = { };
     "renamepane" = { };
@@ -40,26 +41,28 @@ let
     };
   };
 in {
-  enable = true;
-  enableBashIntegration = false;
-  enableFishIntegration = false;
-  enableZshIntegration = false;
-  settings = {
-    inherit keybinds themes;
-    auto_layout = true;
-    mouse_mode = false;
-    scroll_buffer_size = 10000;
-    theme = "gruvbox";
-    styled_underlines = true;
-    ui = {
-      pane_frames = {
-        hide_session_name = true;
-        rounded_corners = true;
+  programs.zellij = {
+    enable = true;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+    enableZshIntegration = false;
+    settings = {
+      inherit keybinds themes;
+      auto_layout = true;
+      mouse_mode = false;
+      scroll_buffer_size = 10000;
+      theme = "gruvbox";
+      styled_underlines = true;
+      ui = {
+        pane_frames = {
+          hide_session_name = true;
+          rounded_corners = true;
+        };
       };
-    };
-    window = {
-      default_shell = "zsh";
-      option_as_alt = "Both";
+      window = {
+        default_shell = "zsh";
+        option_as_alt = "Both";
+      };
     };
   };
 }

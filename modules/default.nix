@@ -1,7 +1,11 @@
 {
   imports = [
-    ./documentation/default.nix
-    ./environment/default.nix
-    ./fonts/default.nix
+    ./chad.nix
+    ./documentation.nix
+    ./environment.nix
+    ./fonts.nix
+    ./programs.nix
+    ./services/default.nix
+    ./system.nix
   ];
 }

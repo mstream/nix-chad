@@ -1,4 +1,6 @@
-{ fontSize, remapCapsLock, remapLeftArrow, ... }: {
+{ config, ... }:
+let cfg = config.chad;
+in {
   system = {
     defaults = {
       dock = {
@@ -19,7 +21,7 @@
         showhidden = true;
         show-recents = false;
         static-only = false;
-        tilesize = fontSize;
+        tilesize = cfg.fontSize;
       };
       finder = {
         _FXShowPosixPathInTitle = false;
