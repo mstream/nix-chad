@@ -4,15 +4,15 @@ let
     set -e
 
     nix build \
-      --experimental-features 'nix-command flakes' \
+      --experimental-features "nix-command flakes" \
       --show-trace \
-      '.#darwinConfigurations.macbook.${system}.system
+      ".#darwinConfigurations.macbook.${system}.system"
 
     defaults write com.apple.dock ResetLaunchPad -bool true 
 
-    kilall Dock 
+    killall Dock
 
-    ./result/sw/bin/darwin-rebuild switch --flake '.#macbook.${system}
+    ./result/sw/bin/darwin-rebuild switch --flake ".#macbook.${system}"
   '';
   scriptBin = pkgs.writeShellScriptBin "switch" script;
 in scriptBin

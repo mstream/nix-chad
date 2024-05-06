@@ -29,6 +29,7 @@ in {
     };
     historySubstringSearch = { };
     initExtra = ''
+      setopt ignore_eof
       unsetopt extended_glob
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       gpgconf --launch gpg-agent
@@ -36,6 +37,8 @@ in {
         builtins.toJSON userKeyMapping
       }}' > /dev/null
       ${cfg.terminal.zshInitExtra}
+      bindkey -M vicmd "^d" down-history 
+      bindkey -M vicmd "^u" up-history 
     '';
     initExtraBeforeCompInit = "";
     initExtraFirst = "";

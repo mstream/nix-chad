@@ -7,6 +7,8 @@
   (import ./plenary-nvim { inherit pkgs; })
   (import ./telescope-nvim { inherit pkgs; })
   (import ./telescope-fzf-native-nvim { inherit pkgs; })
+  (import ./telescope-media-files-nvim { inherit pkgs; })
+  (import ./telescope-undo-nvim { inherit pkgs; })
   (import ./efmls-configs-nvim { inherit pkgs; })
   (import ./cmp-nvim-lsp { inherit pkgs; })
   (import ./lsp-format-nvim { inherit pkgs; })

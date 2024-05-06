@@ -6,13 +6,13 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils/main";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lint-nix.url = "github:xc-jp/lint.nix";
-    nixpkgs.url = "github:nixos/nixpkgs/23.11";
+    lint-nix.url = "github:xc-jp/lint.nix/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nur.url = "github:nix-community/NUR";
   };
 

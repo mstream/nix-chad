@@ -43,7 +43,7 @@ in {
         DisableConsoleAccess = false;
       };
       NSGlobalDomain = {
-        _HIHideMenuBar = true;
+        _HIHideMenuBar = false;
         AppleFontSmoothing = 2;
         AppleInterfaceStyle = "Dark";
         ApplePressAndHoldEnabled = false;

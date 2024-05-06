@@ -3,6 +3,7 @@
 ++ (pkgs.callPackage ./plugins/plenary-nvim/dependencies.nix { })
 ++ (pkgs.callPackage ./plugins/telescope-nvim/dependencies.nix { })
 ++ (pkgs.callPackage ./plugins/telescope-fzf-native-nvim/dependencies.nix { })
+++ (pkgs.callPackage ./plugins/telescope-media-files-nvim/dependencies.nix { })
 ++ (pkgs.callPackage ./plugins/nvim-treesitter/dependencies.nix { })
 ++ (pkgs.callPackage ./plugins/efmls-configs-nvim/dependencies.nix { })
 ++ (pkgs.callPackage ./plugins/cmp-nvim-lsp/dependencies.nix { })

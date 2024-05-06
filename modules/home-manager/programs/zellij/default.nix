@@ -4,7 +4,7 @@ let
   keybinds = {
     "entersearch" = { };
     "locked" = { };
-    "move" = { unbind = [ "Ctrl h" ]; };
+    "move" = { unbind = [ "Ctrl+Space h" ]; };
     "normal" = { unbind = builtins.map (k: "Alt ${k}") arrowKeys; };
     "pane" = { unbind = arrowKeys; };
     "renamepane" = { };
