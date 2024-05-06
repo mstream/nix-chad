@@ -1,3 +1,12 @@
+# Useful commands
+#
+# Updating nix-chad version: 
+# `nix flake update`
+#
+# Applying nix-chad configuration: 
+# `nix run .#switch`
+# --------------------------------
+
 {
   description = "My Nix MacOS Environment";
 
