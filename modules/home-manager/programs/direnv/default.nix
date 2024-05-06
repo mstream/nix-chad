@@ -1,6 +1,8 @@
-{
-  config = { };
-  enable = true;
-  enableZshIntegration = true;
-  nix-direnv = { enable = true; };
+_: {
+  programs.direnv = {
+    config = { };
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv = { enable = true; };
+  };
 }

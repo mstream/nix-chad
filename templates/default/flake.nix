@@ -6,50 +6,63 @@
   outputs = { nix-chad, ... }:
     let
       config = {
-        # Browser bookmarks
-        browserBookmarks = [ ];
+        browser = {
+          # Browser bookmarks
+          # Not supported until there is a nix-native browser for 
+          # Apple Silicon available.
+          bookmarks = [ ];
+        };
 
-        # An ID of a key to be used for GPG signing by default.
-        # This is expected to be different for individuals.
-        # The key is not part of this repository and has to be provided
-        # manually.
-        defaultGpgKey = "BE318F09150F6CB0724FFEC0319EE1D7FC029354";
-        extraPackages = [ "cowsay" ];
+        # Additional nixpkgs packages to be accessible for the user.
+        extraPackages = [ ];
 
-        # A desired font size in tools that have a mean to set it fixed.
-        fontSize = 24;
+        # A desired font size in tools that have means to set it fixed.
+        fontSize = 12;
 
-        # A list of desirect directories to be created in the home
-        # directory of the user.
-        # It is up to the user to provide the contents of these
-        # directories.
-        homeDirectories = [
-          "Development/exercises"
-          "Development/presentations"
-          "Development/projects"
-        ];
+        gpg = {
+          # An ID of a key to be used for GPG signing by default.
+          # This is expected to be different for individuals.
+          # The key is not part of this repository and has to be provided
+          # manually.
+          defaultKey = "BE318F09150F6CB0724FFEC0319EE1D7FC029354";
+        };
 
-        # Make windows always occupy a maximum amount of space on desktop.
-        # Perform binary split if there are more than one window.
-        manageWindows = true;
+        keyboard = {
+          # Treat Caps Lock key as Escape key.
+          remapCapsLock = true;
+          # Treat Left Arrow key as Right Control key.
+          remapLeftArrow = false;
+        };
 
-        # Treat caps lock key as Escape key
-        remapCapsLock = true;
+        manageWindows = {
+          # Keep windows occupy maximum available share of space on desktop.
+          enable = false;
+          # List of application names for which automatic window management
+          # should not be performed.
+          exclusions = [ ];
+        };
 
-        # Treat left arrow key as right Control key 
-        remapLeftArrow = false;
+        terminal = {
+          # Additional key bindings for terminal emulator. 
+          keyBindings = [ ];
+          # Additional initialization for ZSH sessions.
+          zshInitExtra = "";
+        };
 
-        # Custom key bindings for Alacritty
-        terminalKeyBindings = [ ];
+        user = {
+          # A list of desirect directories to be created in the home
+          # directory of the user.
+          # It is up to the user to provide the contents of these
+          # directories.
+          homeDirectories = [
+            "Development/exercises"
+            "Development/presentations"
+            "Development/projects"
+          ];
 
-        # This should be set to the desired user name.
-        username = "my-user";
-
-        # Additional initialization for your ZSH sessions
-        zshInitExtra = ''
-          export VAR1=val1
-          export VAR2=val2
-        '';
+          # User name
+          name = "my-user";
+        };
       };
     in nix-chad.lib.chad config;
 }

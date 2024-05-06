@@ -33,24 +33,7 @@
 
       forEachSystem = systems: f: builtins.foldl' f { } systems;
 
-      home-manager-version = "23.05";
-
-      mk-darwin-config = import ./lib/mk-darwin-config.nix
-        (inputs // { inherit home-manager-version; });
-
-      configDefaults = {
-        browserBookmarks = [ ];
-        defaultGpgKey = null;
-        extraPackages = [ ];
-        fontSize = 16;
-        homeDirectories = [ ];
-        manageWindows = false;
-        remapCapsLock = true;
-        remapLeftArrow = false;
-        terminalKeyBindings = [ ];
-        zshInitExtra = "";
-      };
-
+      mk-darwin-config = import ./lib/mk-darwin-config.nix inputs;
     in {
       devShells = forEachSystem ciSystems (acc: system:
         let pkgs = import inputs.nixpkgs { inherit system; };
@@ -81,8 +64,8 @@
               drv =
                 import ./packages/switch/default.nix { inherit pkgs system; };
             };
-            darwinConfigurations.macbook.${system} = mk-darwin-config system
-              (pkgs.lib.attrsets.recursiveUpdate configDefaults config);
+            darwinConfigurations.macbook.${system} =
+              mk-darwin-config system config;
           });
       templates.default = {
         description = "A default template";
@@ -95,10 +78,7 @@
             config = { allowUnfree = true; };
             overlays = import ./overlays/nixpkgs.nix { inherit (inputs) nur; };
           };
-          violations = import ./test {
-            inherit pkgs;
-            version = home-manager-version;
-          };
+          violations = import ./test { inherit pkgs; };
         in if violations == [ ] then
           "all tests passed"
         else

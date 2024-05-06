@@ -4,6 +4,11 @@
   inputs = { nix-chad.url = "path:../.."; };
 
   outputs = { nix-chad, ... }:
-    let config = { username = "mstream"; };
+    let
+      config = {
+        gpg = { };
+        terminal = { };
+        user.name = "mstream";
+      };
     in nix-chad.lib.chad config;
 }

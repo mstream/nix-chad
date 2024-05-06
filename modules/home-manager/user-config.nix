@@ -1,6 +1,6 @@
-{ pkgs, version, ... }:
-chadConfig@{ defaultGpgKey, extraPackages, homeDirectories, ... }:
+{ osConfig, pkgs, ... }:
 let
+  chadConfig = osConfig.chad;
   nvimPackages = pkgs.callPackage ./programs/neovim/dependencies.nix { };
   otherPackages = with pkgs; [
     bat
@@ -14,7 +14,7 @@ let
     unixtools.watch
   ];
   customPackages =
-    builtins.map (packageName: pkgs.${packageName}) extraPackages;
+    builtins.map (packageName: pkgs.${packageName}) chadConfig.extraPackages;
   userDefinedDirectories = (builtins.foldl' (acc: dir: {
     idx = acc.idx + 1;
     result = acc.result // {
@@ -27,9 +27,9 @@ let
   }) {
     idx = 0;
     result = { };
-  } homeDirectories).result;
+  } chadConfig.user.homeDirectories).result;
 
-  gnupgDirectories = if defaultGpgKey == null then
+  gnupgDirectories = if chadConfig.gpg.defaultKey == null then
     { }
   else {
     gnupgGpgAgent = {
@@ -45,38 +45,31 @@ let
       recursive = true;
       target = ".gnupg/sshcontrol";
       text = ''
-        ${defaultGpgKey}
+        ${chadConfig.gpg.defaultKey}
       '';
     };
   };
 
   homeFiles = pkgs.lib.recursiveUpdate gnupgDirectories userDefinedDirectories;
 in {
+  imports = [
+    ./programs/alacritty/default.nix
+    ./programs/bat/default.nix
+    ./programs/direnv/default.nix
+    ./programs/git/default.nix
+    ./programs/gpg/default.nix
+    ./programs/jq/default.nix
+    ./programs/neovim/default.nix
+    ./programs/password-store/default.nix
+    ./programs/tmux/default.nix
+    ./programs/vscode/default.nix
+    ./programs/zellij/default.nix
+    ./programs/zsh/default.nix
+  ];
+
   home = {
     file = homeFiles;
     packages = nvimPackages ++ otherPackages ++ customPackages;
-    stateVersion = version;
-  };
-
-  programs = {
-    alacritty = import ./programs/alacritty/default.nix chadConfig;
-    bat = import ./programs/bat/default.nix;
-    browserpass = import ./programs/browserpass/default.nix;
-    chromium = import ./programs/chromium/default.nix { inherit pkgs; };
-    direnv = import ./programs/direnv/default.nix;
-    firefox =
-      import ./programs/firefox/default.nix (chadConfig // { inherit pkgs; });
-    git = import ./programs/git/default.nix chadConfig;
-    gpg = import ./programs/gpg/default.nix chadConfig;
-    jq = import ./programs/jq/default.nix;
-    neovim = import ./programs/neovim/default.nix { inherit pkgs; };
-    password-store = import ./programs/password-store/default.nix;
-    qutebrowser = import ./programs/qutebrowser/default.nix chadConfig;
-    thunderbird = import ./programs/thunderbird/default.nix
-      (chadConfig // { inherit pkgs; });
-    tmux = import ./programs/tmux/default.nix;
-    vscode = import ./programs/vscode/default.nix { inherit pkgs; };
-    zellij = import ./programs/zellij/default.nix;
-    zsh = import ./programs/zsh/default.nix chadConfig;
+    stateVersion = "23.05";
   };
 }

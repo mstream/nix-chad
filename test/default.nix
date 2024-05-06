@@ -1,12 +1,17 @@
-{ pkgs, version, ... }:
+{ pkgs, ... }:
 let
   userConfig = import ../modules/home-manager/user-config.nix;
-  actualUserConfig = userConfig { inherit pkgs version; } {
-    defaultGpgKey = "gpg1";
-    extraPackages = [ "cowsay" ];
-    fontSize = 123;
-    homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];
-    username = "user1";
+  actualUserConfig = userConfig {
+    inherit pkgs;
+    osConfig.chad = {
+      gpg.defaultKey = "gpg1";
+      extraPackages = [ "cowsay" ];
+      fontSize = 123;
+      user = {
+        homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];
+        name = "user1";
+      };
+    };
   };
 in pkgs.lib.runTests {
   testHomeFiles = {

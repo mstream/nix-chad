@@ -1,10 +1,8 @@
-{ pkgs, version, ... }:
-config: {
+chadConfig: _: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
 
-  home-manager.users."${config.username}" =
-    import ./user-config.nix { inherit pkgs version; } config;
+  home-manager.users."${chadConfig.user.name}" = import ./user-config.nix;
 }

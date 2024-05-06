@@ -1,4 +1,6 @@
-{
-  enable = true;
-  config = { theme = "gruvbox-dark"; };
+_: {
+  programs.bat = {
+    enable = true;
+    config = { theme = "gruvbox-dark"; };
+  };
 }

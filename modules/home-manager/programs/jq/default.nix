@@ -1,1 +1,1 @@
-{ enable = true; }
+_: { programs.jq = { enable = true; }; }
