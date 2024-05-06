@@ -70,6 +70,6 @@ in {
   home = {
     file = homeFiles;
     packages = nvimPackages ++ otherPackages ++ customPackages;
-    stateVersion = "23.05";
+    stateVersion = "23.11";
   };
 }
