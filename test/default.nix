@@ -5,7 +5,7 @@ let
     inherit pkgs;
     osConfig.chad = {
       gpg.defaultKey = "gpg1";
-      extraPackages = [ "cowsay" ];
+      extraPackages = pkgs: [ pkgs.cowsay ];
       fontSize = 123;
       user = {
         homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];

@@ -13,8 +13,10 @@ let
     tree
     unixtools.watch
   ];
-  customPackages =
-    builtins.map (packageName: pkgs.${packageName}) chadConfig.extraPackages;
+  customPackages = if chadConfig.extraPackages == null then
+    [ ]
+  else
+    chadConfig.extraPackages pkgs;
   userDefinedDirectories = (builtins.foldl' (acc: dir: {
     idx = acc.idx + 1;
     result = acc.result // {

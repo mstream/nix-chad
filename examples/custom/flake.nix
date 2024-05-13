@@ -12,7 +12,7 @@
             url = "https://github.com/mstream/nix-chad";
           }];
         };
-        extraPackages = [ "cowsay" ];
+        extraPackages = pkgs: [ pkgs.cowsay ];
         fontSize = 16;
         gpg = { defaultKey = "BE318F09150F6CB0724FFEC0319EE1D7FC029354"; };
         keyboard = {
