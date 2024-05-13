@@ -34,9 +34,11 @@ in {
         };
       };
       extraPackages = mkOption {
-        type = types.listOf types.str;
-        default = [ ];
-        example = [ "cowsay" ];
+        type = types.nullOr (types.functionTo (types.listOf types.package));
+        default = null;
+        example = literalExpression ''
+          pkgs: with pkgs; [ cowsay ];
+        '';
         description = ''
           Additional nixpkgs packages to be accessible for the user.
         '';

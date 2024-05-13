@@ -23,7 +23,7 @@
         };
 
         # Additional nixpkgs packages to be accessible for the user.
-        extraPackages = [ ];
+        extraPackages = pkgs: with pkgs; [ ];
 
         # A desired font size in tools that have means to set it fixed.
         fontSize = 12;
