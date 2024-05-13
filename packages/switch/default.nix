@@ -2,17 +2,33 @@
 let
   script = ''
     set -e
+    set -E
 
-    nix build \
-      --experimental-features 'nix-command flakes' \
-      --show-trace \
-      '.#darwinConfigurations.macbook.${system}.system
+    function apply_configuration() {
+      local CONFIGURATION=".#macbook.${system}"
 
-    defaults write com.apple.dock ResetLaunchPad -bool true 
+      ./result/sw/bin/darwin-rebuild switch \
+        --flake \
+        "$CONFIGURATION"
+    }
 
-    kilall Dock 
+    function build_configuration() {
+      local INSTALLABLE=".#darwinConfigurations.macbook.${system}.system"
 
-    ./result/sw/bin/darwin-rebuild switch --flake '.#macbook.${system}
+      nix build \
+        --experimental-features 'nix-command flakes' \
+        --show-trace \
+        "$INSTALLABLE"
+    }
+
+    function reset_launchpad() {
+      defaults write com.apple.dock ResetLaunchPad -bool true 
+      killall Dock 
+    }
+
+    build_configuration
+    reset_launchpad
+    apply_configuration
   '';
   scriptBin = pkgs.writeShellScriptBin "switch" script;
 in scriptBin
