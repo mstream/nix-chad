@@ -1,6 +1,7 @@
 { pkgs, ... }: [
   (import ./which-key-nvim { inherit pkgs; })
   (import ./auto-hlsearch-nvim { inherit pkgs; })
+  (import ./bufferline-nvim { inherit pkgs; })
   (import ./vim-airline { inherit pkgs; })
   (import ./vim-airline-themes { inherit pkgs; })
   (import ./gruvbox-nvim { inherit pkgs; })
