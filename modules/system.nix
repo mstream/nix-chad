@@ -42,11 +42,32 @@ in {
         RestartDisabledWhileLoggedIn = false;
         DisableConsoleAccess = false;
       };
+      menuExtraClock = {
+        Show24Hour = true;
+        ShowDate = 0;
+        ShowDayOfMonth = true;
+        ShowDayOfWeek = true;
+        ShowSeconds = false;
+      };
       NSGlobalDomain = {
         _HIHideMenuBar = true;
         AppleFontSmoothing = 2;
+        AppleICUForce24HourTime = true;
         AppleInterfaceStyle = "Dark";
+        AppleInterfaceStyleSwitchesAutomatically = false;
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
         ApplePressAndHoldEnabled = false;
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = false;
+        AppleTemperatureUnit = "Celsius";
+        "com.apple.mouse.tapBehavior" = null;
+        "com.apple.springing.enabled" = true;
+        "com.apple.springing.delay" = 0.5;
+        "com.apple.swipescrolldirection" = true;
+        "com.apple.trackpad.enableSecondaryClick" = true;
+        "com.apple.trackpad.scaling" = 1.0;
+        "com.apple.trackpad.trackpadCornerClickBehavior" = null;
         InitialKeyRepeat = 0;
         KeyRepeat = 0;
         NSAutomaticCapitalizationEnabled = false;
@@ -54,7 +75,9 @@ in {
         NSAutomaticPeriodSubstitutionEnabled = false;
         NSAutomaticQuoteSubstitutionEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = false;
+        NSWindowResizeTime = 0.1;
       };
+      SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
       spaces.spans-displays = false;
     };
     keyboard = {
