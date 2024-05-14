@@ -5,10 +5,12 @@ let
   otherPackages = with pkgs; [
     bat
     coreutils
+    docker
     editorconfig-checker
     gawk
     jetbrains.idea-ultimate
     nmap
+    nodejs
     nodePackages.node2nix
     tree
     unixtools.watch
