@@ -3,6 +3,9 @@ name: Check
 on:
   pull_request:
     branches: [main]
+permissions:
+  packages: write
+  contents: write
 jobs:
   linting-and-testing:
     runs-on: ubuntu-22.04
