@@ -6,7 +6,7 @@ let
     check = false;
     modules = [ ../../modules/chad.nix ];
   };
-  optionsDoc = pkgs.nixosOptionsDoc { options = evaluatedModules.options; };
+  optionsDoc = pkgs.nixosOptionsDoc { inherit (evaluatedModules) options; };
 in pkgs.stdenv.mkDerivation {
   nativeBuildInputs = with pkgs;
     [
