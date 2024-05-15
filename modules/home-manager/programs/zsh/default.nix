@@ -1,15 +1,26 @@
-{ osConfig, ... }:
+{ osConfig, pkgs, ... }:
 let
+  inherit (import ./abbreviations.nix { inherit pkgs; })
+    defaultAbbreviations mergeAbbreviations;
+
   cfg = osConfig.chad;
-  userKeyMapping = (if cfg.keyboard.remapLeftArrow then [{
+
+  capsLockRemap = {
+    HIDKeyboardModifierMappingSrc = 30064771129;
+    HIDKeyboardModifierMappingDst = 30064771113;
+  };
+
+  leftArrowRemap = {
     HIDKeyboardModifierMappingSrc = 30064771152;
     HIDKeyboardModifierMappingDst = 30064771300;
-  }] else
-    [ ]) ++ (if cfg.keyboard.remapCapsLock then [{
-      HIDKeyboardModifierMappingSrc = 30064771129;
-      HIDKeyboardModifierMappingDst = 30064771113;
-    }] else
-      [ ]);
+  };
+
+  userKeyMapping =
+    (if cfg.keyboard.remapLeftArrow then [ leftArrowRemap ] else [ ])
+    ++ (if cfg.keyboard.remapCapsLock then [ capsLockRemap ] else [ ]);
+
+  abbreviations =
+    mergeAbbreviations [ defaultAbbreviations cfg.terminal.abbreviations ];
 in {
   programs.zsh = {
     autocd = false;
@@ -31,6 +42,7 @@ in {
     initExtra = ''
       unsetopt extended_glob
       setopt ignoreeof
+      unalias -m '*'
       bindkey -M vicmd "^D" down-history 
       bindkey -M viins "^D" down-history 
       bindkey -M vicmd "^U" up-history 
@@ -99,11 +111,12 @@ in {
     };
     profileExtra = "";
     sessionVariables = { };
-    shellAliases = {
-      la = "ls -a -l";
-      ll = "ls -l";
-    };
+    shellAliases = abbreviations;
     shellGlobalAliases = { };
     syntaxHighlighting = { enable = true; };
+    zsh-abbr = {
+      inherit abbreviations;
+      enable = true;
+    };
   };
 }

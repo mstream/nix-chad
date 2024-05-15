@@ -2,12 +2,7 @@
 let cfg = osConfig.chad;
 in {
   programs.git = {
-    aliases = {
-      br = "branch";
-      ci = "commit";
-      co = "checkout";
-      st = "status";
-    };
+    aliases = { };
     enable = true;
     delta = {
       enable = true;

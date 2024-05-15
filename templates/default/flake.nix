@@ -52,6 +52,8 @@
         };
 
         terminal = {
+          # Additional abbreviation for ZSH
+          abbreviations = { };
           # Additional key bindings for terminal emulator. 
           keyBindings = [ ];
           # Additional initialization for ZSH sessions.
@@ -63,11 +65,7 @@
           # directory of the user.
           # It is up to the user to provide the contents of these
           # directories.
-          homeDirectories = [
-            "Development/exercises"
-            "Development/presentations"
-            "Development/projects"
-          ];
+          homeDirectories = [ ];
 
           # User name
           name = "my-user";
