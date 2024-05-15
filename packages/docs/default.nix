@@ -2,19 +2,20 @@
 with pkgs.lib;
 let
   aspellEn = pkgs.aspellWithDicts (d: [ d.en d.en-computers d.en-science ]);
-  evaluatedModules = evalModules { 
-    check = false; 
-    modules = [ ../../modules/chad.nix ]; 
+  evaluatedModules = evalModules {
+    check = false;
+    modules = [ ../../modules/chad.nix ];
   };
   optionsDoc = pkgs.nixosOptionsDoc { options = evaluatedModules.options; };
 in pkgs.stdenv.mkDerivation {
-  nativeBuildInputs = with pkgs; [
-    esbuild
-    mdbook
-    mdbook-linkcheck
-    mdbook-mermaid
-    nodePackages.markdownlint-cli
-  ] ++ [aspellEn];
+  nativeBuildInputs = with pkgs;
+    [
+      esbuild
+      mdbook
+      mdbook-linkcheck
+      mdbook-mermaid
+      nodePackages.markdownlint-cli
+    ] ++ [ aspellEn ];
   checkPhase = ''
     function validate_spelling() {
       file=$1

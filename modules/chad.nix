@@ -4,13 +4,13 @@ let
   cfg = config.chad;
   bookmarkModule = {
     options = {
-      title = mkOption { 
-        type = types.str; 
+      title = mkOption {
+        type = types.str;
         description = ''
           Title of the bookmark.
         '';
       };
-      url = mkOption { 
+      url = mkOption {
         type = types.str;
         description = ''
           URL of the bookmark.
@@ -20,19 +20,19 @@ let
   };
   keyBindingModule = {
     options = {
-      chars = mkOption { 
+      chars = mkOption {
         type = types.str;
         description = ''
           Substitution.
         '';
       };
-      key = mkOption { 
-        type = types.str; 
+      key = mkOption {
+        type = types.str;
         description = ''
           Key.
         '';
       };
-      mods = mkOption { 
+      mods = mkOption {
         type = types.str;
         description = ''
           Modifier key(s).
