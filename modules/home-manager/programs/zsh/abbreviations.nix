@@ -10,7 +10,7 @@ let
       "Duplicate abbreviations: ${builtins.toString duplicates}")
     (attrsets.mergeAttrsList xs);
   cd = {
-    "-" = "cd -";
+    "\\-" = "cd -";
     "1" = "cd +1";
     "2" = "cd +2";
     "3" = "cd +3";

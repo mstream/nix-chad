@@ -67,6 +67,11 @@
             darwinConfigurations.macbook.${system} =
               mk-darwin-config system config;
           });
+      packages = forEachSystem ciSystems (acc: system:
+        let pkgs = import inputs.nixpkgs { inherit system; };
+        in pkgs.lib.recursiveUpdate acc {
+          ${system} = { docs = import ./packages/docs { inherit pkgs; }; };
+        });
       templates.default = {
         description = "A default template";
         path = ./templates/default;
