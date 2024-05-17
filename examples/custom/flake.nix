@@ -21,7 +21,10 @@
         };
         manageWindows = {
           enable = true;
-          exclusions = [ "Discord" ];
+          exclusions = [{
+            app = "^Discord$";
+            title = ".*Dialog$";
+          }];
         };
         terminal = {
           keyBindings = [ ];

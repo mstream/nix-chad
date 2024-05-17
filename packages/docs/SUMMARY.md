@@ -1,3 +1,0 @@
-# Summary
-
-[Options](options.md)

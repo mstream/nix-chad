@@ -9,13 +9,8 @@ let
   optionsDoc = pkgs.nixosOptionsDoc { inherit (evaluatedModules) options; };
 in pkgs.stdenv.mkDerivation {
   nativeBuildInputs = with pkgs;
-    [
-      esbuild
-      mdbook
-      mdbook-linkcheck
-      mdbook-mermaid
-      nodePackages.markdownlint-cli
-    ] ++ [ aspellEn ];
+    [ mdbook mdbook-linkcheck mdbook-mermaid nodePackages.markdownlint-cli ]
+    ++ [ aspellEn ];
   checkPhase = ''
     function validate_spelling() {
       file=$1
@@ -47,13 +42,12 @@ in pkgs.stdenv.mkDerivation {
   '';
   doCheck = true;
   installPhase = ''
-    mkdir "$out"
-    mdbook build --dest-dir "$out" docs
+    cp -r src "$out"
   '';
   unpackPhase = ''
-    mkdir -p docs/src
-    cat ${optionsDoc.optionsCommonMark} >> docs/src/options.md
-    cp $src/SUMMARY.md docs/src/
+    cp -r $src/src .
+    chmod --recursive u+w src
+    cat ${optionsDoc.optionsCommonMark} >> src/options.md
     cp $src/.markdownlint.json .
     cp $src/extra-dictionary.txt .
   '';

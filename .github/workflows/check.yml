@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Nix
-        uses: cachix/install-nix-action@v26
+        uses: cachix/install-nix-action@v27
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
@@ -26,7 +26,7 @@ jobs:
       - name: Run flake checks
         run: nix flake check --show-trace
       - name: Generate documentation website
-        run: nix build .#docs
+        run: nix build .#website
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
