@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Options</title>
+        <title>Introduction</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="options.html" class="active">Options</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="contributors.html">Contributors</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,299 +171,65 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="_moduleargs"><a class="header" href="#_moduleargs">_module.args</a></h2>
-<p>Additional arguments passed to each module in addition to ones
-like <code>lib</code>, <code>config</code>,
-and <code>pkgs</code>, <code>modulesPath</code>.</p>
-<p>This option is also available to all submodules. Submodules do not
-inherit args from their parent module, nor do they provide args to
-their parent module or sibling submodules. The sole exception to
-this is the argument <code>name</code> which is provided by
-parent modules to a submodule and contains the attribute name
-the submodule is bound to, or a unique generated name if it is
-not bound to an attribute.</p>
-<p>Some arguments are already passed by default, of which the
-following <em>cannot</em> be changed with this option:</p>
+                        <h1 id="nix-chad"><a class="header" href="#nix-chad">Nix Chad</a></h1>
+<p><a href="https://github.com/mstream/nix-chad/actions/workflows/check.yml?query=branch%3Amain"><img src="https://github.com/mstream/nix-chad/actions/workflows/check.yml/badge.svg?branch=main" alt="Release and deploy" /></a></p>
+<p><img src="nix-chad.png" alt="nix-chad logo" /></p>
+<p>An opinionated MacOS setup focused on software development.</p>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
+<h3 id="neovim"><a class="header" href="#neovim">Neovim</a></h3>
+<h4 id="programmingconfiguration-languages-support"><a class="header" href="#programmingconfiguration-languages-support">programming/configuration languages support</a></h4>
+<p><img src="nvim-dhall-example.png" alt="nvim dhall example screenshot" /></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">language</th><th style="text-align: center">actions</th><th style="text-align: center">completion</th><th style="text-align: center">diagnostics</th><th style="text-align: center">formatting</th><th style="text-align: center">highlighting</th></tr></thead><tbody>
+<tr><td style="text-align: left">bash</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">dhall</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">docker</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">html</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">java</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">json</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">javascript</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">lua</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">markdown</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">nix</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">purescript</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">python</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">typescript</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+<tr><td style="text-align: left">yaml</td><td style="text-align: center">☑</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
+</tbody></table>
+</div>
+<h4 id="discoverable-key-mappings"><a class="header" href="#discoverable-key-mappings">discoverable key mappings</a></h4>
+<p>After pressing <code>\</code> key a window enumerating all key mappings appears.
+The same windows shows when user starts but does not finish a key
+sequence which has some action assigned to it.</p>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
 <ul>
-<li>
-<p><code>lib</code>: The nixpkgs library.</p>
-</li>
-<li>
-<p><code>config</code>: The results of all options after merging the values from all modules together.</p>
-</li>
-<li>
-<p><code>options</code>: The options declared in all modules.</p>
-</li>
-<li>
-<p><code>specialArgs</code>: The <code>specialArgs</code> argument passed to <code>evalModules</code>.</p>
-</li>
-<li>
-<p>All attributes of <code>specialArgs</code></p>
-<p>Whereas option values can generally depend on other option values
-thanks to laziness, this does not apply to <code>imports</code>, which
-must be computed statically before anything else.</p>
-<p>For this reason, callers of the module system can provide <code>specialArgs</code>
-which are available during import resolution.</p>
-<p>For NixOS, <code>specialArgs</code> includes
-<code>modulesPath</code>, which allows you to import
-extra modules from the nixpkgs package tree without having to
-somehow make the module aware of the location of the
-<code>nixpkgs</code> or NixOS directories.</p>
-<pre><code>{ modulesPath, ... }: {
-  imports = [
-    (modulesPath + &quot;/profiles/minimal.nix&quot;)
-  ];
-}
+<li><a href="https://nixos.org/manual/nix/stable/">Nix 2.4+</a></li>
+</ul>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<h3 id="initializing-from-a-template"><a class="header" href="#initializing-from-a-template">Initializing from a template</a></h3>
+<p>Run from a directory of your choice:</p>
+<pre><code class="language-bash">nix flake init --template github:mstream/nix-chad/main#default
 </code></pre>
-</li>
-</ul>
-<p>For NixOS, the default value for this option includes at least this argument:</p>
-<ul>
-<li><code>pkgs</code>: The nixpkgs package set according to
-the <code>nixpkgs.pkgs</code> option.</li>
-</ul>
-<p><em>Type:</em>
-lazy attribute set of raw value</p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="https://github.com/NixOS/nixpkgs/blob//lib/modules.nix">&lt;nixpkgs/lib/modules.nix&gt;</a></li>
-</ul>
-<h2 id="chadbrowserbookmarks"><a class="header" href="#chadbrowserbookmarks">chad.browser.bookmarks</a></h2>
-<p>Browser bookmarks.
-Not supported until there is a nix-native browser for
-Apple Silicon available.</p>
-<p><em>Type:</em>
-list of (submodule)</p>
-<p><em>Default:</em>
-<code>[ ]</code></p>
-<p><em>Example:</em></p>
-<pre><code>[
-  {
-    title = &quot;Nix Chad&quot;;
-    url = &quot;https://github.com/mstream/nix-chad&quot;;
-  }
-]
+<h3 id="tweaking"><a class="header" href="#tweaking">Tweaking</a></h3>
+<p>Update any config entries to your liking like in
+<a href="examples/custom/flake.nix">this</a> example.</p>
+<h3 id="applying"><a class="header" href="#applying">Applying</a></h3>
+<p>After any change to configuration, run from the directory where
+<code>flake.nix</code> file resides:</p>
+<pre><code class="language-bash">nix run .#switch
 </code></pre>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadbrowserbookmarkstitle"><a class="header" href="#chadbrowserbookmarkstitle">chad.browser.bookmarks.*.title</a></h2>
-<p>Title of the bookmark.</p>
-<p><em>Type:</em>
-string</p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadbrowserbookmarksurl"><a class="header" href="#chadbrowserbookmarksurl">chad.browser.bookmarks.*.url</a></h2>
-<p>URL of the bookmark.</p>
-<p><em>Type:</em>
-string</p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadextrapackages"><a class="header" href="#chadextrapackages">chad.extraPackages</a></h2>
-<p>Additional nixpkgs packages to be accessible for the user.</p>
-<p><em>Type:</em>
-null or (function that evaluates to a(n) list of package)</p>
-<p><em>Default:</em>
-<code>null</code></p>
-<p><em>Example:</em></p>
-<pre><code>pkgs: with pkgs; [ cowsay ];
-
+<h2 id="updating"><a class="header" href="#updating">Updating</a></h2>
+<p>To stay up to date witch changes to Nix Chad, run periodically:</p>
+<pre><code class="language-bash">nix flake update
 </code></pre>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadfontsize"><a class="header" href="#chadfontsize">chad.fontSize</a></h2>
-<p>A desired font size in tools that have means to set it fixed.</p>
-<p><em>Type:</em>
-signed integer</p>
-<p><em>Default:</em>
-<code>12</code></p>
-<p><em>Example:</em>
-<code>16</code></p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadgpgdefaultkey"><a class="header" href="#chadgpgdefaultkey">chad.gpg.defaultKey</a></h2>
-<p>An ID of a key to be used for GPG signing by default.
-This is expected to be different for individuals.
-The key is not part of this repository and has to be provided
-manually.</p>
-<p><em>Type:</em>
-null or string</p>
-<p><em>Default:</em>
-<code>null</code></p>
-<p><em>Example:</em>
-<code>&quot;BE318F09150F6CB0724FFEC0319EE1D7FC029354&quot;</code></p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadkeyboardremapcapslock"><a class="header" href="#chadkeyboardremapcapslock">chad.keyboard.remapCapsLock</a></h2>
-<p>Treat Caps Lock key as Escape key.</p>
-<p><em>Type:</em>
-boolean</p>
-<p><em>Default:</em>
-<code>true</code></p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadkeyboardremapleftarrow"><a class="header" href="#chadkeyboardremapleftarrow">chad.keyboard.remapLeftArrow</a></h2>
-<p>Treat Left Arrow key as Right Control key.</p>
-<p><em>Type:</em>
-boolean</p>
-<p><em>Default:</em>
-<code>false</code></p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadmanagewindowsenable"><a class="header" href="#chadmanagewindowsenable">chad.manageWindows.enable</a></h2>
-<p>Keep windows occupy maximum available share of space on desktop.</p>
-<p><em>Type:</em>
-boolean</p>
-<p><em>Default:</em>
-<code>false</code></p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadmanagewindowsexclusions"><a class="header" href="#chadmanagewindowsexclusions">chad.manageWindows.exclusions</a></h2>
-<p>List of application names for which automatic
-window management should not be performed.</p>
-<p><em>Type:</em>
-list of string</p>
-<p><em>Default:</em>
-<code>[ ]</code></p>
-<p><em>Example:</em></p>
-<pre><code>[
-  &quot;Discord&quot;
-]
-</code></pre>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadterminalabbreviations"><a class="header" href="#chadterminalabbreviations">chad.terminal.abbreviations</a></h2>
-<p>An attribute set that maps aliases (the top level attribute names
-in this option) to abbreviations. Abbreviations are expanded with
-the longer phrase after they are entered.</p>
-<p><em>Type:</em>
-attribute set of string</p>
-<p><em>Default:</em>
-<code>{ }</code></p>
-<p><em>Example:</em></p>
-<pre><code>{
-  gco = &quot;git checkout&quot;;
-  l = &quot;less&quot;;
-}
-</code></pre>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadterminalkeybindings"><a class="header" href="#chadterminalkeybindings">chad.terminal.keyBindings</a></h2>
-<p>Additonal key bindings for terminal emulator.</p>
-<p><em>Type:</em>
-list of (submodule)</p>
-<p><em>Default:</em>
-<code>[ ]</code></p>
-<p><em>Example:</em></p>
-<pre><code>[
-  {
-    chars = &quot;\\u000c&quot;;
-    key = &quot;K&quot;;
-    mods = &quot;Control&quot;;
-  }
-]
-</code></pre>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadterminalkeybindingschars"><a class="header" href="#chadterminalkeybindingschars">chad.terminal.keyBindings.*.chars</a></h2>
-<p>Substitution.</p>
-<p><em>Type:</em>
-string</p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadterminalkeybindingskey"><a class="header" href="#chadterminalkeybindingskey">chad.terminal.keyBindings.*.key</a></h2>
-<p>Key.</p>
-<p><em>Type:</em>
-string</p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadterminalkeybindingsmods"><a class="header" href="#chadterminalkeybindingsmods">chad.terminal.keyBindings.*.mods</a></h2>
-<p>Modifier key(s).</p>
-<p><em>Type:</em>
-string</p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadterminalzshinitextra"><a class="header" href="#chadterminalzshinitextra">chad.terminal.zshInitExtra</a></h2>
-<p>Additional initialization for ZSH sessions.</p>
-<p><em>Type:</em>
-strings concatenated with “\n”</p>
-<p><em>Default:</em>
-<code>&quot;&quot;</code></p>
-<p><em>Example:</em></p>
-<pre><code>''
-  export VAR1=val1  
-  export VAR2=val2
-''
-</code></pre>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chaduserhomedirectories"><a class="header" href="#chaduserhomedirectories">chad.user.homeDirectories</a></h2>
-<p>A list of desirect directories to be created in the home
-directory of the user.
-It is up to the user to provide the contents of these
-directories.</p>
-<p><em>Type:</em>
-list of string</p>
-<p><em>Default:</em>
-<code>[ ]</code></p>
-<p><em>Example:</em></p>
-<pre><code>[
-  &quot;Development/exercises&quot;
-  &quot;Development/presentations&quot;
-  &quot;Development/projects&quot;
-]
-</code></pre>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
-<h2 id="chadusername"><a class="header" href="#chadusername">chad.user.name</a></h2>
-<p>User name.</p>
-<p><em>Type:</em>
-string</p>
-<p><em>Example:</em>
-<code>&quot;bob&quot;</code></p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="file:///nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix">/nix/store/anf2bjvf06s5idy28vxi4pdj8rv6lkbf-source/modules/chad.nix</a></li>
-</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
+                            <a rel="next prefetch" href="contributors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -472,6 +238,9 @@ string</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
+                    <a rel="next prefetch" href="contributors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
