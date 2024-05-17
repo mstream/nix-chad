@@ -95,6 +95,7 @@ in {
       nmap
       nodejs
       nodePackages.node2nix
+      tldr
       tree
       unixtools.watch
       cowsay

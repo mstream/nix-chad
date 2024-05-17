@@ -70,7 +70,10 @@
       packages = forEachSystem ciSystems (acc: system:
         let pkgs = import inputs.nixpkgs { inherit system; };
         in pkgs.lib.recursiveUpdate acc {
-          ${system} = { docs = import ./packages/docs { inherit pkgs; }; };
+          ${system} = {
+            docs = import ./packages/docs { inherit pkgs; };
+            website = import ./packages/website { inherit pkgs; };
+          };
         });
       templates.default = {
         description = "A default template";
