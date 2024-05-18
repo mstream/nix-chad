@@ -39,7 +39,7 @@ in pkgs.stdenv.mkDerivation {
   unpackPhase = ''
     cp -r $src src
     chmod --recursive u+w src
-    cat ${optionsDoc.optionsCommonMark} >> src/options.md
+    cat ${optionsDoc.optionsCommonMark} > src/options.generated.md
     cp $src/.markdownlint.json .
     cp $src/extra-dictionary.txt .
   '';

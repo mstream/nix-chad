@@ -172,7 +172,7 @@ in {
             mods = "Control";
           }];
           description = ''
-            Additonal key bindings for terminal emulator. 
+            Additional key bindings for terminal emulator. 
           '';
         };
         zshInitExtra = mkOption {

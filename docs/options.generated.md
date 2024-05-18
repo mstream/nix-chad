@@ -93,7 +93,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -109,7 +109,7 @@ Title of the bookmark\.
 string
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -125,7 +125,7 @@ URL of the bookmark\.
 string
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -155,7 +155,7 @@ pkgs: with pkgs; [ cowsay ];
 ```
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -181,7 +181,7 @@ signed integer
 ` 16 `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -210,7 +210,7 @@ null or string
 ` "BE318F09150F6CB0724FFEC0319EE1D7FC029354" `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -231,7 +231,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -252,7 +252,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -273,7 +273,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -313,7 +313,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -334,7 +334,7 @@ string
 ` "^Discord$" `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -360,7 +360,7 @@ string
 ` ".*Dialog$" `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -394,7 +394,7 @@ attribute set of string
 ```
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -402,7 +402,7 @@ attribute set of string
 
 
 
-Additonal key bindings for terminal emulator\.
+Additional key bindings for terminal emulator\.
 
 
 
@@ -429,7 +429,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -445,7 +445,7 @@ Substitution\.
 string
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -461,7 +461,7 @@ Key\.
 string
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -477,7 +477,7 @@ Modifier key(s)\.
 string
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -509,7 +509,7 @@ strings concatenated with “\\n”
 ```
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -545,7 +545,7 @@ list of string
 ```
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
 
@@ -566,6 +566,6 @@ string
 ` "bob" `
 
 *Declared by:*
- - [/nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad\.nix](file:///nix/store/mrlwlvxy1m2kl7q37zmnnv49gfqzi4dl-source/modules/chad.nix)
+ - [/nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad\.nix](file:///nix/store/zcyaxmnck6yhzyf0z8bvh7z9bydqa15y-source/modules/chad.nix)
 
 
