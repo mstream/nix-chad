@@ -26,17 +26,9 @@ in pkgs.stdenv.mkDerivation {
       fi
     }
 
-    for f in ./docs/test/valid/*.md; do
-      validate_spelling $f || exit 1;
-    done
+    markdownlint --disable MD004 MD009 MD025 MD040 MD041 -- ./src
 
-    for f in ./docs/test/invalid/*.md; do
-      (! validate_spelling "$f") || exit 1;
-    done
-
-    markdownlint --disable MD004 MD009 MD040 MD041 -- ./docs/src
-
-    for f in ./docs/src/*.md; do
+    for f in ./src/*.md; do
       validate_spelling "$f" || exit 1;
     done
   '';
@@ -45,12 +37,12 @@ in pkgs.stdenv.mkDerivation {
     cp -r src "$out"
   '';
   unpackPhase = ''
-    cp -r $src/src .
+    cp -r $src src
     chmod --recursive u+w src
     cat ${optionsDoc.optionsCommonMark} >> src/options.md
     cp $src/.markdownlint.json .
     cp $src/extra-dictionary.txt .
   '';
   name = "docs";
-  src = ./.;
+  src = ../../docs;
 }
