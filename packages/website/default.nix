@@ -8,6 +8,8 @@ in pkgs.stdenv.mkDerivation {
   '';
   unpackPhase = ''
     cp -r ${docs} src
+    cp $src/book.toml .
+    cp $src/*.js .
   '';
   name = "website";
   src = ./.;
