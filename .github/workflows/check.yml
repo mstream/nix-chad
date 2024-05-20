@@ -21,14 +21,16 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             substituters = https://cache.nixos.org/
           nix_path: nixpkgs=channel:nixos-23.11
-      - name: Run linters
-        run: nix build .#lints.all-checks --show-trace
-      - name: Run flake checks
-        run: nix flake check --show-trace
+      - name: Run tests
+        run: ./ci/test.sh
+      - name: Generate documentation markdown documents
+        run: ./ci/generate-docs.sh
+      - name: Check if all generated files have been already commited
+        run: ./ci/check-generation.sh
       - name: Generate documentation website
         run: nix build .#website
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./result/
+          publish_dir: ./result/html/

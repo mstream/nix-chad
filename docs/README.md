@@ -54,7 +54,7 @@ nix flake init --template github:mstream/nix-chad/main#default
 ### Tweaking
 
 Update any config entries to your liking like in
-[this](examples/custom/flake.nix) example.
+[this](https://github.com/mstream/nix-chad/blob/main/examples/custom/flake.nix) example.
 
 ### Applying
 
