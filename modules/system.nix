@@ -64,7 +64,7 @@ in {
         "com.apple.mouse.tapBehavior" = null;
         "com.apple.springing.enabled" = true;
         "com.apple.springing.delay" = 0.5;
-        "com.apple.swipescrolldirection" = true;
+        "com.apple.swipescrolldirection" = cfg.mouse.naturalScrollDirection;
         "com.apple.trackpad.enableSecondaryClick" = true;
         "com.apple.trackpad.scaling" = 1.0;
         "com.apple.trackpad.trackpadCornerClickBehavior" = null;

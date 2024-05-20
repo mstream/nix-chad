@@ -26,6 +26,7 @@
             title = ".*Dialog$";
           }];
         };
+        mouse = { naturalScrollDirection = true; };
         terminal = {
           keyBindings = [ ];
           zshInitExtra = ''
