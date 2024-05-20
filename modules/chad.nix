@@ -149,6 +149,15 @@ in {
           '';
         };
       };
+      mouse = {
+        naturalScrollDirection = mkOption {
+          type = types.bool;
+          default = true;
+          description = ''
+            Should content scroll opposite to the swipe/roll direction. 
+          '';
+        };
+      };
       terminal = {
         abbreviations = mkOption {
           type = types.attrsOf types.str;
