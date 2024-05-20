@@ -2,11 +2,11 @@
 with pkgs.lib;
 let
   aspellEn = pkgs.aspellWithDicts (d: [ d.en d.en-computers d.en-science ]);
-  evaluatedModules = evalModules {
-    check = false;
+  optionsDoc = (import ./lib.nix { inherit pkgs; }).buildOptionsDocs {
+    nixpkgsRef = (builtins.fromJSON
+      (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
     modules = [ ../../modules/chad.nix ];
   };
-  optionsDoc = pkgs.nixosOptionsDoc { inherit (evaluatedModules) options; };
 in pkgs.stdenv.mkDerivation {
   nativeBuildInputs = with pkgs;
     [ mdbook mdbook-linkcheck mdbook-mermaid nodePackages.markdownlint-cli ]

@@ -4,11 +4,9 @@
 
 # User Guide
 
-TODO
-
 # Reference Guide
 
-[Options](options.generated.md)
+- [Options](options.generated.md)
 
 ______________________________________________________________________
 
