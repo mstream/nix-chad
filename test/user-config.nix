@@ -59,7 +59,7 @@ in {
       jq
       luajitPackages.luacheck
       markdownlint-cli
-      nixfmt
+      nixfmt-classic
       nodePackages.prettier
       nodePackages.purs-tidy
       python311Packages.autopep8
