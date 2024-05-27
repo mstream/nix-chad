@@ -1,7 +1,7 @@
 -- luacheck: globals vim
 -- luacheck: no unused
 
-local log_level = 0
+local log_level = 1
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = vim.api.nvim_create_augroup("LoggingLevelInfo", {}),
@@ -44,8 +44,11 @@ end
 local function on_server_capability(attach_event, capability_callbacks)
 	local capabilities = {
 		"codeActionProvider",
+		"completionProvider",
 		"declarationProvider",
 		"definitionProvider",
+		"documentFormattingProvider",
+		"hoverProvider",
 		"implementationProvider",
 		"renameProvider",
 	}
@@ -79,6 +82,9 @@ for _, mode in ipairs(modes) do
 	disable_mapping(mode, "<C-n>")
 	disable_mapping(mode, "<C-p>")
 end
+
+vim.api.nvim_set_keymap("c", "<c-u>", [[ wildmenumode() ? "<c-u>" : "<c-p>" ]], { noremap = true, expr = true })
+vim.api.nvim_set_keymap("c", "<c-d>", [[ wildmenumode() ? "<c-d>" : "<c-n>" ]], { noremap = true, expr = true })
 
 vim.g.dhall_format = 1
 vim.g.mapleader = " "

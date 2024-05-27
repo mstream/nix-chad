@@ -1,5 +1,4 @@
--- luacheck: globals register_debug_mapping
-
-local trouble = require("trouble")
-
-register_debug_mapping("t", trouble.toggle, "window toggle", { mode = "n" })
+local function setup_trouble_nvim(context) -- luacheck: ignore
+	local trouble = require("trouble")
+	context.register_debug_mapping("t", trouble.toggle, "window toggle", { mode = "n" })
+end

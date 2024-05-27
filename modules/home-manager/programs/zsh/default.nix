@@ -24,11 +24,11 @@ let
 in {
   programs.zsh = {
     autocd = false;
+    autosuggestion = { enable = true; };
     cdpath = [ ];
     completionInit = "autoload -U compinit && compinit";
     dirHashes = { };
     enable = true;
-    enableAutosuggestions = true;
     enableCompletion = true;
     envExtra = "";
     history = {

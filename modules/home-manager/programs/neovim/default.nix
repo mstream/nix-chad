@@ -3,7 +3,7 @@
     coc.enable = false;
     defaultEditor = true;
     enable = true;
-    extraLuaConfig = builtins.readFile (./extra.lua);
+    extraLuaConfig = builtins.readFile ./extra.lua;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;

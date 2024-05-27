@@ -18,7 +18,7 @@ An opinionated MacOS setup focused on software development.
 | :--------- | :-----: | :--------: | :---------: | :--------: | :----------: |
 | bash       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | dhall      |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
-| docker     |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
+| docker     |    ☒    |     ☒      |      ☑      |     ☒      |      ☑       |
 | html       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | java       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | json       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |

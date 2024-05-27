@@ -7,6 +7,3 @@ function string() {
 s=$(string)
 
 echo "${s}"
-x=a
-
-echo "$s"
