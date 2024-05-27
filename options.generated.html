@@ -90,7 +90,9 @@
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="options.generated.html" class="active"><strong aria-hidden="true">1.</strong> Options</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="contributors.html">Contributors</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -182,8 +184,8 @@ list of (submodule)</p>
 <p><em>Example:</em></p>
 <pre><code>[
   {
-    title = &quot;Nix Chad&quot;;
-    url = &quot;https://github.com/mstream/nix-chad&quot;;
+    title = "Nix Chad";
+    url = "https://github.com/mstream/nix-chad";
   }
 ]
 </code></pre>
@@ -243,7 +245,7 @@ null or string</p>
 <p><em>Default:</em>
 <code>null</code></p>
 <p><em>Example:</em>
-<code>&quot;BE318F09150F6CB0724FFEC0319EE1D7FC029354&quot;</code></p>
+<code>"BE318F09150F6CB0724FFEC0319EE1D7FC029354"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
@@ -291,8 +293,8 @@ list of (submodule)</p>
 <p><em>Example:</em></p>
 <pre><code>[
   {
-    app = &quot;^Discord$&quot;;
-    title = &quot;.*Dialog$&quot;;
+    app = "^Discord$";
+    title = ".*Dialog$";
   }
 ]
 </code></pre>
@@ -305,7 +307,7 @@ list of (submodule)</p>
 <p><em>Type:</em>
 string</p>
 <p><em>Example:</em>
-<code>&quot;^Discord$&quot;</code></p>
+<code>"^Discord$"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
@@ -315,9 +317,9 @@ string</p>
 <p><em>Type:</em>
 string</p>
 <p><em>Default:</em>
-<code>&quot;.*&quot;</code></p>
+<code>".*"</code></p>
 <p><em>Example:</em>
-<code>&quot;.*Dialog$&quot;</code></p>
+<code>".*Dialog$"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
@@ -332,8 +334,8 @@ attribute set of string</p>
 <code>{ }</code></p>
 <p><em>Example:</em></p>
 <pre><code>{
-  gco = &quot;git checkout&quot;;
-  l = &quot;less&quot;;
+  gco = "git checkout";
+  l = "less";
 }
 </code></pre>
 <p><em>Declared by:</em></p>
@@ -349,9 +351,9 @@ list of (submodule)</p>
 <p><em>Example:</em></p>
 <pre><code>[
   {
-    chars = &quot;\\u000c&quot;;
-    key = &quot;K&quot;;
-    mods = &quot;Control&quot;;
+    chars = "\\u000c";
+    key = "K";
+    mods = "Control";
   }
 ]
 </code></pre>
@@ -388,7 +390,7 @@ string</p>
 <p><em>Type:</em>
 strings concatenated with “\n”</p>
 <p><em>Default:</em>
-<code>&quot;&quot;</code></p>
+<code>""</code></p>
 <p><em>Example:</em></p>
 <pre><code>''
   export VAR1=val1  
@@ -410,9 +412,9 @@ list of string</p>
 <code>[ ]</code></p>
 <p><em>Example:</em></p>
 <pre><code>[
-  &quot;Development/exercises&quot;
-  &quot;Development/presentations&quot;
-  &quot;Development/projects&quot;
+  "Development/exercises"
+  "Development/presentations"
+  "Development/projects"
 ]
 </code></pre>
 <p><em>Declared by:</em></p>
@@ -424,7 +426,7 @@ list of string</p>
 <p><em>Type:</em>
 string</p>
 <p><em>Example:</em>
-<code>&quot;bob&quot;</code></p>
+<code>"bob"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
