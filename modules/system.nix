@@ -98,12 +98,11 @@ in {
         TrackpadThreeFingerDrag = false;
       };
       universalaccess = {
-        /*
-        closeViewScrollWheelToggle = false;
-        closeViewZoomFollowsFocus = false;
-        mouseDriverCursorSize = 1.0;
-        reduceMotion = false;
-        reduceTransparency = false;
+        /* closeViewScrollWheelToggle = false;
+           closeViewZoomFollowsFocus = false;
+           mouseDriverCursorSize = 1.0;
+           reduceMotion = false;
+           reduceTransparency = false;
         */
       };
     };
