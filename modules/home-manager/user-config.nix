@@ -75,6 +75,6 @@ in {
   home = {
     file = homeFiles;
     packages = nvimPackages ++ otherPackages ++ customPackages;
-    stateVersion = "24.05";
+    stateVersion = chadConfig.nixpkgsReleaseVersion;
   };
 }

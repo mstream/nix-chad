@@ -7,7 +7,7 @@ darwin.lib.darwinSystem {
     home-manager.darwinModules.home-manager
     ../modules/default.nix
     (import ../modules/home-manager/default.nix chadConfig)
-    ({ pkgs, ... }: (import ../modules/nix.nix { inherit pkgs system; }))
+    ({ config, pkgs, ... }: (import ../modules/nix/default.nix { inherit config pkgs system; }))
     (import ../modules/nixpkgs.nix { inherit nur; })
   ];
 }
