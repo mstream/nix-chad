@@ -7,7 +7,7 @@ let
   };
 in {
   programs.alacritty = {
-    enable = true;
+    enable =  true;
     settings = {
       colors = {
         draw_bold_text_with_bright_colors = false;
