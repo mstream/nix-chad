@@ -1,8 +1,8 @@
-chadConfig: _: {
+{config, ...}: 
+{
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    users."${config.chad.user.name}" = import ./user-config.nix;
   };
-
-  home-manager.users."${chadConfig.user.name}" = import ./user-config.nix;
 }
