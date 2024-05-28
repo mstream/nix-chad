@@ -22,6 +22,10 @@ in {
         show-recents = false;
         static-only = false;
         tilesize = cfg.fontSize;
+        wvous-bl-corner = 1;
+        wvous-br-corner = 1;
+        wvous-tl-corner = 1;
+        wvous-tr-corner = 1;
       };
       finder = {
         _FXShowPosixPathInTitle = false;
@@ -29,10 +33,13 @@ in {
         CreateDesktop = false;
         QuitMenuItem = true;
         FXEnableExtensionChangeWarning = true;
+        FXPreferredViewStyle = "Nlsv";
+        ShowPathbar = true;
+        ShowStatusBar = true;
       };
       loginwindow = {
         SHOWFULLNAME = false;
-        autoLoginUser = null;
+        autoLoginUser = "Off";
         GuestEnabled = false;
         PowerOffDisabledWhileLoggedIn = false;
         ShutDownDisabled = false;
@@ -50,7 +57,7 @@ in {
         ShowSeconds = false;
       };
       NSGlobalDomain = {
-        _HIHideMenuBar = true;
+        _HIHideMenuBar = false;
         AppleFontSmoothing = 2;
         AppleICUForce24HourTime = true;
         AppleInterfaceStyle = "Dark";
@@ -77,8 +84,28 @@ in {
         NSAutomaticSpellingCorrectionEnabled = false;
         NSWindowResizeTime = 0.1;
       };
+      screencapture = { type = "png"; };
+      screensaver = {
+        askForPassword = true;
+        askForPasswordDelay = 5;
+      };
       SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
       spaces.spans-displays = false;
+      trackpad = {
+        ActuationStrength = 1;
+        Clicking = false;
+        Dragging = false;
+        TrackpadThreeFingerDrag = false;
+      };
+      universalaccess = {
+        /*
+        closeViewScrollWheelToggle = false;
+        closeViewZoomFollowsFocus = false;
+        mouseDriverCursorSize = 1.0;
+        reduceMotion = false;
+        reduceTransparency = false;
+        */
+      };
     };
     keyboard = {
       enableKeyMapping = false;
