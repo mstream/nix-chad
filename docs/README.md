@@ -1,6 +1,8 @@
 # Nix Chad
 
-[![Release and deploy](https://github.com/mstream/nix-chad/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/mstream/nix-chad/actions/workflows/check.yml?query=branch%3Amain)
+[![Project Website](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://mstream.github.io/nix-chad/)
+
+______________________________________________________________________
 
 ![nix-chad logo](nix-chad.png)
 
