@@ -1,8 +1,6 @@
-_: { 
-  nix.optimise = 
-    { automatic = true; 
-      interval = { 
-        Minute = 0; 
-      };
-    }; 
+_: {
+  nix.optimise = {
+    automatic = true;
+    interval = { Minute = 0; };
+  };
 }

@@ -1,10 +1,7 @@
-{ config, pkgs, system, ... }: 
+{ config, pkgs, system, ... }:
 let cfg = config.chad;
 in {
-  imports = [
-    ./gc.nix  
-    ./optimise.nix  
-  ];
+  imports = [ ./gc.nix ./optimise.nix ];
   config = {
     nix = {
       configureBuildUsers = true;
@@ -21,13 +18,13 @@ in {
             id = "nixpkgs";
             type = "indirect";
           };
-          to =  { 
-            owner = "NixOS"; 
+          to = {
+            owner = "NixOS";
             ref = "release-${cfg.nixpkgsReleaseVersion}";
-            repo = "nixpkgs"; 
-            type = "github"; 
-          }; 
-        }; 
+            repo = "nixpkgs";
+            type = "github";
+          };
+        };
       };
       settings = {
         auto-optimise-store = true;

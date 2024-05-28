@@ -7,7 +7,7 @@ let
   };
 in {
   programs.alacritty = {
-    enable =  true;
+    enable = true;
     settings = {
       colors = {
         draw_bold_text_with_bright_colors = false;
@@ -29,25 +29,29 @@ in {
         bold = fontConfig "Bold";
         bold_italic = fontConfig "Bold Italic";
         builtin_box_drawing = true;
-        glyph_offset = {x = 0; y = 0;};
+        glyph_offset = {
+          x = 0;
+          y = 0;
+        };
         italic = fontConfig "Italic";
         normal = fontConfig "Medium";
-        offset = {x = 0; y = 0;};
+        offset = {
+          x = 0;
+          y = 0;
+        };
         size = cfg.fontSize;
       };
       keyboard.bindings = cfg.terminal.keyBindings;
       live_config_reload = true;
-      scrolling = { 
-        history = 0; 
+      scrolling = {
+        history = 0;
         multiplier = 3;
       };
       shell = {
         program = "zsh";
         args = [ "-l" "-c" "zellij attach --index 0 || zellij" ];
       };
-      terminal = {
-        osc52 = "OnlyCopy";
-      };
+      terminal = { osc52 = "OnlyCopy"; };
       window = {
         blur = true;
         decorations_theme_variant = "Dark";

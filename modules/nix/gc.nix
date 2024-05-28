@@ -1,8 +1,6 @@
-_: { 
-  nix.gc = 
-    { automatic = true; 
-      interval = { 
-        Minute = 30; 
-      };
-    }; 
+_: {
+  nix.gc = {
+    automatic = true;
+    interval = { Minute = 30; };
+  };
 }
