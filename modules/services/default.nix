@@ -1,6 +1,8 @@
-config: {
-  services = {
-    nix-daemon = import ./nix-daemon;
-    yabai = import ./yabai config;
-  };
+_: {
+  imports = [
+    ./nix-daemon.nix
+    ./nix-gc.nix
+    ./nix-optimise.nix
+    ./yabai.nix
+  ];
 }

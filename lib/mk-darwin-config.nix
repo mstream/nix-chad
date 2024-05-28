@@ -4,7 +4,7 @@ darwin.lib.darwinSystem {
   inherit system;
   modules = [
     { chad = chadConfig; }
-    home-manager.darwinModule
+    home-manager.darwinModules.home-manager
     ../modules/default.nix
     (import ../modules/home-manager/default.nix chadConfig)
     ({ pkgs, ... }: (import ../modules/nix.nix { inherit pkgs system; }))

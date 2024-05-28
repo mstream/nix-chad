@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   environment.variables = {
     EDITOR = "vim";
     LANG = "en_US.UTF-8";
