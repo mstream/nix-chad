@@ -43,11 +43,14 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
 			disable_diagnostics(config)
 			disable_formatting(config)
 		elseif lsp == "efm" then
-			context.efm_lsp_config({
+			local config_overrides = context.efm_lsp_config({
 				find_git_ancestor = lspconfig_util.find_git_ancestor,
 				log_level = context.log_level,
 				vim = context.vim,
 			})
+			for k, v in pairs(config_overrides) do
+				config[k] = v
+			end
 		elseif lsp == "html" then
 			disable_diagnostics(config)
 			disable_formatting(config)

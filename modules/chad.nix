@@ -149,6 +149,12 @@ in {
           '';
         };
       };
+      nixpkgsReleaseVersion = mkOption {
+        type = types.str;
+        readOnly = true;
+        visible = false;
+        example = "24.05";
+      };
       terminal = {
         abbreviations = mkOption {
           type = types.attrsOf types.str;
@@ -214,6 +220,7 @@ in {
     };
   };
   config = {
+    chad.nixpkgsReleaseVersion = "24.05";
     users.users."${cfg.user.name}" = {
       home = "/Users/${cfg.user.name}";
       inherit (cfg.user) name;

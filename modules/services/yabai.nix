@@ -6,11 +6,13 @@ let
     yabai -m rule --add app="${excl.app}" title="${excl.title}" manage=off
   '') "" cfg.manageWindows.exclusions;
 in {
-  inherit extraConfig;
-  inherit (cfg.manageWindows) enable;
-  config = {
-    auto_balance = true;
-    layout = "bsp";
+  services.yabai = {
+    inherit extraConfig;
+    inherit (cfg.manageWindows) enable;
+    config = {
+      auto_balance = true;
+      layout = "bsp";
+    };
   };
 }
 
