@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="options.generated.html" class="active"><strong aria-hidden="true">1.</strong> Options</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="contributors.html">Contributors</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="options.generated.html" class="active"><strong aria-hidden="true">1.</strong> Options</a></li><li class="chapter-item expanded "><a href="for-developers/index.html"><strong aria-hidden="true">2.</strong> For Developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="for-developers/library.generated.html"><strong aria-hidden="true">2.1.</strong> Library</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="contributors.html">Contributors</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -191,7 +191,7 @@ list of (submodule)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
 </ul>
 <h2 id="chadbrowserbookmarkstitle"><a class="header" href="#chadbrowserbookmarkstitle">chad.browser.bookmarks.*.title</a></h2>
 <p>Title of the bookmark.</p>
@@ -199,7 +199,7 @@ list of (submodule)</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
 </ul>
 <h2 id="chadbrowserbookmarksurl"><a class="header" href="#chadbrowserbookmarksurl">chad.browser.bookmarks.*.url</a></h2>
 <p>URL of the bookmark.</p>
@@ -207,7 +207,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
 </ul>
 <h2 id="chadextrapackages"><a class="header" href="#chadextrapackages">chad.extraPackages</a></h2>
 <p>Additional nixpkgs packages to be accessible for the user.</p>
@@ -221,7 +221,7 @@ null or (function that evaluates to a(n) list of package)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix">&lt;nix-chad/modules/chad/default.nix&gt;</a></li>
 </ul>
 <h2 id="chadfontsize"><a class="header" href="#chadfontsize">chad.fontSize</a></h2>
 <p>A desired font size in tools that have means to set it fixed.</p>
@@ -233,7 +233,7 @@ signed integer</p>
 <code>16</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix">&lt;nix-chad/modules/chad/default.nix&gt;</a></li>
 </ul>
 <h2 id="chadgpgdefaultkey"><a class="header" href="#chadgpgdefaultkey">chad.gpg.defaultKey</a></h2>
 <p>An ID of a key to be used for GPG signing by default.
@@ -248,7 +248,7 @@ null or string</p>
 <code>"BE318F09150F6CB0724FFEC0319EE1D7FC029354"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/gpg.nix">&lt;nix-chad/modules/chad/gpg.nix&gt;</a></li>
 </ul>
 <h2 id="chadkeyboardremapcapslock"><a class="header" href="#chadkeyboardremapcapslock">chad.keyboard.remapCapsLock</a></h2>
 <p>Treat Caps Lock key as Escape key.</p>
@@ -258,7 +258,7 @@ boolean</p>
 <code>true</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix">&lt;nix-chad/modules/chad/keyboard.nix&gt;</a></li>
 </ul>
 <h2 id="chadkeyboardremapleftarrow"><a class="header" href="#chadkeyboardremapleftarrow">chad.keyboard.remapLeftArrow</a></h2>
 <p>Treat Left Arrow key as Right Control key.</p>
@@ -268,7 +268,7 @@ boolean</p>
 <code>false</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix">&lt;nix-chad/modules/chad/keyboard.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsenable"><a class="header" href="#chadmanagewindowsenable">chad.manageWindows.enable</a></h2>
 <p>Keep windows occupy maximum available share of space on desktop.</p>
@@ -278,7 +278,7 @@ boolean</p>
 <code>false</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsexclusions"><a class="header" href="#chadmanagewindowsexclusions">chad.manageWindows.exclusions</a></h2>
 <p>List of application names for which automatic
@@ -300,7 +300,7 @@ list of (submodule)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsexclusionsapp"><a class="header" href="#chadmanagewindowsexclusionsapp">chad.manageWindows.exclusions.*.app</a></h2>
 <p>Regex for application name.</p>
@@ -310,7 +310,7 @@ string</p>
 <code>"^Discord$"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsexclusionstitle"><a class="header" href="#chadmanagewindowsexclusionstitle">chad.manageWindows.exclusions.*.title</a></h2>
 <p>Regex for window title.</p>
@@ -322,7 +322,7 @@ string</p>
 <code>".*Dialog$"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalabbreviations"><a class="header" href="#chadterminalabbreviations">chad.terminal.abbreviations</a></h2>
 <p>An attribute set that maps aliases (the top level attribute names
@@ -340,7 +340,7 @@ attribute set of string</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindings"><a class="header" href="#chadterminalkeybindings">chad.terminal.keyBindings</a></h2>
 <p>Additional key bindings for terminal emulator.</p>
@@ -359,7 +359,7 @@ list of (submodule)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingschars"><a class="header" href="#chadterminalkeybindingschars">chad.terminal.keyBindings.*.chars</a></h2>
 <p>Substitution.</p>
@@ -367,7 +367,7 @@ list of (submodule)</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingskey"><a class="header" href="#chadterminalkeybindingskey">chad.terminal.keyBindings.*.key</a></h2>
 <p>Key.</p>
@@ -375,7 +375,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingsmods"><a class="header" href="#chadterminalkeybindingsmods">chad.terminal.keyBindings.*.mods</a></h2>
 <p>Modifier key(s).</p>
@@ -383,7 +383,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalzshinitextra"><a class="header" href="#chadterminalzshinitextra">chad.terminal.zshInitExtra</a></h2>
 <p>Additional initialization for ZSH sessions.</p>
@@ -399,7 +399,7 @@ strings concatenated with “\n”</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chaduserhomedirectories"><a class="header" href="#chaduserhomedirectories">chad.user.homeDirectories</a></h2>
 <p>A list of desirect directories to be created in the home
@@ -419,7 +419,7 @@ list of string</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix">&lt;nix-chad/modules/chad/user.nix&gt;</a></li>
 </ul>
 <h2 id="chadusername"><a class="header" href="#chadusername">chad.user.name</a></h2>
 <p>User name.</p>
@@ -429,7 +429,7 @@ string</p>
 <code>"bob"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad.nix">&lt;nix-chad/modules/chad.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix">&lt;nix-chad/modules/chad/user.nix&gt;</a></li>
 </ul>
 
                     </main>
@@ -440,7 +440,7 @@ string</p>
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="contributors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="for-developers/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -454,7 +454,7 @@ string</p>
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="contributors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="for-developers/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
