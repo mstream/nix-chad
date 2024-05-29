@@ -34,43 +34,40 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
 		}
 	end
 
+	local efmls_result = context.setup_efmls_configs_nvim({
+		find_git_ancestor = lspconfig_util.find_git_ancestor,
+		log_level = context.log_level,
+		vim = context.vim,
+	})
+
 	for _, lsp in ipairs(servers) do
 		local config = {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		}
-		if lsp == "bashls" then
-			disable_diagnostics(config)
-			disable_formatting(config)
-		elseif lsp == "efm" then
-			local config_overrides = context.efm_lsp_config({
-				find_git_ancestor = lspconfig_util.find_git_ancestor,
-				log_level = context.log_level,
-				vim = context.vim,
-			})
-			for k, v in pairs(config_overrides) do
+
+		if lsp == "efm" then
+			for k, v in pairs(efmls_result.config) do
 				config[k] = v
 			end
 		elseif lsp == "html" then
-			disable_diagnostics(config)
-			disable_formatting(config)
 			config.cmd = { "html-languageserver", "--stdio" }
 		elseif lsp == "java_language_server" then
-			disable_formatting(config)
 			config.cmd = { "java-language-server" }
-		elseif lsp == "jedi_language_server" then
-			disable_diagnostics(config)
-			disable_formatting(config)
 		elseif lsp == "jsonls" then
-			disable_diagnostics(config)
-			disable_formatting(config)
 			config.cmd = { "vscode-json-languageserver", "--stdio" }
-		elseif lsp == "lua_ls" then
-			disable_diagnostics(config)
-			disable_formatting(config)
-		elseif lsp == "yamlls" then
-			disable_diagnostics(config)
-			disable_formatting(config)
+		end
+
+		if lsp ~= "efm" and config.file_types ~= nil then
+			-- TODO: disable formatting/linting it at the level of file type not LSP config
+			for _, file_type in ipairs(config.file_types) do
+				if efmls_result.does_efmls_format_file_type(file_type) then
+					disable_formatting(config)
+				end
+				if efmls_result.does_efmls_lint_file_type(file_type) then
+					disable_diagnostics(config)
+				end
+			end
 		end
 
 		lspconfig[lsp].setup(config)

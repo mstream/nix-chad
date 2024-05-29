@@ -1,0 +1,9 @@
+rules:
+  header-case:
+    - 2
+    - always
+    - lower-case
+  header-max-length:
+    - 1
+    - always
+    - 20
