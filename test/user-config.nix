@@ -57,6 +57,7 @@ in
       fd
       ripgrep
       tree-sitter
+      actionlint
       djlint
       google-java-format
       hadolint

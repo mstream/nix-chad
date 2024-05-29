@@ -1,6 +1,7 @@
 { pkgs, ... }:
 with pkgs;
 [
+  actionlint
   djlint
   google-java-format
   hadolint
