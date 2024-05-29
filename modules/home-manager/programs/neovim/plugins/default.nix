@@ -1,4 +1,5 @@
-{ pkgs, ... }: [
+{ pkgs, ... }:
+[
   (import ./which-key-nvim { inherit pkgs; })
   (import ./auto-hlsearch-nvim { inherit pkgs; })
   (import ./bufferline-nvim { inherit pkgs; })

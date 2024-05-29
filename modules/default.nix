@@ -1,6 +1,6 @@
 {
   imports = [
-    ./chad.nix
+    ./chad/default.nix
     ./documentation.nix
     ./environment.nix
     ./fonts.nix

@@ -1,9 +1,6 @@
 { pkgs, ... }:
 let
-  zshAbbreviations =
-    import ../modules/home-manager/programs/zsh/abbreviations.nix {
-      inherit pkgs;
-    };
+  zshAbbreviations = import ../modules/home-manager/programs/zsh/abbreviations.nix { inherit pkgs; };
   mergedAbbreviations = zshAbbreviations.mergeAbbreviations [
     {
       a = "a";
@@ -11,7 +8,8 @@ let
     }
     { c = "c"; }
   ];
-in {
+in
+{
   testMergingAbbreviations = {
     expected = {
       a = "a";

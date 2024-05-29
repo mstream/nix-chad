@@ -31,4 +31,5 @@ let
     apply_configuration
   '';
   scriptBin = pkgs.writeShellScriptBin "switch" script;
-in scriptBin
+in
+scriptBin

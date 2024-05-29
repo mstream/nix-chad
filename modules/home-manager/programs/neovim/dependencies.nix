@@ -11,4 +11,3 @@
 ++ (pkgs.callPackage ./plugins/nvim-cmp/dependencies.nix { })
 ++ (pkgs.callPackage ./plugins/nvim-web-devicons/dependencies.nix { })
 ++ (pkgs.callPackage ./plugins/which-key-nvim/dependencies.nix { })
-

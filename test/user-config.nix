@@ -5,13 +5,17 @@ let
     extraPackages = pkgs: [ pkgs.cowsay ];
     fontSize = 123;
     user = {
-      homeDirectories = [ "dir1/dirA" "dir1/dirB" "dir2/dirA" ];
+      homeDirectories = [
+        "dir1/dirA"
+        "dir1/dirB"
+        "dir2/dirA"
+      ];
       name = "user1";
     };
   };
-  actualUserConfig =
-    import ../modules/home-manager/user-config.nix { inherit osConfig pkgs; };
-in {
+  actualUserConfig = import ../modules/home-manager/user-config.nix { inherit osConfig pkgs; };
+in
+{
   testHomeFiles = {
     expected = {
       gnupgGpgAgent = {
@@ -59,7 +63,7 @@ in {
       jq
       luajitPackages.luacheck
       markdownlint-cli
-      nixfmt-classic
+      nixfmt-rfc-style
       nodePackages.prettier
       nodePackages.purs-tidy
       python311Packages.autopep8

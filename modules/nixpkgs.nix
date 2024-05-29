@@ -1,4 +1,5 @@
-{ nur, ... }: {
+{ nur, ... }:
+{
   nixpkgs = {
     config = {
       allowBroken = false;

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.neovim = {
     coc.enable = false;
     defaultEditor = true;

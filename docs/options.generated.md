@@ -28,7 +28,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix)
 
 
 
@@ -44,7 +44,7 @@ Title of the bookmark\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix)
 
 
 
@@ -60,7 +60,7 @@ URL of the bookmark\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix)
 
 
 
@@ -90,7 +90,7 @@ pkgs: with pkgs; [ cowsay ];
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix)
 
 
 
@@ -116,7 +116,7 @@ signed integer
 ` 16 `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix)
 
 
 
@@ -145,7 +145,7 @@ null or string
 ` "BE318F09150F6CB0724FFEC0319EE1D7FC029354" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/gpg\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/gpg.nix)
 
 
 
@@ -166,7 +166,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix)
 
 
 
@@ -187,7 +187,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix)
 
 
 
@@ -208,7 +208,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
 
 
 
@@ -248,7 +248,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
 
 
 
@@ -269,7 +269,7 @@ string
 ` "^Discord$" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
 
 
 
@@ -295,7 +295,7 @@ string
 ` ".*Dialog$" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
 
 
 
@@ -329,7 +329,7 @@ attribute set of string
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
 
 
 
@@ -364,7 +364,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
 
 
 
@@ -380,7 +380,7 @@ Substitution\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
 
 
 
@@ -396,7 +396,7 @@ Key\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
 
 
 
@@ -412,7 +412,7 @@ Modifier key(s)\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
 
 
 
@@ -444,7 +444,7 @@ strings concatenated with “\\n”
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
 
 
 
@@ -480,7 +480,7 @@ list of string
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix)
 
 
 
@@ -501,6 +501,6 @@ string
 ` "bob" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad.nix)
+ - [\<nix-chad/modules/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix)
 
 

@@ -1,14 +1,17 @@
 { pkgs, ... }:
 with pkgs.lib;
 let
-  mergeAbbreviations = xs:
+  mergeAbbreviations =
+    xs:
     let
-      duplicates = builtins.attrNames
-        (attrsets.filterAttrs (_: v: builtins.length v > 1)
-          (attrsets.zipAttrs xs));
-    in (throwIf (builtins.length duplicates > 0)
-      "Duplicate abbreviations: ${builtins.toString duplicates}")
-    (attrsets.mergeAttrsList xs);
+      duplicates = builtins.attrNames (
+        attrsets.filterAttrs (_: v: builtins.length v > 1) (attrsets.zipAttrs xs)
+      );
+    in
+    (throwIf (
+      builtins.length duplicates > 0
+    ) "Duplicate abbreviations: ${builtins.toString duplicates}")
+      (attrsets.mergeAttrsList xs);
   cd = {
     "\\-" = "cd -";
     "1" = "cd +1";
@@ -77,8 +80,18 @@ let
     npmt = "npm test";
     npmu = "npm test";
   };
-  sudo = { "_" = "sudo"; };
-in {
+  sudo = {
+    "_" = "sudo";
+  };
+in
+{
   inherit mergeAbbreviations;
-  defaultAbbreviations = mergeAbbreviations [ cd docker git nix npm sudo ];
+  defaultAbbreviations = mergeAbbreviations [
+    cd
+    docker
+    git
+    nix
+    npm
+    sudo
+  ];
 }

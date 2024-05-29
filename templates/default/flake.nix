@@ -10,9 +10,12 @@
 {
   description = "My Nix MacOS Environment";
 
-  inputs = { nix-chad.url = "github:mstream/nix-chad/main"; };
+  inputs = {
+    nix-chad.url = "github:mstream/nix-chad/main";
+  };
 
-  outputs = { nix-chad, ... }:
+  outputs =
+    { nix-chad, ... }:
     let
       config = {
         browser = {
@@ -71,5 +74,6 @@
           name = "my-user";
         };
       };
-    in nix-chad.lib.chad config;
+    in
+    nix-chad.lib.chad config;
 }

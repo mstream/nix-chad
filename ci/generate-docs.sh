@@ -8,4 +8,4 @@ REPO_ROOT=$(git rev-parse --show-toplevel)
 cd "$REPO_ROOT"
 
 nix build .#docs
-cp result/* docs/
+cp -r result/* docs/

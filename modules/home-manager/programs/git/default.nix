@@ -1,6 +1,8 @@
 { osConfig, ... }:
-let cfg = osConfig.chad;
-in {
+let
+  cfg = osConfig.chad;
+in
+{
   programs.git = {
     aliases = { };
     enable = true;
@@ -16,13 +18,20 @@ in {
         autocrlf = "input";
         editor = "vim";
       };
-      init = { defaultBranch = "master"; };
+      init = {
+        defaultBranch = "master";
+      };
       push = {
         autoSetupRemote = true;
         default = "simple";
       };
     };
-    ignores = [ ".direnv" ".DS_Store" "*~" "*.swp" ];
+    ignores = [
+      ".direnv"
+      ".DS_Store"
+      "*~"
+      "*.swp"
+    ];
     userEmail = "maciej.laciak@gmail.com";
     userName = cfg.user.name;
   };

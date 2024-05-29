@@ -1,6 +1,8 @@
 { config, ... }:
-let cfg = config.chad;
-in {
+let
+  cfg = config.chad;
+in
+{
   system = {
     defaults = {
       dock = {
@@ -84,7 +86,9 @@ in {
         NSAutomaticSpellingCorrectionEnabled = false;
         NSWindowResizeTime = 0.1;
       };
-      screencapture = { type = "png"; };
+      screencapture = {
+        type = "png";
+      };
       screensaver = {
         askForPassword = true;
         askForPasswordDelay = 5;
@@ -98,11 +102,12 @@ in {
         TrackpadThreeFingerDrag = false;
       };
       universalaccess = {
-        /* closeViewScrollWheelToggle = false;
-           closeViewZoomFollowsFocus = false;
-           mouseDriverCursorSize = 1.0;
-           reduceMotion = false;
-           reduceTransparency = false;
+        /*
+          closeViewScrollWheelToggle = false;
+          closeViewZoomFollowsFocus = false;
+          mouseDriverCursorSize = 1.0;
+          reduceMotion = false;
+          reduceTransparency = false;
         */
       };
     };
