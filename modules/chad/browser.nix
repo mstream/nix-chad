@@ -18,17 +18,19 @@ let
       };
     };
   };
-
-in {
+in
+{
   options = {
     chad.browser = {
       bookmarks = mkOption {
         type = types.listOf (types.submodule bookmarkModule);
         default = [ ];
-        example = [{
-          title = "Nix Chad";
-          url = "https://github.com/mstream/nix-chad";
-        }];
+        example = [
+          {
+            title = "Nix Chad";
+            url = "https://github.com/mstream/nix-chad";
+          }
+        ];
         description = ''
           Browser bookmarks.
           Not supported until there is a nix-native browser for 

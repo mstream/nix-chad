@@ -1,6 +1,8 @@
 { osConfig, ... }:
-let cfg = osConfig.chad;
-in {
+let
+  cfg = osConfig.chad;
+in
+{
   programs.gpg = {
     enable = cfg.gpg.defaultKey != null;
     settings = {

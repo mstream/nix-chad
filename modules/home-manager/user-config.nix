@@ -16,47 +16,52 @@ let
     tree
     unixtools.watch
   ];
-  customPackages = if chadConfig.extraPackages == null then
-    [ ]
-  else
-    chadConfig.extraPackages pkgs;
-  userDefinedDirectories = (builtins.foldl' (acc: dir: {
-    idx = acc.idx + 1;
-    result = acc.result // {
-      "homeDirectory${builtins.toString acc.idx}" = {
-        recursive = true;
-        target = "${dir}/.keep";
-        text = "";
-      };
-    };
-  }) {
-    idx = 0;
-    result = { };
-  } chadConfig.user.homeDirectories).result;
+  customPackages = if chadConfig.extraPackages == null then [ ] else chadConfig.extraPackages pkgs;
+  userDefinedDirectories =
+    (builtins.foldl'
+      (acc: dir: {
+        idx = acc.idx + 1;
+        result = acc.result // {
+          "homeDirectory${builtins.toString acc.idx}" = {
+            recursive = true;
+            target = "${dir}/.keep";
+            text = "";
+          };
+        };
+      })
+      {
+        idx = 0;
+        result = { };
+      }
+      chadConfig.user.homeDirectories
+    ).result;
 
-  gnupgDirectories = if chadConfig.gpg.defaultKey == null then
-    { }
-  else {
-    gnupgGpgAgent = {
-      recursive = true;
-      target = ".gnupg/gpg-agent.conf";
-      text = ''
-        enable-ssh-support
-        default-cache-ttl 60
-        max-cache-ttl 120
-      '';
-    };
-    gnupgSshControl = {
-      recursive = true;
-      target = ".gnupg/sshcontrol";
-      text = ''
-        ${chadConfig.gpg.defaultKey}
-      '';
-    };
-  };
+  gnupgDirectories =
+    if chadConfig.gpg.defaultKey == null then
+      { }
+    else
+      {
+        gnupgGpgAgent = {
+          recursive = true;
+          target = ".gnupg/gpg-agent.conf";
+          text = ''
+            enable-ssh-support
+            default-cache-ttl 60
+            max-cache-ttl 120
+          '';
+        };
+        gnupgSshControl = {
+          recursive = true;
+          target = ".gnupg/sshcontrol";
+          text = ''
+            ${chadConfig.gpg.defaultKey}
+          '';
+        };
+      };
 
   homeFiles = pkgs.lib.recursiveUpdate gnupgDirectories userDefinedDirectories;
-in {
+in
+{
   imports = [
     ./programs/alacritty/default.nix
     ./programs/bat/default.nix

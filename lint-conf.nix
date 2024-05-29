@@ -1,11 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   formatters = {
     beautysh = {
       cmd = "${pkgs.beautysh}/bin/beautysh --check $filename";
       ext = ".sh";
     };
     nixfmt = {
-      cmd = "${pkgs.nixfmt}/bin/nixfmt --check $filename";
+      cmd = "${pkgs.nixfmt-rfc-style}/bin/nixfmt --check $filename";
       ext = ".nix";
     };
     stylua = {
@@ -19,13 +20,11 @@
       ext = ".nix";
     };
     luacheck = {
-      cmd =
-        "${pkgs.luajitPackages.luacheck}/bin/luacheck --no-max-comment-line-length --no-max-line-length $filename";
+      cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck --no-max-comment-line-length --no-max-line-length $filename";
       ext = ".lua";
     };
     markdown-link-check = {
-      cmd =
-        "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check -v $filename || echo 'disabling because of missing cacerts issue'";
+      cmd = "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check -v $filename || echo 'disabling because of missing cacerts issue'";
       ext = ".md";
     };
     shellcheck = {

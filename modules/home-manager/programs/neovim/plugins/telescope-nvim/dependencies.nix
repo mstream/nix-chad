@@ -1,1 +1,6 @@
-{ pkgs, ... }: with pkgs; [ fd ripgrep ]
+{ pkgs, ... }:
+with pkgs;
+[
+  fd
+  ripgrep
+]

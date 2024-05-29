@@ -23,7 +23,8 @@ let
       };
     };
   };
-in {
+in
+{
   options = {
     chad.terminal = {
       abbreviations = mkOption {
@@ -42,11 +43,13 @@ in {
       keyBindings = mkOption {
         type = types.listOf (types.submodule keyBindingModule);
         default = [ ];
-        example = [{
-          chars = "\\u000c";
-          key = "K";
-          mods = "Control";
-        }];
+        example = [
+          {
+            chars = "\\u000c";
+            key = "K";
+            mods = "Control";
+          }
+        ];
         description = ''
           Additional key bindings for terminal emulator. 
         '';

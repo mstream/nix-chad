@@ -5,7 +5,8 @@ let
     ${acc}
     yabai -m rule --add app="${excl.app}" title="${excl.title}" manage=off
   '') "" cfg.manageWindows.exclusions;
-in {
+in
+{
   services.yabai = {
     inherit extraConfig;
     inherit (cfg.manageWindows) enable;
@@ -15,4 +16,3 @@ in {
     };
   };
 }
-

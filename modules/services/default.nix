@@ -1,1 +1,6 @@
-_: { imports = [ ./nix-daemon.nix ./yabai.nix ]; }
+_: {
+  imports = [
+    ./nix-daemon.nix
+    ./yabai.nix
+  ];
+}

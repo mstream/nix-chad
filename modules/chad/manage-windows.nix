@@ -20,7 +20,8 @@ let
       };
     };
   };
-in {
+in
+{
   options = {
     chad.manageWindows = {
       enable = mkOption {
@@ -33,10 +34,12 @@ in {
       exclusions = mkOption {
         type = types.listOf (types.submodule windowExclusionModule);
         default = [ ];
-        example = [{
-          app = "^Discord$";
-          title = ".*Dialog$";
-        }];
+        example = [
+          {
+            app = "^Discord$";
+            title = ".*Dialog$";
+          }
+        ];
         description = ''
           List of application names for which automatic 
           window management should not be performed.
@@ -49,4 +52,3 @@ in {
     };
   };
 }
-

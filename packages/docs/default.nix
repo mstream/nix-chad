@@ -1,15 +1,25 @@
 { pkgs, ... }:
 with pkgs.lib;
 let
-  aspellEn = pkgs.aspellWithDicts (d: [ d.en d.en-computers d.en-science ]);
+  aspellEn = pkgs.aspellWithDicts (d: [
+    d.en
+    d.en-computers
+    d.en-science
+  ]);
   optionsDoc = (import ./lib.nix { inherit pkgs; }).buildOptionsDocs {
-    nixpkgsRef = (builtins.fromJSON
-      (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
+    nixpkgsRef = (builtins.fromJSON (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
     modules = [ ../../modules/chad/default.nix ];
   };
-in pkgs.stdenv.mkDerivation {
-  nativeBuildInputs = with pkgs;
-    [ mdbook mdbook-linkcheck mdbook-mermaid nodePackages.markdownlint-cli ]
+in
+pkgs.stdenv.mkDerivation {
+  nativeBuildInputs =
+    with pkgs;
+    [
+      mdbook
+      mdbook-linkcheck
+      mdbook-mermaid
+      nodePackages.markdownlint-cli
+    ]
     ++ [ aspellEn ];
   checkPhase = ''
     function validate_spelling() {
@@ -26,7 +36,7 @@ in pkgs.stdenv.mkDerivation {
       fi
     }
 
-    markdownlint --disable MD004 MD009 MD025 MD040 MD041 -- ./src
+    markdownlint --disable MD004 MD009 MD022 MD025 MD040 MD041 -- ./src
 
     for f in ./src/*.md; do
       validate_spelling "$f" || exit 1;
@@ -37,12 +47,18 @@ in pkgs.stdenv.mkDerivation {
     cp -r src "$out"
   '';
   unpackPhase = ''
-    cp -r $src src
+    cp -r $src/docs src
     chmod --recursive u+w src
     cat ${optionsDoc.optionsCommonMark} > src/options.generated.md
-    cp $src/.markdownlint.json .
-    cp $src/extra-dictionary.txt .
+    ${pkgs.nixdoc}/bin/nixdoc \
+      --prefix 'lib' \
+      --category 'darwin' \
+      --description 'Nix Chad Library' \
+      --file $src/lib/darwin.nix \
+      > src/for-developers/library.generated.md
+    cp $src/docs/.markdownlint.json .
+    cp $src/docs/extra-dictionary.txt .
   '';
   name = "docs";
-  src = ../../docs;
+  src = ../..;
 }

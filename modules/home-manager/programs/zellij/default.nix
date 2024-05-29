@@ -1,29 +1,52 @@
 _:
 let
-  arrowKeys = [ "Down" "Left" "Right" "Up" ];
+  arrowKeys = [
+    "Down"
+    "Left"
+    "Right"
+    "Up"
+  ];
   keybinds = {
     "entersearch" = { };
     "locked" = { };
-    "move" = { unbind = [ "Ctrl h" ]; };
-    "normal" = { unbind = builtins.map (k: "Alt ${k}") arrowKeys; };
-    "pane" = { unbind = arrowKeys; };
+    "move" = {
+      unbind = [ "Ctrl h" ];
+    };
+    "normal" = {
+      unbind = builtins.map (k: "Alt ${k}") arrowKeys;
+    };
+    "pane" = {
+      unbind = arrowKeys;
+    };
     "renamepane" = { };
     "renametab" = { };
-    "resize" = { unbind = arrowKeys; };
+    "resize" = {
+      unbind = arrowKeys;
+    };
     "scroll" = { };
-    "search" = { unbind = arrowKeys; };
+    "search" = {
+      unbind = arrowKeys;
+    };
     "session" = { };
     "tmux" = { };
-    "tab" = { unbind = arrowKeys; };
-    "shared_except \"locked\"" = { unbind = [ "Ctrl q" ]; };
-    "shared_except \"locked\" \"move\"" = { unbind = [ "Ctrl h" ]; };
+    "tab" = {
+      unbind = arrowKeys;
+    };
+    "shared_except \"locked\"" = {
+      unbind = [ "Ctrl q" ];
+    };
+    "shared_except \"locked\" \"move\"" = {
+      unbind = [ "Ctrl h" ];
+    };
     "shared_except \"locked\" \"normal\"" = { };
     "shared_except \"locked\" \"pane\"" = { };
     "shared_except \"locked\" \"resize\"" = { };
     "shared_except \"locked\" \"scroll\"" = { };
     "shared_except \"locked\" \"session\"" = { };
     "shared_except \"locked\" \"tab\"" = { };
-    "shared_except \"locked\" \"tmux\"" = { unbind = [ "Ctrl b" ]; };
+    "shared_except \"locked\" \"tmux\"" = {
+      unbind = [ "Ctrl b" ];
+    };
   };
   themes = {
     gruvbox = {
@@ -40,7 +63,8 @@ let
       orange = "#D65D0E";
     };
   };
-in {
+in
+{
   programs.zellij = {
     enable = true;
     enableBashIntegration = false;
@@ -66,4 +90,3 @@ in {
     };
   };
 }
-

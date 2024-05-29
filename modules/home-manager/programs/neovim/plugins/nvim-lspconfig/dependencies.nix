@@ -1,5 +1,6 @@
 { pkgs, ... }:
-with pkgs; [
+with pkgs;
+[
   dhall-lsp-server
   dockerfile-language-server-nodejs
   lua-language-server

@@ -1,5 +1,6 @@
 { lib, ... }:
-with lib; {
+with lib;
+{
   options = {
     chad.keyboard = {
       remapCapsLock = mkOption {

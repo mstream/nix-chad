@@ -1,12 +1,13 @@
 { pkgs, ... }:
-with pkgs; [
+with pkgs;
+[
   djlint
   google-java-format
   hadolint
   jq
   luajitPackages.luacheck
   markdownlint-cli
-  nixfmt-classic
+  nixfmt-rfc-style
   nodePackages.prettier
   nodePackages.purs-tidy
   python311Packages.autopep8

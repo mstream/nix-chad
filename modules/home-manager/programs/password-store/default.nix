@@ -1,1 +1,5 @@
-_: { programs.password-store = { enable = true; }; }
+_: {
+  programs.password-store = {
+    enable = true;
+  };
+}

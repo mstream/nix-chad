@@ -5,7 +5,8 @@ let
     inherit style;
     family = "JetbrainsMono Nerd Font";
   };
-in {
+in
+{
   programs.alacritty = {
     enable = true;
     settings = {
@@ -49,9 +50,15 @@ in {
       };
       shell = {
         program = "zsh";
-        args = [ "-l" "-c" "zellij attach --index 0 || zellij" ];
+        args = [
+          "-l"
+          "-c"
+          "zellij attach --index 0 || zellij"
+        ];
       };
-      terminal = { osc52 = "OnlyCopy"; };
+      terminal = {
+        osc52 = "OnlyCopy";
+      };
       window = {
         blur = true;
         decorations_theme_variant = "Dark";

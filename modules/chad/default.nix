@@ -1,7 +1,9 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.chad;
-in {
+let
+  cfg = config.chad;
+in
+{
   imports = [
     ./browser.nix
     ./gpg.nix

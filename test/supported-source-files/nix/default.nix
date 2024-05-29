@@ -1,3 +1,4 @@
-let example = import ./example.nix;
-
-in example.s
+let
+  example = import ./example.nix;
+in
+example.s

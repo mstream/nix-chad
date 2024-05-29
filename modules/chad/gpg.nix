@@ -1,5 +1,6 @@
 { lib, ... }:
-with lib; {
+with lib;
+{
   options = {
     chad.gpg = {
       defaultKey = mkOption {

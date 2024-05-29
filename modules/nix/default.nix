@@ -1,7 +1,17 @@
-{ config, pkgs, system, ... }:
-let cfg = config.chad;
-in {
-  imports = [ ./gc.nix ./optimise.nix ];
+{
+  config,
+  pkgs,
+  system,
+  ...
+}:
+let
+  cfg = config.chad;
+in
+{
+  imports = [
+    ./gc.nix
+    ./optimise.nix
+  ];
   config = {
     nix = {
       configureBuildUsers = true;

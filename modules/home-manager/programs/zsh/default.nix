@@ -1,7 +1,6 @@
 { osConfig, pkgs, ... }:
 let
-  inherit (import ./abbreviations.nix { inherit pkgs; })
-    defaultAbbreviations mergeAbbreviations;
+  inherit (import ./abbreviations.nix { inherit pkgs; }) defaultAbbreviations mergeAbbreviations;
 
   cfg = osConfig.chad;
 
@@ -19,12 +18,17 @@ let
     (if cfg.keyboard.remapLeftArrow then [ leftArrowRemap ] else [ ])
     ++ (if cfg.keyboard.remapCapsLock then [ capsLockRemap ] else [ ]);
 
-  abbreviations =
-    mergeAbbreviations [ defaultAbbreviations cfg.terminal.abbreviations ];
-in {
+  abbreviations = mergeAbbreviations [
+    defaultAbbreviations
+    cfg.terminal.abbreviations
+  ];
+in
+{
   programs.zsh = {
     autocd = false;
-    autosuggestion = { enable = true; };
+    autosuggestion = {
+      enable = true;
+    };
     cdpath = [ ];
     completionInit = "autoload -U compinit && compinit";
     dirHashes = { };
@@ -49,9 +53,7 @@ in {
       bindkey -M viins "^U" up-history 
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       gpgconf --launch gpg-agent
-      hidutil property --set '{"UserKeyMapping":${
-        builtins.toJSON userKeyMapping
-      }}' > /dev/null
+      hidutil property --set '{"UserKeyMapping":${builtins.toJSON userKeyMapping}}' > /dev/null
       ${cfg.terminal.zshInitExtra}
     '';
     initExtraBeforeCompInit = "";
@@ -106,14 +108,22 @@ in {
         pwdLength = "short";
         theme = "sorin";
       };
-      syntaxHighlighting = { styles = { comment = "fg=white"; }; };
-      utility = { safeOps = true; };
+      syntaxHighlighting = {
+        styles = {
+          comment = "fg=white";
+        };
+      };
+      utility = {
+        safeOps = true;
+      };
     };
     profileExtra = "";
     sessionVariables = { };
     shellAliases = abbreviations;
     shellGlobalAliases = { };
-    syntaxHighlighting = { enable = true; };
+    syntaxHighlighting = {
+      enable = true;
+    };
     zsh-abbr = {
       inherit abbreviations;
       enable = true;
