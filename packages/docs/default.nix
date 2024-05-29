@@ -5,7 +5,7 @@ let
   optionsDoc = (import ./lib.nix { inherit pkgs; }).buildOptionsDocs {
     nixpkgsRef = (builtins.fromJSON
       (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
-    modules = [ ../../modules/chad.nix ];
+    modules = [ ../../modules/chad/default.nix ];
   };
 in pkgs.stdenv.mkDerivation {
   nativeBuildInputs = with pkgs;
