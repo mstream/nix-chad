@@ -1,22 +1,61 @@
-local function efm_lsp_config(context) -- luacheck: ignore
+local function setup_efmls_configs_nvim(context) -- luacheck: ignore
 	local efmls_configs_utils = require("efmls-configs.utils")
 
+	local function lint_after_open(config)
+		config.lintAfterOpen = true
+		return config
+	end
+
 	local formatters = {
-		purescript = {
+		autopep8 = require("efmls-configs.formatters.autopep8"),
+		google_java_format = require("efmls-configs.formatters.google_java_format"),
+		jq = require("efmls-configs.formatters.jq"),
+		mdformat = require("efmls-configs.formatters.mdformat"),
+		nixfmt = require("efmls-configs.formatters.nixfmt"),
+		prettier = require("efmls-configs.formatters.prettier"),
+		purs_tidy = {
 			formatCommand = "purs-tidy format",
 			formatStdin = true,
 		},
+		shfmt = require("efmls-configs.formatters.shfmt"),
+		stylua = require("efmls-configs.formatters.stylua"),
 	}
 
+	local actionlint = require("efmls-configs.linters.actionlint")
+	actionlint.rootMarkers = { "workflows" }
+
 	local linters = {
-		github_action = {
-			lintCommand = "actionlint",
+		actionlint = actionlint,
+		commitlint = {
+			lintAfterOpen = true,
+			lintCommand = "commitlint --strict",
+			lintSource = efmls_configs_utils.sourceText("commitlint"),
 			lintStdin = true,
-			lintFormats = { "%m %l %c" },
-			prefix = "lolint",
+			lintFormats = {
+				"✖   %m [%s]",
+				"⚠   %m [%s]",
+			},
+			prefix = "commitlint",
 			requireMarker = true,
-			rootMarkers = { "workflows/" },
+			rootMarkers = {
+				".commitlintrc",
+				".commitlintrc.json",
+				".commitlintrc.yaml",
+				".commitlintrc.yml",
+				".commitlintrc.js",
+				".commitlintrc.cjs",
+				".commitlintrc.mjs",
+				".commitlintrc.ts",
+				".commitlintrc.cts",
+				"commitlint.config.js",
+				"commitlint.config.cjs",
+				"commitlint.config.mjs",
+				"commitlint.config.ts",
+				"commitlint.config.cts",
+			},
 		},
+		djlint = require("efmls-configs.linters.djlint"),
+		flake8 = require("efmls-configs.linters.flake8"),
 		hadolint = {
 			lintCommand = "hadolint --no-color",
 			lintSource = efmls_configs_utils.sourceText("hadolint"),
@@ -25,57 +64,69 @@ local function efm_lsp_config(context) -- luacheck: ignore
 			prefix = "hadolint",
 			rootMarkers = { ".hadolint.yaml" },
 		},
+		jq = require("efmls-configs.linters.jq"),
+		luacheck = require("efmls-configs.linters.luacheck"),
+		markdownlint = require("efmls-configs.linters.markdownlint"),
+		shellcheck = require("efmls-configs.linters.shellcheck"),
+		yamllint = require("efmls-configs.linters.yamllint"),
 	}
 
-	local efmLanguagesConfig = {
+	for _, conf in ipairs(linters) do
+		lint_after_open(conf)
+	end
+
+	local efm_languages_config = {
 		bash = {
-			require("efmls-configs.formatters.shfmt"),
-			require("efmls-configs.linters.shellcheck"),
+			formatters.shfmt,
+			linters.shellcheck,
+		},
+		gitcommit = {
+			linters.commitlint,
 		},
 		dockerfile = {
 			linters.hadolint,
 		},
 		html = {
-			require("efmls-configs.formatters.prettier"),
-			require("efmls-configs.linters.djlint"),
+			formatters.prettier,
+			linters.djlint,
 		},
 		java = {
-			require("efmls-configs.formatters.google_java_format"),
+			formatters.google_java_format,
 		},
 		json = {
-			require("efmls-configs.formatters.jq"),
-			require("efmls-configs.linters.jq"),
+			formatters.jq,
+			linters.jq,
 		},
 		lua = {
-			require("efmls-configs.formatters.stylua"),
-			require("efmls-configs.linters.luacheck"),
+			formatters.stylua,
+			linters.luacheck,
 		},
 		markdown = {
-			require("efmls-configs.formatters.mdformat"),
-			require("efmls-configs.linters.markdownlint"),
+			formatters.mdformat,
+			linters.markdownlint,
 		},
 		nix = {
-			require("efmls-configs.formatters.nixfmt"),
+			formatters.nixfmt,
 		},
 		purescript = {
-			formatters.purescript,
+			formatters.purs_tidy,
 		},
 		python = {
-			require("efmls-configs.formatters.autopep8"),
-			require("efmls-configs.linters.flake8"),
+			formatters.autopep8,
+			linters.flake8,
 		},
 		sh = {
-			require("efmls-configs.formatters.shfmt"),
-			require("efmls-configs.linters.shellcheck"),
+			formatters.shfmt,
+			linters.shellcheck,
 		},
 		yaml = {
-			require("efmls-configs.formatters.prettier"),
-			require("efmls-configs.linters.yamllint"),
-			linters.github_action,
+			formatters.prettier,
+			linters.yamllint,
+			linters.actionlint,
 		},
 	}
 
-	return {
+	local config = {
 		cmd = {
 			"efm-langserver",
 			"-logfile",
@@ -85,15 +136,38 @@ local function efm_lsp_config(context) -- luacheck: ignore
 		},
 		root_dir = context.find_git_ancestor,
 		single_file_support = true,
-		file_types = context.vim.tbl_keys(efmLanguagesConfig),
+		file_types = context.vim.tbl_keys(efm_languages_config),
 		init_options = {
 			documentFormatting = true,
 			documentRangeFormatting = true,
 		},
 		settings = {
-			languages = efmLanguagesConfig,
-			lintDebounde = "2s",
-			rootMarkers = { ".git/" },
+			languages = efm_languages_config,
+			lintDebounce = "1s",
 		},
+	}
+
+	local function does_efms_format_file_type(conf, file_type) -- luacheck: ignore
+		for _, handler in ipairs(conf.settings.languages[file_type]) do
+			if handler.lintCommand then
+				return true
+			end
+		end
+		return false
+	end
+
+	local function does_efms_lint_file_type(conf, file_type) -- luacheck: ignore
+		for _, handler in ipairs(conf.settings.languages[file_type]) do
+			if handler.formatCommand then
+				return true
+			end
+		end
+		return false
+	end
+
+	return {
+		config = config,
+		does_efms_format_file_type = does_efms_format_file_type,
+		does_efms_lint_file_type = does_efms_lint_file_type,
 	}
 end

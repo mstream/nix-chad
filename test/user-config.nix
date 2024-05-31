@@ -57,6 +57,8 @@ in
       fd
       ripgrep
       tree-sitter
+      actionlint
+      commitlint
       djlint
       google-java-format
       hadolint
@@ -87,6 +89,7 @@ in
       nodePackages.vscode-json-languageserver
       nodePackages.yaml-language-server
       python311Packages.jedi-language-server
+      spago
       typescript
       luajitPackages.jsregexp
       nerdfonts

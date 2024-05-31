@@ -1,0 +1,16 @@
+Nix github actions workflow file support
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Wed May 29 10:56:59 2024 +0100
+#
+# On branch update-3
+# Changes to be committed:
+#	modified:   docs/README.md
+#	modified:   flake.nix
+#	modified:   modules/home-manager/programs/neovim/plugins/efmls-configs-nvim/config.lua
+#	modified:   modules/home-manager/programs/neovim/plugins/efmls-configs-nvim/dependencies.nix
+#	new file:   test/supported-source-files/github-actions-workflow/workflows/check.yml
+#	modified:   test/user-config.nix
+#

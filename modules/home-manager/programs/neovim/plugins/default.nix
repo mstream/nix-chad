@@ -37,7 +37,7 @@
 
       local key_utils = setup_which_key_nvim(context) 
 
-      context.efm_lsp_config = efm_lsp_config
+      context.setup_efmls_configs_nvim = setup_efmls_configs_nvim
       context.log_level = log_level
       context.luasnip = luasnip
       context.on_server_capability = on_server_capability

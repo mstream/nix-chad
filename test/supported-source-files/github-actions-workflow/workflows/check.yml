@@ -1,0 +1,36 @@
+---
+name: Check
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  packages: write
+  contents: write
+jobs:
+  linting-and-testing:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            substituters = https://cache.nixos.org/
+          nix_path: nixpkgs=channel:nixos-23.11
+      - name: Run tests
+        run: ./ci/test.sh
+      - name: Generate documentation markdown documents
+        run: ./ci/generate-docs.sh
+      - name: Check if all generated files have been already commited
+        run: ./ci/check-generation.sh
+      - name: Generate documentation website
+        run: nix build .#website
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./result/html/

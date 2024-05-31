@@ -21,6 +21,7 @@ An opinionated MacOS setup focused on software development.
 | bash       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | dhall      |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | docker     |    ☒    |     ☒      |      ☑      |     ☒      |      ☑       |
+| GitHub Actions workflow |    ☑    |     ☑       |      ☑      |     ☑      |      ☑       | 
 | html       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | java       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | json       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |

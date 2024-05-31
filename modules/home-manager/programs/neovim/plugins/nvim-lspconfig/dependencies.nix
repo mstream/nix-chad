@@ -15,5 +15,6 @@ with pkgs;
   nodePackages.vscode-json-languageserver
   nodePackages.yaml-language-server
   python311Packages.jedi-language-server
+  spago
   typescript
 ]
