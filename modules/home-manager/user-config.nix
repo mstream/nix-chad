@@ -66,6 +66,7 @@ in
     ./programs/alacritty/default.nix
     ./programs/bat/default.nix
     ./programs/direnv/default.nix
+    ./programs/firefox/default.nix
     ./programs/git/default.nix
     ./programs/gpg/default.nix
     ./programs/jq/default.nix

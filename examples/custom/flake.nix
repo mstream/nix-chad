@@ -36,7 +36,13 @@
           ];
         };
         terminal = {
-          keyBindings = [ ];
+          keyBindings = [
+            {
+              chars = "\\u000c";
+              key = "K";
+              mods = "Control";
+            }
+          ];
           zshInitExtra = ''
             export VAR1=val1  
             export VAR2=val2
