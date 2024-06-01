@@ -23,6 +23,7 @@
     {
       darwin,
       home-manager,
+      nixpkgs-firefox-darwin,
       nur,
       ...
     }:
@@ -35,7 +36,7 @@
         ../modules/default.nix
       ];
       specialArgs = {
-        inherit nur system;
+        inherit nixpkgs-firefox-darwin nur system;
       };
     };
 }

@@ -13,6 +13,7 @@
     };
     lint-nix.url = "github:xc-jp/lint.nix";
     nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     nur.url = "github:nix-community/NUR";
   };
 
@@ -103,7 +104,7 @@
             config = {
               allowUnfree = true;
             };
-            overlays = import ./overlays/nixpkgs.nix { inherit (inputs) nur; };
+            overlays = import ./overlays/nixpkgs.nix { inherit (inputs) nixpkgs-firefox-darwin nur; };
           };
           violations = import ./test { inherit pkgs; };
         in

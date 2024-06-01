@@ -1,5 +1,5 @@
-{ nur, ... }:
-let
-  nur-overlay = nur.overlay;
-in
-[ nur-overlay ]
+{ nixpkgs-firefox-darwin, nur, ... }:
+[
+  nixpkgs-firefox-darwin.overlay
+  nur.overlay
+]
