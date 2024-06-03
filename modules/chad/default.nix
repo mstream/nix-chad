@@ -9,6 +9,7 @@ in
     ./gpg.nix
     ./keyboard.nix
     ./manage-windows.nix
+    ./mouse.nix
     ./terminal.nix
     ./user.nix
   ];

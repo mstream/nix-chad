@@ -54,6 +54,11 @@
           exclusions = [ ];
         };
 
+        mouse = {
+          # Should content scroll opposite to the swipe/roll direction. 
+          naturalScrollDirection = true;
+        };
+
         terminal = {
           # Additional abbreviation for ZSH
           abbreviations = { };

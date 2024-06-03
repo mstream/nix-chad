@@ -299,6 +299,27 @@ string
 
 
 
+## chad\.mouse\.naturalScrollDirection
+
+
+
+Should content scroll opposite to the swipe/roll direction\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` true `
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/mouse\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/mouse.nix)
+
+
+
 ## chad\.terminal\.abbreviations
 
 
