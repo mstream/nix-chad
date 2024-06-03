@@ -9,3 +9,4 @@ cd "$REPO_ROOT"
 
 nix build .#docs
 cp -r result/* docs/
+chmod -R +w docs/*
