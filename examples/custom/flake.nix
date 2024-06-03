@@ -35,6 +35,9 @@
             }
           ];
         };
+        mouse = {
+          naturalScrollDirection = true;
+        };
         terminal = {
           keyBindings = [
             {
