@@ -12,6 +12,10 @@ create-missing = false
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
 
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
 [output.html]
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
 

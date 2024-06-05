@@ -34,8 +34,6 @@
       ];
 
       forEachSystem = systems: f: builtins.foldl' f { } systems;
-
-      lib = import ./lib;
     in
     {
       devShells = forEachSystem ciSystems (
@@ -72,12 +70,13 @@
           acc: system:
           let
             pkgs = import inputs.nixpkgs { inherit system; };
+            inherit (import ./lib { inherit pkgs; }) darwin;
           in
           pkgs.lib.recursiveUpdate acc {
             apps.${system}.switch = inputs.flake-utils.lib.mkApp {
               drv = import ./packages/switch/default.nix { inherit pkgs system; };
             };
-            darwinConfigurations.macbook.${system} = lib.darwin.makeSystem inputs system config;
+            darwinConfigurations.macbook.${system} = darwin.makeSystem inputs system config;
           }
         );
       packages = forEachSystem ciSystems (

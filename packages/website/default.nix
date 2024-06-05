@@ -7,6 +7,7 @@ pkgs.stdenv.mkDerivation {
     mdbook
     mdbook-linkcheck
     mdbook-mermaid
+    mdbook-toc
   ];
   installPhase = ''
     mkdir "$out"
