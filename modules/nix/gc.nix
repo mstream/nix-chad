@@ -4,5 +4,6 @@ _: {
     interval = {
       Minute = 30;
     };
+    options = "--delete-older-than 28d";
   };
 }

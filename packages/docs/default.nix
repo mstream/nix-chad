@@ -1,26 +1,30 @@
 { pkgs, ... }:
 with pkgs.lib;
 let
+
+  inherit (import ./lib { inherit pkgs; }) buildKeymapsDocs buildOptionsDocs;
+
   aspellEn = pkgs.aspellWithDicts (d: [
     d.en
     d.en-computers
     d.en-science
   ]);
-  optionsDoc = (import ./lib.nix { inherit pkgs; }).buildOptionsDocs {
-    nixpkgsRef = (builtins.fromJSON (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
+
+  evaluatedModules = evalModules {
+    check = false;
+    class = "chad";
     modules = [ ../../modules/chad/default.nix ];
+  };
+
+  keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
+
+  optionsDocs = buildOptionsDocs {
+    inherit evaluatedModules;
+    nixpkgsRef = (builtins.fromJSON (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
   };
 in
 pkgs.stdenv.mkDerivation {
-  nativeBuildInputs =
-    with pkgs;
-    [
-      mdbook
-      mdbook-linkcheck
-      mdbook-mermaid
-      nodePackages.markdownlint-cli
-    ]
-    ++ [ aspellEn ];
+  nativeBuildInputs = with pkgs; [ nodePackages.markdownlint-cli ] ++ [ aspellEn ];
   checkPhase = ''
     function validate_spelling() {
       file=$1
@@ -49,7 +53,8 @@ pkgs.stdenv.mkDerivation {
   unpackPhase = ''
     cp -r $src/docs src
     chmod --recursive u+w src
-    cat ${optionsDoc.optionsCommonMark} > src/options.generated.md
+    cat ${keymapsDocs.keymapsCommonMark} > src/keymaps.generated.md
+    cat ${optionsDocs.optionsCommonMark} > src/options.generated.md
     ${pkgs.nixdoc}/bin/nixdoc \
       --prefix 'lib' \
       --category 'darwin' \

@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  editorConfigText = builtins.readFile ./.editorconfig;
+  formatterCommand = cmd: "[ ! -f .editorconfig ] && echo '${editorConfigText} || ${cmd}'";
+in
 {
   formatters = {
     beautysh = {
@@ -10,7 +14,8 @@
       ext = ".nix";
     };
     stylua = {
-      cmd = "${pkgs.stylua}/bin/stylua --check $filename";
+      cmd = formatterCommand "${pkgs.stylua}/bin/stylua --check $filename";
+      #cmd = "${pkgs.stylua}/bin/stylua --check $filename";
       ext = ".lua";
     };
   };

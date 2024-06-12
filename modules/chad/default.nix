@@ -10,6 +10,7 @@ in
     ./keyboard.nix
     ./manage-windows.nix
     ./mouse.nix
+    ./neovim.nix
     ./terminal.nix
     ./user.nix
   ];
