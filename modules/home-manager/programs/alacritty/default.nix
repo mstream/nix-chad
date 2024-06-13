@@ -46,7 +46,7 @@ in
       live_config_reload = true;
       scrolling = {
         history = 0;
-        multiplier = 3;
+        multiplier = 0;
       };
       shell = {
         program = "zsh";
