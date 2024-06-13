@@ -11,7 +11,7 @@ let
         combination = "t${combination}";
         description = "Directory tree ${description}";
       }
-    ) (builtins.attrValues neovimKeymapConfig.find);
+    ) (builtins.attrValues neovimKeymapConfig.directoryTree);
     "Find" = builtins.map (
       { description, combination }:
       {
