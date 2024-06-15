@@ -1,23 +1,15 @@
 { osConfig, pkgs, ... }:
 let
   cfg = osConfig.chad;
-
-  bookmarks = builtins.map (b: {
-    inherit (b) url;
-    keyword = null;
-    name = b.title;
-    tags = [ ];
-  }) cfg.browser.bookmarks;
-
   username = cfg.user.name;
 in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.librewolf;
+    package = pkgs.firefox-devedition-bin;
     profiles = {
       "${username}" = {
-        inherit bookmarks;
+        inherit (cfg.browser) bookmarks;
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           browserpass
           vimium
@@ -41,7 +33,7 @@ in
           "services.sync.engine.passwords" = false;
           "services.sync.engine.prefs" = false;
           "services.sync.engineStatusChanged.prefs" = true;
-          "signon.rememberSignons" = false;
+          "signon.rememberSignons" = true;
         };
       };
     };
