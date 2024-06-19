@@ -1,7 +1,4 @@
 { pkgs, ... }:
 {
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [ nerdfonts ];
-  };
+  fonts.packages = with pkgs; [ nerdfonts ];
 }

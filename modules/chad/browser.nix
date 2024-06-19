@@ -99,6 +99,16 @@ in
           Browser bookmarks.
         '';
       };
+      extraExtensions = mkOption {
+        type = types.nullOr (types.functionTo (types.listOf types.package));
+        default = null;
+        example = literalExpression ''
+          exts: with exts; [ honey ];
+        '';
+        description = ''
+          Additional Firefox extensions to be installed for the user.
+        '';
+      };
     };
   };
 }
