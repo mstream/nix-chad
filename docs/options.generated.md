@@ -1,13 +1,11 @@
 ## chad\.browser\.bookmarks
 
 Browser bookmarks\.
-Not supported until there is a nix-native browser for
-Apple Silicon available\.
 
 
 
 *Type:*
-list of (submodule)
+(list of ((bookmark submodule) or (directory submodule))) or (attribute set of ((bookmark submodule) or (directory submodule))) convertible to it
 
 
 
@@ -21,6 +19,20 @@ list of (submodule)
 ```
 [
   {
+    bookmarks = [
+      {
+        keyword = "nixpkgs";
+        name = "NixOS Search - Packages";
+        tags = [
+          "nix"
+        ];
+        url = "https://search.nixos.org/packages";
+      }
+    ];
+    name = "Nix sites";
+    toolbar = true;
+  }
+  {
     title = "Nix Chad";
     url = "https://github.com/mstream/nix-chad";
   }
@@ -32,32 +44,30 @@ list of (submodule)
 
 
 
-## chad\.browser\.bookmarks\.\*\.title
+## chad\.browser\.extraExtensions
 
 
 
-Title of the bookmark\.
-
-
-
-*Type:*
-string
-
-*Declared by:*
- - [\<nix-chad/modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix)
-
-
-
-## chad\.browser\.bookmarks\.\*\.url
-
-
-
-URL of the bookmark\.
+Additional Firefox extensions to be installed for the user\.
 
 
 
 *Type:*
-string
+null or (function that evaluates to a(n) list of package)
+
+
+
+*Default:*
+` null `
+
+
+
+*Example:*
+
+```
+exts: with exts; [ honey ];
+
+```
 
 *Declared by:*
  - [\<nix-chad/modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix)

@@ -12,10 +12,12 @@
         browser = {
           bookmarks = [
             {
-              title = "Nix Chad";
+              name = "Nix Chad";
+              tags = [ "nix" ];
               url = "https://github.com/mstream/nix-chad";
             }
           ];
+          extraExtensions = exts: [ exts.honey ];
         };
         extraPackages = pkgs: [ pkgs.cowsay ];
         fontSize = 16;
