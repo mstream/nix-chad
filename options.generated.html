@@ -174,15 +174,27 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="chadbrowserbookmarks"><a class="header" href="#chadbrowserbookmarks">chad.browser.bookmarks</a></h2>
-<p>Browser bookmarks.
-Not supported until there is a nix-native browser for
-Apple Silicon available.</p>
+<p>Browser bookmarks.</p>
 <p><em>Type:</em>
-list of (submodule)</p>
+(list of ((bookmark submodule) or (directory submodule))) or (attribute set of ((bookmark submodule) or (directory submodule))) convertible to it</p>
 <p><em>Default:</em>
 <code>[ ]</code></p>
 <p><em>Example:</em></p>
 <pre><code>[
+  {
+    bookmarks = [
+      {
+        keyword = "nixpkgs";
+        name = "NixOS Search - Packages";
+        tags = [
+          "nix"
+        ];
+        url = "https://search.nixos.org/packages";
+      }
+    ];
+    name = "Nix sites";
+    toolbar = true;
+  }
   {
     title = "Nix Chad";
     url = "https://github.com/mstream/nix-chad";
@@ -193,18 +205,16 @@ list of (submodule)</p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
 </ul>
-<h2 id="chadbrowserbookmarkstitle"><a class="header" href="#chadbrowserbookmarkstitle">chad.browser.bookmarks.*.title</a></h2>
-<p>Title of the bookmark.</p>
+<h2 id="chadbrowserextraextensions"><a class="header" href="#chadbrowserextraextensions">chad.browser.extraExtensions</a></h2>
+<p>Additional Firefox extensions to be installed for the user.</p>
 <p><em>Type:</em>
-string</p>
-<p><em>Declared by:</em></p>
-<ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
-</ul>
-<h2 id="chadbrowserbookmarksurl"><a class="header" href="#chadbrowserbookmarksurl">chad.browser.bookmarks.*.url</a></h2>
-<p>URL of the bookmark.</p>
-<p><em>Type:</em>
-string</p>
+null or (function that evaluates to a(n) list of package)</p>
+<p><em>Default:</em>
+<code>null</code></p>
+<p><em>Example:</em></p>
+<pre><code>exts: with exts; [ honey ];
+
+</code></pre>
 <p><em>Declared by:</em></p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
