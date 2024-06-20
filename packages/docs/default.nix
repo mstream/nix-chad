@@ -40,7 +40,7 @@ pkgs.stdenv.mkDerivation {
       fi
     }
 
-    markdownlint --disable MD004 MD009 MD022 MD025 MD040 MD041 -- ./src
+    markdownlint --disable MD004 MD009 MD022 MD024 MD025 MD040 MD041 -- ./src
 
     for f in ./src/*.md; do
       validate_spelling "$f" || exit 1;

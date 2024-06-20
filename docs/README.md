@@ -10,6 +10,13 @@ An opinionated MacOS setup focused on software development.
 
 ## Features
 
+### Firefox
+
+#### discoverable key mappings
+
+After pressing `?` key a window enumerating all contextual key mappings
+appears.
+
 ### Neovim
 
 #### programming/configuration languages support
@@ -21,7 +28,7 @@ An opinionated MacOS setup focused on software development.
 | bash       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | dhall      |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | docker     |    ☒    |     ☒      |      ☑      |     ☒      |      ☑       |
-| GitHub Actions workflow |    ☑    |     ☑       |      ☑      |     ☑      |      ☑       | 
+| GitHub Actions workflow |    ☑    |     ☑       |      ☑      |     ☑      |      ☑       |
 | html       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | java       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
 | json       |    ☒    |     ☑      |      ☑      |     ☑      |      ☑       |
