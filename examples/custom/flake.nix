@@ -12,9 +12,35 @@
         browser = {
           bookmarks = [
             {
-              name = "Nix Chad";
-              tags = [ "nix" ];
-              url = "https://github.com/mstream/nix-chad";
+              name = "Toolbar";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "GitHub";
+                  keyword = "github";
+                  url = "https://github.com/";
+                }
+              ];
+            }
+            {
+              name = "Nix";
+              bookmarks = [
+                {
+                  name = "NixOS Search - Packages";
+                  keyword = "nixpkgs";
+                  tags = [
+                    "nix"
+                    "nixpkgs"
+                  ];
+                  url = "https://search.nixos.org/packages";
+                }
+                {
+                  name = "Nix User Repositiories";
+                  keyword = "nur";
+                  tags = [ "nix" ];
+                  url = "https://nur.nix-community.org/";
+                }
+              ];
             }
           ];
           extraExtensions = exts: [ exts.honey ];
