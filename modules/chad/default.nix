@@ -6,11 +6,11 @@ in
 {
   imports = [
     ./browser.nix
+    ./editor.nix
     ./gpg.nix
     ./keyboard.nix
     ./manage-windows.nix
     ./mouse.nix
-    ./neovim.nix
     ./terminal.nix
     ./user.nix
   ];

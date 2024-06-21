@@ -2,7 +2,7 @@
 with pkgs.lib;
 { evaluatedModules }:
 let
-  neovimKeymapConfig = evaluatedModules.config.chad.neovim.keyMappings;
+  neovimKeymapConfig = evaluatedModules.config.chad.editor.keyMappings;
 
   neovimKeymaps = {
     "Directory Tree" = builtins.map (

@@ -45,6 +45,9 @@
           ];
           extraExtensions = exts: [ exts.honey ];
         };
+        editor = {
+          lineNumbering = "absolute";
+        };
         extraPackages = pkgs: [ pkgs.cowsay ];
         fontSize = 16;
         gpg = {
