@@ -74,6 +74,28 @@ exts: with exts; [ honey ];
 
 
 
+## chad\.editor\.lineNumbering
+
+
+
+Absolute: line numbers counted from the beginning of the document
+Relative: line numbers counted from the current cursor position
+
+
+
+*Type:*
+one of “absolute”, “relative”
+
+
+
+*Default:*
+` "relative" `
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/editor.nix)
+
+
+
 ## chad\.extraPackages
 
 

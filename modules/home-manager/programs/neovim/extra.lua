@@ -55,10 +55,10 @@ local function on_server_capability(attach_event, capability_callbacks)
     local client = vim.lsp.get_client_by_id(attach_event.data.client_id)
     lsp_logger.info(
         "setting up buffer "
-            .. attach_event.buf
-            .. " based on "
-            .. client.name
-            .. " LSP server capabilities"
+        .. attach_event.buf
+        .. " based on "
+        .. client.name
+        .. " LSP server capabilities"
     )
     local file_type =
         vim.api.nvim_buf_get_option(attach_event.buf, "filetype")
@@ -74,25 +74,25 @@ local function on_server_capability(attach_event, capability_callbacks)
             if callback then
                 lsp_logger.debug(
                     log_prefix
-                        .. " supports '"
-                        .. capability
-                        .. "' capability"
+                    .. " supports '"
+                    .. capability
+                    .. "' capability"
                 )
                 callback()
             else
                 lsp_logger.warn(
                     log_prefix
-                        .. " does not have callbag registered for '"
-                        .. capability
-                        .. "' capability"
+                    .. " does not have callbag registered for '"
+                    .. capability
+                    .. "' capability"
                 )
             end
         else
             lsp_logger.warn(
                 log_prefix
-                    .. " does not support '"
-                    .. capability
-                    .. "' capability"
+                .. " does not support '"
+                .. capability
+                .. "' capability"
             )
         end
     end
@@ -164,7 +164,6 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldnestmax = 4
 vim.opt.guicursor = ""
-vim.opt.relativenumber = true
 vim.opt.shortmess:append("sI")
 vim.opt.whichwrap:append("<>[]hl")
 

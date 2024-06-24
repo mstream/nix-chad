@@ -142,15 +142,26 @@ let
 in
 {
   options = {
-    chad.neovim = {
+    chad.editor = {
       keyMappings = builtins.mapAttrs (
         _: categoryVal:
         builtins.mapAttrs (_: { description, ... }: keyMappingOption description) categoryVal
       ) keyMappings;
+      lineNumbering = mkOption {
+        type = types.enum [
+          "absolute"
+          "relative"
+        ];
+        default = "relative";
+        description = ''
+          Absolute: line numbers counted from the beginning of the document
+          Relative: line numbers counted from the current cursor position
+        '';
+      };
     };
   };
   config = {
-    chad.neovim = {
+    chad.editor = {
       inherit keyMappings;
     };
   };

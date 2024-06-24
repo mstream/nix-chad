@@ -9,6 +9,8 @@ let
   '';
 
   extraConfigCode = builtins.readFile ./extra.lua;
+
+  isNumberingRelative = cfg.editor.lineNumbering == "relative";
 in
 {
   programs.neovim = {
@@ -17,7 +19,8 @@ in
     enable = true;
     extraLuaConfig = ''
       ${extraConfigCode}
-      ${customKeyMappingsCode cfg.neovim.keyMappings}
+      vim.opt.relativenumber = ${trivial.boolToString isNumberingRelative}
+      ${customKeyMappingsCode cfg.editor.keyMappings}
     '';
     viAlias = true;
     vimAlias = true;
