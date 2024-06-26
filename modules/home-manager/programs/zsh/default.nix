@@ -22,6 +22,9 @@ let
     defaultAbbreviations
     cfg.terminal.abbreviations
   ];
+
+  defaultEnvText = builtins.readFile ./default-env.zsh;
+  defaultInitText = builtins.readFile ./default-init.zsh;
 in
 {
   programs.zsh = {
@@ -34,7 +37,9 @@ in
     dirHashes = { };
     enable = true;
     enableCompletion = true;
-    envExtra = "";
+    envExtra = ''
+      ${defaultEnvText}
+    '';
     history = {
       ignoreDups = true;
       ignoreSpace = true;
@@ -44,15 +49,7 @@ in
     };
     historySubstringSearch = { };
     initExtra = ''
-      unsetopt extended_glob
-      setopt ignoreeof
-      unalias -m '*'
-      bindkey -M vicmd "^D" down-history 
-      bindkey -M viins "^D" down-history 
-      bindkey -M vicmd "^U" up-history 
-      bindkey -M viins "^U" up-history 
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-      gpgconf --launch gpg-agent
+      ${defaultInitText}
       hidutil property --set '{"UserKeyMapping":${builtins.toJSON userKeyMapping}}' > /dev/null
       ${cfg.terminal.zshInitExtra}
     '';

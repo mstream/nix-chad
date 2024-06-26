@@ -37,7 +37,8 @@ in
         };
       };
       settings = {
-        auto-optimise-store = true;
+        auto-optimise-store = false;
+        sandbox = true;
         substituters = [
           "https://cache.garnix.io/"
           "https://cache.iog.io/"

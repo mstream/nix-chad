@@ -57,6 +57,9 @@ let
     gitsts = "git stash";
     gitt = "git tag";
   };
+  kubectl = {
+    kbc = "kubectl --context \"%\" --namespace \"%\" %";
+  };
   ls = {
     ls = "ls -a -l";
     lst = "ls -a -t -r";
@@ -90,6 +93,8 @@ in
     cd
     docker
     git
+    kubectl
+    ls
     nix
     npm
     sudo
