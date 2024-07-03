@@ -181,6 +181,27 @@ null or string
 
 
 
+## chad\.keyboard\.disableKeyRepeat
+
+
+
+Holding keys does not make characters being typed repeatedly\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` true `
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix)
+
+
+
 ## chad\.keyboard\.remapCapsLock
 
 
