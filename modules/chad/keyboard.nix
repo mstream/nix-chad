@@ -3,6 +3,13 @@ with lib;
 {
   options = {
     chad.keyboard = {
+      disableKeyRepeat = mkOption {
+        type = types.bool;
+        default = true;
+        description = ''
+          Holding keys does not make characters being typed repeatedly.
+        '';
+      };
       remapCapsLock = mkOption {
         type = types.bool;
         default = true;

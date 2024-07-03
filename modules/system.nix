@@ -77,8 +77,8 @@ in
         "com.apple.trackpad.enableSecondaryClick" = true;
         "com.apple.trackpad.scaling" = 1.0;
         "com.apple.trackpad.trackpadCornerClickBehavior" = null;
-        InitialKeyRepeat = 0;
-        KeyRepeat = 0;
+        InitialKeyRepeat = if cfg.keyboard.disableKeyRepeat then 0 else 25;
+        KeyRepeat = if cfg.keyboard.disableKeyRepeat then 0 else 6;
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticDashSubstitutionEnabled = false;
         NSAutomaticPeriodSubstitutionEnabled = false;
