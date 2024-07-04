@@ -38,7 +38,7 @@ in
       };
       settings = {
         auto-optimise-store = false;
-        sandbox = true;
+        sandbox = false;
         substituters = [
           "https://cache.garnix.io/"
           "https://cache.iog.io/"
