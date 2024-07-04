@@ -12,6 +12,9 @@ let
       builtins.length duplicates > 0
     ) "Duplicate abbreviations: ${builtins.toString duplicates}")
       (attrsets.mergeAttrsList xs);
+  aws = {
+    aws = "aws --profile \"%\" %";
+  };
   cd = {
     "\\-" = "cd -";
     "1" = "cd +1";
@@ -26,33 +29,33 @@ let
   };
   docker = {
     dkr = "docker";
-    dkrb = "docker build";
-    dkre = "docker exec -it";
+    dkrb = "docker build -t \"%\" %";
+    dkre = "docker exec -it %";
     dkrps = "docker ps";
-    dkrpsh = "docker push";
-    dkrpl = "docker pull";
-    dkrs = "docker stop";
-    dkrt = "docker tag";
+    dkrpsh = "docker push %";
+    dkrpl = "docker pull %";
+    dkrs = "docker stop %";
+    dkrt = "docker tag %";
   };
   git = {
-    gita = "git add";
+    gita = "git add %";
     gitb = "git branch";
     gitch = "git checkout";
+    gitchb = "git checkout -b %";
     gitcl = "git clone";
     gitcm = "git commit --all";
     gitd = "git diff";
     gitf = "git fetch --all --tags";
-    gitg = "git grep";
+    gitg = "git grep %";
     giti = "git init";
     gitl = "git log --decorate=full";
-    gitm = "git merge";
-    gitp = "git push origin";
-    gitrb = "git rebase -r";
+    gitm = "git merge %";
+    gitp = "git push origin %";
+    gitrb = "git rebase -r %";
     gitrf = "git reflog";
     gitrm = "git rm";
     gitrmt = "git remote";
     gitrs = "git reset";
-    gitst = "git status";
     gitstt = "git status";
     gitsts = "git stash";
     gitt = "git tag";
@@ -67,21 +70,24 @@ let
   nix = {
     nixb = "nix build .#";
     nixd = "nix develop --ignore-environment";
-    nixf = "nix flake";
+    nixf = "nix flake %";
     nixrg = "nix registry";
-    nixrn = "nix run nixpkgs#";
+    nixrn = "nix run nixpkgs#%";
     nixrp = "nix repl";
     nixsh = "nix shell nixpkgs#";
-    nixsr = "nix search";
-    nixst = "nix store";
+    nixsr = "nix search %";
+    nixst = "nix store %";
   };
   npm = {
     npmc = "npm ci";
     npmi = "npm install";
-    npmr = "npm run";
-    npms = "npm search";
+    npmr = "npm run %";
+    npms = "npm search %";
     npmt = "npm test";
-    npmu = "npm test";
+    npmu = "npm update";
+  };
+  rm = {
+    rmf = "rm -rf %";
   };
   sudo = {
     "_" = "sudo";
@@ -90,6 +96,7 @@ in
 {
   inherit mergeAbbreviations;
   defaultAbbreviations = mergeAbbreviations [
+    aws
     cd
     docker
     git
@@ -97,6 +104,7 @@ in
     ls
     nix
     npm
+    rm
     sudo
   ];
 }

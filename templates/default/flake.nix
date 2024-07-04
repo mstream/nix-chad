@@ -61,7 +61,7 @@
 
         terminal = {
           # Additional abbreviation for ZSH
-          abbreviations = { };
+          extraAbbreviations = { };
           # Additional key bindings for terminal emulator. 
           keyBindings = [ ];
           # Additional initialization for ZSH sessions.

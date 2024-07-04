@@ -27,7 +27,7 @@ in
 {
   options = {
     chad.terminal = {
-      abbreviations = mkOption {
+      extraAbbreviations = mkOption {
         type = types.attrsOf types.str;
         default = { };
         example = {
