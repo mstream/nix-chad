@@ -20,7 +20,7 @@ let
 
   abbreviations = mergeAbbreviations [
     defaultAbbreviations
-    cfg.terminal.abbreviations
+    cfg.terminal.extraAbbreviations
   ];
 
   defaultEnvText = builtins.readFile ./default-env.zsh;

@@ -373,7 +373,7 @@ boolean
 
 
 
-## chad\.terminal\.abbreviations
+## chad\.terminal\.extraAbbreviations
 
 
 
