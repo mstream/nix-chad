@@ -24,6 +24,8 @@ fgl - Find Git local changes
 
 fgs - Find Git stashed changes
 
+fi - Find implementations
+
 fvb - Find Vim buffers
 
 fvc - Find Vim commands
