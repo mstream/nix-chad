@@ -59,6 +59,10 @@ let
         combination = "gs";
         description = "Git stashed changes";
       };
+      implementations = {
+        combination = "i";
+        description = "implementations";
+      };
       vimBuffers = {
         combination = "vb";
         description = "Vim buffers";
