@@ -90,7 +90,7 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
 
             local function on_completion_support()
                 context.vim.bo[ev.buf].omnifunc =
-                    "v:lua.vim.lsp.omnifunc"
+                "v:lua.vim.lsp.omnifunc"
             end
 
             local function on_declaration_support()
@@ -145,7 +145,7 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
             local function on_code_actions_support()
                 context.register_refactor_mapping(
                     custom_key_mappings.refactor.action.combination,
-                    context.vim.lsp.buf.rename,
+                    context.vim.lsp.buf.code_action,
                     custom_key_mappings.refactor.action.description,
                     opts
                 )
@@ -162,9 +162,11 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
 
             local function on_hover_support()
                 context.register_top_level_mapping(
-                    custom_key_mappings.top_level.show_symbol_info.combination,
+                    custom_key_mappings.top_level.show_symbol_info
+                    .combination,
                     context.vim.lsp.buf.hover,
-                    custom_key_mappings.top_level.show_symbol_info.description,
+                    custom_key_mappings.top_level.show_symbol_info
+                    .description,
                     opts
                 )
             end
@@ -174,7 +176,8 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
                 ["completionProvider"] = on_completion_support,
                 ["declarationProvider"] = on_declaration_support,
                 ["definitionProvider"] = on_definition_support,
-                ["documentFormattingProvider"] = on_document_formatting_support,
+                ["documentFormattingProvider"] =
+                on_document_formatting_support,
                 ["hoverProvider"] = on_hover_support,
                 ["implementationProvider"] = on_implementation_support,
                 ["renameProvider"] = on_rename_support,
