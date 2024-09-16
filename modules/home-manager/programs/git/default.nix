@@ -32,6 +32,20 @@ in
       "*~"
       "*.swp"
     ];
+    includes = builtins.map (
+      {
+        repositoryPath,
+        sshKeyPath,
+        userEmail,
+      }:
+      {
+        condition = "gitdir:${repositoryPath}";
+        contents = {
+          core.sshCommand = "ssh -i ${sshKeyPath}";
+          user.email = userEmail;
+        };
+      }
+    ) cfg.git.alternativeGitIdentities;
     userEmail = "maciej.laciak@gmail.com";
     userName = cfg.user.name;
   };
