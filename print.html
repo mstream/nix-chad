@@ -313,6 +313,49 @@ signed integer</p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix">&lt;nix-chad/modules/chad/default.nix&gt;</a></li>
 </ul>
+<h2 id="chadgitalternativegitidentities"><a class="header" href="#chadgitalternativegitidentities">chad.git.alternativeGitIdentities</a></h2>
+<p>Alternative Git identities for selected repositories.</p>
+<p><em>Type:</em>
+list of (submodule)</p>
+<p><em>Default:</em>
+<code>[ ]</code></p>
+<p><em>Example:</em></p>
+<pre><code>[
+  {
+    repositoryPath = "~/work/project-1";
+    sshKeyPath = "~/.ssh/work_id_rsa";
+    userEmail = "me@mail.com";
+  }
+]
+</code></pre>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+</ul>
+<h2 id="chadgitalternativegitidentitiesrepositorypath"><a class="header" href="#chadgitalternativegitidentitiesrepositorypath">chad.git.alternativeGitIdentities.*.repositoryPath</a></h2>
+<p>Git repository path.</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+</ul>
+<h2 id="chadgitalternativegitidentitiessshkeypath"><a class="header" href="#chadgitalternativegitidentitiessshkeypath">chad.git.alternativeGitIdentities.*.sshKeyPath</a></h2>
+<p>Path to a SSH private key.</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+</ul>
+<h2 id="chadgitalternativegitidentitiesuseremail"><a class="header" href="#chadgitalternativegitidentitiesuseremail">chad.git.alternativeGitIdentities.*.userEmail</a></h2>
+<p>Key.</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+</ul>
 <h2 id="chadgpgdefaultkey"><a class="header" href="#chadgpgdefaultkey">chad.gpg.defaultKey</a></h2>
 <p>An ID of a key to be used for GPG signing by default.
 This is expected to be different for individuals.
