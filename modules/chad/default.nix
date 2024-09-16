@@ -7,6 +7,7 @@ in
   imports = [
     ./browser.nix
     ./editor.nix
+    ./git.nix
     ./gpg.nix
     ./keyboard.nix
     ./manage-windows.nix
