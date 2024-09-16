@@ -41,8 +41,8 @@ in
       {
         condition = "gitdir:${repositoryPath}";
         contents = {
-            core.sshCommand = "ssh -i ${sshKeyPath}";
-            user.email = userEmail;
+          core.sshCommand = "ssh -i ${sshKeyPath}";
+          user.email = userEmail;
         };
       }
     ) cfg.git.alternativeGitIdentities;
