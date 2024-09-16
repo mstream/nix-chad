@@ -152,6 +152,89 @@ signed integer
 
 
 
+## chad\.git\.alternativeGitIdentities
+
+
+
+Alternative Git identities for selected repositories\.
+
+
+
+*Type:*
+list of (submodule)
+
+
+
+*Default:*
+` [ ] `
+
+
+
+*Example:*
+
+```
+[
+  {
+    repositoryPath = "~/work/project-1";
+    sshKeyPath = "~/.ssh/work_id_rsa";
+    userEmail = "me@mail.com";
+  }
+]
+```
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+
+
+
+## chad\.git\.alternativeGitIdentities\.\*\.repositoryPath
+
+
+
+Git repository path\.
+
+
+
+*Type:*
+string
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+
+
+
+## chad\.git\.alternativeGitIdentities\.\*\.sshKeyPath
+
+
+
+Path to a SSH private key\.
+
+
+
+*Type:*
+string
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+
+
+
+## chad\.git\.alternativeGitIdentities\.\*\.userEmail
+
+
+
+Key\.
+
+
+
+*Type:*
+string
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+
+
+
 ## chad\.gpg\.defaultKey
 
 
