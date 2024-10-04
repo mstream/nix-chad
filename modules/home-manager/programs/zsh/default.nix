@@ -123,7 +123,7 @@ in
     };
     zsh-abbr = {
       inherit abbreviations;
-      inherit (cfg.terminal.abbreviations) enable;
+      enable = cfg.terminal.abbreviations.enable && !cfg.software.openSourceOnly;
     };
   };
 }

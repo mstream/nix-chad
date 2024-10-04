@@ -1,22 +1,25 @@
 { osConfig, pkgs, ... }:
 let
-  chadConfig = osConfig.chad;
+  cfg = osConfig.chad;
   nvimPackages = pkgs.callPackage ./programs/neovim/dependencies.nix { };
-  otherPackages = with pkgs; [
-    bat
-    coreutils
-    docker
-    editorconfig-checker
-    gawk
-    jetbrains.idea-ultimate
-    nmap
-    nodejs
-    nodePackages.node2nix
-    tldr
-    tree
-    unixtools.watch
-  ];
-  customPackages = if chadConfig.extraPackages == null then [ ] else chadConfig.extraPackages pkgs;
+  propertiaryPackages = with pkgs; [ jetbrains.idea-ultimate ];
+  otherPackages =
+    with pkgs;
+    [
+      bat
+      coreutils
+      docker
+      editorconfig-checker
+      gawk
+      nmap
+      nodejs
+      nodePackages.node2nix
+      tldr
+      tree
+      unixtools.watch
+    ]
+    ++ (if cfg.software.openSourceOnly then [ ] else propertiaryPackages);
+  customPackages = if cfg.extraPackages == null then [ ] else cfg.extraPackages pkgs;
   userDefinedDirectories =
     (builtins.foldl'
       (acc: dir: {
@@ -33,11 +36,11 @@ let
         idx = 0;
         result = { };
       }
-      chadConfig.user.homeDirectories
+      cfg.user.homeDirectories
     ).result;
 
   gnupgDirectories =
-    if chadConfig.gpg.defaultKey == null then
+    if cfg.gpg.defaultKey == null then
       { }
     else
       {
@@ -54,7 +57,7 @@ let
           recursive = true;
           target = ".gnupg/sshcontrol";
           text = ''
-            ${chadConfig.gpg.defaultKey}
+            ${cfg.gpg.defaultKey}
           '';
         };
       };
@@ -81,6 +84,6 @@ in
   home = {
     file = homeFiles;
     packages = nvimPackages ++ otherPackages ++ customPackages;
-    stateVersion = chadConfig.nixpkgsReleaseVersion;
+    stateVersion = cfg.nixpkgsReleaseVersion;
   };
 }

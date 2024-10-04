@@ -70,6 +70,9 @@
         mouse = {
           naturalScrollDirection = true;
         };
+        software = {
+          openSourceOnly = false;
+        };
         terminal = {
           abbreviations = {
             enable = true;

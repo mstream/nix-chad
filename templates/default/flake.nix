@@ -59,6 +59,11 @@
           naturalScrollDirection = true;
         };
 
+        software = {
+          # Use only Open Source software 
+          openSourceOnly = true;
+        };
+
         terminal = {
           abbreviations = {
             # Additional abbreviation for ZSH
