@@ -12,6 +12,7 @@ in
     ./keyboard.nix
     ./manage-windows.nix
     ./mouse.nix
+    ./software.nix
     ./terminal.nix
     ./user.nix
   ];

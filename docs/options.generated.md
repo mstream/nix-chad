@@ -456,7 +456,49 @@ boolean
 
 
 
-## chad\.terminal\.extraAbbreviations
+## chad\.software\.openSourceOnly
+
+
+
+Restricts software to Open Source only\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` true `
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/software\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/software.nix)
+
+
+
+## chad\.terminal\.abbreviations\.enable
+
+
+
+Enables expandable command abbreviations\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` true `
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+
+
+
+## chad\.terminal\.abbreviations\.extraAbbreviations
 
 
 

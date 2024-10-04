@@ -1,9 +1,11 @@
 { pkgs, ... }:
 let
+  userConfig = import ../modules/home-manager/user-config.nix;
   osConfig.chad = {
     gpg.defaultKey = "gpg1";
     extraPackages = pkgs: [ pkgs.cowsay ];
     fontSize = 123;
+    software.openSourceOnly = false;
     user = {
       homeDirectories = [
         "dir1/dirA"
@@ -13,7 +15,6 @@ let
       name = "user1";
     };
   };
-  actualUserConfig = import ../modules/home-manager/user-config.nix { inherit osConfig pkgs; };
 in
 {
   testHomeFiles = {
@@ -50,9 +51,9 @@ in
         text = "";
       };
     };
-    expr = actualUserConfig.home.file;
+    expr = (userConfig { inherit osConfig pkgs; }).home.file;
   };
-  testHomePackages = {
+  testAllHomePackages = {
     expected = with pkgs; [
       fd
       ripgrep
@@ -98,7 +99,63 @@ in
       docker
       editorconfig-checker
       gawk
+      nmap
+      nodejs
+      nodePackages.node2nix
+      tldr
+      tree
+      unixtools.watch
       jetbrains.idea-ultimate
+      cowsay
+    ];
+    expr = (userConfig { inherit osConfig pkgs; }).home.packages;
+  };
+  testOpenSourceOnlyHomePackages = {
+    expected = with pkgs; [
+      fd
+      ripgrep
+      tree-sitter
+      actionlint
+      commitlint
+      djlint
+      google-java-format
+      hadolint
+      jq
+      luajitPackages.luacheck
+      markdownlint-cli
+      nixfmt-rfc-style
+      nodePackages.prettier
+      nodePackages.purs-tidy
+      python311Packages.autopep8
+      python311Packages.flake8
+      python311Packages.mdformat
+      shellcheck
+      shfmt
+      stylua
+      python311Packages.yamllint
+      dhall-lsp-server
+      dockerfile-language-server-nodejs
+      lua-language-server
+      efm-langserver
+      java-language-server
+      marksman
+      nixd
+      nodePackages.bash-language-server
+      nodePackages.purescript-language-server
+      nodePackages.typescript-language-server
+      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-json-languageserver
+      nodePackages.yaml-language-server
+      python311Packages.jedi-language-server
+      spago
+      typescript
+      luajitPackages.jsregexp
+      nerdfonts
+      bat
+      coreutils
+      docker
+      editorconfig-checker
+      gawk
       nmap
       nodejs
       nodePackages.node2nix
@@ -107,6 +164,14 @@ in
       unixtools.watch
       cowsay
     ];
-    expr = actualUserConfig.home.packages;
+    expr =
+      (userConfig {
+        inherit pkgs;
+        osConfig = osConfig // {
+          chad = osConfig.chad // {
+            software.openSourceOnly = true;
+          };
+        };
+      }).home.packages;
   };
 }

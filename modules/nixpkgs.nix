@@ -1,9 +1,17 @@
-{ nixpkgs-firefox-darwin, nur, ... }:
+{
+  config,
+  nixpkgs-firefox-darwin,
+  nur,
+  ...
+}:
+let
+  cfg = config.chad;
+in
 {
   nixpkgs = {
     config = {
       allowBroken = false;
-      allowUnfree = true;
+      allowUnfree = !cfg.software.openSourceOnly;
     };
     overlays = import ../overlays/nixpkgs.nix { inherit nixpkgs-firefox-darwin nur; };
   };

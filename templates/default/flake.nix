@@ -59,9 +59,16 @@
           naturalScrollDirection = true;
         };
 
+        software = {
+          # Use only Open Source software 
+          openSourceOnly = true;
+        };
+
         terminal = {
-          # Additional abbreviation for ZSH
-          extraAbbreviations = { };
+          abbreviations = {
+            # Additional abbreviation for ZSH
+            extraAbbreviations = { };
+          };
           # Additional key bindings for terminal emulator. 
           keyBindings = [ ];
           # Additional initialization for ZSH sessions.
