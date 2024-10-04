@@ -116,7 +116,7 @@ in
     };
     profileExtra = "";
     sessionVariables = { };
-    shellAliases = if cfg.terminal.abbreviations.enable then abbreviations else [ ];
+    shellAliases = if cfg.terminal.abbreviations.enable then abbreviations else { };
     shellGlobalAliases = { };
     syntaxHighlighting = {
       enable = true;
