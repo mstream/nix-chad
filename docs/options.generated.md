@@ -456,7 +456,28 @@ boolean
 
 
 
-## chad\.terminal\.extraAbbreviations
+## chad\.terminal\.abbreviations\.enable
+
+
+
+Enables expandable command abbreviations\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` true `
+
+*Declared by:*
+ - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+
+
+
+## chad\.terminal\.abbreviations\.extraAbbreviations
 
 
 

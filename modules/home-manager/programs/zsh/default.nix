@@ -20,7 +20,7 @@ let
 
   abbreviations = mergeAbbreviations [
     defaultAbbreviations
-    cfg.terminal.extraAbbreviations
+    cfg.terminal.abbreviations.extraAbbreviations
   ];
 
   defaultEnvText = builtins.readFile ./default-env.zsh;
@@ -116,14 +116,14 @@ in
     };
     profileExtra = "";
     sessionVariables = { };
-    shellAliases = abbreviations;
+    shellAliases = if cfg.terminal.abbreviations.enable then abbreviations else [ ];
     shellGlobalAliases = { };
     syntaxHighlighting = {
       enable = true;
     };
     zsh-abbr = {
       inherit abbreviations;
-      enable = true;
+      inherit (cfg.terminal.abbreviations) enable;
     };
   };
 }

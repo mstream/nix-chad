@@ -71,8 +71,11 @@
           naturalScrollDirection = true;
         };
         terminal = {
-          extraAbbreviations = {
-            abbr1 = "some command expansion with optional \"%\" placeholders";
+          abbreviations = {
+            enable = true;
+            extraAbbreviations = {
+              abbr1 = "some command expansion with optional \"%\" placeholders";
+            };
           };
           keyBindings = [
             {

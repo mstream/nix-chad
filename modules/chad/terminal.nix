@@ -27,18 +27,27 @@ in
 {
   options = {
     chad.terminal = {
-      extraAbbreviations = mkOption {
-        type = types.attrsOf types.str;
-        default = { };
-        example = {
-          l = "less";
-          gco = "git checkout";
+      abbreviations = {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+          description = ''
+            Enables expandable command abbreviations.
+          '';
         };
-        description = ''
-          An attribute set that maps aliases (the top level attribute names
-          in this option) to abbreviations. Abbreviations are expanded with
-          the longer phrase after they are entered.
-        '';
+        extraAbbreviations = mkOption {
+          type = types.attrsOf types.str;
+          default = { };
+          example = {
+            l = "less";
+            gco = "git checkout";
+          };
+          description = ''
+            An attribute set that maps aliases (the top level attribute names
+            in this option) to abbreviations. Abbreviations are expanded with
+            the longer phrase after they are entered.
+          '';
+        };
       };
       keyBindings = mkOption {
         type = types.listOf (types.submodule keyBindingModule);
