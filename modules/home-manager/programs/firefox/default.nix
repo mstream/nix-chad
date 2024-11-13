@@ -7,7 +7,6 @@ let
     adaptive-tab-bar-colour
     adblocker-ultimate
     buster-captcha-solver
-    bypass-paywalls-clean
     gruvbox-dark-theme
     surfingkeys
   ];
