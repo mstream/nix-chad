@@ -72,10 +72,10 @@ in
       python311Packages.autopep8
       python311Packages.flake8
       python311Packages.mdformat
+      python311Packages.yamllint
       shellcheck
       shfmt
       stylua
-      python311Packages.yamllint
       dhall-lsp-server
       dockerfile-language-server-nodejs
       lua-language-server
@@ -86,8 +86,7 @@ in
       nodePackages.bash-language-server
       nodePackages.purescript-language-server
       nodePackages.typescript-language-server
-      nodePackages.vscode-html-languageserver-bin
-      nodePackages.vscode-json-languageserver
+      nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
       python311Packages.jedi-language-server
       spago
@@ -129,10 +128,10 @@ in
       python311Packages.autopep8
       python311Packages.flake8
       python311Packages.mdformat
+      python311Packages.yamllint
       shellcheck
       shfmt
       stylua
-      python311Packages.yamllint
       dhall-lsp-server
       dockerfile-language-server-nodejs
       lua-language-server
@@ -143,8 +142,7 @@ in
       nodePackages.bash-language-server
       nodePackages.purescript-language-server
       nodePackages.typescript-language-server
-      nodePackages.vscode-html-languageserver-bin
-      nodePackages.vscode-json-languageserver
+      nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
       python311Packages.jedi-language-server
       spago

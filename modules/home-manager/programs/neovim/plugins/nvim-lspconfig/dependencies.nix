@@ -11,8 +11,7 @@ with pkgs;
   nodePackages.bash-language-server
   nodePackages.purescript-language-server
   nodePackages.typescript-language-server
-  nodePackages.vscode-html-languageserver-bin
-  nodePackages.vscode-json-languageserver
+  nodePackages.vscode-langservers-extracted
   nodePackages.yaml-language-server
   python311Packages.jedi-language-server
   spago

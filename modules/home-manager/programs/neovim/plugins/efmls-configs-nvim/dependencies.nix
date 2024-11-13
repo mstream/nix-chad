@@ -15,8 +15,8 @@ with pkgs;
   python311Packages.autopep8
   python311Packages.flake8
   python311Packages.mdformat
+  python311Packages.yamllint
   shellcheck
   shfmt
   stylua
-  yamllint
 ]

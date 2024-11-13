@@ -7,7 +7,6 @@ let
   aspellEn = pkgs.aspellWithDicts (d: [
     d.en
     d.en-computers
-    d.en-science
   ]);
 
   evaluatedModules = evalModules {
