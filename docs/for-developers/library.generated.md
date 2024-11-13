@@ -19,3 +19,4 @@ Create activation scripts for Darwin system with a desired config applied.
 
 : nix-chad configuration
 
+
