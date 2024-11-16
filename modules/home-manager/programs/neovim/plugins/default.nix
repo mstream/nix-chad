@@ -57,6 +57,7 @@
       setup_lsp_format_nvim(context)
       setup_nvim_lspconfig(context)
       setup_nvim_cmp(context)
+      setup_nvim_navic(context)
       setup_nvim_treesitter(context)
       setup_nvim_web_devicons(context)
       setup_trouble_nvim(context)

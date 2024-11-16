@@ -20,7 +20,7 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
         "nixd",
         "purescriptls",
         "jedi_language_server",
-        "tsserver",
+        "ts_ls",
         "yamlls",
     }
 
@@ -49,9 +49,12 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
             on_attach = function(client, bufnr)
                 lsp_format.on_attach(client, bufnr)
                 if
-                    client.server_capabilities.documentSymbolProvider
+                    true
+                --client.server_capabilities.documentSymbolProvider
                 then
+                    vim.api.nvim_command("echom 'navic_attach before'")
                     navic.attach(client, bufnr)
+                    vim.api.nvim_command("echom 'navic_attach after'")
                 end
             end,
         }

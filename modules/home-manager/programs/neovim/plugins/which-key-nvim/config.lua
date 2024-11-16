@@ -11,10 +11,10 @@ local function setup_which_key_nvim(context) -- luacheck: ignore
             if k ~= "name" then
                 context.keymap_logger.debug(
                     "registring "
-                        .. name
-                        .. " mapping for '"
-                        .. v
-                        .. "' key"
+                    .. name
+                    .. " mapping for '"
+                    .. v
+                    .. "' key"
                 )
             end
         end
@@ -30,7 +30,7 @@ local function setup_which_key_nvim(context) -- luacheck: ignore
 
     local function register_debug_mapping(key, rhs, what, opts)
         local spec =
-            { name = "debug", [key] = { rhs, "Debug " .. what } }
+        { name = "debug", [key] = { rhs, "Debug " .. what } }
         log_mapping(spec)
         which_key.register({ ["<leader>d"] = spec }, opts)
     end
@@ -52,14 +52,14 @@ local function setup_which_key_nvim(context) -- luacheck: ignore
 
     local function register_go_to_mapping(key, rhs, where, opts)
         local spec =
-            { name = "go to", [key] = { rhs, "Go to " .. where } }
+        { name = "go to", [key] = { rhs, "Go to " .. where } }
         log_mapping(spec)
         which_key.register({ ["<leader>g"] = spec }, opts)
     end
 
     local function register_refactor_mapping(key, rhs, what, opts)
         local spec =
-            { name = "refactor", [key] = { rhs, "Refactor " .. what } }
+        { name = "refactor", [key] = { rhs, "Refactor " .. what } }
         log_mapping(spec)
         which_key.register({ ["<leader>r"] = spec }, opts)
     end
@@ -90,37 +90,47 @@ local function setup_which_key_nvim(context) -- luacheck: ignore
             })
 
             register_top_level_mapping(
-                custom_key_mappings.top_level.show_key_mappings.combination,
+                custom_key_mappings.top_level.show_key_mappings
+                .combination,
                 "<cmd>WhichKey<CR>",
-                custom_key_mappings.top_level.show_key_mappings.description,
+                custom_key_mappings.top_level.show_key_mappings
+                .description,
                 { mode = "n" }
             )
 
             register_top_level_mapping(
-                custom_key_mappings.top_level.move_to_left_window.combination,
+                custom_key_mappings.top_level.move_to_left_window
+                .combination,
                 "<C-w>h",
-                custom_key_mappings.top_level.move_to_left_window.description,
+                custom_key_mappings.top_level.move_to_left_window
+                .description,
                 { mode = "n" }
             )
 
             register_top_level_mapping(
-                custom_key_mappings.top_level.move_to_right_window.combination,
+                custom_key_mappings.top_level.move_to_right_window
+                .combination,
                 "<C-w>l",
-                custom_key_mappings.top_level.move_to_right_window.description,
+                custom_key_mappings.top_level.move_to_right_window
+                .description,
                 { mode = "n" }
             )
 
             register_top_level_mapping(
-                custom_key_mappings.top_level.move_to_top_window.combination,
+                custom_key_mappings.top_level.move_to_top_window
+                .combination,
                 "<C-w>k",
-                custom_key_mappings.top_level.move_to_top_window.description,
+                custom_key_mappings.top_level.move_to_top_window
+                .description,
                 { mode = "n" }
             )
 
             register_top_level_mapping(
-                custom_key_mappings.top_level.move_to_bottom_window.combination,
+                custom_key_mappings.top_level.move_to_bottom_window
+                .combination,
                 "<C-w>j",
-                custom_key_mappings.top_level.move_to_bottom_window.description,
+                custom_key_mappings.top_level.move_to_bottom_window
+                .description,
                 { mode = "n" }
             )
 
