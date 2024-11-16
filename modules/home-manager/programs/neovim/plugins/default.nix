@@ -19,6 +19,7 @@
   (import ./cmp-omni { inherit pkgs; })
   (import ./cmp-path { inherit pkgs; })
   (import ./nvim-cmp { inherit pkgs; })
+  (import ./nvim-navic { inherit pkgs; })
   (import ./nvim-treesitter { inherit pkgs; })
   (import ./nvim-web-devicons { inherit pkgs; })
   (import ./trouble-nvim { inherit pkgs; })

@@ -4,7 +4,8 @@ local lspconfig = require("lspconfig")
 local lspconfig_util = require("lspconfig.util")
 local telescope_builtin = require("telescope.builtin")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local on_attach = require("lsp-format").on_attach
+local lsp_format = require("lsp-format")
+local navic = require("nvim-navic")
 
 local function setup_nvim_lspconfig(context) -- luacheck: ignore
     local servers = {
@@ -45,7 +46,14 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
     for _, lsp in ipairs(servers) do
         local config = {
             capabilities = capabilities,
-            on_attach = on_attach,
+            on_attach = function(client, bufnr)
+                lsp_format.on_attach(client, bufnr)
+                if
+                    client.server_capabilities.documentSymbolProvider
+                then
+                    navic.attach(client, bufnr)
+                end
+            end,
         }
 
         if lsp == "efm" then
@@ -160,6 +168,8 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
                 )
             end
 
+            local function on_document_symbol_support() end
+
             local function on_hover_support()
                 context.register_top_level_mapping(
                     custom_key_mappings.top_level.show_symbol_info
@@ -178,6 +188,7 @@ local function setup_nvim_lspconfig(context) -- luacheck: ignore
                 ["definitionProvider"] = on_definition_support,
                 ["documentFormattingProvider"] =
                 on_document_formatting_support,
+                ["documentSymbolProvider"] = on_document_symbol_support,
                 ["hoverProvider"] = on_hover_support,
                 ["implementationProvider"] = on_implementation_support,
                 ["renameProvider"] = on_rename_support,
