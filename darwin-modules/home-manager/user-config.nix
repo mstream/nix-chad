@@ -1,7 +1,11 @@
-{ osConfig, pkgs, ... }:
+{
+  inputs,
+  osConfig,
+  pkgs,
+  ...
+}:
 let
   cfg = osConfig.chad;
-  nvimPackages = pkgs.callPackage ./programs/neovim/dependencies.nix { };
   propertiaryPackages = with pkgs; [ jetbrains.idea-ultimate ];
   otherPackages =
     with pkgs;
@@ -73,7 +77,6 @@ in
     ./programs/git/default.nix
     ./programs/gpg/default.nix
     ./programs/jq/default.nix
-    ./programs/neovim/default.nix
     ./programs/password-store/default.nix
     ./programs/tmux/default.nix
     ./programs/vscode/default.nix
@@ -81,9 +84,11 @@ in
     ./programs/zsh/default.nix
   ];
 
-  home = {
-    file = homeFiles;
-    packages = nvimPackages ++ otherPackages ++ customPackages;
-    stateVersion = cfg.nixpkgsReleaseVersion;
+  config = {
+    home = {
+      file = homeFiles;
+      packages = otherPackages ++ customPackages;
+      stateVersion = cfg.nixpkgsReleaseVersion;
+    };
   };
 }

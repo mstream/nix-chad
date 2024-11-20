@@ -42,22 +42,24 @@ in
         };
         size = cfg.fontSize;
       };
+      general = {
+        live_config_reload = true;
+      };
       keyboard.bindings = cfg.terminal.keyBindings;
-      live_config_reload = true;
       scrolling = {
         history = 0;
         multiplier = 0;
       };
-      shell = {
-        program = "zsh";
-        args = [
-          "-l"
-          "-c"
-          "zellij attach --index 0 || zellij"
-        ];
-      };
       terminal = {
         osc52 = "OnlyCopy";
+        shell = {
+          program = "zsh";
+          args = [
+            "-l"
+            "-c"
+            "zellij attach --index 0 || zellij"
+          ];
+        };
       };
       window = {
         blur = true;

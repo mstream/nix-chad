@@ -45,7 +45,7 @@ in
     };
   };
   config = {
-    chad.nixpkgsReleaseVersion = "24.05";
+    chad.nixpkgsReleaseVersion = "24.11";
     users.users."${cfg.user.name}" = {
       home = "/Users/${cfg.user.name}";
       inherit (cfg.user) name;

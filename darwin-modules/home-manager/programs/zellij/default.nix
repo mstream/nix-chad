@@ -32,6 +32,7 @@ let
     "tab" = {
       unbind = arrowKeys;
     };
+    "unbind" = "Ctrl g";
     "shared_except \"locked\"" = {
       unbind = [ "Ctrl q" ];
     };

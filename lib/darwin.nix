@@ -9,7 +9,7 @@
 
     `flakeInputs`
 
-    : flake inputs containing darwin, home-manager and nur
+    : flake inputs
 
     `system`
 
@@ -24,6 +24,7 @@
       darwin,
       home-manager,
       nixpkgs-firefox-darwin,
+      nixvim,
       nur,
       ...
     }:
@@ -31,12 +32,21 @@
     darwin.lib.darwinSystem {
       inherit system;
       modules = [
-        { chad = chadConfig; }
+        # FIXME I could make nixvim work as a hm module because of 
+        # an infiite recursion issue. 
+        # It feels like it should belong there so different users
+        # could have different vim configurations.
+        nixvim.nixDarwinModules.nixvim
         home-manager.darwinModules.home-manager
-        ../modules/default.nix
+        { chad = chadConfig; }
+        ../darwin-modules
       ];
       specialArgs = {
-        inherit nixpkgs-firefox-darwin nur system;
+        inherit
+          nixpkgs-firefox-darwin
+          nur
+          system
+          ;
       };
     };
 }

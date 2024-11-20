@@ -117,6 +117,10 @@ let
       };
     };
     topLevel = {
+      cancel = {
+        combination = "<ESC>";
+        description = "Cancels current selection or mode.";
+      };
       moveToBottomWindow = {
         combination = "<C-j>";
         description = "Move to window on the bottom";
@@ -133,6 +137,23 @@ let
         combination = "<C-k>";
         description = "Move to window on the top";
       };
+      scrollDown = {
+        combination = "<C-d>";
+        description = "Scrolls various (depending on context) things down";
+      };
+      scrollDownPreview = {
+        combination = "<C-A-d>";
+        description = "Scrolls down preview window";
+      };
+      scrollUp = {
+        combination = "<C-u>";
+        description = "Scrolls various (depending on context) things up";
+      };
+
+      scrollUpPreview = {
+        combination = "<C-A-u>";
+        description = "Scrolls up preview window";
+      };
       showKeyMappings = {
         combination = "\\";
         description = "Show key mappings";
@@ -140,6 +161,14 @@ let
       showSymbolInfo = {
         combination = "K";
         description = "Show information about the symbol under the cursor";
+      };
+      switchToNextTab = {
+        combination = "<TAB>";
+        description = "switch to next tab";
+      };
+      switchToPreviousTab = {
+        combination = "<S-TAB>";
+        description = "switch to previous tab";
       };
     };
   };
@@ -151,6 +180,13 @@ in
         _: categoryVal:
         builtins.mapAttrs (_: { description, ... }: keyMappingOption description) categoryVal
       ) keyMappings;
+      documentWidth = mkOption {
+        type = types.int;
+        default = 72;
+        description = ''
+          Ideal maximum document's width measured in number of characters.
+        '';
+      };
       lineNumbering = mkOption {
         type = types.enum [
           "absolute"
@@ -160,6 +196,13 @@ in
         description = ''
           Absolute: line numbers counted from the beginning of the document
           Relative: line numbers counted from the current cursor position
+        '';
+      };
+      tabWidth = mkOption {
+        type = types.int;
+        default = 2;
+        description = ''
+          Tabulation width measured in number of characters.
         '';
       };
     };
