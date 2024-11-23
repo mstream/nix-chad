@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  userConfig = import ../modules/home-manager/user-config.nix;
+  userConfig = import ../darwin-modules/home-manager/user-config.nix;
   osConfig.chad = {
     gpg.defaultKey = "gpg1";
     extraPackages = pkgs: [ pkgs.cowsay ];

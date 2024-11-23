@@ -1,5 +1,4 @@
 {
-  inputs,
   osConfig,
   pkgs,
   ...
@@ -78,7 +77,6 @@ in
     ./programs/gpg/default.nix
     ./programs/jq/default.nix
     ./programs/password-store/default.nix
-    ./programs/tmux/default.nix
     ./programs/vscode/default.nix
     ./programs/zellij/default.nix
     ./programs/zsh/default.nix

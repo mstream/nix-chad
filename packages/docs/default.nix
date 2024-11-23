@@ -12,7 +12,7 @@ let
   evaluatedModules = evalModules {
     check = false;
     class = "chad";
-    modules = [ ../../modules/chad/default.nix ];
+    modules = [ ../../darwin-modules/chad/default.nix ];
   };
 
   keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
