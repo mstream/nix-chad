@@ -1,4 +1,12 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.chad;
+in
 {
   programs.nixvim.plugins.conform-nvim = {
     enable = true;
@@ -10,6 +18,10 @@
       notify_on_error = true;
       formatters = {
         nixfmt = {
+          args = [
+            "--width"
+            (builtins.toString cfg.editor.documentWidth)
+          ];
           command = lib.getExe pkgs.nixfmt-rfc-style;
         };
       };

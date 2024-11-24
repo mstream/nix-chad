@@ -13,6 +13,8 @@ in
       allowBroken = false;
       allowUnfree = !cfg.software.openSourceOnly;
     };
-    overlays = import ../overlays/nixpkgs.nix { inherit nixpkgs-firefox-darwin nur; };
+    overlays = import ../overlays/nixpkgs.nix {
+      inherit nixpkgs-firefox-darwin nur;
+    };
   };
 }

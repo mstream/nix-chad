@@ -27,7 +27,9 @@ pkgs.buildPackages.nixosOptionsDoc {
           gitHubDeclaration {
             ref = "main";
             repo = "nix-chad";
-            subpath = removePrefix "/" (removePrefix chadPath (builtins.toString decl));
+            subpath = removePrefix "/" (
+              removePrefix chadPath (builtins.toString decl)
+            );
             user = "mstream";
           }
         else if decl == "lib/modules.nix" then

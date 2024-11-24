@@ -8,10 +8,14 @@ let
   };
 
   defaultMappingsOverride = {
-    "${kms.topLevel.scrollDown.combination}" = actionLuaSnippet "move_selection_next";
-    "${kms.topLevel.scrollUp.combination}" = actionLuaSnippet "move_selection_previous";
-    "${kms.topLevel.scrollDownPreview.combination}" = actionLuaSnippet "preview_scrolling_down";
-    "${kms.topLevel.scrollUpPreview.combination}" = actionLuaSnippet "preview_scrolling_up";
+    "${kms.topLevel.scrollDown.combination
+    }" = actionLuaSnippet "move_selection_next";
+    "${kms.topLevel.scrollUp.combination
+    }" = actionLuaSnippet "move_selection_previous";
+    "${kms.topLevel.scrollDownPreview.combination
+    }" = actionLuaSnippet "preview_scrolling_down";
+    "${kms.topLevel.scrollUpPreview.combination
+    }" = actionLuaSnippet "preview_scrolling_up";
   };
 in
 {
@@ -24,7 +28,10 @@ in
       live-grep-args.enable = true;
       manix.enable = true;
       media-files.enable = true;
-      ui-select.enable = true;
+      ui-select = {
+        enable = true;
+        settings.specific_opts.codeactions = true;
+      };
       undo.enable = true;
     };
     keymaps = {

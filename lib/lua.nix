@@ -5,7 +5,9 @@ let
     c: if strings.toUpper c == c then "_${strings.toLower c}" else c
   );
 
-  escapeString = strings.stringAsChars (c: if c == "\\" then "\\\\" else c);
+  escapeString = strings.stringAsChars (
+    c: if c == "\\" then "\\\\" else c
+  );
 
   indent = line: "    ${line}";
 
@@ -14,12 +16,17 @@ let
     let
       firstLine = "${camelToSnakeCase key} =";
 
-      otherLines = if builtins.isAttrs val then recordLines val else [ ''"${escapeString val}"'' ];
+      otherLines =
+        if builtins.isAttrs val then
+          recordLines val
+        else
+          [ ''"${escapeString val}"'' ];
     in
     acc ++ [ firstLine ] ++ builtins.map indent otherLines ++ [ "," ]
   ) [ ];
 
-  recordLines = attrs: [ "{" ] ++ (builtins.map indent (bodyLines attrs)) ++ [ "}" ];
+  recordLines =
+    attrs: [ "{" ] ++ (builtins.map indent (bodyLines attrs)) ++ [ "}" ];
 in
 {
   renderAttrs =

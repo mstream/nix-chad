@@ -75,7 +75,9 @@ in
   options = {
     chad.browser = {
       bookmarks = mkOption {
-        type = types.coercedTo (types.attrsOf nodeModule) builtins.attrValues (types.listOf nodeModule);
+        type = types.coercedTo (types.attrsOf nodeModule) builtins.attrValues (
+          types.listOf nodeModule
+        );
         default = [ ];
         example = [
           {

@@ -178,7 +178,9 @@ in
     chad.editor = {
       keyMappings = builtins.mapAttrs (
         _: categoryVal:
-        builtins.mapAttrs (_: { description, ... }: keyMappingOption description) categoryVal
+        builtins.mapAttrs (
+          _: { description, ... }: keyMappingOption description
+        ) categoryVal
       ) keyMappings;
       documentWidth = mkOption {
         type = types.int;

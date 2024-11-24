@@ -22,7 +22,10 @@ let
   };
 
   keymapEntries =
-    mode: attrs: lib.mapAttrsToList (key: action: { inherit action key mode; }) (attrs // disabledKeys);
+    mode: attrs:
+    lib.mapAttrsToList (key: action: { inherit action key mode; }) (
+      attrs // disabledKeys
+    );
 
   commandKeymaps = keymapEntries modes.command { };
 
@@ -34,10 +37,12 @@ let
     "${kms.topLevel.moveToLeftWindow.combination}" = "<C-w>h";
     "${kms.topLevel.moveToRightWindow.combination}" = "<C-w>l";
     "${kms.topLevel.moveToTopWindow.combination}" = "<C-w>k";
+    "<leader>r ${kms.refactor.action.combination}" = "vim.lsp.buf.code_action()";
   };
 
   visualKeymaps = keymapEntries modes.visual { };
 in
 {
-  programs.nixvim.keymaps = commandKeymaps ++ insertKeymaps ++ normalKeymaps ++ visualKeymaps;
+  programs.nixvim.keymaps =
+    commandKeymaps ++ insertKeymaps ++ normalKeymaps ++ visualKeymaps;
 }

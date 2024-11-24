@@ -17,7 +17,7 @@ if ! NIXPKGS_ALLOW_UNFREE=1 nix eval --impure --show-trace "test/#tests"; then
     exit 1
 fi
 
-if ! nix build --show-trace ".#lints.all-checks"; then
+if ! nix build --print-build-logs --show-trace ".#lints.all-checks"; then
     echo "coding style is not up to standards" >&2
     exit 1
 fi
@@ -51,5 +51,17 @@ if [[ "${CI}" != "true" ]]; then
         echo "template is broken" >&2
         exit 1
     fi
-
 fi
+
+if [[ $(git diff --stat) != '' ]]; then
+  echo 'git branch is dirty'
+  echo 'vvv'
+  git status
+  git diff HEAD
+  echo '^^^'
+  exit 1
+else
+  echo 'git branch is clean'
+fi
+
+

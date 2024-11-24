@@ -11,13 +11,17 @@ let
     surfingkeys
   ];
   customExtensions =
-    if cfg.browser.extraExtensions == null then [ ] else cfg.browser.extraExtensions exts;
+    if cfg.browser.extraExtensions == null then
+      [ ]
+    else
+      cfg.browser.extraExtensions exts;
 in
 {
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-devedition-bin;
     policies = {
+      # FIXME
       # policies do not seem to work, at least not with non-standard
       # firefox-devedition-pin package
       AllowFileSelectionDialogs = true;

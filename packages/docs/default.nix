@@ -2,7 +2,10 @@
 with pkgs.lib;
 let
 
-  inherit (import ./lib { inherit pkgs; }) buildKeymapsDocs buildOptionsDocs;
+  inherit (import ./lib { inherit pkgs; })
+    buildKeymapsDocs
+    buildOptionsDocs
+    ;
 
   aspellEn = pkgs.aspellWithDicts (d: [
     d.en
@@ -10,20 +13,26 @@ let
   ]);
 
   evaluatedModules = evalModules {
-    check = false;
     class = "chad";
-    modules = [ ../../darwin-modules/chad/default.nix ];
+    modules = [
+      { _module.check = false; }
+      ../../darwin-modules/chad/default.nix
+    ];
   };
 
   keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
 
   optionsDocs = buildOptionsDocs {
     inherit evaluatedModules;
-    nixpkgsRef = (builtins.fromJSON (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
+    nixpkgsRef =
+      (builtins.fromJSON (builtins.readFile ../../flake.lock))
+      .nodes.nixpkgs.original.ref;
   };
 in
 pkgs.stdenv.mkDerivation {
-  nativeBuildInputs = with pkgs; [ nodePackages.markdownlint-cli ] ++ [ aspellEn ];
+  nativeBuildInputs =
+    with pkgs;
+    [ nodePackages.markdownlint-cli ] ++ [ aspellEn ];
   checkPhase = ''
     function validate_spelling() {
       file=$1

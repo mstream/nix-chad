@@ -5,7 +5,9 @@ let
     xs:
     let
       duplicates = builtins.attrNames (
-        attrsets.filterAttrs (_: v: builtins.length v > 1) (attrsets.zipAttrs xs)
+        attrsets.filterAttrs (_: v: builtins.length v > 1) (
+          attrsets.zipAttrs xs
+        )
       );
     in
     (throwIf (

@@ -92,9 +92,11 @@ let
     echo '${builtins.toJSON keymapsAst}' > $out
   '';
 
-  keymapsCommonMark = pkgs.runCommand "keymaps.md" { nativeBuildInputs = [ pkgs.pandoc ]; } ''
-    pandoc ${keymapsJson} --from json --to markdown_strict -o $out
-  '';
+  keymapsCommonMark =
+    pkgs.runCommand "keymaps.md" { nativeBuildInputs = [ pkgs.pandoc ]; }
+      ''
+        pandoc ${keymapsJson} --from json --to markdown_strict -o $out
+      '';
 in
 {
   inherit keymapsCommonMark;

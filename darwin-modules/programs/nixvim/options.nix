@@ -1,9 +1,8 @@
 { config, ... }:
 let
   cfg = config.chad;
+  inherit (cfg.editor) documentWidth tabWidth;
   isNumberingRelative = cfg.editor.lineNumbering == "relative";
-  documentWidth = cfg.editor.documentWidth;
-  tabWidth = cfg.editor.tabWidth;
   colorColumn = documentWidth + 1;
 in
 {

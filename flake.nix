@@ -80,7 +80,9 @@
             apps.${system}.switch = inputs.flake-utils.lib.mkApp {
               drv = import ./packages/switch/default.nix { inherit pkgs system; };
             };
-            darwinConfigurations.macbook.${system} = darwin.makeSystem inputs system config;
+            darwinConfigurations.macbook.${system} =
+              darwin.makeSystem inputs system
+                config;
           }
         );
       packages = forEachSystem ciSystems (
@@ -107,11 +109,16 @@
             config = {
               allowUnfree = true;
             };
-            overlays = import ./overlays/nixpkgs.nix { inherit (inputs) nixpkgs-firefox-darwin nur; };
+            overlays = import ./overlays/nixpkgs.nix {
+              inherit (inputs) nixpkgs-firefox-darwin nur;
+            };
           };
           violations = import ./test { inherit pkgs; };
         in
-        if violations == [ ] then "all tests passed" else throw (builtins.toJSON violations)
+        if violations == [ ] then
+          "all tests passed"
+        else
+          throw (builtins.toJSON violations)
       );
     };
 }

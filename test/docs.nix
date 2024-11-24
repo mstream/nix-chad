@@ -18,7 +18,9 @@ let
       }
     ];
   };
-  actualAst = import ../packages/docs/lib/neovim-keymaps-ast.nix { inherit keymaps pkgs; };
+  actualAst = import ../packages/docs/lib/neovim-keymaps-ast.nix {
+    inherit keymaps pkgs;
+  };
   expectedAst = [
     {
       t = "Header";

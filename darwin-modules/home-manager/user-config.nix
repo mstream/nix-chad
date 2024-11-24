@@ -22,7 +22,8 @@ let
       unixtools.watch
     ]
     ++ (if cfg.software.openSourceOnly then [ ] else propertiaryPackages);
-  customPackages = if cfg.extraPackages == null then [ ] else cfg.extraPackages pkgs;
+  customPackages =
+    if cfg.extraPackages == null then [ ] else cfg.extraPackages pkgs;
   userDefinedDirectories =
     (builtins.foldl'
       (acc: dir: {
@@ -84,6 +85,7 @@ in
 
   config = {
     home = {
+      enableNixpkgsReleaseCheck = true;
       file = homeFiles;
       packages = otherPackages ++ customPackages;
       stateVersion = cfg.nixpkgsReleaseVersion;

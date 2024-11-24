@@ -1,6 +1,9 @@
 { osConfig, pkgs, ... }:
 let
-  inherit (import ./abbreviations.nix { inherit pkgs; }) defaultAbbreviations mergeAbbreviations;
+  inherit (import ./abbreviations.nix { inherit pkgs; })
+    defaultAbbreviations
+    mergeAbbreviations
+    ;
 
   cfg = osConfig.chad;
 
@@ -116,14 +119,16 @@ in
     };
     profileExtra = "";
     sessionVariables = { };
-    shellAliases = if cfg.terminal.abbreviations.enable then abbreviations else { };
+    shellAliases =
+      if cfg.terminal.abbreviations.enable then abbreviations else { };
     shellGlobalAliases = { };
     syntaxHighlighting = {
       enable = true;
     };
     zsh-abbr = {
       inherit abbreviations;
-      enable = cfg.terminal.abbreviations.enable && !cfg.software.openSourceOnly;
+      enable =
+        cfg.terminal.abbreviations.enable && !cfg.software.openSourceOnly;
     };
   };
 }
