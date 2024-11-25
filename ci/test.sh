@@ -12,10 +12,11 @@ if ! nix flake check --all-systems --show-trace; then
     exit 1
 fi
 
-if ! NIXPKGS_ALLOW_UNFREE=1 nix eval --impure --show-trace "test/#tests"; then
+if ! nix run --show-trace ".#nix-unit" -- --flake ".#tests" --show-trace; then
     echo "unit tests are failing" >&2
     exit 1
 fi
+
 
 if ! nix build --print-build-logs --show-trace ".#lints.all-checks"; then
     echo "coding style is not up to standards" >&2
@@ -53,15 +54,16 @@ if [[ "${CI}" != "true" ]]; then
     fi
 fi
 
-if [[ $(git diff --stat) != '' ]]; then
-  echo 'git branch is dirty'
-  echo 'vvv'
-  git status
-  git diff HEAD
-  echo '^^^'
-  exit 1
-else
-  echo 'git branch is clean'
-fi
+cd "$REPO_ROOT"
 
+if [[ $(git diff --stat) != '' ]]; then
+    echo 'git branch is dirty'
+    echo 'vvv'
+    git status
+    git diff HEAD
+    echo '^^^'
+    exit 1
+else
+    echo 'git branch is clean'
+fi
 

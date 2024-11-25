@@ -12,6 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lint-nix.url = "github:xc-jp/lint.nix";
+    nix-unit = {
+      url = "github:nix-community/nix-unit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     nixvim = {
@@ -40,6 +44,18 @@
       forEachSystem = systems: f: builtins.foldl' f { } systems;
     in
     {
+      apps = forEachSystem ciSystems (
+        acc: system:
+        let
+          pkgs = import inputs.nixpkgs { inherit system; };
+        in
+        pkgs.lib.recursiveUpdate acc {
+          ${system}.nix-unit = {
+            program = "${inputs.nix-unit.packages.${system}.default}/bin/nix-unit";
+            type = "app";
+          };
+        }
+      );
       devShells = forEachSystem ciSystems (
         acc: system:
         let
@@ -102,7 +118,7 @@
         path = ./templates/default;
       };
       tests = forEachSystem ciSystems (
-        _: system:
+        acc: system:
         let
           pkgs = import inputs.nixpkgs {
             inherit system;
@@ -113,12 +129,10 @@
               inherit (inputs) nixpkgs-firefox-darwin nur;
             };
           };
-          violations = import ./test { inherit pkgs; };
         in
-        if violations == [ ] then
-          "all tests passed"
-        else
-          throw (builtins.toJSON violations)
+        pkgs.lib.recursiveUpdate acc {
+          ${system} = import ./test { inherit pkgs; };
+        }
       );
     };
 }

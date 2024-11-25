@@ -8,7 +8,7 @@ in
 {
   formatters = {
     beautysh = {
-      cmd = "${pkgs.beautysh}/bin/beautysh $filename";
+      cmd = "${pkgs.beautysh}/bin/beautysh --force-function-style fnpar $filename";
       ext = ".sh";
     };
     nixfmt = {

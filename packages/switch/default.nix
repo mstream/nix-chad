@@ -26,7 +26,7 @@ let
     }
 
     build_configuration
-    reset_launchpad
+    # reset_launchpad
     apply_configuration
   '';
   scriptBin = pkgs.writeShellScriptBin "switch" script;
