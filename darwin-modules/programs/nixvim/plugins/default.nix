@@ -7,6 +7,7 @@
     ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
+    ./treesitter-context.nix
     ./web-devicons.nix
   ];
 }

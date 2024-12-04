@@ -4,20 +4,6 @@
 {
   /**
     Create activation scripts for Darwin system with a desired config applied.
-
-    # Inputs
-
-    `flakeInputs`
-
-    : flake inputs
-
-    `system`
-
-    : host system
-
-    `chadConfig`
-
-    : nix-chad configuration
   */
   makeSystem =
     {
