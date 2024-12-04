@@ -36,14 +36,14 @@
         # an infiite recursion issue. 
         # It feels like it should belong there so different users
         # could have different vim configurations.
-        nixvim.nixDarwinModules.nixvim
-        home-manager.darwinModules.home-manager
         { chad = chadConfig; }
         ../darwin-modules
       ];
       specialArgs = {
         inherit
+          home-manager
           nixpkgs-firefox-darwin
+          nixvim
           nur
           system
           ;

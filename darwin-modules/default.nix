@@ -1,5 +1,12 @@
 {
+  home-manager,
+  nixvim,
+  ...
+}:
+{
   imports = [
+    home-manager.darwinModules.home-manager
+    nixvim.nixDarwinModules.nixvim
     ./chad/default.nix
     ./documentation.nix
     ./environment.nix

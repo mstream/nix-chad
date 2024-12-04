@@ -20,7 +20,6 @@ let
   testSuiteFiles = {
     "docs" = ./docs.nix;
     "lua" = ./lua.nix;
-    "user-config" = ./user-config.nix;
     "zsh-abbreviations" = ./zsh-abbreviations.nix;
   };
 in

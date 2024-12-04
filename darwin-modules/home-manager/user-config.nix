@@ -15,8 +15,8 @@ let
       editorconfig-checker
       gawk
       nmap
+      node2nix
       nodejs
-      nodePackages.node2nix
       tldr
       tree
       unixtools.watch
