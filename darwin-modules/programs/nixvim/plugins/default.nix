@@ -1,6 +1,7 @@
 {
   imports = [
     ./barbar.nix
+    ./cmp-treesitter.nix
     ./conform.nix
     ./lint.nix
     ./lsp.nix
