@@ -1,14 +1,37 @@
 {
   imports = [
+    ./aerial.nix
+    ./arrow.nix
     ./barbar.nix
+    ./blink-cmp.nix
+    ./cmp.nix
+    ./cmp-calc.nix
+    ./cmp-cmdline.nix
+    ./cmp-cmdline-history.nix
+    ./cmp-conventionalcommits.nix
+    ./cmp-dap.nix
+    ./cmp-dictionary.nix
+    ./cmp-digraphs.nix
+    ./cmp-emoji.nix
+    ./cmp-fuzzy-buffer.nix
+    ./cmp-fuzzy-path.nix
+    ./cmp-git.nix
+    ./cmp-greek.nix
+    ./cmp-latex-symbols.nix
+    ./cmp-npm.nix
+    ./cmp-nvim-lsp-document-symbol.nix
+    ./cmp-nvim-lsp-signature-help.nix
     ./cmp-treesitter.nix
-    ./conform.nix
+    ./conform-nvim.nix
+    ./flash.nix
     ./lint.nix
     ./lsp.nix
     ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
     ./treesitter-context.nix
+    ./treesitter-refactor.nix
+    ./treesitter-textobjects.nix
     ./web-devicons.nix
   ];
 }

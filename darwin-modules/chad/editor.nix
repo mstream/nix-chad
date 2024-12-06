@@ -139,20 +139,19 @@ let
       };
       scrollDown = {
         combination = "<C-d>";
-        description = "Scrolls various (depending on context) things down";
-      };
-      scrollDownPreview = {
-        combination = "<C-A-d>";
-        description = "Scrolls down preview window";
+        description = "Sroll content down";
       };
       scrollUp = {
         combination = "<C-u>";
-        description = "Scrolls various (depending on context) things up";
+        description = "Scroll content up";
       };
-
-      scrollUpPreview = {
-        combination = "<C-A-u>";
-        description = "Scrolls up preview window";
+      selectNext = {
+        combination = "<C-n>";
+        description = "Select next item on a list";
+      };
+      selectPrevious = {
+        combination = "<C-p>";
+        description = "Select previous item on a list";
       };
       showKeyMappings = {
         combination = "\\";

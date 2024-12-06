@@ -3,26 +3,37 @@
 
   inputs = {
     darwin = {
+      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:LnL7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils/main";
     home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-    lint-nix.url = "github:xc-jp/lint.nix";
+    lint-nix.url = "github:xc-jp/lint.nix/master";
+    nix-to-lua.url = "github:BirdeeHub/nixToLua/master";
     nix-unit = {
-      url = "github:nix-community/nix-unit";
       inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nix-unit";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
-    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
-    nixvim = {
-      url = "github:nix-community/nixvim/main";
+    nixpkgs-firefox-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:bandithedoge/nixpkgs-firefox-darwin/main";
     };
-    nur.url = "github:nix-community/NUR";
+    nixvim = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim/main";
+    };
+    nur = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/NUR/master";
+    };
+    yants = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:divnix/yants/main";
+    };
   };
 
   outputs =

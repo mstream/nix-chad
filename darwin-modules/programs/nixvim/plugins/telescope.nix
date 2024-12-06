@@ -8,14 +8,14 @@ let
   };
 
   defaultMappingsOverride = {
-    "${kms.topLevel.scrollDown.combination
-    }" = actionLuaSnippet "move_selection_next";
-    "${kms.topLevel.scrollUp.combination
-    }" = actionLuaSnippet "move_selection_previous";
-    "${kms.topLevel.scrollDownPreview.combination
-    }" = actionLuaSnippet "preview_scrolling_down";
-    "${kms.topLevel.scrollUpPreview.combination
-    }" = actionLuaSnippet "preview_scrolling_up";
+    "${kms.topLevel.selectNext.combination}" =
+      actionLuaSnippet "move_selection_next";
+    "${kms.topLevel.selectPrevious.combination}" =
+      actionLuaSnippet "move_selection_previous";
+    "${kms.topLevel.scrollDown.combination}" =
+      actionLuaSnippet "preview_scrolling_down";
+    "${kms.topLevel.scrollUp.combination}" =
+      actionLuaSnippet "preview_scrolling_up";
   };
 in
 {
@@ -37,7 +37,8 @@ in
     keymaps = {
       "<leader>f${kms.find.gitBranches.combination}" = "git_branches";
       "<leader>f${kms.find.gitCommits.combination}" = "git_commits";
-      "<leader>f${kms.find.gitLocalChanges.combination}" = "git_local_changes";
+      "<leader>f${kms.find.gitLocalChanges.combination}" =
+        "git_local_changes";
       "<leader>f${kms.find.gitStash.combination}" = "git_stash";
       "<leader>f${kms.find.files.combination}" = "find_files";
       "<leader>f${kms.find.vimBuffers.combination}" = "buffers";

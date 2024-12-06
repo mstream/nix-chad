@@ -37,6 +37,8 @@ let
     "${kms.topLevel.moveToLeftWindow.combination}" = "<C-w>h";
     "${kms.topLevel.moveToRightWindow.combination}" = "<C-w>l";
     "${kms.topLevel.moveToTopWindow.combination}" = "<C-w>k";
+    "${kms.topLevel.scrollDown.combination}" = "<C-d>zz";
+    "${kms.topLevel.scrollUp.combination}" = "<C-u>zz";
     "<leader>r ${kms.refactor.action.combination}" = "vim.lsp.buf.code_action()";
   };
 

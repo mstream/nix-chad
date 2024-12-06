@@ -1,5 +1,5 @@
 {
-  programs.nixvim.plugins.aerial = {
+  programs.nixvim.plugins.arrow = {
     enable = true;
     settings = { };
   };
