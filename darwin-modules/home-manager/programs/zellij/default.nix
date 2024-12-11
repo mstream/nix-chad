@@ -13,7 +13,7 @@
       mouse_mode = false;
       on_force_close = "quit";
       scroll_buffer_size = 20000;
-      simplified_ui = true;
+      simplified_ui = false;
       theme = "gruvbox";
       themes = import ./themes.nix;
       styled_underlines = true;

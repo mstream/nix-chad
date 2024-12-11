@@ -94,7 +94,7 @@ in
         askForPasswordDelay = 5;
       };
       SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
-      spaces.spans-displays = false;
+      spaces.spans-displays = true;
       trackpad = {
         ActuationStrength = 1;
         Clicking = false;
@@ -115,7 +115,7 @@ in
       enableKeyMapping = false;
       # Surprisingly, this public option is ignored as it can't be set by a user (based on the implementation)...
       # it sounds like something that may be corrected in further versions.
-      # Temporarily, I am replacing it with a custom script in ZSH. 
+      # Temporarily, I am replacing it with a custom script in ZSH.
       #remapCapsLockToEscape = remapCapsLock;
       #userKeyMapping = if remapLeftArrow then [{
       #  HIDKeyboardModifierMappingSrc = 30064771152;
