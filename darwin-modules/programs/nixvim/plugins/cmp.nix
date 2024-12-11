@@ -73,6 +73,7 @@ in
             ];
         "<CR>" =
           "cmp.mapping.confirm({behaviour=cmp.ConfirmBehavior.Replace,select=true})";
+        "<C-Space>" = "cmp.mapping.complete()";
       };
     };
   };

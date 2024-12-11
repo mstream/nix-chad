@@ -16,16 +16,32 @@ let
   showModeKey = modes.match {
     enterSearch = "entersearch";
     locked = "locked";
+    move = "move";
     normal = "normal";
+    pane = "pane";
+    renamePane = "renamepane";
+    renameTab = "renametab";
+    resize = "resize";
+    scroll = "scroll";
     search = "search";
+    session = "session";
     tab = "tab";
+    tmux = "tmux";
   };
   showModeValue = modes.match {
     enterSearch = "EnterSearch";
     locked = "Locked";
+    move = "Move";
     normal = "Normal";
+    pane = "Pane";
+    renamePane = "RenamePane";
+    renameTab = "RenameTab";
+    resize = "Resize";
+    scroll = "Scroll";
     search = "Search";
+    session = "Session";
     tab = "Tab";
+    tmux = "Tmux";
   };
 in
 {
@@ -54,6 +70,9 @@ in
       name = "MoveFocusOrTab";
     };
   newTab = kdlKey { name = "NewTab"; };
+  normal = kdlKey { name = showModeKey modes.enums.normal; };
+  scroll = kdlKey { name = showModeKey modes.enums.scroll; };
+  search = kdlKey { name = showModeKey modes.enums.search; };
   searchInput =
     index:
     kdlKey {
@@ -73,5 +92,6 @@ in
       name = "SwitchToMode";
     };
   tab = kdlKey { name = showModeKey modes.enums.tab; };
+  togglePaneFrames = kdlKey { name = "TogglePaneFrames"; };
   toggleTab = kdlKey { name = "ToggleTab"; };
 }

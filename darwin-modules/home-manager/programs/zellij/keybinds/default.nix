@@ -24,6 +24,11 @@ in
     ${keys.bind [ "Enter" ]} = { };
     ${keys.bind [ "Esc" ]} = { };
   };
+  ${keys.normal} = {
+    ${keys.bind [ "Ctrl s" ]} = {
+      ${keys.switchToMode modes.enums.scroll} = { };
+    };
+  };
   ${keys.tab} =
     {
       ${keys.bind [ "Tab" ]} = {
@@ -44,7 +49,7 @@ in
         ${keys.switchToMode modes.enums.normal} = { };
       };
     });
-  search = {
+  ${keys.scroll} = {
     ${keys.bind [ "d" ]} = {
       ${keys.halfPageScrollDown} = { };
     };
@@ -69,6 +74,9 @@ in
     ${keys.bind [ "Alt l" ]} = {
       ${keys.moveFocusOrTab "Right"} = { };
     };
+    ${keys.bind [ "Alt z" ]} = {
+      ${keys.togglePaneFrames} = { };
+    };
   };
   ${
     keys.sharedExcept [
@@ -80,17 +88,6 @@ in
     {
       ${keys.bind [ "Esc" ]} = {
         ${keys.switchToMode modes.enums.normal} = { };
-      };
-    };
-  ${
-    keys.sharedExcept [
-      modes.enums.locked
-      modes.enums.search
-    ]
-  } =
-    {
-      ${keys.bind [ "Ctrl s" ]} = {
-        ${keys.switchToMode modes.enums.search} = { };
       };
     };
   ${
