@@ -3,8 +3,9 @@
     ./aerial.nix
     ./arrow.nix
     ./barbar.nix
-    ./blink-cmp.nix
-    ./cmp.nix
+    # This is not an nvim-cmp add-on. It is a replacement.
+    #./blink-cmp.nix
+    ./cmp/default.nix
     ./cmp-calc.nix
     ./cmp-cmdline.nix
     ./cmp-cmdline-history.nix
@@ -18,6 +19,7 @@
     ./cmp-git.nix
     ./cmp-greek.nix
     ./cmp-latex-symbols.nix
+    ./cmp-luasnip.nix
     ./cmp-npm.nix
     ./cmp-nvim-lsp-document-symbol.nix
     ./cmp-nvim-lsp-signature-help.nix
@@ -27,6 +29,7 @@
     ./lint.nix
     ./lsp.nix
     ./lualine.nix
+    ./luasnip.nix
     ./telescope.nix
     ./treesitter.nix
     ./treesitter-context.nix

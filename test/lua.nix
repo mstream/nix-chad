@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, ... }:
 let
-  inherit (import ../lib/lua.nix { inherit pkgs; }) renderAttrs;
+  inherit (import ../lib/lua.nix { inherit lib; }) renderAttrs;
 
   simpleAttrs = {
     someKey11 = "11 value";
@@ -13,7 +13,7 @@ let
   };
 in
 {
-  testLuaAttrsRenderingEscaping = {
+  attrsRenderingEscaping = {
     expr = renderAttrs { foo = "\\"; };
     expected = ''
       {
@@ -24,7 +24,7 @@ in
     '';
   };
 
-  testLuaAttrsRenderingSimple = {
+  attrsRenderingSimple = {
     expr = renderAttrs simpleAttrs;
     expected = ''
       {
@@ -38,7 +38,7 @@ in
     '';
   };
 
-  testLuaAttrsRenderingNested = {
+  attrsRenderingNested = {
     expr = renderAttrs nestedAttrs;
     expected = ''
       {

@@ -1,5 +1,9 @@
-{ modes, pkgs, ... }:
-with pkgs.lib;
+{
+  directions,
+  lib,
+  modes,
+  ...
+}:
 let
   kdlKey =
     {
@@ -8,27 +12,22 @@ let
     }:
     let
       argToString =
-        arg: if isString arg then "\"${arg}\"" else "${toString arg}";
+        arg:
+        if lib.core.isString arg then
+          "\"${arg}\""
+        else
+          "${lib.core.toString arg}";
 
-      argsString = strings.concatMapStringsSep " " argToString args;
+      argsString = lib.strings.concatMapStringsSep " " argToString args;
     in
     "${name} ${argsString}";
-  showModeKey = modes.match {
-    enterSearch = "entersearch";
-    locked = "locked";
-    move = "move";
-    normal = "normal";
-    pane = "pane";
-    renamePane = "renamepane";
-    renameTab = "renametab";
-    resize = "resize";
-    scroll = "scroll";
-    search = "search";
-    session = "session";
-    tab = "tab";
-    tmux = "tmux";
+  showDirectionValue = directions.mapWith {
+    down = "Down";
+    left = "Left";
+    right = "Right";
+    up = "Up";
   };
-  showModeValue = modes.match {
+  showModeValue = modes.mapWith {
     enterSearch = "EnterSearch";
     locked = "Locked";
     move = "Move";
@@ -54,7 +53,9 @@ in
   closeTab = kdlKey {
     name = "CloseTab";
   };
-  enterSearch = kdlKey { name = showModeKey modes.enums.enterSearch; };
+  enterSearch = kdlKey {
+    name = modes.mapTo.key modes.members.enterSearch;
+  };
   goToTab =
     tabIndex:
     kdlKey {
@@ -63,26 +64,35 @@ in
     };
   halfPageScrollDown = kdlKey { name = "HalfPageScrollDown"; };
   halfPageScrollUp = kdlKey { name = "HalfPageScrollUp"; };
+  locked = kdlKey { name = modes.mapTo.key modes.members.locked; };
   moveFocusOrTab =
     direction:
     kdlKey {
-      args = [ direction ];
+      args = [
+        (showDirectionValue direction)
+      ];
       name = "MoveFocusOrTab";
     };
   newTab = kdlKey { name = "NewTab"; };
-  normal = kdlKey { name = showModeKey modes.enums.normal; };
-  scroll = kdlKey { name = showModeKey modes.enums.scroll; };
-  search = kdlKey { name = showModeKey modes.enums.search; };
+  normal = kdlKey { name = modes.mapTo.key modes.members.normal; };
+  scroll = kdlKey { name = modes.mapTo.key modes.members.scroll; };
+  search = kdlKey { name = modes.mapTo.key modes.members.search; };
   searchInput =
     index:
     kdlKey {
       args = [ index ];
       name = "SearchInput";
     };
-  sharedExcept =
-    modes:
+  sharedAmong =
+    includedModes:
     kdlKey {
-      args = map showModeKey modes;
+      args = lib.core.map modes.mapTo.key includedModes;
+      name = "shared_among";
+    };
+  sharedExcept =
+    excludedModes:
+    kdlKey {
+      args = lib.core.map modes.mapTo.key excludedModes;
       name = "shared_except";
     };
   switchToMode =
@@ -91,7 +101,7 @@ in
       args = [ (showModeValue mode) ];
       name = "SwitchToMode";
     };
-  tab = kdlKey { name = showModeKey modes.enums.tab; };
+  tab = kdlKey { name = modes.mapTo.key modes.members.tab; };
   togglePaneFrames = kdlKey { name = "TogglePaneFrames"; };
   toggleTab = kdlKey { name = "ToggleTab"; };
 }

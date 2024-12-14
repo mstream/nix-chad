@@ -1,38 +1,37 @@
-{ pkgs, ... }:
-with pkgs.lib;
+{ lib, ... }:
 let
-  camelToSnakeCase = strings.stringAsChars (
-    c: if strings.toUpper c == c then "_${strings.toLower c}" else c
+  camelToSnakeCase = lib.strings.stringAsChars (
+    c: if lib.strings.toUpper c == c then "_${lib.strings.toLower c}" else c
   );
 
-  escapeString = strings.stringAsChars (
+  escapeString = lib.strings.stringAsChars (
     c: if c == "\\" then "\\\\" else c
   );
 
   indent = line: "    ${line}";
 
-  bodyLines = foldlAttrs (
+  bodyLines = lib.foldlAttrs (
     acc: key: val:
     let
       firstLine = "${camelToSnakeCase key} =";
 
       otherLines =
-        if builtins.isAttrs val then
+        if lib.core.isAttrs val then
           recordLines val
         else
           [ ''"${escapeString val}"'' ];
     in
-    acc ++ [ firstLine ] ++ builtins.map indent otherLines ++ [ "," ]
+    acc ++ [ firstLine ] ++ lib.core.map indent otherLines ++ [ "," ]
   ) [ ];
 
   recordLines =
-    attrs: [ "{" ] ++ (builtins.map indent (bodyLines attrs)) ++ [ "}" ];
+    attrs: [ "{" ] ++ (lib.core.map indent (bodyLines attrs)) ++ [ "}" ];
 in
 {
   renderAttrs =
     attrs:
     let
-      code = strings.concatStringsSep "\n" (recordLines attrs);
+      code = lib.strings.concatStringsSep "\n" (recordLines attrs);
     in
     ''
       ${code}

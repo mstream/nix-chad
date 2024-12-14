@@ -1,19 +1,18 @@
-{ pkgs, ... }:
-with pkgs.lib;
+{ lib, ... }:
 let
   mergeAbbreviations =
     xs:
     let
-      duplicates = builtins.attrNames (
-        attrsets.filterAttrs (_: v: builtins.length v > 1) (
-          attrsets.zipAttrs xs
+      duplicates = lib.core.attrNames (
+        lib.attrsets.filterAttrs (_: v: lib.core.length v > 1) (
+          lib.attrsets.zipAttrs xs
         )
       );
     in
-    (throwIf (
-      builtins.length duplicates > 0
-    ) "Duplicate abbreviations: ${builtins.toString duplicates}")
-      (attrsets.mergeAttrsList xs);
+    (lib.trivial.throwIf (
+      lib.core.length duplicates > 0
+    ) "Duplicate abbreviations: ${lib.core.toString duplicates}")
+      (lib.attrsets.mergeAttrsList xs);
   aws = {
     aws = "aws --profile \"%\" %";
   };

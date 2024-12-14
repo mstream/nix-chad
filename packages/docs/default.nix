@@ -1,31 +1,25 @@
-{ pkgs, ... }:
-with pkgs.lib;
+{ lib, pkgs, ... }:
 let
-
-  inherit (import ./lib { inherit pkgs; })
+  inherit (import ./lib { inherit lib pkgs; })
     buildKeymapsDocs
     buildOptionsDocs
     ;
-
   aspellEn = pkgs.aspellWithDicts (d: [
     d.en
     d.en-computers
   ]);
-
-  evaluatedModules = evalModules {
+  evaluatedModules = lib.modules.evalModules {
     class = "chad";
     modules = [
       { _module.check = false; }
       ../../darwin-modules/chad/default.nix
     ];
   };
-
   keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
-
   optionsDocs = buildOptionsDocs {
     inherit evaluatedModules;
     nixpkgsRef =
-      (builtins.fromJSON (builtins.readFile ../../flake.lock))
+      (lib.core.fromJSON (lib.core.readFile ../../flake.lock))
       .nodes.nixpkgs.original.ref;
   };
 in
@@ -67,7 +61,7 @@ pkgs.stdenv.mkDerivation {
       --prefix 'lib' \
       --category 'darwin' \
       --description 'Nix Chad Library' \
-      --file $src/lib/darwin.nix \
+      --file $src/darwin.nix \
       > src/for-developers/library.generated.md
     cp $src/docs/.markdownlint.json .
     cp $src/docs/extra-dictionary.txt .

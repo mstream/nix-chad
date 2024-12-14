@@ -48,6 +48,8 @@ g\[ - Go to previous problem
 
 ### Miscellaneous
 
+&lt;ESC&gt; - Cancels current selection or mode.
+
 &lt;C-j&gt; - Move to window on the bottom
 
 &lt;C-h&gt; - Move to window on the left
@@ -56,9 +58,21 @@ g\[ - Go to previous problem
 
 &lt;C-k&gt; - Move to window on the top
 
+&lt;C-d&gt; - Sroll content down
+
+&lt;C-u&gt; - Scroll content up
+
+&lt;C-n&gt; - Select next item on a list
+
+&lt;C-p&gt; - Select previous item on a list
+
 \\- Show key mappings
 
 K - Show information about the symbol under the cursor
+
+&lt;TAB&gt; - switch to next tab
+
+&lt;S-TAB&gt; - switch to previous tab
 
 ### Refactor
 

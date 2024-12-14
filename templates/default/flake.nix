@@ -1,9 +1,9 @@
 # Useful commands
 #
-# Updating nix-chad version: 
+# Updating nix-chad version:
 # `nix flake update`
 #
-# Applying nix-chad configuration: 
+# Applying nix-chad configuration:
 # `nix run .#switch`
 # --------------------------------
 
@@ -20,7 +20,7 @@
       config = {
         browser = {
           # Browser bookmarks
-          # Not supported until there is a nix-native browser for 
+          # Not supported until there is a nix-native browser for
           # Apple Silicon available.
           bookmarks = [ ];
         };
@@ -34,8 +34,8 @@
         gpg = {
           # An ID of a key to be used for GPG signing by default.
           # This is expected to be different for individuals.
-          # The key is not part of this repository and has to be provided
-          # manually.
+          # The key is not part of this repository and has to be
+          # provided manually.
           defaultKey = "BE318F09150F6CB0724FFEC0319EE1D7FC029354";
         };
 
@@ -47,20 +47,21 @@
         };
 
         manageWindows = {
-          # Keep windows occupy maximum available share of space on desktop.
+          # Keep windows occupy maximum available share of space
+          # on desktop.
           enable = false;
-          # List of application names for which automatic window management
-          # should not be performed.
+          # List of application names for which automatic
+          # window management should not be performed.
           exclusions = [ ];
         };
 
         mouse = {
-          # Should content scroll opposite to the swipe/roll direction. 
+          # Should content scroll opposite to the swipe/roll direction.
           naturalScrollDirection = true;
         };
 
         software = {
-          # Use only Open Source software 
+          # Use only Open Source software
           openSourceOnly = true;
         };
 
@@ -69,7 +70,7 @@
             # Additional abbreviation for ZSH
             extraAbbreviations = { };
           };
-          # Additional key bindings for terminal emulator. 
+          # Additional key bindings for terminal emulator.
           keyBindings = [ ];
           # Additional initialization for ZSH sessions.
           zshInitExtra = "";

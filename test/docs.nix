@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, ... }:
 let
   keymaps = {
     "Group 1" = [
@@ -19,7 +19,7 @@ let
     ];
   };
   actualAst = import ../packages/docs/lib/neovim-keymaps-ast.nix {
-    inherit keymaps pkgs;
+    inherit keymaps lib;
   };
   expectedAst = [
     {
@@ -86,7 +86,7 @@ let
   ];
 in
 {
-  testNeovimKeymapsAst = {
+  neovimKeymapsAst = {
     expected = expectedAst;
     expr = actualAst;
   };

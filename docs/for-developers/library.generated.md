@@ -5,18 +5,4 @@ Darwin related functions
 
 Create activation scripts for Darwin system with a desired config applied.
 
-### Inputs
-
-`flakeInputs`
-
-: flake inputs containing darwin, home-manager and nur
-
-`system`
-
-: host system
-
-`chadConfig`
-
-: nix-chad configuration
-
 

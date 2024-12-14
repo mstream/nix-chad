@@ -5,7 +5,7 @@
 }:
 let
   cfg = osConfig.chad;
-  propertiaryPackages = with pkgs; [ jetbrains.idea-ultimate ];
+  propertiaryPackages = [ ];
   otherPackages =
     with pkgs;
     [

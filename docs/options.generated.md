@@ -40,7 +40,7 @@ Browser bookmarks\.
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix)
+ - [\<nix-chad/darwin-modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/browser.nix)
 
 
 
@@ -70,7 +70,28 @@ exts: with exts; [ honey ];
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix)
+ - [\<nix-chad/darwin-modules/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/browser.nix)
+
+
+
+## chad\.editor\.documentWidth
+
+
+
+Ideal maximum document’s width measured in number of characters\.
+
+
+
+*Type:*
+signed integer
+
+
+
+*Default:*
+` 72 `
+
+*Declared by:*
+ - [\<nix-chad/darwin-modules/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/editor.nix)
 
 
 
@@ -92,7 +113,28 @@ one of “absolute”, “relative”
 ` "relative" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/editor.nix)
+ - [\<nix-chad/darwin-modules/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/editor.nix)
+
+
+
+## chad\.editor\.tabWidth
+
+
+
+Tabulation width measured in number of characters\.
+
+
+
+*Type:*
+signed integer
+
+
+
+*Default:*
+` 2 `
+
+*Declared by:*
+ - [\<nix-chad/darwin-modules/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/editor.nix)
 
 
 
@@ -122,7 +164,7 @@ pkgs: with pkgs; [ cowsay ];
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix)
+ - [\<nix-chad/darwin-modules/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/default.nix)
 
 
 
@@ -148,7 +190,7 @@ signed integer
 ` 16 `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix)
+ - [\<nix-chad/darwin-modules/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/default.nix)
 
 
 
@@ -183,7 +225,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+ - [\<nix-chad/darwin-modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/git.nix)
 
 
 
@@ -199,7 +241,7 @@ Git repository path\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+ - [\<nix-chad/darwin-modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/git.nix)
 
 
 
@@ -215,7 +257,7 @@ Path to a SSH private key\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+ - [\<nix-chad/darwin-modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/git.nix)
 
 
 
@@ -231,7 +273,7 @@ Key\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix)
+ - [\<nix-chad/darwin-modules/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/git.nix)
 
 
 
@@ -260,7 +302,7 @@ null or string
 ` "BE318F09150F6CB0724FFEC0319EE1D7FC029354" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/gpg\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/gpg.nix)
+ - [\<nix-chad/darwin-modules/chad/gpg\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/gpg.nix)
 
 
 
@@ -281,7 +323,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix)
+ - [\<nix-chad/darwin-modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/keyboard.nix)
 
 
 
@@ -302,7 +344,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix)
+ - [\<nix-chad/darwin-modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/keyboard.nix)
 
 
 
@@ -323,7 +365,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix)
+ - [\<nix-chad/darwin-modules/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/keyboard.nix)
 
 
 
@@ -344,7 +386,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
+ - [\<nix-chad/darwin-modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/manage-windows.nix)
 
 
 
@@ -384,7 +426,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
+ - [\<nix-chad/darwin-modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/manage-windows.nix)
 
 
 
@@ -405,7 +447,7 @@ string
 ` "^Discord$" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
+ - [\<nix-chad/darwin-modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/manage-windows.nix)
 
 
 
@@ -431,7 +473,7 @@ string
 ` ".*Dialog$" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix)
+ - [\<nix-chad/darwin-modules/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/manage-windows.nix)
 
 
 
@@ -452,7 +494,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/mouse\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/mouse.nix)
+ - [\<nix-chad/darwin-modules/chad/mouse\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/mouse.nix)
 
 
 
@@ -473,7 +515,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/software\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/software.nix)
+ - [\<nix-chad/darwin-modules/chad/software\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/software.nix)
 
 
 
@@ -494,7 +536,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+ - [\<nix-chad/darwin-modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/terminal.nix)
 
 
 
@@ -528,7 +570,7 @@ attribute set of string
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+ - [\<nix-chad/darwin-modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/terminal.nix)
 
 
 
@@ -563,7 +605,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+ - [\<nix-chad/darwin-modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/terminal.nix)
 
 
 
@@ -579,7 +621,7 @@ Substitution\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+ - [\<nix-chad/darwin-modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/terminal.nix)
 
 
 
@@ -595,7 +637,7 @@ Key\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+ - [\<nix-chad/darwin-modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/terminal.nix)
 
 
 
@@ -611,7 +653,7 @@ Modifier key(s)\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+ - [\<nix-chad/darwin-modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/terminal.nix)
 
 
 
@@ -643,7 +685,7 @@ strings concatenated with “\\n”
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix)
+ - [\<nix-chad/darwin-modules/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/terminal.nix)
 
 
 
@@ -679,7 +721,7 @@ list of string
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix)
+ - [\<nix-chad/darwin-modules/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/user.nix)
 
 
 
@@ -700,6 +742,6 @@ string
 ` "bob" `
 
 *Declared by:*
- - [\<nix-chad/modules/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix)
+ - [\<nix-chad/darwin-modules/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/darwin-modules/chad/user.nix)
 
 

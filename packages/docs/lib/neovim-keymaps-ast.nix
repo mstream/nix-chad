@@ -1,9 +1,8 @@
-{ keymaps, pkgs, ... }:
-with pkgs.lib;
+{ keymaps, lib, ... }:
 let
   categoryAst =
     categoryTitle: entries:
-    builtins.foldl'
+    lib.core.foldl'
       (
         acc:
         { combination, description }:
@@ -41,7 +40,7 @@ let
       ]
       entries;
 in
-foldlAttrs (
+lib.attrsets.foldlAttrs (
   acc: key: val:
   acc ++ (categoryAst key val)
 ) [ ] keymaps

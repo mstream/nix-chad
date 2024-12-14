@@ -39,7 +39,8 @@ let
     "${kms.topLevel.moveToTopWindow.combination}" = "<C-w>k";
     "${kms.topLevel.scrollDown.combination}" = "<C-d>zz";
     "${kms.topLevel.scrollUp.combination}" = "<C-u>zz";
-    "<leader>r ${kms.refactor.action.combination}" = "vim.lsp.buf.code_action()";
+    "<leader>r ${kms.refactor.action.combination}" =
+      "vim.lsp.buf.code_action()";
   };
 
   visualKeymaps = keymapEntries modes.visual { };

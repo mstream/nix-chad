@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-with pkgs.lib;
+{ lib, pkgs, ... }:
 { evaluatedModules }:
 let
   neovimKeymapConfig = evaluatedModules.config.chad.editor.keyMappings;
@@ -64,7 +63,7 @@ let
   neovimAst =
     [ (programHeaderAst "NeoVim") ]
     ++ (import ./neovim-keymaps-ast.nix {
-      inherit pkgs;
+      inherit lib;
       keymaps = neovimKeymaps;
     });
 

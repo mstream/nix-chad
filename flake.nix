@@ -24,7 +24,7 @@
     };
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nixvim/main";
+      url = "github:nix-community/nixvim/bef9feb446a9203a1343a5026970396bcae60f6f";
     };
     nur = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +53,13 @@
       ];
 
       forEachSystem = systems: f: builtins.foldl' f { } systems;
+
+      mkLib =
+        pkgs:
+        import ./lib {
+          inherit pkgs;
+          inherit (inputs) yants;
+        };
     in
     {
       apps = forEachSystem ciSystems (
@@ -100,15 +107,16 @@
         forEachSystem supportedSystems (
           acc: system:
           let
+            darwin = import ./darwin.nix;
             pkgs = import inputs.nixpkgs { inherit system; };
-            inherit (import ./lib { inherit pkgs; }) darwin;
+            lib = mkLib pkgs;
           in
-          pkgs.lib.recursiveUpdate acc {
+          lib.attrsets.recursiveUpdate acc {
             apps.${system}.switch = inputs.flake-utils.lib.mkApp {
-              drv = import ./packages/switch/default.nix { inherit pkgs system; };
+              drv = import ./packages/switch { inherit pkgs system; };
             };
             darwinConfigurations.macbook.${system} =
-              darwin.makeSystem inputs system
+              darwin.makeSystem inputs lib system
                 config;
           }
         );
@@ -116,11 +124,13 @@
         acc: system:
         let
           pkgs = import inputs.nixpkgs { inherit system; };
+          lib = mkLib pkgs;
+          docs = import ./packages/docs { inherit lib pkgs; };
         in
-        pkgs.lib.recursiveUpdate acc {
+        lib.attrsets.recursiveUpdate acc {
           ${system} = {
-            docs = import ./packages/docs { inherit pkgs; };
-            website = import ./packages/website { inherit pkgs; };
+            inherit docs;
+            website = import ./packages/website { inherit docs pkgs; };
           };
         }
       );
@@ -140,9 +150,10 @@
               inherit (inputs) nixpkgs-firefox-darwin nur;
             };
           };
+          lib = mkLib pkgs;
         in
-        pkgs.lib.recursiveUpdate acc {
-          ${system} = import ./test { inherit pkgs; };
+        lib.attrsets.recursiveUpdate acc {
+          ${system} = import ./test { inherit lib; };
         }
       );
     };

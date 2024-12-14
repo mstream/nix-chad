@@ -1,6 +1,6 @@
-{ osConfig, pkgs, ... }:
+{ lib, osConfig, ... }:
 let
-  inherit (import ./abbreviations.nix { inherit pkgs; })
+  inherit (import ./abbreviations.nix { inherit lib; })
     defaultAbbreviations
     mergeAbbreviations
     ;

@@ -1,15 +1,68 @@
-{ pkgs, yants, ... }:
+{ lib, ... }:
+let
+  directions = lib.enum.create {
+    memberNames = [
+      "down"
+      "left"
+      "right"
+      "up"
+    ];
+    name = "directions";
+  };
+  modes = lib.enum.create {
+    mappings = {
+      key = {
+        enterSearch = "entersearch";
+        locked = "locked";
+        move = "move";
+        normal = "normal";
+        pane = "pane";
+        renamePane = "renamepane";
+        renameTab = "renametab";
+        resize = "resize";
+        scroll = "scroll";
+        search = "search";
+        session = "session";
+        tab = "tab";
+        tmux = "tmux";
+      };
+    };
+    memberNames = [
+      "enterSearch"
+      "locked"
+      "move"
+      "normal"
+      "pane"
+      "renamePane"
+      "renameTab"
+      "resize"
+      "scroll"
+      "search"
+      "session"
+      "tab"
+      "tmux"
+    ];
+    name = "modes";
+  };
+  keys = import ./keys.nix { inherit directions lib modes; };
+  presets = import ./presets {
+    inherit
+      directions
+      lib
+      keys
+      modes
+      ;
+  };
+in
 {
   programs.zellij = {
     enable = true;
     enableBashIntegration = false;
     enableFishIntegration = false;
     enableZshIntegration = false;
-    settings = {
+    settings = presets.custom // {
       auto_layout = true;
       default_layout = "default";
-      default_mode = "normal";
-      keybinds = import ./keybinds { inherit pkgs yants; };
       mouse_mode = false;
       on_force_close = "quit";
       scroll_buffer_size = 20000;
