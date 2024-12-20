@@ -21,7 +21,7 @@ in
     number = true;
     relativenumber = isNumberingRelative;
     ruler = false;
-    scrolloff = 8;
+    scrolloff = 99;
     shiftwidth = tabWidth;
     showmode = false;
     signcolumn = "auto";

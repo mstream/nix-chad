@@ -24,7 +24,7 @@
     };
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nixvim/bef9feb446a9203a1343a5026970396bcae60f6f";
+      url = "github:nix-community/nixvim/nixos-24.11";
     };
     nur = {
       inputs.nixpkgs.follows = "nixpkgs";

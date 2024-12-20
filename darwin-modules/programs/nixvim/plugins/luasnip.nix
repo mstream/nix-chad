@@ -1,6 +1,15 @@
+{ pkgs, ... }:
 {
   programs.nixvim.plugins.luasnip = {
     enable = true;
-    settings = { };
+    fromVscode = [
+      {
+        lazyLoad = true;
+        paths = "${pkgs.vimPlugins.friendly-snippets}";
+      }
+    ];
+    settings = {
+      enable_autosnippets = true;
+    };
   };
 }
