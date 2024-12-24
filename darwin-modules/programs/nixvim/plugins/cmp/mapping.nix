@@ -29,6 +29,18 @@ let
       actionPerModeLuaString = nix-to-lua.uglyLua actionPerMode;
     in
     "cmp.mapping(${actionPerModeLuaString})";
+
+  confirm =
+    replace: select:
+    let
+      behaviorString =
+        if replace then "replace=cmp.ConfirmBehavior.Replace," else "";
+      selectString = lib.strings.concatStrings [
+        "select="
+        (if select then "true" else "false")
+      ];
+    in
+    "cmp.confirm({${behaviorString}${selectString}})";
 in
 {
   "${kms.topLevel.selectNext.combination}" =
@@ -38,9 +50,7 @@ in
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.jumpable(1) then
-            luasnip.jump(1)
-        else
-          fallback()
+          luasnip.jump(1)
         end
       ''
       [
@@ -69,9 +79,7 @@ in
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-        else
-          fallback()
+          luasnip.jump(-1)
         end
       ''
       [
@@ -96,20 +104,20 @@ in
   "<CR>" = actionPerMode {
     c = ''
       if cmp.visible() then
-        cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+        ${confirm true true}
       else
         fallback()
       end
     '';
     i = ''
       if cmp.visible() and cmp.get_active_entry() then
-        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        ${confirm true false}
       else
         fallback()
       end
     '';
     s = ''
-      cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+      ${confirm false true}
     '';
   };
 }

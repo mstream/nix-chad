@@ -47,8 +47,9 @@ in
     settings = {
       inherit mapping;
       completion = {
+        completeopt = "'menu,menuone,noselect'";
         keyword_length = 1;
-        keyword_pattern = "'.*'";
+        keyword_pattern = "[[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]]";
       };
       experimental.ghost_text = true;
       formatting.fields = [
@@ -75,7 +76,7 @@ in
       sources = builtins.map (name: {
         inherit name;
         keyword_length = 1;
-        group_index = if name == "fuzzy_buffer" then 2 else 1;
+        group_index = if name == "fuzzy_buffer" || name == "rg" then 2 else 1;
       }) sourceNames;
       view = {
         docs.autoopen = true;
@@ -88,7 +89,7 @@ in
         completion = {
           col_offset = -3;
           side_padding = 0;
-          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
+          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None";
         };
       };
     };

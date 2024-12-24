@@ -3,6 +3,7 @@
   keys,
   lib,
   modes,
+  searchOptions,
   ...
 }:
 let
@@ -27,6 +28,7 @@ let
         foldIntegersBetween1And9IntoAttrs
         keys
         modes
+        searchOptions
         ;
     };
 in

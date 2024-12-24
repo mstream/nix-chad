@@ -3,6 +3,7 @@
   foldIntegersBetween1And9IntoAttrs,
   keys,
   modes,
+  searchOptions,
   ...
 }:
 {
@@ -20,8 +21,61 @@
       };
     };
     ${keys.normal} = {
+      ${keys.bind [ "Ctrl a" ]} = {
+        ${keys.switchToMode modes.members.pane} = { };
+      };
       ${keys.bind [ "Ctrl s" ]} = {
         ${keys.switchToMode modes.members.scroll} = { };
+      };
+      ${keys.bind [ "Ctrl t" ]} = {
+        ${keys.switchToMode modes.members.tab} = { };
+      };
+    };
+    ${keys.pane} = {
+      ${keys.bind [ "f" ]} = {
+        ${keys.toggleFocusFullScreen} = { };
+        ${keys.switchToMode modes.members.normal} = { };
+      };
+      ${keys.bind [ "h" ]} = {
+        ${keys.moveFocusOrTab directions.members.left} = { };
+      };
+      ${keys.bind [ "j" ]} = {
+        ${keys.moveFocusOrTab directions.members.down} = { };
+      };
+      ${keys.bind [ "k" ]} = {
+        ${keys.moveFocusOrTab directions.members.up} = { };
+      };
+      ${keys.bind [ "l" ]} = {
+        ${keys.moveFocusOrTab directions.members.right} = { };
+      };
+      ${keys.bind [ "n" ]} = {
+        ${keys.newPane} = { };
+        ${keys.switchToMode modes.members.normal} = { };
+      };
+      ${keys.bind [ "x" ]} = {
+        ${keys.closeFocus} = { };
+        ${keys.switchToMode modes.members.normal} = { };
+      };
+      ${keys.bind [ "z" ]} = {
+        ${keys.togglePaneFrames} = { };
+        ${keys.switchToMode modes.members.normal} = { };
+      };
+    };
+    ${keys.search} = {
+      ${keys.bind [ "d" ]} = {
+        ${keys.halfPageScrollDown} = { };
+      };
+      ${keys.bind [ "n" ]} = {
+        ${keys.searchDown} = { };
+      };
+      ${keys.bind [ "p" ]} = {
+        ${keys.searchUp} = { };
+      };
+      ${keys.bind [ "s" ]} = {
+        ${keys.searchToggleOption searchOptions.members.caseSensitivity} = { };
+      };
+      ${keys.bind [ "u" ]} = {
+        ${keys.halfPageScrollUp} = { };
       };
     };
     ${keys.tab} =
@@ -83,17 +137,6 @@
       {
         ${keys.bind [ "Esc" ]} = {
           ${keys.switchToMode modes.members.normal} = { };
-        };
-      };
-    ${
-      keys.sharedExcept [
-        modes.members.locked
-        modes.members.tab
-      ]
-    } =
-      {
-        ${keys.bind [ "Ctrl t" ]} = {
-          ${keys.switchToMode modes.members.tab} = { };
         };
       };
   };

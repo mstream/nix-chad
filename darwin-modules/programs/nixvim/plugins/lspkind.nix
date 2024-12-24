@@ -20,11 +20,15 @@ in
         local strings = vim.split(kind.kind, " ") 
 
         if #strings == 1 then
-            kind.kind = "   "
-            kind.menu = "    (" .. strings[1] .. ")"
+          kind.kind = "   "
+          kind.menu = "    (" .. strings[1] .. ")"
         else
-            kind.kind = " " .. strings[1] .. " " 
+          kind.kind = " " .. strings[1] .. " " 
+          if strings[2] == nil then
+            kind.menu = ""
+          else
             kind.menu = "    (" .. strings[2] .. ")"
+          end
         end
 
         return kind
