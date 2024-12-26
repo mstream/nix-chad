@@ -17,6 +17,10 @@ in
       };
       notify_on_error = true;
       formatters = {
+        dhall = {
+          command = lib.getExe pkgs.dhall;
+          stdin = false;
+        };
         nixfmt = {
           args = [
             "--width"
@@ -26,6 +30,7 @@ in
         };
       };
       formatters_by_ft = {
+        dhall = [ "dhall" ];
         nix = [ "nixfmt" ];
       };
     };

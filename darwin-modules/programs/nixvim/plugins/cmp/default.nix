@@ -29,7 +29,6 @@ let
     "dap"
     "digraphs"
     "emoji"
-    "greek"
     "latex_symbols"
     "npm"
     "nvim_lua"
@@ -38,6 +37,7 @@ let
     "vimtex"
     "vimwiki-tags"
     "zsh"
+    "greek"
   ];
 in
 {

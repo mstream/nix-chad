@@ -5,6 +5,7 @@
     # This is not an nvim-cmp add-on. It is a replacement.
     #./blink-cmp.nix
     ./cmp/default.nix
+    # These are auto-enabled by the cmp plugin.
     #./cmp-calc.nix
     #./cmp-cmdline.nix
     #./cmp-cmdline-history.nix

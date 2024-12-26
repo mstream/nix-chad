@@ -20,6 +20,7 @@ in
   };
   programs.nixvim.plugins.lint = {
     enable = true;
+    customLinters = { };
     linters = {
       commitlint = {
         cmd = lib.getExe pkgs.commitlint;
