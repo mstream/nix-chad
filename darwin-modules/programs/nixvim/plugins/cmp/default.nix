@@ -28,11 +28,6 @@ let
     "spell"
     "calc"
     "yanky"
-    "fuzzy_buffer"
-    "fuzzy_path"
-    "rg"
-    "cmdline"
-    "cmp-cmdline-history"
     "conventionalcommits"
     "dap"
     "digraphs"
@@ -46,11 +41,45 @@ let
     "vimtex"
     "vimwiki-tags"
     "zsh"
+    "fuzzy_buffer"
+    "fuzzy_path"
+    "rg"
   ];
 in
 {
   programs.nixvim.plugins.cmp = {
     autoEnableSources = true;
+    cmdline = {
+      "/" = {
+        mapping = {
+          __raw = "cmp.mapping.preset.cmdline()";
+        };
+        sources = [
+          {
+            name = "buffer";
+          }
+        ];
+      };
+      ":" = {
+        mapping = {
+          __raw = "cmp.mapping.preset.cmdline()";
+        };
+        sources = [
+          {
+            name = "path";
+          }
+          {
+            name = "cmdline";
+            option = {
+              ignore_cmds = [
+                "Man"
+                "!"
+              ];
+            };
+          }
+        ];
+      };
+    };
     enable = true;
     settings = {
       inherit mapping;
@@ -59,7 +88,7 @@ in
         keyword_length = 1;
         keyword_pattern = "[[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]]";
       };
-      experimental.ghost_text = true;
+      experimental.ghost_text = false;
       formatting.fields = [
         "kind"
         "abbr"
@@ -84,7 +113,6 @@ in
       sources = builtins.map (name: {
         inherit name;
         keyword_length = 1;
-        group_index = if name == "fuzzy_buffer" || name == "rg" then 2 else 1;
       }) sourceNames;
       view = {
         docs.autoopen = true;
