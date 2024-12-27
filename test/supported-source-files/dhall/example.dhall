@@ -8,8 +8,6 @@ let std =
       https://raw.githubusercontent.com/dhall-lang/dhall-lang/dc1177275498acbbe433a8e0d5b834ad27ecfce1/Prelude/package.dhall
         sha256:931cbfae9d746c4611b07633ab1e547637ab4ba138b16bf65ef1b9ad66a60b7f
 
-let x = 1
-
 let boolValue
     : Bool
     = True

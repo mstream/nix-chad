@@ -13,10 +13,14 @@ let
       coreutils
       docker
       editorconfig-checker
+      # this is a dependency for cmp-fuzzy-path neovim plugin
+      fd
       gawk
       nmap
       node2nix
       nodejs
+      # this is a dependency for cmp-rg neovim plugin
+      ripgrep
       tldr
       tree
       unixtools.watch

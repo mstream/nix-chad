@@ -8,6 +8,14 @@ let
   cfg = config.chad;
   kms = cfg.editor.keyMappings;
   mapping = import ./mapping.nix { inherit kms lib nix-to-lua; };
+  snippetExpand =
+    body:
+    nix-to-lua.uglyLua (
+      nix-to-lua.inline.types.function-unsafe.mk {
+        inherit body;
+        args = [ "args" ];
+      }
+    );
 
   # their order influences the menu order priority
   sourceNames = [
@@ -29,6 +37,7 @@ let
     "dap"
     "digraphs"
     "emoji"
+    "greek"
     "latex_symbols"
     "npm"
     "nvim_lua"
@@ -37,7 +46,6 @@ let
     "vimtex"
     "vimwiki-tags"
     "zsh"
-    "greek"
   ];
 in
 {
@@ -57,7 +65,7 @@ in
         "abbr"
         "menu"
       ];
-      snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+      snippet.expand = snippetExpand "require('luasnip').lsp_expand(args.body)";
       sorting = {
         comparators = [
           "require('cmp_fuzzy_buffer.compare')"
