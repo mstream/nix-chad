@@ -170,6 +170,20 @@ let
         description = "switch to previous tab";
       };
     };
+    select = {
+      decrement = {
+        combination = "d";
+        description = "decrement selection";
+      };
+      increment = {
+        combination = "i";
+        description = "increment selection";
+      };
+      initialize = {
+        combination = "s";
+        description = "initialize selection";
+      };
+    };
   };
 in
 {

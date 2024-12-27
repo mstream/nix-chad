@@ -43,21 +43,26 @@ let
     "cmp.confirm({${behaviorString}${selectString}})";
 in
 {
-  "${kms.topLevel.selectNext.combination}" =
-    actionForAllModes
-      ''
-        local luasnip = require "luasnip"
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.jumpable(1) then
-          luasnip.jump(1)
-        end
-      ''
-      [
-        "c"
-        "i"
-        "s"
-      ];
+  "${kms.topLevel.selectNext.combination}" = actionPerMode {
+    c = ''
+      local luasnip = require "luasnip"
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    '';
+    i = ''
+      local luasnip = require "luasnip"
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.jumpable(1) then
+        luasnip.jump(1)
+      end
+    '';
+  };
   "${kms.topLevel.scrollDown.combination}" =
     actionForAllModes
       ''
@@ -72,21 +77,26 @@ in
         "i"
         "s"
       ];
-  "${kms.topLevel.selectPrevious.combination}" =
-    actionForAllModes
-      ''
-        local luasnip = require "luasnip"
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        end
-      ''
-      [
-        "c"
-        "i"
-        "s"
-      ];
+  "${kms.topLevel.selectPrevious.combination}" = actionPerMode {
+    c = ''
+      local luasnip = require "luasnip"
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    '';
+    i = ''
+      local luasnip = require "luasnip"
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      end
+    '';
+  };
   "${kms.topLevel.scrollUp.combination}" =
     actionForAllModes
       ''

@@ -8,13 +8,13 @@ let
   };
 
   defaultMappingsOverride = {
-    "${kms.topLevel.selectNext.combination}" =
+    ${kms.topLevel.selectNext.combination} =
       actionLuaSnippet "move_selection_next";
-    "${kms.topLevel.selectPrevious.combination}" =
+    ${kms.topLevel.selectPrevious.combination} =
       actionLuaSnippet "move_selection_previous";
-    "${kms.topLevel.scrollDown.combination}" =
+    ${kms.topLevel.scrollDown.combination} =
       actionLuaSnippet "preview_scrolling_down";
-    "${kms.topLevel.scrollUp.combination}" =
+    ${kms.topLevel.scrollUp.combination} =
       actionLuaSnippet "preview_scrolling_up";
   };
 in

@@ -32,6 +32,13 @@ let
         description = "Refactor ${description}";
       }
     ) (builtins.attrValues neovimKeymapConfig.refactor);
+    "Select" = builtins.map (
+      { description, combination }:
+      {
+        combination = "s${combination}";
+        description = "Select ${description}";
+      }
+    ) (builtins.attrValues neovimKeymapConfig.select);
     "Miscellaneous" = builtins.map (
       { description, combination }:
       {

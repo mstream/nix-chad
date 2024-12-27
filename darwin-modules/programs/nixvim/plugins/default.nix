@@ -27,6 +27,7 @@
     ./conform-nvim.nix
     ./flash.nix
     ./friendly-snippets.nix
+    ./guess-indent.nix
     ./lint.nix
     ./lsp.nix
     ./lspkind.nix
