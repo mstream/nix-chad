@@ -38,5 +38,6 @@
     ./treesitter-refactor.nix
     ./treesitter-textobjects
     ./web-devicons.nix
+    ./which-key.nix
   ];
 }
