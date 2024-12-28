@@ -7,6 +7,7 @@
     ./conform-nvim.nix
     ./flash.nix
     ./friendly-snippets.nix
+    ./fugitive.nix
     ./guess-indent.nix
     ./lint.nix
     ./lsp.nix
