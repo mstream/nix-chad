@@ -4,6 +4,22 @@
 
 ## NeoVim
 
+### Comment
+
+clA - Comment add at the end of line
+
+clO - Comment add line above
+
+clo - Comment add line below
+
+cb - Comment block operator-pending
+
+cl - Comment line operator-pending
+
+ctb - Comment toggle block
+
+ctl - Comment toggle line
+
 ### Directory Tree
 
 tf - Directory tree focus
@@ -81,3 +97,11 @@ ra - Refactor action
 rf - Refactor format
 
 rn - Refactor name
+
+### Select
+
+sd - Select decrement selection
+
+si - Select increment selection
+
+ss - Select initialize selection
