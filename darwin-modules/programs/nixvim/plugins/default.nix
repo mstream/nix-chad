@@ -8,6 +8,7 @@
     ./flash.nix
     ./friendly-snippets.nix
     ./fugitive.nix
+    ./gitsigns.nix
     ./guess-indent.nix
     ./lint.nix
     ./lsp.nix
