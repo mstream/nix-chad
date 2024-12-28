@@ -4,6 +4,13 @@ let
   neovimKeymapConfig = evaluatedModules.config.chad.editor.keyMappings;
 
   neovimKeymaps = {
+    "Comment" = builtins.map (
+      { description, combination }:
+      {
+        combination = "c${combination}";
+        description = "Comment ${description}";
+      }
+    ) (builtins.attrValues neovimKeymapConfig.comment);
     "Directory Tree" = builtins.map (
       { description, combination }:
       {

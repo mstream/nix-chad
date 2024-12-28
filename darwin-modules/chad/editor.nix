@@ -24,6 +24,36 @@ let
       visible = false;
     };
   keyMappings = {
+    comment = {
+      addLineAbove = {
+        combination = "lO";
+        description = "add line above";
+      };
+      addLineBelow = {
+        combination = "lo";
+        description = "add line below";
+      };
+      addEndOfLine = {
+        combination = "lA";
+        description = "add at the end of line";
+      };
+      block = {
+        combination = "b";
+        description = "block operator-pending";
+      };
+      line = {
+        combination = "l";
+        description = "line operator-pending";
+      };
+      toggleBlock = {
+        combination = "tb";
+        description = "toggle block";
+      };
+      toggleLine = {
+        combination = "tl";
+        description = "toggle line";
+      };
+    };
     directoryTree = {
       focus = {
         combination = "f";
@@ -169,6 +199,7 @@ let
         combination = "<S-TAB>";
         description = "switch to previous tab";
       };
+
     };
     select = {
       decrement = {

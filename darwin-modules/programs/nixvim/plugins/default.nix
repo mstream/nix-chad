@@ -3,8 +3,7 @@
     ./arrow.nix
     ./barbar.nix
     ./cmp/default.nix
-    #./cmp-cmdline.nix
-    #./cmp-cmdline-history.nix
+    ./comment.nix
     ./conform-nvim.nix
     ./flash.nix
     ./friendly-snippets.nix
