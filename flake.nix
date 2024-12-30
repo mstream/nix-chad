@@ -6,6 +6,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:LnL7/nix-darwin/master";
     };
+    flake-parts = {
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+      url = "github:hercules-ci/flake-parts/main";
+    };
     flake-utils.url = "github:numtide/flake-utils/main";
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +41,12 @@
   };
 
   outputs =
-    inputs:
+    inputs@{
+      flake-parts,
+      nix-unit,
+      nixpkgs,
+      ...
+    }:
     let
       name = "nix-chad";
 
@@ -61,100 +70,85 @@
           inherit (inputs) yants;
         };
     in
-    {
-      apps = forEachSystem ciSystems (
-        acc: system:
-        let
-          pkgs = import inputs.nixpkgs { inherit system; };
-        in
-        pkgs.lib.recursiveUpdate acc {
-          ${system}.nix-unit = {
-            program = "${inputs.nix-unit.packages.${system}.default}/bin/nix-unit";
-            type = "app";
-          };
-        }
-      );
-      devShells = forEachSystem ciSystems (
-        acc: system:
-        let
-          pkgs = import inputs.nixpkgs { inherit system; };
-        in
-        pkgs.lib.recursiveUpdate acc {
-          ${system}.default = pkgs.mkShell {
-            inherit name;
-            buildInputs = [ pkgs.node2nix ];
-            shellHook = ''
-              PS1="\[\e[33m\][\[\e[m\]\[\e[34;40m\]${name}:\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] "
-            '';
-          };
-        }
-      );
-      legacyPackages = forEachSystem ciSystems (
-        acc: system:
-        let
-          pkgs = import inputs.nixpkgs { inherit system; };
-        in
-        pkgs.lib.recursiveUpdate acc {
-          ${system}.lints = inputs.lint-nix.lib.lint-nix {
-            inherit pkgs;
-            inherit (import ./lint-conf.nix { inherit pkgs; }) formatters linters;
-            src = ./.;
-          };
-        }
-      );
-      lib.chad =
-        config:
-        forEachSystem supportedSystems (
-          acc: system:
-          let
-            darwin = import ./darwin.nix;
-            pkgs = import inputs.nixpkgs { inherit system; };
-            lib = mkLib pkgs;
-          in
-          lib.attrsets.recursiveUpdate acc {
-            apps.${system}.switch = inputs.flake-utils.lib.mkApp {
-              drv = import ./packages/switch { inherit pkgs system; };
-            };
-            darwinConfigurations.macbook.${system} =
-              darwin.makeSystem inputs lib system
-                config;
-          }
-        );
-      packages = forEachSystem ciSystems (
-        acc: system:
-        let
-          pkgs = import inputs.nixpkgs { inherit system; };
-          lib = mkLib pkgs;
-          docs = import ./packages/docs { inherit lib pkgs; };
-        in
-        lib.attrsets.recursiveUpdate acc {
-          ${system} = {
-            inherit docs;
-            website = import ./packages/website { inherit docs pkgs; };
-          };
-        }
-      );
-      templates.default = {
-        description = "A default template";
-        path = ./templates/default;
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      flake = {
+        lib.chad =
+          config:
+          forEachSystem supportedSystems (
+            acc: system:
+            let
+              darwin = import ./darwin.nix;
+              pkgs = import inputs.nixpkgs { inherit system; };
+              lib = mkLib pkgs;
+            in
+            lib.attrsets.recursiveUpdate acc {
+              apps.${system}.switch = inputs.flake-utils.lib.mkApp {
+                drv = import ./packages/switch { inherit pkgs system; };
+              };
+              darwinConfigurations.macbook.${system} =
+                darwin.makeSystem inputs lib system
+                  config;
+            }
+          );
+        templates.default = {
+          description = "A default template";
+          path = ./templates/default;
+        };
       };
-      tests = forEachSystem ciSystems (
-        acc: system:
+      imports = [
+        nix-unit.modules.flake.default
+      ];
+      perSystem =
+        { pkgs, system, ... }:
         let
-          pkgs = import inputs.nixpkgs {
+          lib = mkLib pkgs;
+
+        in
+        {
+          _module.args.pkgs = import nixpkgs {
             inherit system;
-            config = {
-              allowUnfree = true;
-            };
+            config.allowUnfree = true;
             overlays = import ./overlays/nixpkgs.nix {
               inherit (inputs) nixpkgs-firefox-darwin nur;
             };
           };
-          lib = mkLib pkgs;
-        in
-        lib.attrsets.recursiveUpdate acc {
-          ${system} = import ./test { inherit lib; };
-        }
-      );
+
+          legacyPackages.lints = pkgs.callPackage inputs.lint-nix.lib.lint-nix {
+            inherit (import ./lint-conf.nix { inherit pkgs; }) formatters linters;
+            src = ./.;
+          };
+
+          nix-unit = {
+            inputs = {
+              inherit flake-parts nix-unit nixpkgs;
+            };
+            tests = pkgs.callPackage ./test {
+              inherit lib;
+            };
+          };
+
+          devShells.default = pkgs.mkShell {
+            inherit name;
+            buildInputs = [ pkgs.node2nix ];
+            shellHook =
+              let
+                promptPrefix = "\[\e[33m\][\[\e[m\]\[\e[34;40m\]";
+                promptSuffix = ":\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] ";
+              in
+              ''
+                PS1="${promptPrefix}${name}${promptSuffix}"
+              '';
+          };
+
+          packages =
+            let
+              docs = pkgs.callPackage ./packages/docs { inherit lib; };
+              website = pkgs.callPackage ./packages/website { inherit docs; };
+            in
+            {
+              inherit docs website;
+            };
+        };
+      systems = ciSystems;
     };
 }

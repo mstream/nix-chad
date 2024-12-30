@@ -12,12 +12,6 @@ if ! nix flake check --all-systems --show-trace; then
     exit 1
 fi
 
-if ! nix run --show-trace ".#nix-unit" -- --flake ".#tests" --show-trace; then
-    echo "unit tests are failing" >&2
-    exit 1
-fi
-
-
 if ! nix build --print-build-logs --show-trace ".#lints.all-checks"; then
     echo "coding style is not up to standards" >&2
     exit 1

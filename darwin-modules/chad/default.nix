@@ -42,10 +42,19 @@ in
         visible = false;
         example = "24.05";
       };
+      sslCertFilePath = mkOption {
+        type = types.str;
+        readOnly = true;
+        visible = false;
+        example = "/etc/ssl/certs/ca-certificates.crt";
+      };
     };
   };
   config = {
-    chad.nixpkgsReleaseVersion = "24.11";
+    chad = {
+      nixpkgsReleaseVersion = "24.11";
+      sslCertFilePath = "/etc/nix/ca_cert.pem";
+    };
     users.users."${cfg.user.name}" = {
       home = "/Users/${cfg.user.name}";
       inherit (cfg.user) name;

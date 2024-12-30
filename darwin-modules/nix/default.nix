@@ -39,6 +39,7 @@ in
       settings = {
         auto-optimise-store = false;
         sandbox = false;
+        ssl-cert-file = cfg.sslCertFilePath;
         substituters = [
           "https://cache.garnix.io/"
           "https://cache.iog.io/"
