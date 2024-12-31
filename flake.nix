@@ -142,6 +142,18 @@
                   fi
               '';
             };
+            generateDocumentation = {
+              enable = true;
+              justfile = ''
+                generate-documentation:
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+
+                  nix build .#docs
+                  cp -r result/* docs/
+                  chmod -R +w docs/*
+              '';
+            };
           };
 
           legacyPackages.lints = pkgs.callPackage lint-nix.lib.lint-nix {
