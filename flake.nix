@@ -154,6 +154,84 @@
                   chmod -R +w docs/*
               '';
             };
+            runAllTests = {
+              enable = true;
+              justfile = ''
+                run-all-tests: run-lints run-unit-tests run-integration-tests && check-generation
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+
+                  echo "All tests have passed."
+              '';
+            };
+            runIntegrationTests = {
+              enable = true;
+              justfile = ''
+                ci := env_var_or_default("CI", "false") 
+                repo_root := justfile_directory()
+                installable := "darwinConfigurations.macbook.aarch64-darwin.system"
+
+                run-integration-tests: 
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+
+                  if [[ "{{ci}}" != "true" ]]; then
+                    echo "CI runs on Linux machines as MacOS ones are 10 times as expensive."
+                    echo "Therefore, this suite of test will be executed only from development machine."
+                    echo "Skipping integration tests..."
+                    exit 0
+                  fi
+
+                  cd "{{repo_root}}/examples/minimal"
+                    nix flake update
+                    if ! nix build --show-trace "./#{{installable}}"; then
+                      echo "minimal example is broken" >&2
+                      exit 1
+                    fi
+
+                    cd "{{repo_root}}/examples/custom"
+                    nix flake update
+                    if ! nix build --show-trace "./#{{installable}}"; then
+                      echo "custom example is broken" >&2
+                      exit 1
+                    fi
+
+                    cd "$(mktemp -d)"
+                    nix flake init --template "{{repo_root}}"
+                    sed "s%github:mstream/nix-chad/main%git+file:{{repo_root}}?shallow=1%g" flake.nix >tmp.nix && mv tmp.nix flake.nix
+                    nix flake update
+                    if ! nix build --show-trace "./#{{installable}}"; then
+                      echo "template is broken" >&2
+                      exit 1
+                    fi
+              '';
+            };
+            runLints = {
+              enable = true;
+              justfile = ''
+                run-lints: 
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+
+                  if ! nix build --print-build-logs --show-trace ".#lints.all-checks"; then
+                    echo "coding style is not up to standards" >&2
+                    exit 1
+                  fi
+              '';
+            };
+            runUnitTests = {
+              enable = true;
+              justfile = ''
+                run-unit-tests: 
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+
+                  if ! nix flake check --all-systems --show-trace; then
+                    echo "nix flake does not evaluate properly" >&2
+                    exit 1
+                  fi
+              '';
+            };
           };
 
           legacyPackages.lints = pkgs.callPackage lint-nix.lib.lint-nix {

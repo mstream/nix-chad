@@ -20,11 +20,11 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             substituters = https://cache.nixos.org/
-          nix_path: nixpkgs=channel:nixos-23.11
+          nix_path: nixpkgs=channel:nixos-24.11
       - name: Run tests
-        run: ./ci/test.sh
+        run: nix develop --command just run-all-tests
       - name: Generate documentation markdown documents
-        run: ./ci/generate-docs.sh
+        run: nix develop --command just generate-documentation
       - name: Check if all generated files have been already commited
         run: nix develop --command just check-generation
       - name: Generate documentation website
