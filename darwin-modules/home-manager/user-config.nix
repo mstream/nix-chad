@@ -92,6 +92,9 @@ in
       enableNixpkgsReleaseCheck = true;
       file = homeFiles;
       packages = otherPackages ++ customPackages;
+      sessionVariables = {
+        DIRENV_WARN_TIMEOUT = "30s";
+      };
       stateVersion = cfg.nixpkgsReleaseVersion;
     };
   };
