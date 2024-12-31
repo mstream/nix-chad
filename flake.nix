@@ -15,6 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager/release-24.11";
     };
+    just-flake.url = "github:juspay/just-flake/main";
     lint-nix.url = "github:xc-jp/lint.nix/master";
     nix-to-lua.url = "github:BirdeeHub/nixToLua/master";
     nix-unit = {
@@ -42,21 +43,25 @@
 
   outputs =
     inputs@{
+      just-flake,
       flake-parts,
+      flake-utils,
+      lint-nix,
       nix-unit,
       nixpkgs,
+      yants,
       ...
     }:
     let
       name = "nix-chad";
 
-      ciSystems = with inputs.flake-utils.lib.system; [
+      ciSystems = with flake-utils.lib.system; [
         aarch64-darwin
         x86_64-darwin
         x86_64-linux
       ];
 
-      supportedSystems = with inputs.flake-utils.lib.system; [
+      supportedSystems = with flake-utils.lib.system; [
         aarch64-darwin
         x86_64-darwin
       ];
@@ -66,8 +71,7 @@
       mkLib =
         pkgs:
         import ./lib {
-          inherit pkgs;
-          inherit (inputs) yants;
+          inherit pkgs yants;
         };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -78,11 +82,11 @@
             acc: system:
             let
               darwin = import ./darwin.nix;
-              pkgs = import inputs.nixpkgs { inherit system; };
+              pkgs = import nixpkgs { inherit system; };
               lib = mkLib pkgs;
             in
             lib.attrsets.recursiveUpdate acc {
-              apps.${system}.switch = inputs.flake-utils.lib.mkApp {
+              apps.${system}.switch = flake-utils.lib.mkApp {
                 drv = import ./packages/switch { inherit pkgs system; };
               };
               darwinConfigurations.macbook.${system} =
@@ -96,10 +100,16 @@
         };
       };
       imports = [
+        just-flake.flakeModule
         nix-unit.modules.flake.default
       ];
       perSystem =
-        { pkgs, system, ... }:
+        {
+          config,
+          pkgs,
+          system,
+          ...
+        }:
         let
           lib = mkLib pkgs;
 
@@ -108,20 +118,39 @@
           _module.args.pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
-            overlays = import ./overlays/nixpkgs.nix {
-              inherit (inputs) nixpkgs-firefox-darwin nur;
+            overlays = import ./overlays/nixpkgs.nix inputs;
+          };
+
+          just-flake.features = {
+            checkGeneration = {
+              enable = true;
+              justfile = ''
+                check-generation:
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+
+                  if [[ $(git diff HEAD --stat) != "" ]]; then
+                    echo "changes to git working directory after detected:"
+                    echo "vvv"
+                    git status
+                    git diff HEAD
+                    echo "^^^"
+                    echo "aborting"
+                    exit 1
+                  else
+                    echo "git branch is clean"
+                  fi
+              '';
             };
           };
 
-          legacyPackages.lints = pkgs.callPackage inputs.lint-nix.lib.lint-nix {
+          legacyPackages.lints = pkgs.callPackage lint-nix.lib.lint-nix {
             inherit (import ./lint-conf.nix { inherit pkgs; }) formatters linters;
             src = ./.;
           };
 
           nix-unit = {
-            inputs = {
-              inherit flake-parts nix-unit nixpkgs;
-            };
+            inherit inputs;
             tests = pkgs.callPackage ./test {
               inherit lib;
             };
@@ -130,14 +159,17 @@
           devShells.default = pkgs.mkShell {
             inherit name;
             buildInputs = [ pkgs.node2nix ];
-            shellHook =
-              let
-                promptPrefix = "\[\e[33m\][\[\e[m\]\[\e[34;40m\]";
-                promptSuffix = ":\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] ";
-              in
-              ''
-                PS1="${promptPrefix}${name}${promptSuffix}"
-              '';
+            inputsFrom = [ config.just-flake.outputs.devShell ];
+            /*
+              shellHook =
+                let
+                  promptPrefix = "\[\e[33m\][\[\e[m\]\[\e[34;40m\]";
+                  promptSuffix = ":\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] ";
+                in
+                ''
+                  PS1="${promptPrefix}${name}${promptSuffix}"
+                '';
+            */
           };
 
           packages =
