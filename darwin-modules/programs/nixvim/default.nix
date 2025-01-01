@@ -3,7 +3,7 @@
     ./color-schemes.nix
     ./globals.nix
     ./keymaps.nix
-    ./options.nix
+    ./options
     ./plugins
   ];
 

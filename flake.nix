@@ -19,7 +19,10 @@
     lint-nix.url = "github:xc-jp/lint.nix/master";
     nix-to-lua.url = "github:BirdeeHub/nixToLua/master";
     nix-unit = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
       url = "github:nix-community/nix-unit";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
@@ -28,11 +31,19 @@
       url = "github:bandithedoge/nixpkgs-firefox-darwin/main";
     };
     nixvim = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        home-manager.follows = "home-manager";
+        nix-darwin.follows = "darwin";
+        nixpkgs.follows = "nixpkgs";
+      };
       url = "github:nix-community/nixvim/nixos-24.11";
     };
     nur = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
       url = "github:nix-community/NUR/master";
     };
     yants = {
@@ -152,6 +163,15 @@
                   nix build .#docs
                   cp -r result/* docs/
                   chmod -R +w docs/*
+              '';
+            };
+            listFlakeInputs = {
+              enable = true;
+              justfile = ''
+                list-flake-inputs:
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+                  nix flake metadata --json . | jq -r '.locks.nodes.root.inputs[]'
               '';
             };
             runAllTests = {

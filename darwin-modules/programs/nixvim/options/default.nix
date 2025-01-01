@@ -4,11 +4,6 @@ let
   inherit (cfg.editor) documentWidth tabWidth;
   isNumberingRelative = cfg.editor.lineNumbering == "relative";
   colorColumn = documentWidth + 1;
-  showNonPrintableCharacterSymbolsMapping = lib.function.compose [
-    (lib.attrsets.mapAttrsToList (name: symbol: "${name}:${symbol}"))
-    (lib.strings.concatStringsSep ",")
-  ];
-
 in
 {
   programs.nixvim.opts = {
@@ -24,14 +19,7 @@ in
     incsearch = true;
     laststatus = 3;
     list = true;
-    listchars = showNonPrintableCharacterSymbolsMapping {
-      conceal = "⚿";
-      eol = "↵";
-      extends = "»";
-      precedes = "«";
-      space = "␣";
-      tab = "——⇥";
-    };
+    listchars = import ./list-chars.nix { inherit lib; };
     number = true;
     relativenumber = isNumberingRelative;
     ruler = false;
