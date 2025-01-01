@@ -1,6 +1,6 @@
-{ lib, pkgs, ... }:
+{ chadLib, pkgs, ... }:
 let
-  chadPath = lib.core.toString ../../..;
+  chadPath = chadLib.core.toString ../../..;
   gitHubDeclaration =
     {
       ref,
@@ -15,18 +15,20 @@ let
 in
 { evaluatedModules, nixpkgsRef }:
 pkgs.buildPackages.nixosOptionsDoc {
-  options = lib.core.removeAttrs evaluatedModules.options [ "_module" ];
+  options = chadLib.core.removeAttrs evaluatedModules.options [
+    "_module"
+  ];
   transformOptions =
     opt:
     let
       substituteDeclaration =
         decl:
-        if lib.strings.hasPrefix chadPath (lib.core.toString decl) then
+        if chadLib.strings.hasPrefix chadPath (chadLib.core.toString decl) then
           gitHubDeclaration {
             ref = "main";
             repo = "nix-chad";
-            subpath = lib.strings.removePrefix "/" (
-              lib.strings.removePrefix chadPath (lib.core.toString decl)
+            subpath = chadLib.strings.removePrefix "/" (
+              chadLib.strings.removePrefix chadPath (chadLib.core.toString decl)
             );
             user = "mstream";
           }
@@ -42,6 +44,6 @@ pkgs.buildPackages.nixosOptionsDoc {
     in
     opt
     // {
-      declarations = lib.core.map substituteDeclaration opt.declarations;
+      declarations = chadLib.core.map substituteDeclaration opt.declarations;
     };
 }

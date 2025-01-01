@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ chadLib, ... }:
 let
   zshAbbreviations =
-    import ../darwin-modules/home-manager/programs/zsh/abbreviations.nix
+    import ../modules/darwin/home-manager/programs/zsh/abbreviations.nix
       {
-        inherit lib;
+        inherit chadLib;
       };
   mergedAbbreviations = zshAbbreviations.mergeAbbreviations [
     {

@@ -1,57 +1,57 @@
-{ lib, pkgs, ... }:
+{ chadLib, pkgs, ... }:
 { evaluatedModules }:
 let
   neovimKeymapConfig = evaluatedModules.config.chad.editor.keyMappings;
 
   neovimKeymaps = {
-    "Comment" = builtins.map (
+    "Comment" = chadLib.core.map (
       { description, combination }:
       {
         combination = "c${combination}";
         description = "Comment ${description}";
       }
-    ) (builtins.attrValues neovimKeymapConfig.comment);
-    "Directory Tree" = builtins.map (
+    ) (chadLib.core.attrValues neovimKeymapConfig.comment);
+    "Directory Tree" = chadLib.core.map (
       { description, combination }:
       {
         combination = "t${combination}";
         description = "Directory tree ${description}";
       }
-    ) (builtins.attrValues neovimKeymapConfig.directoryTree);
-    "Find" = builtins.map (
+    ) (chadLib.core.attrValues neovimKeymapConfig.directoryTree);
+    "Find" = chadLib.core.map (
       { description, combination }:
       {
         combination = "f${combination}";
         description = "Find ${description}";
       }
-    ) (builtins.attrValues neovimKeymapConfig.find);
-    "Go To" = builtins.map (
+    ) (chadLib.core.attrValues neovimKeymapConfig.find);
+    "Go To" = chadLib.core.map (
       { description, combination }:
       {
         combination = "g${combination}";
         description = "Go to ${description}";
       }
-    ) (builtins.attrValues neovimKeymapConfig.goTo);
-    "Refactor" = builtins.map (
+    ) (chadLib.core.attrValues neovimKeymapConfig.goTo);
+    "Refactor" = chadLib.core.map (
       { description, combination }:
       {
         combination = "r${combination}";
         description = "Refactor ${description}";
       }
-    ) (builtins.attrValues neovimKeymapConfig.refactor);
-    "Select" = builtins.map (
+    ) (chadLib.core.attrValues neovimKeymapConfig.refactor);
+    "Select" = chadLib.core.map (
       { description, combination }:
       {
         combination = "s${combination}";
         description = "Select ${description}";
       }
-    ) (builtins.attrValues neovimKeymapConfig.select);
-    "Miscellaneous" = builtins.map (
+    ) (chadLib.core.attrValues neovimKeymapConfig.select);
+    "Miscellaneous" = chadLib.core.map (
       { description, combination }:
       {
         inherit description combination;
       }
-    ) (builtins.attrValues neovimKeymapConfig.topLevel);
+    ) (chadLib.core.attrValues neovimKeymapConfig.topLevel);
   };
 
   programHeaderAst = programName: {
@@ -77,7 +77,7 @@ let
   neovimAst =
     [ (programHeaderAst "NeoVim") ]
     ++ (import ./neovim-keymaps-ast.nix {
-      inherit lib;
+      inherit chadLib;
       keymaps = neovimKeymaps;
     });
 
@@ -102,7 +102,7 @@ let
   };
 
   keymapsJson = pkgs.runCommand "keymaps.json" { } ''
-    echo '${builtins.toJSON keymapsAst}' > $out
+    echo '${chadLib.core.toJSON keymapsAst}' > $out
   '';
 
   keymapsCommonMark =

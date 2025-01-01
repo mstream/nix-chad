@@ -1,6 +1,6 @@
-{ lib, pkgs, ... }:
+{ chadLib, pkgs, ... }:
 let
-  inherit (import ./lib { inherit lib pkgs; })
+  inherit (import ./lib { inherit chadLib pkgs; })
     buildKeymapsDocs
     buildOptionsDocs
     ;
@@ -8,18 +8,18 @@ let
     d.en
     d.en-computers
   ]);
-  evaluatedModules = lib.modules.evalModules {
+  evaluatedModules = chadLib.modules.evalModules {
     class = "chad";
     modules = [
       { _module.check = false; }
-      ../../darwin-modules/chad/default.nix
+      ../../modules/darwin/chad/default.nix
     ];
   };
   keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
   optionsDocs = buildOptionsDocs {
     inherit evaluatedModules;
     nixpkgsRef =
-      (lib.core.fromJSON (lib.core.readFile ../../flake.lock))
+      (chadLib.core.fromJSON (chadLib.core.readFile ../../flake.lock))
       .nodes.nixpkgs.original.ref;
   };
 in

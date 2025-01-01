@@ -15,12 +15,12 @@
       nur,
       ...
     }:
-    lib: system: chadConfig:
+    chadLib: system: chadConfig:
     let
       specialArgs = {
         inherit
+          chadLib
           home-manager
-          lib
           nix-to-lua
           nixpkgs-firefox-darwin
           nixvim
@@ -38,14 +38,9 @@
         # could have different vim configurations.
         {
           chad = chadConfig;
-          # Do not override "lib" as Home Manager adds its own
-          # extensions to the "lib" taken from darwin system's
-          # "specialArgs".
-          home-manager.extraSpecialArgs = builtins.removeAttrs specialArgs [
-            "lib"
-          ];
+          home-manager.extraSpecialArgs = specialArgs;
         }
-        ./darwin-modules
+        ./modules/darwin
       ];
     };
 }

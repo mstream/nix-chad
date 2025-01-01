@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ nixpkgsLib, ... }:
 {
-  compose = lib.trivial.flip lib.trivial.pipe;
+  compose = nixpkgsLib.trivial.flip nixpkgsLib.trivial.pipe;
 }

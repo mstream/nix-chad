@@ -1,6 +1,12 @@
-{ lib, ... }:
+{ chadLib, ... }:
 let
-  inherit (import ../lib/lua.nix { inherit lib; }) renderAttrs;
+  inherit
+    (import ../lib/lua.nix {
+      inherit (chadLib) core;
+      nixpkgsLib = chadLib;
+    })
+    renderAttrs
+    ;
 
   simpleAttrs = {
     someKey11 = "11 value";

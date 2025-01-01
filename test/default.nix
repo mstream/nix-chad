@@ -1,11 +1,11 @@
-{ lib, ... }:
+{ chadLib, ... }:
 let
   loadTestSuite =
     suiteTitle: path:
     let
-      suite = import path { inherit lib; };
+      suite = import path { inherit chadLib; };
     in
-    lib.attrsets.foldlAttrs (
+    chadLib.attrsets.foldlAttrs (
       acc: testTitle: test:
       acc
       // {
@@ -20,6 +20,8 @@ let
     "zsh-abbreviations" = ./zsh-abbreviations.nix;
   };
 in
-lib.attrsets.mergeAttrsList (
-  lib.core.attrValues (lib.core.mapAttrs loadTestSuite testSuiteFiles)
+chadLib.attrsets.mergeAttrsList (
+  chadLib.core.attrValues (
+    chadLib.core.mapAttrs loadTestSuite testSuiteFiles
+  )
 )

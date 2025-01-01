@@ -1,0 +1,52 @@
+{ chadLib, config, ... }:
+let
+  cfg = config.chad;
+  kms = cfg.editor.keyMappings;
+  modes = {
+    command = "c";
+    insert = "i";
+    l = "l";
+    normal = "n";
+    o = "o";
+    s = "s";
+    t = "t";
+    visual = "v";
+    x = "x";
+  };
+
+  disabledKeys = {
+    "<Down>" = "<NOP>";
+    "<Left>" = "<NOP>";
+    "<Right>" = "<NOP>";
+    "<Up>" = "<NOP>";
+  };
+
+  keymapEntries =
+    mode: attrs:
+    chadLib.attrsets.mapAttrsToList (key: action: {
+      inherit action key mode;
+    }) (attrs // disabledKeys);
+
+  commandKeymaps = keymapEntries modes.command { };
+
+  insertKeymaps = keymapEntries modes.insert { };
+
+  normalKeymaps = keymapEntries modes.normal {
+    "${kms.topLevel.cancel.combination}" = ":nohlsearch<CR>";
+    "${kms.topLevel.moveToBottomWindow.combination}" = "<C-w>j";
+    "${kms.topLevel.moveToLeftWindow.combination}" = "<C-w>h";
+    "${kms.topLevel.moveToRightWindow.combination}" = "<C-w>l";
+    "${kms.topLevel.moveToTopWindow.combination}" = "<C-w>k";
+    "${kms.topLevel.scrollDown.combination}" = "<C-d>zz";
+    "${kms.topLevel.scrollUp.combination}" = "<C-u>zz";
+    "${kms.close.currentBuffer.combination}" = "<Cmd>BufferClose<CR>";
+    "<leader>r${kms.refactor.action.combination}" =
+      ":lua vim.lsp.buf.code_action()<CR>";
+  };
+
+  visualKeymaps = keymapEntries modes.visual { };
+in
+{
+  programs.nixvim.keymaps =
+    commandKeymaps ++ insertKeymaps ++ normalKeymaps ++ visualKeymaps;
+}

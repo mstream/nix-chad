@@ -1,6 +1,12 @@
-{ lib, ... }:
+{ chadLib, ... }:
 let
-  inherit (import ../lib/enum.nix { inherit lib; }) create;
+  inherit
+    (import ../lib/enum.nix {
+      inherit (chadLib) core yants;
+      nixpkgsLib = chadLib;
+    })
+    create
+    ;
 
   colors = create {
     mappings = {
