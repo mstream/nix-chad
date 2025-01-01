@@ -113,8 +113,8 @@ in
       ];
   "<CR>" = actionPerMode {
     c = ''
-      if cmp.visible() then
-        ${confirm true true}
+      if cmp.visible() and cmp.get_active_entry() then
+        ${confirm true false}
       else
         fallback()
       end
