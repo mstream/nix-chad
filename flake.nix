@@ -19,7 +19,11 @@
     lint-nix.url = "github:xc-jp/lint.nix/master";
     nix-to-lua.url = "github:BirdeeHub/nixToLua/master";
     nix-unit = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
       url = "github:nix-community/nix-unit";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
@@ -28,12 +32,26 @@
       url = "github:bandithedoge/nixpkgs-firefox-darwin/main";
     };
     nixvim = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        home-manager.follows = "home-manager";
+        nix-darwin.follows = "darwin";
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
       url = "github:nix-community/nixvim/nixos-24.11";
     };
     nur = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
       url = "github:nix-community/NUR/master";
+    };
+    treefmt-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:numtide/treefmt-nix/main";
     };
     yants = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +67,7 @@
       lint-nix,
       nix-unit,
       nixpkgs,
+      treefmt-nix,
       yants,
       ...
     }:
@@ -102,6 +121,7 @@
       imports = [
         just-flake.flakeModule
         nix-unit.modules.flake.default
+        treefmt-nix.flakeModule
       ];
       perSystem =
         {
@@ -119,6 +139,22 @@
             inherit system;
             config.allowUnfree = true;
             overlays = import ./overlays/nixpkgs.nix inputs;
+          };
+
+          devShells.default = pkgs.mkShell {
+            inherit name;
+            buildInputs = [ pkgs.node2nix ];
+            inputsFrom = [ config.just-flake.outputs.devShell ];
+            /*
+              shellHook =
+                let
+                  promptPrefix = "\[\e[33m\][\[\e[m\]\[\e[34;40m\]";
+                  promptSuffix = ":\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] ";
+                in
+                ''
+                  PS1="${promptPrefix}${name}${promptSuffix}"
+                '';
+            */
           };
 
           just-flake.features = {
@@ -152,6 +188,15 @@
                   nix build .#docs
                   cp -r result/* docs/
                   chmod -R +w docs/*
+              '';
+            };
+            listFlakeInputs = {
+              enable = true;
+              justfile = ''
+                list-flake-inputs:
+                  #!/usr/bin/env bash
+                  set -euxo pipefail
+                  nix flake metadata --json . | jq -r '.locks.nodes.root.inputs[]'
               '';
             };
             runAllTests = {
@@ -246,22 +291,6 @@
             };
           };
 
-          devShells.default = pkgs.mkShell {
-            inherit name;
-            buildInputs = [ pkgs.node2nix ];
-            inputsFrom = [ config.just-flake.outputs.devShell ];
-            /*
-              shellHook =
-                let
-                  promptPrefix = "\[\e[33m\][\[\e[m\]\[\e[34;40m\]";
-                  promptSuffix = ":\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[33m\]]\[\e[m\]\[\e[32m\]\\$\[\e[m\] ";
-                in
-                ''
-                  PS1="${promptPrefix}${name}${promptSuffix}"
-                '';
-            */
-          };
-
           packages =
             let
               docs = pkgs.callPackage ./packages/docs { inherit lib; };
@@ -270,6 +299,10 @@
             {
               inherit docs website;
             };
+
+          treefmt = {
+            projectRootFile = ".git/config";
+          };
         };
       systems = ciSystems;
     };

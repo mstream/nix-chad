@@ -12,9 +12,12 @@
     ./guess-indent.nix
     ./lint.nix
     ./lsp.nix
+    ./lsp-format.nix
     ./lspkind.nix
     ./lualine.nix
     ./luasnip.nix
+    ./none-ls.nix
+    ./nvim-lightbulb.nix
     ./telescope.nix
     ./treesitter.nix
     ./treesitter-context.nix
