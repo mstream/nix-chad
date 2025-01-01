@@ -9,10 +9,8 @@ pkgs.lib.extend (
         inherit yants;
         lib = final;
       };
-      lua = import ./lua.nix {
-        inherit pkgs;
-        lib = final;
-      };
+      function = import ./function.nix { lib = final; };
+      lua = pkgs.callPackage ./lua.nix { lib = final; };
     };
     duplicatedKeys = builtins.attrNames (
       builtins.intersectAttrs prev extension
