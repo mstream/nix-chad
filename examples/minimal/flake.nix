@@ -9,8 +9,6 @@
     { nix-chad, ... }:
     let
       config = {
-        gpg = { };
-        terminal = { };
         user.name = "mstream";
       };
     in
