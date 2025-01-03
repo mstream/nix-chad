@@ -1,8 +1,25 @@
-{ pkgs, ... }:
+{ lib, ... }:
 let
-  docs = import ./docs.nix { inherit pkgs; };
-  lua = import ./lua.nix { inherit pkgs; };
-  userConfig = import ./user-config.nix { inherit pkgs; };
-  zshAbbreviations = import ./zsh-abbreviations.nix { inherit pkgs; };
+  loadTestSuite =
+    suiteTitle: path:
+    let
+      suite = import path { inherit lib; };
+    in
+    lib.attrsets.foldlAttrs (
+      acc: testTitle: test:
+      acc
+      // {
+        "test_${suiteTitle}_${testTitle}" = test;
+      }
+    ) { } suite;
+
+  testSuiteFiles = {
+    "docs" = ./docs.nix;
+    "enum" = ./enum.nix;
+    "lua" = ./lua.nix;
+    "zsh-abbreviations" = ./zsh-abbreviations.nix;
+  };
 in
-pkgs.lib.runTests (docs // lua // userConfig // zshAbbreviations)
+lib.attrsets.mergeAttrsList (
+  lib.core.attrValues (lib.core.mapAttrs loadTestSuite testSuiteFiles)
+)

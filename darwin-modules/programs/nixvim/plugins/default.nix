@@ -1,0 +1,29 @@
+{
+  imports = [
+    ./arrow.nix
+    ./barbar.nix
+    ./cmp/default.nix
+    ./comment.nix
+    ./conform-nvim.nix
+    ./flash.nix
+    ./friendly-snippets.nix
+    ./fugitive.nix
+    ./gitsigns.nix
+    ./guess-indent.nix
+    ./lint.nix
+    ./lsp.nix
+    ./lsp-format.nix
+    ./lspkind.nix
+    ./lualine.nix
+    ./luasnip.nix
+    ./none-ls.nix
+    ./nvim-lightbulb.nix
+    ./telescope.nix
+    ./treesitter.nix
+    ./treesitter-context.nix
+    ./treesitter-refactor.nix
+    ./treesitter-textobjects
+    ./web-devicons.nix
+    ./which-key.nix
+  ];
+}

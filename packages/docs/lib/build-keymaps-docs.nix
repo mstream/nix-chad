@@ -1,10 +1,16 @@
-{ pkgs, ... }:
-with pkgs.lib;
+{ lib, pkgs, ... }:
 { evaluatedModules }:
 let
   neovimKeymapConfig = evaluatedModules.config.chad.editor.keyMappings;
 
   neovimKeymaps = {
+    "Comment" = builtins.map (
+      { description, combination }:
+      {
+        combination = "c${combination}";
+        description = "Comment ${description}";
+      }
+    ) (builtins.attrValues neovimKeymapConfig.comment);
     "Directory Tree" = builtins.map (
       { description, combination }:
       {
@@ -33,6 +39,13 @@ let
         description = "Refactor ${description}";
       }
     ) (builtins.attrValues neovimKeymapConfig.refactor);
+    "Select" = builtins.map (
+      { description, combination }:
+      {
+        combination = "s${combination}";
+        description = "Select ${description}";
+      }
+    ) (builtins.attrValues neovimKeymapConfig.select);
     "Miscellaneous" = builtins.map (
       { description, combination }:
       {
@@ -64,7 +77,7 @@ let
   neovimAst =
     [ (programHeaderAst "NeoVim") ]
     ++ (import ./neovim-keymaps-ast.nix {
-      inherit pkgs;
+      inherit lib;
       keymaps = neovimKeymaps;
     });
 
@@ -92,9 +105,11 @@ let
     echo '${builtins.toJSON keymapsAst}' > $out
   '';
 
-  keymapsCommonMark = pkgs.runCommand "keymaps.md" { nativeBuildInputs = [ pkgs.pandoc ]; } ''
-    pandoc ${keymapsJson} --from json --to markdown_strict -o $out
-  '';
+  keymapsCommonMark =
+    pkgs.runCommand "keymaps.md" { nativeBuildInputs = [ pkgs.pandoc ]; }
+      ''
+        pandoc ${keymapsJson} --from json --to markdown_strict -o $out
+      '';
 in
 {
   inherit keymapsCommonMark;

@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  docs = import ../docs { inherit pkgs; };
-in
+{ docs, pkgs, ... }:
 pkgs.stdenv.mkDerivation {
   nativeBuildInputs = with pkgs; [
     mdbook
