@@ -203,7 +203,7 @@
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/browser.nix">&lt;nix-chad/modules/darwin/chad/browser.nix&gt;</a></li>
 </ul>
 <h2 id="chadbrowserextraextensions"><a class="header" href="#chadbrowserextraextensions">chad.browser.extraExtensions</a></h2>
 <p>Additional Firefox extensions to be installed for the user.</p>
@@ -212,12 +212,22 @@ null or (function that evaluates to a(n) list of package)</p>
 <p><em>Default:</em>
 <code>null</code></p>
 <p><em>Example:</em></p>
-<pre><code>exts: with exts; [ honey ];
+<pre><code>exts: with exts; [ grammarly ];
 
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/browser.nix">&lt;nix-chad/modules/chad/browser.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/browser.nix">&lt;nix-chad/modules/darwin/chad/browser.nix&gt;</a></li>
+</ul>
+<h2 id="chadeditordocumentwidth"><a class="header" href="#chadeditordocumentwidth">chad.editor.documentWidth</a></h2>
+<p>Ideal maximum document’s width measured in number of characters.</p>
+<p><em>Type:</em>
+signed integer</p>
+<p><em>Default:</em>
+<code>72</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix">&lt;nix-chad/modules/darwin/chad/editor.nix&gt;</a></li>
 </ul>
 <h2 id="chadeditorlinenumbering"><a class="header" href="#chadeditorlinenumbering">chad.editor.lineNumbering</a></h2>
 <p>Absolute: line numbers counted from the beginning of the document
@@ -228,7 +238,17 @@ one of “absolute”, “relative”</p>
 <code>"relative"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/editor.nix">&lt;nix-chad/modules/chad/editor.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix">&lt;nix-chad/modules/darwin/chad/editor.nix&gt;</a></li>
+</ul>
+<h2 id="chadeditortabwidth"><a class="header" href="#chadeditortabwidth">chad.editor.tabWidth</a></h2>
+<p>Tabulation width measured in number of characters.</p>
+<p><em>Type:</em>
+signed integer</p>
+<p><em>Default:</em>
+<code>2</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix">&lt;nix-chad/modules/darwin/chad/editor.nix&gt;</a></li>
 </ul>
 <h2 id="chadextrapackages"><a class="header" href="#chadextrapackages">chad.extraPackages</a></h2>
 <p>Additional nixpkgs packages to be accessible for the user.</p>
@@ -242,7 +262,7 @@ null or (function that evaluates to a(n) list of package)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix">&lt;nix-chad/modules/chad/default.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/default.nix">&lt;nix-chad/modules/darwin/chad/default.nix&gt;</a></li>
 </ul>
 <h2 id="chadfontsize"><a class="header" href="#chadfontsize">chad.fontSize</a></h2>
 <p>A desired font size in tools that have means to set it fixed.</p>
@@ -254,7 +274,7 @@ signed integer</p>
 <code>16</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/default.nix">&lt;nix-chad/modules/chad/default.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/default.nix">&lt;nix-chad/modules/darwin/chad/default.nix&gt;</a></li>
 </ul>
 <h2 id="chadgitalternativegitidentities"><a class="header" href="#chadgitalternativegitidentities">chad.git.alternativeGitIdentities</a></h2>
 <p>Alternative Git identities for selected repositories.</p>
@@ -273,7 +293,7 @@ list of (submodule)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix">&lt;nix-chad/modules/darwin/chad/git.nix&gt;</a></li>
 </ul>
 <h2 id="chadgitalternativegitidentitiesrepositorypath"><a class="header" href="#chadgitalternativegitidentitiesrepositorypath">chad.git.alternativeGitIdentities.*.repositoryPath</a></h2>
 <p>Git repository path.</p>
@@ -281,7 +301,7 @@ list of (submodule)</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix">&lt;nix-chad/modules/darwin/chad/git.nix&gt;</a></li>
 </ul>
 <h2 id="chadgitalternativegitidentitiessshkeypath"><a class="header" href="#chadgitalternativegitidentitiessshkeypath">chad.git.alternativeGitIdentities.*.sshKeyPath</a></h2>
 <p>Path to a SSH private key.</p>
@@ -289,7 +309,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix">&lt;nix-chad/modules/darwin/chad/git.nix&gt;</a></li>
 </ul>
 <h2 id="chadgitalternativegitidentitiesuseremail"><a class="header" href="#chadgitalternativegitidentitiesuseremail">chad.git.alternativeGitIdentities.*.userEmail</a></h2>
 <p>Key.</p>
@@ -297,7 +317,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/git.nix">&lt;nix-chad/modules/chad/git.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix">&lt;nix-chad/modules/darwin/chad/git.nix&gt;</a></li>
 </ul>
 <h2 id="chadgpgdefaultkey"><a class="header" href="#chadgpgdefaultkey">chad.gpg.defaultKey</a></h2>
 <p>An ID of a key to be used for GPG signing by default.
@@ -312,7 +332,7 @@ null or string</p>
 <code>"BE318F09150F6CB0724FFEC0319EE1D7FC029354"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/gpg.nix">&lt;nix-chad/modules/chad/gpg.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/gpg.nix">&lt;nix-chad/modules/darwin/chad/gpg.nix&gt;</a></li>
 </ul>
 <h2 id="chadkeyboarddisablekeyrepeat"><a class="header" href="#chadkeyboarddisablekeyrepeat">chad.keyboard.disableKeyRepeat</a></h2>
 <p>Holding keys does not make characters being typed repeatedly.</p>
@@ -322,7 +342,7 @@ boolean</p>
 <code>true</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix">&lt;nix-chad/modules/chad/keyboard.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix">&lt;nix-chad/modules/darwin/chad/keyboard.nix&gt;</a></li>
 </ul>
 <h2 id="chadkeyboardremapcapslock"><a class="header" href="#chadkeyboardremapcapslock">chad.keyboard.remapCapsLock</a></h2>
 <p>Treat Caps Lock key as Escape key.</p>
@@ -332,7 +352,7 @@ boolean</p>
 <code>true</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix">&lt;nix-chad/modules/chad/keyboard.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix">&lt;nix-chad/modules/darwin/chad/keyboard.nix&gt;</a></li>
 </ul>
 <h2 id="chadkeyboardremapleftarrow"><a class="header" href="#chadkeyboardremapleftarrow">chad.keyboard.remapLeftArrow</a></h2>
 <p>Treat Left Arrow key as Right Control key.</p>
@@ -342,7 +362,7 @@ boolean</p>
 <code>false</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/keyboard.nix">&lt;nix-chad/modules/chad/keyboard.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix">&lt;nix-chad/modules/darwin/chad/keyboard.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsenable"><a class="header" href="#chadmanagewindowsenable">chad.manageWindows.enable</a></h2>
 <p>Keep windows occupy maximum available share of space on desktop.</p>
@@ -352,7 +372,7 @@ boolean</p>
 <code>false</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix">&lt;nix-chad/modules/darwin/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsexclusions"><a class="header" href="#chadmanagewindowsexclusions">chad.manageWindows.exclusions</a></h2>
 <p>List of application names for which automatic
@@ -374,7 +394,7 @@ list of (submodule)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix">&lt;nix-chad/modules/darwin/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsexclusionsapp"><a class="header" href="#chadmanagewindowsexclusionsapp">chad.manageWindows.exclusions.*.app</a></h2>
 <p>Regex for application name.</p>
@@ -384,7 +404,7 @@ string</p>
 <code>"^Discord$"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix">&lt;nix-chad/modules/darwin/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadmanagewindowsexclusionstitle"><a class="header" href="#chadmanagewindowsexclusionstitle">chad.manageWindows.exclusions.*.title</a></h2>
 <p>Regex for window title.</p>
@@ -396,7 +416,7 @@ string</p>
 <code>".*Dialog$"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/manage-windows.nix">&lt;nix-chad/modules/chad/manage-windows.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix">&lt;nix-chad/modules/darwin/chad/manage-windows.nix&gt;</a></li>
 </ul>
 <h2 id="chadmousenaturalscrolldirection"><a class="header" href="#chadmousenaturalscrolldirection">chad.mouse.naturalScrollDirection</a></h2>
 <p>Should content scroll opposite to the swipe/roll direction.</p>
@@ -406,7 +426,7 @@ boolean</p>
 <code>true</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/mouse.nix">&lt;nix-chad/modules/chad/mouse.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/mouse.nix">&lt;nix-chad/modules/darwin/chad/mouse.nix&gt;</a></li>
 </ul>
 <h2 id="chadsoftwareopensourceonly"><a class="header" href="#chadsoftwareopensourceonly">chad.software.openSourceOnly</a></h2>
 <p>Restricts software to Open Source only.</p>
@@ -416,7 +436,7 @@ boolean</p>
 <code>true</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/software.nix">&lt;nix-chad/modules/chad/software.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/software.nix">&lt;nix-chad/modules/darwin/chad/software.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalabbreviationsenable"><a class="header" href="#chadterminalabbreviationsenable">chad.terminal.abbreviations.enable</a></h2>
 <p>Enables expandable command abbreviations.</p>
@@ -426,7 +446,7 @@ boolean</p>
 <code>true</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalabbreviationsextraabbreviations"><a class="header" href="#chadterminalabbreviationsextraabbreviations">chad.terminal.abbreviations.extraAbbreviations</a></h2>
 <p>An attribute set that maps aliases (the top level attribute names
@@ -444,7 +464,7 @@ attribute set of string</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindings"><a class="header" href="#chadterminalkeybindings">chad.terminal.keyBindings</a></h2>
 <p>Additional key bindings for terminal emulator.</p>
@@ -463,7 +483,7 @@ list of (submodule)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingschars"><a class="header" href="#chadterminalkeybindingschars">chad.terminal.keyBindings.*.chars</a></h2>
 <p>Substitution.</p>
@@ -471,7 +491,7 @@ list of (submodule)</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingskey"><a class="header" href="#chadterminalkeybindingskey">chad.terminal.keyBindings.*.key</a></h2>
 <p>Key.</p>
@@ -479,7 +499,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingsmods"><a class="header" href="#chadterminalkeybindingsmods">chad.terminal.keyBindings.*.mods</a></h2>
 <p>Modifier key(s).</p>
@@ -487,7 +507,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chadterminalzshinitextra"><a class="header" href="#chadterminalzshinitextra">chad.terminal.zshInitExtra</a></h2>
 <p>Additional initialization for ZSH sessions.</p>
@@ -503,7 +523,7 @@ strings concatenated with “\n”</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/terminal.nix">&lt;nix-chad/modules/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
 </ul>
 <h2 id="chaduserhomedirectories"><a class="header" href="#chaduserhomedirectories">chad.user.homeDirectories</a></h2>
 <p>A list of desirect directories to be created in the home
@@ -523,7 +543,7 @@ list of string</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix">&lt;nix-chad/modules/chad/user.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix">&lt;nix-chad/modules/darwin/chad/user.nix&gt;</a></li>
 </ul>
 <h2 id="chadusername"><a class="header" href="#chadusername">chad.user.name</a></h2>
 <p>User name.</p>
@@ -533,7 +553,7 @@ string</p>
 <code>"bob"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/chad/user.nix">&lt;nix-chad/modules/chad/user.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix">&lt;nix-chad/modules/darwin/chad/user.nix&gt;</a></li>
 </ul>
 
                     </main>
