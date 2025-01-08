@@ -62,7 +62,12 @@ in
       };
       ":" = {
         mapping = {
-          __raw = "cmp.mapping.preset.cmdline()";
+          __raw = ''
+            cmp.mapping.preset.cmdline({
+                ["<C-n>"] = { c = cmp.mapping.select_next_item() },
+                ["<C-p>"] = { c = cmp.mapping.select_prev_item() },
+            })
+          '';
         };
         sources = [
           {

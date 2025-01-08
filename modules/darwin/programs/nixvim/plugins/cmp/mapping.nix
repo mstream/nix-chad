@@ -45,14 +45,7 @@ in
 {
   "${kms.topLevel.selectNext.combination}" = actionPerMode {
     c = ''
-      local luasnip = require "luasnip"
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.jumpable(1) then
-        luasnip.jump(1)
-      else
-        fallback()
-      end
+      cmp.select_prev_item()
     '';
     i = ''
       local luasnip = require "luasnip"
@@ -79,14 +72,7 @@ in
       ];
   "${kms.topLevel.selectPrevious.combination}" = actionPerMode {
     c = ''
-      local luasnip = require "luasnip"
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
+      cmp.select_prev_item()
     '';
     i = ''
       local luasnip = require "luasnip"
