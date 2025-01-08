@@ -43,7 +43,7 @@
               ];
             }
           ];
-          extraExtensions = exts: [ exts.honey ];
+          extraExtensions = exts: [ exts.grammarly ];
         };
         editor = {
           lineNumbering = "absolute";

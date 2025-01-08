@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ chadLib, ... }:
 let
-  zshAbbreviations = import ../modules/home-manager/programs/zsh/abbreviations.nix { inherit pkgs; };
+  zshAbbreviations =
+    import ../modules/darwin/home-manager/programs/zsh/abbreviations.nix
+      {
+        inherit chadLib;
+      };
   mergedAbbreviations = zshAbbreviations.mergeAbbreviations [
     {
       a = "a";

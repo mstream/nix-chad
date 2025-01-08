@@ -1,29 +1,32 @@
-{ pkgs, ... }:
-with pkgs.lib;
+{ chadLib, pkgs, ... }:
 let
-
-  inherit (import ./lib { inherit pkgs; }) buildKeymapsDocs buildOptionsDocs;
-
+  inherit (import ./lib { inherit chadLib pkgs; })
+    buildKeymapsDocs
+    buildOptionsDocs
+    ;
   aspellEn = pkgs.aspellWithDicts (d: [
     d.en
     d.en-computers
   ]);
-
-  evaluatedModules = evalModules {
-    check = false;
+  evaluatedModules = chadLib.modules.evalModules {
     class = "chad";
-    modules = [ ../../modules/chad/default.nix ];
+    modules = [
+      { _module.check = false; }
+      ../../modules/darwin/chad/default.nix
+    ];
   };
-
   keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
-
   optionsDocs = buildOptionsDocs {
     inherit evaluatedModules;
-    nixpkgsRef = (builtins.fromJSON (builtins.readFile ../../flake.lock)).nodes.nixpkgs.original.ref;
+    nixpkgsRef =
+      (chadLib.core.fromJSON (chadLib.core.readFile ../../flake.lock))
+      .nodes.nixpkgs.original.ref;
   };
 in
 pkgs.stdenv.mkDerivation {
-  nativeBuildInputs = with pkgs; [ nodePackages.markdownlint-cli ] ++ [ aspellEn ];
+  nativeBuildInputs =
+    with pkgs;
+    [ nodePackages.markdownlint-cli ] ++ [ aspellEn ];
   checkPhase = ''
     function validate_spelling() {
       file=$1
@@ -58,7 +61,7 @@ pkgs.stdenv.mkDerivation {
       --prefix 'lib' \
       --category 'darwin' \
       --description 'Nix Chad Library' \
-      --file $src/lib/darwin.nix \
+      --file $src/darwin.nix \
       > src/for-developers/library.generated.md
     cp $src/docs/.markdownlint.json .
     cp $src/docs/extra-dictionary.txt .

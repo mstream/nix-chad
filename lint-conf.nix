@@ -1,21 +1,23 @@
 { pkgs, ... }:
 let
   editorConfigText = builtins.readFile ./.editorconfig;
-  formatterCommand = cmd: "[ ! -f .editorconfig ] && echo '${editorConfigText} || ${cmd}'";
+  formatterCommand =
+    cmd: "[ ! -f .editorconfig ] && echo '${editorConfigText} || ${cmd}'";
+  documentWidth = 72;
 in
 {
   formatters = {
     beautysh = {
-      cmd = "${pkgs.beautysh}/bin/beautysh --check $filename";
+      cmd = "${pkgs.beautysh}/bin/beautysh --force-function-style fnpar $filename";
       ext = ".sh";
     };
     nixfmt = {
-      cmd = "${pkgs.nixfmt-rfc-style}/bin/nixfmt --check $filename";
+      cmd = "${pkgs.nixfmt-rfc-style}/bin/nixfmt --width=${builtins.toString documentWidth} $filename";
       ext = ".nix";
     };
     stylua = {
-      cmd = formatterCommand "${pkgs.stylua}/bin/stylua --check $filename";
-      #cmd = "${pkgs.stylua}/bin/stylua --check $filename";
+      cmd = formatterCommand "${pkgs.stylua}/bin/stylua $filename";
+      #cmd = "${pkgs.stylua}/bin/stylua $filename";
       ext = ".lua";
     };
   };

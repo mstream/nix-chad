@@ -1,31 +1,41 @@
-{ pkgs, ... }:
-with pkgs.lib;
+{ core, nixpkgsLib, ... }:
 let
-  camelToSnakeCase = strings.stringAsChars (
-    c: if strings.toUpper c == c then "_${strings.toLower c}" else c
+  camelToSnakeCase = nixpkgsLib.strings.stringAsChars (
+    c:
+    if nixpkgsLib.strings.toUpper c == c then
+      "_${nixpkgsLib.strings.toLower c}"
+    else
+      c
   );
 
-  escapeString = strings.stringAsChars (c: if c == "\\" then "\\\\" else c);
+  escapeString = nixpkgsLib.strings.stringAsChars (
+    c: if c == "\\" then "\\\\" else c
+  );
 
   indent = line: "    ${line}";
 
-  bodyLines = foldlAttrs (
+  bodyLines = nixpkgsLib.foldlAttrs (
     acc: key: val:
     let
       firstLine = "${camelToSnakeCase key} =";
 
-      otherLines = if builtins.isAttrs val then recordLines val else [ ''"${escapeString val}"'' ];
+      otherLines =
+        if core.isAttrs val then
+          recordLines val
+        else
+          [ ''"${escapeString val}"'' ];
     in
-    acc ++ [ firstLine ] ++ builtins.map indent otherLines ++ [ "," ]
+    acc ++ [ firstLine ] ++ core.map indent otherLines ++ [ "," ]
   ) [ ];
 
-  recordLines = attrs: [ "{" ] ++ (builtins.map indent (bodyLines attrs)) ++ [ "}" ];
+  recordLines =
+    attrs: [ "{" ] ++ (core.map indent (bodyLines attrs)) ++ [ "}" ];
 in
 {
   renderAttrs =
     attrs:
     let
-      code = strings.concatStringsSep "\n" (recordLines attrs);
+      code = nixpkgsLib.strings.concatStringsSep "\n" (recordLines attrs);
     in
     ''
       ${code}

@@ -1,9 +1,8 @@
-{ keymaps, pkgs, ... }:
-with pkgs.lib;
+{ chadLib, keymaps, ... }:
 let
   categoryAst =
     categoryTitle: entries:
-    builtins.foldl'
+    chadLib.core.foldl'
       (
         acc:
         { combination, description }:
@@ -41,7 +40,7 @@ let
       ]
       entries;
 in
-foldlAttrs (
+chadLib.attrsets.foldlAttrs (
   acc: key: val:
   acc ++ (categoryAst key val)
 ) [ ] keymaps

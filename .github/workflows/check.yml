@@ -8,25 +8,25 @@ permissions:
   contents: write
 jobs:
   linting-and-testing:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Nix
-        uses: cachix/install-nix-action@v27
+        uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             substituters = https://cache.nixos.org/
-          nix_path: nixpkgs=channel:nixos-23.11
-      - name: Run tests
-        run: ./ci/test.sh
+          nix_path: nixpkgs=channel:nixos-24.11
+      - name: Run tests and linters
+        run: nix develop --command just validate-project
       - name: Generate documentation markdown documents
-        run: ./ci/generate-docs.sh
+        run: nix develop --command just generate-documentation
       - name: Check if all generated files have been already commited
-        run: ./ci/check-generation.sh
+        run: nix develop --command just check-generation
       - name: Generate documentation website
         run: nix build .#website
       - name: Deploy to GitHub Pages
