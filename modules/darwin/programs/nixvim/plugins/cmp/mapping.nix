@@ -41,16 +41,19 @@ let
       ];
     in
     "cmp.confirm({${behaviorString}${selectString}})";
+
+  selectNextItem = "cmp.mapping.select_next_item({behavior=cmp.SelectBehavior.Select})";
+  selectPreviousItem = "cmp.mapping.select_prev_item({behavior=cmp.SelectBehavior.Select})";
 in
 {
   "${kms.topLevel.selectNext.combination}" = actionPerMode {
     c = ''
-      cmp.select_prev_item()
+      ${selectNextItem}
     '';
     i = ''
       local luasnip = require "luasnip"
       if cmp.visible() then
-        cmp.select_next_item()
+        ${selectNextItem}        
       elseif luasnip.jumpable(1) then
         luasnip.jump(1)
       end
@@ -60,7 +63,7 @@ in
     actionForAllModes
       ''
         if cmp.visible() then
-          cmp.mapping.scroll_docs(-4)
+          cmp.scroll_docs(-4)
         else
           fallback()
         end
@@ -72,12 +75,12 @@ in
       ];
   "${kms.topLevel.selectPrevious.combination}" = actionPerMode {
     c = ''
-      cmp.select_prev_item()
+      ${selectPreviousItem}
     '';
     i = ''
       local luasnip = require "luasnip"
       if cmp.visible() then
-        cmp.select_prev_item()
+        ${selectPreviousItem}
       elseif luasnip.jumpable(-1) then
         luasnip.jump(-1)
       end
@@ -87,7 +90,7 @@ in
     actionForAllModes
       ''
         if cmp.visible() then
-          cmp.mapping.scroll_docs(4)
+          cmp.scroll_docs(4)
         else
           fallback()
         end
