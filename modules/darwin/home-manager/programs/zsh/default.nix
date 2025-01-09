@@ -44,6 +44,7 @@ in
       ${defaultEnvText}
     '';
     history = {
+      append = true;
       ignoreDups = true;
       ignoreSpace = true;
       save = 20000;

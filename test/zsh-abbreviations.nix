@@ -14,7 +14,7 @@ let
   ];
 in
 {
-  testMergingAbbreviations = {
+  mergingAbbreviations = {
     expected = {
       a = "a";
       b = "b";

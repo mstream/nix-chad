@@ -1,122 +1,174 @@
-{
-  kms,
-  chadLib,
-  nix-to-lua,
+{  chadLib,
+   kms,
   ...
 }:
 let
-  customMappingActionLua =
-    body:
-    nix-to-lua.inline.types.function-unsafe.mk {
-      inherit body;
-      args = [ "fallback" ];
+  cmpLuaRecordDereference =
+    keyString:
+    chadLib.lua.api.recordDereference {
+      keyExpression = chadLib.lua.api.string keyString;
+      recordExpression = chadLib.lua.api.identifier "cmp";
     };
 
-  actionForAllModes =
-    body: modes:
-    let
-      actionLuaString = nix-to-lua.uglyLua (customMappingActionLua body);
-      modesLuaString = nix-to-lua.uglyLua modes;
-    in
-    "cmp.mapping(${actionLuaString},${modesLuaString})";
+  customMappingActionLuaFunctionDefinition =
+    bodyStatements:
+    chadLib.lua.api.functionDefinition {
+      inherit bodyStatements;
+      arguments = [ "fallback" ];
+    };
 
-  actionPerMode =
-    bodyByMode:
-    let
-      actionPerMode = chadLib.attrsets.mapAttrs (
-        _: customMappingActionLua
-      ) bodyByMode;
-      actionPerModeLuaString = nix-to-lua.uglyLua actionPerMode;
-    in
-    "cmp.mapping(${actionPerModeLuaString})";
+  cmpMappingLuaFunctionInvocation =
+    parameterExpressions:
+    chadLib.lua.api.functionInvocation {
+      inherit parameterExpressions;
+      functionExpression = cmpLuaRecordDereference "mapping";
+    };
 
-  confirm =
+  actionForAllModesLuaFunctionInvocation =
+    bodyStatements: modes:
+    cmpMappingLuaFunctionInvocation [
+      (customMappingActionLuaFunctionDefinition bodyStatements)
+      (chadLib.lua.api.array (chadLib.core.map chadLib.lua.api.string modes))
+    ];
+
+  actionPerModeLuaFunctionInvocation =
+    bodyStatementsByMode:
+    cmpMappingLuaFunctionInvocation [
+      (chadLib.lua.api.record {
+        attrs = chadLib.attrsets.mapAttrs (chadLib.functions.constant customMappingActionLuaFunctionDefinition) bodyStatementsByMode;
+      })
+    ];
+
+  confirmLuaFunctionInvocation =
     replace: select:
     let
-      behaviorString =
-        if replace then "replace=cmp.ConfirmBehavior.Replace," else "";
-      selectString = chadLib.strings.concatStrings [
-        "select="
-        (if select then "true" else "false")
-      ];
+      replaceAttrs =
+        if replace then
+          { }
+        else
+          {
+            replace = chadLib.lua.api.recordDereference {
+                keyExpression = chadLib.lua.api.string "Replace";
+                recordExpression = cmpLuaRecordDereference "ConfirmBehavior";
+            };
+          };
+      selectAttrs = {
+        select = chadLib.lua.api.boolean select;
+      };
     in
-    "cmp.confirm({${behaviorString}${selectString}})";
+    chadLib.lua.api.functionInvocation {
+      functionExpression = cmpLuaRecordDereference "confirm";
+      parameterExpressions = [
+        (chadLib.lua.api.record {
+          attrs = replaceAttrs // selectAttrs;
+        })
+      ];
+    };
 
-  selectNextItem = "cmp.mapping.select_next_item({behavior=cmp.SelectBehavior.Select})";
-  selectPreviousItem = "cmp.mapping.select_prev_item({behavior=cmp.SelectBehavior.Select})";
+  # TODO: make the argument accept only a valid enum
+  selectItemLuaFunctionInvocation =
+    nextOrPrev:
+    chadLib.lua.api.functionInvocation {
+      functionExpression = cmpLuaRecordDereference "select_${nextOrPrev}_item";
+      parameterExpressions = [
+        (chadLib.lua.api.record {
+          attrs = {
+            behavior = chadLib.lua.api.recordDereference {
+                keyExpression = chadLib.lua.api.string "Select";
+                recordExpression = cmpLuaRecordDereference "SelectBehavior";
+            };
+          };
+        })
+      ];
+    };
+
+  selectNextItemLuaFunctionInvocation = selectItemLuaFunctionInvocation "next";
+  selectPreviousItemLuaFunctionInvocation = selectItemLuaFunctionInvocation "prev";
 in
-{
-  "${kms.topLevel.selectNext.combination}" = actionPerMode {
-    c = ''
-      ${selectNextItem}
-    '';
-    i = ''
-      local luasnip = require "luasnip"
-      if cmp.visible() then
-        ${selectNextItem}        
-      elseif luasnip.jumpable(1) then
-        luasnip.jump(1)
-      end
-    '';
-  };
+chadLib.core.mapAttrs (chadLib.functions.constant chadLib.lua.render) {
+  "${kms.topLevel.selectNext.combination}" =
+    actionPerModeLuaFunctionInvocation
+      {
+        c = [ selectNextItemLuaFunctionInvocation ];
+        i = [
+          (chadLib.lua.api.raw ''
+            local luasnip = require "luasnip"
+            if cmp.visible() then
+              ${chadLib.lua.render selectNextItemLuaFunctionInvocation}        
+            elseif luasnip.jumpable(1) then
+              luasnip.jump(1)
+            end
+          '')
+        ];
+      };
   "${kms.topLevel.scrollDown.combination}" =
-    actionForAllModes
-      ''
-        if cmp.visible() then
-          cmp.scroll_docs(-4)
-        else
-          fallback()
-        end
-      ''
+    actionForAllModesLuaFunctionInvocation
+      [
+        (chadLib.lua.api.raw ''
+          if cmp.visible() then
+            cmp.scroll_docs(-4)
+          else
+            fallback()
+          end
+        '')
+      ]
       [
         "c"
         "i"
         "s"
       ];
-  "${kms.topLevel.selectPrevious.combination}" = actionPerMode {
-    c = ''
-      ${selectPreviousItem}
-    '';
-    i = ''
-      local luasnip = require "luasnip"
-      if cmp.visible() then
-        ${selectPreviousItem}
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      end
-    '';
-  };
+  "${kms.topLevel.selectPrevious.combination}" =
+    actionPerModeLuaFunctionInvocation
+      {
+        c = [ selectPreviousItemLuaFunctionInvocation ];
+        i = [
+          (chadLib.lua.api.raw ''
+            local luasnip = require "luasnip"
+            if cmp.visible() then
+              ${chadLib.lua.render selectPreviousItemLuaFunctionInvocation}
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            end
+          '')
+        ];
+      };
   "${kms.topLevel.scrollUp.combination}" =
-    actionForAllModes
-      ''
-        if cmp.visible() then
-          cmp.scroll_docs(4)
-        else
-          fallback()
-        end
-      ''
+    actionForAllModesLuaFunctionInvocation
+      [
+        (chadLib.lua.api.raw ''
+          if cmp.visible() then
+            cmp.scroll_docs(4)
+          else
+            fallback()
+          end
+        '')
+      ]
       [
         "c"
         "i"
         "s"
       ];
-  "<CR>" = actionPerMode {
-    c = ''
-      if cmp.visible() and cmp.get_active_entry() then
-        ${confirm true false}
-      else
-        fallback()
-      end
-    '';
-    i = ''
-      if cmp.visible() and cmp.get_active_entry() then
-        ${confirm true false}
-      else
-        fallback()
-      end
-    '';
-    s = ''
-      ${confirm false true}
-    '';
+  "<CR>" = actionPerModeLuaFunctionInvocation {
+    c = [
+      (chadLib.lua.api.raw ''
+        if cmp.visible() and cmp.get_active_entry() then
+          ${chadLib.lua.render (confirmLuaFunctionInvocation true false)}
+        else
+          fallback()
+        end
+      '')
+    ];
+    i = [
+      (chadLib.lua.api.raw ''
+        if cmp.visible() and cmp.get_active_entry() then
+          ${chadLib.lua.render (confirmLuaFunctionInvocation true false)}
+        else
+          fallback()
+        end
+      '')
+    ];
+    s = [
+      (confirmLuaFunctionInvocation false true)
+    ];
   };
 }

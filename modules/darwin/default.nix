@@ -16,6 +16,6 @@
     ./nixpkgs.nix
     ./programs
     ./services/default.nix
-    ./system.nix
+    ./system
   ];
 }

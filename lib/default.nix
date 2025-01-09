@@ -1,21 +1,55 @@
-{ nixpkgsLib, yants, ... }:
+{
+  nixpkgsLib,
+  yants,
+  ...
+}:
 let
-  extension = rec {
-    inherit yants;
-    core = builtins;
-    enum = import ./enum.nix { inherit core yants; };
-    function = import ./function.nix { inherit nixpkgsLib; };
-    lua = import ./lua.nix { inherit core nixpkgsLib; };
+  core = builtins;
+
+  attrsets = import ./attrsets.nix {
+    inherit core yants;
+    nixpkgsLibAttrsets = nixpkgsLib.attrsets;
   };
 
-  duplicatedKeys = builtins.attrNames (
-    builtins.intersectAttrs nixpkgsLib extension
-  );
+  standardLib = attrsets.implementation.merge nixpkgsLib {
+    inherit core;
+  };
+
+  externalLib = attrsets.implementation.merge standardLib {
+    inherit yants;
+  };
+
+  mergedLib = attrsets.implementation.merge externalLib localLibImplementations;
+
+  bash = import ./bash mergedLib;
+  constants = import ./constants.nix mergedLib;
+  enum = import ./enum mergedLib;
+  functions = import ./functions mergedLib;
+  lua = import ./lua mergedLib;
+  nixCli = import ./nix-cli mergedLib;
+
+  localLibBundles = {
+    inherit
+      attrsets
+      bash
+      constants
+      enum
+      functions
+      lua
+      nixCli
+      ;
+  };
+
+  localLibImplementations = core.mapAttrs (
+    functions.implementation.constant
+    (bundle: bundle.implementation)
+  ) localLibBundles;
+
+  localLibTests = core.mapAttrs (functions.implementation.constant (
+    bundle: bundle.tests
+  )) localLibBundles;
 in
-if duplicatedKeys == [ ] then
-  nixpkgsLib // extension
-else
-  throw ''
-    Can't merge attribute sets because of duplicated keys:
-    ${builtins.toString duplicatedKeys}
-  ''
+{
+  tests = localLibTests;
+  implementation = mergedLib;
+}
