@@ -39,7 +39,8 @@ let
     "${kms.topLevel.moveToTopWindow.combination}" = "<C-w>k";
     "${kms.topLevel.scrollDown.combination}" = "<C-d>zz";
     "${kms.topLevel.scrollUp.combination}" = "<C-u>zz";
-    "${kms.close.currentBuffer.combination}" = "<Cmd>BufferClose<CR>";
+    "<leader>${kms.close.currentBuffer.combination}" =
+      "<Cmd>BufferClose<CR>";
     "<leader>r${kms.refactor.action.combination}" =
       ":lua vim.lsp.buf.code_action()<CR>";
   };

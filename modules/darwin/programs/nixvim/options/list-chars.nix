@@ -1,6 +1,6 @@
 { chadLib, ... }:
 let
-  showNonPrintableCharacterSymbolsMapping = chadLib.function.compose [
+  showNonPrintableCharacterSymbolsMapping = chadLib.functions.compose [
     (chadLib.attrsets.mapAttrsToList (name: symbol: "${name}:${symbol}"))
     (chadLib.strings.concatStringsSep ",")
   ];

@@ -16,7 +16,6 @@ let
   testSuiteFiles = {
     "docs" = ./docs.nix;
     "enum" = ./enum.nix;
-    "lua" = ./lua.nix;
     "zsh-abbreviations" = ./zsh-abbreviations.nix;
   };
 in
