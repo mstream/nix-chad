@@ -1,34 +1,33 @@
-{ lib, ... }:
-with lib;
+{ chadLib, ... }:
 let
   gitIdentityModule = {
-    options = {
+    options = with chadLib.options; {
       repositoryPath = mkOption {
-        type = types.str;
         description = ''
           Git repository path.
         '';
+        type = with chadLib.types; str;
       };
       sshKeyPath = mkOption {
-        type = types.str;
         description = ''
           Path to a SSH private key.
         '';
+        type = with chadLib.types; str;
       };
       userEmail = mkOption {
-        type = types.str;
         description = ''
           Key.
         '';
+        type = with chadLib.types; str;
       };
     };
   };
 in
 {
-  options = {
+  options = with chadLib.options; {
     chad.git = {
       alternativeGitIdentities = mkOption {
-        type = types.listOf (types.submodule gitIdentityModule);
+        type = with chadLib.types; listOf (submodule gitIdentityModule);
         default = [ ];
         example = [
           {

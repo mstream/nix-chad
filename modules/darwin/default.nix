@@ -7,7 +7,7 @@
   imports = [
     home-manager.darwinModules.home-manager
     nixvim.nixDarwinModules.nixvim
-    ./chad/default.nix
+    ./chad
     ./documentation.nix
     ./environment.nix
     ./fonts.nix

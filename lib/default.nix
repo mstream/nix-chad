@@ -22,11 +22,12 @@ let
   mergedLib = attrsets.implementation.merge externalLib localLibImplementations;
 
   bash = import ./bash mergedLib;
-  constants = import ./constants.nix mergedLib;
+  constants = import ./constants mergedLib;
   enum = import ./enum mergedLib;
   functions = import ./functions mergedLib;
   lua = import ./lua mergedLib;
   nixCli = import ./nix-cli mergedLib;
+  shortcuts = import ./shortcuts mergedLib;
 
   localLibBundles = {
     inherit
@@ -37,6 +38,7 @@ let
       functions
       lua
       nixCli
+      shortcuts
       ;
   };
 

@@ -39,7 +39,7 @@ let
     let
       indexRep = chadLib.core.toString index;
     in
-    chadLib.constants.keys.others.members."number${indexRep}"
+    chadLib.constants.keys.others.members.${indexRep}
   ) (chadLib.lists.range 1 9);
 
   workspaceActions = chadLib.attrsets.generate workspaceIndexKeys keyIndexToKeyBindings;

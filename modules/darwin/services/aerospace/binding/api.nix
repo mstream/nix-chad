@@ -12,15 +12,20 @@ let
   };
 
   showOtherKey = chadLib.constants.keys.others.mapWith (
-    chadLib.attrsets.generate (chadLib.lists.range 0 9) (
-      index:
-      let
-        indexRep = chadLib.core.toString index;
-      in
-      {
-        "number${indexRep}" = indexRep;
-      }
-    )
+    let
+      alphabeticMapping =
+        chadLib.attrsets.generate chadLib.constants.characters.alpha
+          (alphaChar: {
+            ${chadLib.strings.toUpper alphaChar} = alphaChar;
+          });
+
+      numericMapping =
+        chadLib.attrsets.generate chadLib.constants.characters.numeric
+          (numChar: {
+            ${numChar} = numChar;
+          });
+    in
+    chadLib.attrsets.merge alphabeticMapping numericMapping
   );
 
   moveNodeToWorkspace =

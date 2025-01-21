@@ -14,9 +14,12 @@ let
   evaluatedModules = chadLib.modules.evalModules {
     class = "chad";
     modules = [
-      { _module.check = false; }
+      {
+        _module.check = false;
+      }
       chadModulePath
     ];
+    specialArgs = { inherit chadLib; };
   };
   keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
   optionsDocs = buildOptionsDocs {
