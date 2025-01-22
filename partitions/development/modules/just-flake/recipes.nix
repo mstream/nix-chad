@@ -16,6 +16,21 @@ let
     };
 in
 {
+  check-debug = {
+    comment = "Check if flake debug is disabled.";
+    groups = with groups.members; [
+      check
+    ];
+    script = with chadLib.bash; ''
+      if [ $(nix flake show --json | jq .'debug' | wc -l) -ne 1 ]; then
+        ${echoError "Flake debug mode seems to be left enabled."}
+        exit 1
+      else
+        echo "Flake debug mode is disabled"
+      fi
+    '';
+  };
+
   check-generation = {
     comment = "Check if generation has run since last source changes.";
     groups = with groups.members; [
@@ -24,7 +39,7 @@ in
     ];
     script = with chadLib.bash; ''
       if [[ $(git diff HEAD --stat) != "" ]]; then
-        ${echoError "changes to git working directory after detected:"}
+        ${echoError "Changes to git working directory after detected:"}
         ${echoError "vvv"}
         git status >&2
         git diff HEAD >&2
@@ -32,7 +47,7 @@ in
         ${echoError "aborting"}
         exit 1
       else
-        echo "git branch is clean"
+        echo "Git branch is clean."
       fi
     '';
   };
@@ -122,7 +137,10 @@ in
       test
     ];
     hooks = {
-      after = [ "check-generation" ];
+      after = [
+        "check-debug"
+        "check-generation"
+      ];
       before = [
         "run-lints"
         "run-unit-tests"
