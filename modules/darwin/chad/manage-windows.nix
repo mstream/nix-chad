@@ -1,17 +1,16 @@
-{ lib, ... }:
-with lib;
+{ chadLib, ... }:
 let
   windowExclusionModule = {
-    options = {
+    options = with chadLib.options; {
       app = mkOption {
-        type = types.str;
+        type = with chadLib.types; str;
         example = "^Discord$";
         description = ''
           Regex for application name.
         '';
       };
       title = mkOption {
-        type = types.str;
+        type = with chadLib.types; str;
         default = ".*";
         example = ".*Dialog$";
         description = ''
@@ -22,17 +21,19 @@ let
   };
 in
 {
-  options = {
+  options = with chadLib.options; {
     chad.manageWindows = {
       enable = mkOption {
-        type = types.bool;
+        type = with chadLib.types; bool;
         default = false;
         description = ''
           Keep windows occupy maximum available share of space on desktop.
+          Uses own emulation of multiple desktops/spaces.
         '';
       };
+      # TODO: migrate from yabai to aerospace
       exclusions = mkOption {
-        type = types.listOf (types.submodule windowExclusionModule);
+        type = with chadLib.types; listOf (submodule windowExclusionModule);
         default = [ ];
         example = [
           {

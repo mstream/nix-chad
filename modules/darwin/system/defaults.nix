@@ -3,7 +3,7 @@ let
   cfg = config.chad;
 in
 {
-  system.defaults = {
+  config.system.defaults = {
     NSGlobalDomain = {
       _HIHideMenuBar = false;
       AppleFontSmoothing = 2;
@@ -39,8 +39,8 @@ in
     };
     dock = {
       autohide = true;
-      autohide-delay = 1000.0;
-      autohide-time-modifier = 1.0;
+      autohide-delay = 999.9;
+      autohide-time-modifier = 0.5;
       dashboard-in-overlay = false;
       enable-spring-load-actions-on-all-items = false;
       expose-animation-duration = 1.0;
@@ -55,7 +55,7 @@ in
       showhidden = true;
       show-recents = false;
       static-only = false;
-      tilesize = cfg.fontSize;
+      tilesize = 2 * cfg.fontSize;
       wvous-bl-corner = 1;
       wvous-br-corner = 1;
       wvous-tl-corner = 1;
@@ -122,4 +122,5 @@ in
       */
     };
   };
+  imports = [ ./extra-defaults.nix ];
 }
