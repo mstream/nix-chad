@@ -3,16 +3,31 @@ let
   keyCombinationSpecModule = {
     options = with chadLib.options; {
       modifierKeys = mkOption {
+        description = ''
+          A list of modifier keys.
+        '';
+        example = with chadLib.constants.keys.modifiers.members; [
+          command
+          shift
+        ];
+        readOnly = true;
         type =
           with chadLib.types;
           listOf (
             enum (chadLib.core.attrValues chadLib.constants.keys.modifiers.members)
           );
+        visible = true;
       };
       otherKey = mkOption {
+        description = ''
+          A non-modifier key.
+        '';
+        example = chadLib.constants.keys.others.members."S";
+        readOnly = true;
         type =
           with chadLib.types;
           enum (chadLib.core.attrValues chadLib.constants.keys.others.members);
+        visible = true;
       };
     };
   };
@@ -52,9 +67,12 @@ in
     };
     shortcuts = mkOption {
       default = enabledShortcuts;
+      description = ''
+        A set of macOS desktop-level shortcuts.
+      '';
       readOnly = true;
-      visible = true;
       type = with chadLib.types; attrsOf (submodule keyCombinationSpecModule);
+      visible = true;
     };
   };
 }

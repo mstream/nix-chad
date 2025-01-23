@@ -2,52 +2,61 @@
 let
   cfg = config.chad;
   kms = cfg.editor.keyMappings;
-  modes = {
-    command = "c";
-    insert = "i";
-    l = "l";
-    normal = "n";
-    o = "o";
-    s = "s";
-    t = "t";
-    visual = "v";
-    x = "x";
+
+  modes = chadLib.enum.create {
+    mappings = {
+      id = {
+        command = "c";
+        insert = "i";
+        normal = "n";
+        visual = "v";
+      };
+    };
+    memberNames = [
+      "command"
+      "insert"
+      "normal"
+      "visual"
+    ];
+    name = "vimModes";
   };
 
-  disabledKeys = {
-    "<Down>" = "<NOP>";
-    "<Left>" = "<NOP>";
-    "<Right>" = "<NOP>";
-    "<Up>" = "<NOP>";
-  };
-
-  keymapEntries =
-    mode: attrs:
-    chadLib.attrsets.mapAttrsToList (key: action: {
-      inherit action key mode;
-    }) (attrs // disabledKeys);
-
-  commandKeymaps = keymapEntries modes.command { };
-
-  insertKeymaps = keymapEntries modes.insert { };
-
-  normalKeymaps = keymapEntries modes.normal {
-    "${kms.topLevel.cancel.combination}" = ":nohlsearch<CR>";
-    "${kms.topLevel.moveToBottomWindow.combination}" = "<C-w>j";
-    "${kms.topLevel.moveToLeftWindow.combination}" = "<C-w>h";
-    "${kms.topLevel.moveToRightWindow.combination}" = "<C-w>l";
-    "${kms.topLevel.moveToTopWindow.combination}" = "<C-w>k";
-    "${kms.topLevel.scrollDown.combination}" = "<C-d>zz";
-    "${kms.topLevel.scrollUp.combination}" = "<C-u>zz";
-    "<leader>${kms.close.currentBuffer.combination}" =
-      "<Cmd>BufferClose<CR>";
-    "<leader>r${kms.refactor.action.combination}" =
-      ":lua vim.lsp.buf.code_action()<CR>";
-  };
-
-  visualKeymaps = keymapEntries modes.visual { };
+  foldModeSpecificKeymaps = chadLib.core.foldl' (
+    acc: mode: keymaps:
+    let
+      keymapsWithArrowKeysDisabled = chadLib.attrsets.merge keymaps {
+        "<Down>" = "<NOP>";
+        "<Left>" = "<NOP>";
+        "<Right>" = "<NOP>";
+        "<Up>" = "<NOP>";
+      };
+    in
+    acc
+    ++ (chadLib.attrsets.mapAttrsToList (key: action: {
+      inherit action key;
+      mode = modes.mapTo.id mode;
+    }) keymapsWithArrowKeysDisabled)
+  ) [ ];
 in
 {
-  programs.nixvim.keymaps =
-    commandKeymaps ++ insertKeymaps ++ normalKeymaps ++ visualKeymaps;
+  programs.nixvim.keymaps = foldModeSpecificKeymaps (
+    with modes.membmers;
+    {
+      ${command} = { };
+      ${insert} = { };
+      ${normal} = {
+        "${kms.uncategorized.cancel}" = ":nohlsearch<CR>";
+        "${kms.uncategorized.moveToBottomWindow}" = "<C-w>j";
+        "${kms.uncategorized.moveToLeftWindow}" = "<C-w>h";
+        "${kms.uncategorized.moveToRightWindow}" = "<C-w>l";
+        "${kms.uncategorized.moveToTopWindow}" = "<C-w>k";
+        "${kms.uncategorized.scrollDown}" = "<C-d>zz";
+        "${kms.uncategorized.scrollUp}" = "<C-u>zz";
+        "${kms.categorized.close.currentBuffer}" = "<Cmd>BufferClose<CR>";
+        "${kms.categorized.refactor.action}" =
+          ":lua vim.lsp.buf.code_action()<CR>";
+      };
+      ${visual} = { };
+    }
+  );
 }

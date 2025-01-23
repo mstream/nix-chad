@@ -6,9 +6,9 @@ in
 {
   programs.nixvim.plugins.barbar = {
     enable = true;
-    keymaps = {
-      next.key = kms.topLevel.switchToNextTab.combination;
-      previous.key = kms.topLevel.switchToPreviousTab.combination;
+    keymaps = with kms.uncategorized; {
+      next.key = switchToNextTab;
+      previous.key = switchToPreviousTab;
     };
     settings = {
       animation = true;

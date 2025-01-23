@@ -1,27 +1,29 @@
-{ config, ... }:
+{ chadLib, config, ... }:
 let
   cfg = config.chad;
   kms = cfg.editor.keyMappings;
+
+  keyMappingSettings = with kms.categorized.comment; {
+    extra = {
+      above = addLineAbove;
+      below = addLineBelow;
+      eol = addEndOfLine;
+    };
+    opleader = {
+      inherit block line;
+    };
+    toggler = {
+      block = toggleBlock;
+      line = toggleLine;
+    };
+  };
 in
 {
   programs.nixvim.plugins.comment = {
     enable = true;
-    settings = {
-      extra = {
-        above = "<leader>/${kms.comment.addLineAbove.combination}";
-        below = "<leader>/${kms.comment.addLineBelow.combination}";
-        eol = "<leader>/${kms.comment.addEndOfLine.combination}";
-      };
-      opleader = {
-        block = "<leader>/${kms.comment.block.combination}";
-        line = "<leader>/${kms.comment.line.combination}";
-      };
+    settings = chadLib.attrsets.merge keyMappingSettings {
       padding = true;
       sticky = true;
-      toggler = {
-        block = "<leader>/${kms.comment.toggleBlock.combination}";
-        line = "<leader>/${kms.comment.toggleLine.combination}";
-      };
     };
   };
 }

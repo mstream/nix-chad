@@ -18,7 +18,7 @@
     ./luasnip.nix
     ./none-ls.nix
     ./nvim-lightbulb.nix
-    ./telescope.nix
+    ./telescope
     ./treesitter.nix
     ./treesitter-context.nix
     ./treesitter-refactor.nix

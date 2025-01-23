@@ -16,7 +16,7 @@ in
 
   imports = [
     ./browser.nix
-    ./editor.nix
+    ./editor
     ./git.nix
     ./gpg.nix
     ./keyboard.nix
