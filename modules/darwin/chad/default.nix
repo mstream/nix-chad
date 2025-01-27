@@ -23,7 +23,7 @@ in
     ./manage-windows.nix
     ./mouse.nix
     ./software.nix
-    ./terminal.nix
+    ./terminal
     ./user.nix
   ];
 

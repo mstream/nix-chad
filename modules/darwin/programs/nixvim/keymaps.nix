@@ -21,7 +21,7 @@ let
     name = "vimModes";
   };
 
-  foldModeSpecificKeymaps = chadLib.core.foldl' (
+  foldModeSpecificKeymaps = chadLib.attrsets.foldlAttrs (
     acc: mode: keymaps:
     let
       keymapsWithArrowKeysDisabled = chadLib.attrsets.merge keymaps {
@@ -40,7 +40,7 @@ let
 in
 {
   programs.nixvim.keymaps = foldModeSpecificKeymaps (
-    with modes.membmers;
+    with modes.members;
     {
       ${command} = { };
       ${insert} = { };
@@ -52,8 +52,9 @@ in
         "${kms.uncategorized.moveToTopWindow}" = "<C-w>k";
         "${kms.uncategorized.scrollDown}" = "<C-d>zz";
         "${kms.uncategorized.scrollUp}" = "<C-u>zz";
-        "${kms.categorized.close.currentBuffer}" = "<Cmd>BufferClose<CR>";
-        "${kms.categorized.refactor.action}" =
+        "${kms.categorized.close.suffixes.currentBuffer}" =
+          "<Cmd>BufferClose<CR>";
+        "${kms.categorized.refactor.suffixes.action}" =
           ":lua vim.lsp.buf.code_action()<CR>";
       };
       ${visual} = { };

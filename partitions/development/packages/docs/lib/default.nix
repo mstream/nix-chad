@@ -1,9 +1,9 @@
 { chadLib, pkgs, ... }:
 {
-  buildKeymapsDocs = import ./build-keymaps-docs.nix {
-    inherit chadLib pkgs;
+  buildKeymapsDocs = pkgs.callPackage ./build-keymaps-docs.nix {
+    inherit chadLib;
   };
-  buildOptionsDocs = import ./build-options-docs.nix {
-    inherit chadLib pkgs;
+  buildOptionsDocs = pkgs.callPackage ./build-options-docs.nix {
+    inherit chadLib;
   };
 }

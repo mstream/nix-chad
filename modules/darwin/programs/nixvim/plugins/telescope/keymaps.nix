@@ -19,7 +19,7 @@ chadLib.attrsets.generate
   (
     findTargetName:
     let
-      keySequence = kms.categorized.find.${findTargetName};
+      keySequence = kms.categorized.find.suffixes.${findTargetName};
       pickerId = pickers.mapTo.id pickers.members.${findTargetName};
     in
     {

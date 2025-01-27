@@ -8,9 +8,9 @@ let
   kms = cfg.editor.keyMappings;
   mapping = import ./mapping.nix { inherit chadLib kms; };
   snippetExpandLuaFunction =
-    bodyStatements:
-    chadLib.lua.api.functionDefinition {
-      inherit bodyStatements;
+    body:
+    chadLib.lua.ast.functionDefinition {
+      inherit body;
       arguments = [ "args" ];
     };
 
@@ -45,9 +45,10 @@ let
 
   requireLuaFunctionInvocation =
     moduleName:
-    chadLib.lua.api.functionInvocation {
-      functionExpression = chadLib.lua.api.identifier "require";
-      parameterExpressions = [ (chadLib.lua.api.string moduleName) ];
+    with chadLib.lua.ast;
+    functionInvocation {
+      function = identifier "require";
+      parameters = [ (string moduleName) ];
     };
 in
 {
@@ -105,17 +106,17 @@ in
       ];
       snippet.expand = chadLib.lua.render (
         snippetExpandLuaFunction (
-          with chadLib.lua.api;
+          with chadLib.lua.ast;
           [
             (functionInvocation {
-              functionExpression = recordDereference {
-                keyExpression = identifier "lsp_expand";
-                recordExpression = requireLuaFunctionInvocation "luasnip";
+              function = recordDereference {
+                key = identifier "lsp_expand";
+                record = requireLuaFunctionInvocation "luasnip";
               };
-              parameterExpressions = [
+              parameters = [
                 (recordDereference {
-                  keyExpression = identifier "body";
-                  recordExpression = identifier "args";
+                  key = identifier "body";
+                  record = identifier "args";
                 })
               ];
             })
@@ -127,9 +128,9 @@ in
           let
             builtIn =
               name:
-              chadLib.lua.api.recordDereference {
-                keyExpression = chadLib.lua.api.identifier name;
-                recordExpression = requireLuaFunctionInvocation "cmp.config.compare";
+              chadLib.lua.ast.recordDereference {
+                key = chadLib.lua.ast.identifier name;
+                record = requireLuaFunctionInvocation "cmp.config.compare";
               };
           in
           chadLib.core.map chadLib.lua.render [

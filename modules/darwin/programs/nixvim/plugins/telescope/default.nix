@@ -8,8 +8,8 @@ let
       id = {
         moveSelectionNext = "move_selection_next";
         moveSelectionPrevious = "move_selection_previous";
-        previewScrollingDown = "preview_scroll_down";
-        previewScrollingUp = "preview_scroll_up";
+        previewScrollingDown = "preview_scrolling_down";
+        previewScrollingUp = "preview_scrolling_up";
       };
     };
     memberNames = [
@@ -36,14 +36,14 @@ let
       };
     };
     memberNames = [
-      "commands"
       "files"
-      "helpTags"
       "gitBranches"
       "gitCommits"
       "gitLocalChanges"
       "gitStash"
       "vimBuffers"
+      "vimCommands"
+      "vimHelp"
       "words"
     ];
     name = "telescopePickers";

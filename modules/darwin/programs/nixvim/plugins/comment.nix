@@ -3,7 +3,7 @@ let
   cfg = config.chad;
   kms = cfg.editor.keyMappings;
 
-  keyMappingSettings = with kms.categorized.comment; {
+  keyMappingSettings = with kms.categorized.comment.suffixes; {
     extra = {
       above = addLineAbove;
       below = addLineBelow;

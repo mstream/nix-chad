@@ -21,7 +21,10 @@ let
     ];
     specialArgs = { inherit chadLib; };
   };
-  keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
+  #keymapsDocs = buildKeymapsDocs { inherit evaluatedModules; };
+  keymapsDocs = {
+    keymapsCommonMark = "";
+  };
   optionsDocs = buildOptionsDocs {
     inherit evaluatedModules;
     nixpkgsRef =

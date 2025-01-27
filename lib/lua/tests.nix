@@ -1,123 +1,129 @@
 implementation:
 let
-  array = implementation.api.array [
-    (implementation.api.number 123)
-    (implementation.api.string "abc")
-  ];
-
-  flatRecord = implementation.api.record {
-    attrs = {
-      k1 = implementation.api.string "v1";
-      k2 = implementation.api.string "v2";
+  testCase =
+    { node, expectedCode }:
+    {
+      expr = implementation.render node;
+      expected = expectedCode;
     };
-  };
-
-  nestedRecord = implementation.api.record {
-    attrs = {
-      k1 = implementation.api.string "v1";
-      k2 = implementation.api.record {
-        attrs = {
-          k21 = implementation.api.string "v21";
-        };
-      };
-      k3 = implementation.api.string "v3";
-    };
-  };
-
-  recordDereference = implementation.api.recordDereference {
-    keyExpression = implementation.api.string "k1";
-    recordExpression = implementation.api.identifier "kvs";
-  };
-
-  reformattedKeysRecord = implementation.api.record {
-    attrs = {
-      fooBarBiz = implementation.api.string "value of fooBarBiz";
-    };
-    formatKeys = true;
-  };
-
-  functionDefinition = implementation.api.functionDefinition {
-    arguments = [
-      "arg1"
-      "arg2"
-    ];
-    bodyStatements = [
-      (implementation.api.functionInvocation {
-        functionExpression = implementation.api.identifier "print";
-        parameterExpressions = [
-          (implementation.api.string "hello world!")
-        ];
-      })
-      (implementation.api.functionInvocation {
-        functionExpression = implementation.api.identifier "print";
-        parameterExpressions = [
-          (implementation.api.identifier "arg1")
-        ];
-      })
-      (implementation.api.functionInvocation {
-        functionExpression = implementation.api.identifier "print";
-        parameterExpressions = [
-          (implementation.api.identifier "arg2")
-        ];
-      })
-    ];
-  };
-
-  functionInvocation = implementation.api.functionInvocation {
-    functionExpression = implementation.api.identifier "abc";
-    parameterExpressions = [
-      (implementation.api.number 1)
-      (implementation.api.record {
-        attrs = {
-          k1 = implementation.api.string "v1";
-        };
-      })
-    ];
-  };
-
-  identifier = implementation.api.identifier "abc";
-  number = implementation.api.number 123;
-  string = implementation.api.string "abc";
 in
 {
-  testRenderArray = {
-    expr = implementation.render array;
-    expected = "{123,[[abc]]}";
+  testRenderArray = testCase {
+    expectedCode = "{123,[[abc]]}";
+    node =
+      with implementation.ast;
+      array [
+        (number 123)
+        (string "abc")
+      ];
   };
-  testRenderFlatRecord = {
-    expr = implementation.render flatRecord;
-    expected = "{[ [[k1]] ]=[[v1]],[ [[k2]] ]=[[v2]]}";
+
+  testRenderFlatRecord = testCase {
+    expectedCode = "{[ [[k1]] ]=[[v1]],[ [[k2]] ]=[[v2]]}";
+    node =
+      with implementation.ast;
+      record {
+        entries = {
+          k1 = string "v1";
+          k2 = string "v2";
+        };
+      };
   };
-  testRenderFunctionDefinition = {
-    expr = implementation.render functionDefinition;
-    expected = "function(arg1,arg2) print([[hello world!]]) print(arg1) print(arg2) end";
+
+  testRenderFunctionDefinition = testCase {
+    expectedCode = "function(arg1,arg2) print([[hello world!]]) print(arg1) print(arg2) end";
+    node =
+      with implementation.ast;
+      functionDefinition {
+        arguments = [
+          "arg1"
+          "arg2"
+        ];
+        body = [
+          (functionInvocation {
+            function = identifier "print";
+            parameters = [ (string "hello world!") ];
+          })
+          (functionInvocation {
+            function = identifier "print";
+            parameters = [ (identifier "arg1") ];
+          })
+          (functionInvocation {
+            function = identifier "print";
+            parameters = [ (identifier "arg2") ];
+          })
+        ];
+      };
   };
-  testRednerFunctionInvocation = {
-    expr = implementation.render functionInvocation;
-    expected = "abc(1,{[ [[k1]] ]=[[v1]]})";
+
+  testRednerFunctionInvocation = testCase {
+    expectedCode = "abc(1,{[ [[k1]] ]=[[v1]]})";
+    node =
+      with implementation.ast;
+      functionInvocation {
+        function = identifier "abc";
+        parameters = [
+          (number 1)
+          (record {
+            entries = {
+              k1 = string "v1";
+            };
+          })
+        ];
+      };
   };
-  testRenderIdentifier = {
-    expr = implementation.render identifier;
-    expected = "abc";
+
+  testRenderIdentifier = testCase {
+    expectedCode = "abc";
+    node = with implementation.ast; identifier "abc";
   };
-  testRenderNestedRecord = {
-    expr = implementation.render nestedRecord;
-    expected = "{[ [[k1]] ]=[[v1]],[ [[k2]] ]={[ [[k21]] ]=[[v21]]},[ [[k3]] ]=[[v3]]}";
+
+  testRenderNestedRecord = testCase {
+    expectedCode = "{[ [[k1]] ]=[[v1]],[ [[k2]] ]={[ [[k21]] ]=[[v21]]},[ [[k3]] ]=[[v3]]}";
+    node =
+      with implementation.ast;
+      record {
+        entries = {
+          k1 = string "v1";
+          k2 = record {
+            entries = {
+              k21 = string "v21";
+            };
+          };
+          k3 = string "v3";
+        };
+      };
   };
-  testRenderNumber = {
-    expr = implementation.render number;
-    expected = "123";
+
+  testRenderNumber = testCase {
+    expectedCode = "123";
+    node = with implementation.ast; number 123;
   };
-  testRenderRecordDereference = {
-    expr = implementation.render recordDereference;
-    expected = "kvs[ [[k1]] ]";
+
+  testRenderRecordDereference = testCase {
+    expectedCode = "kvs[ [[k1]] ]";
+    node =
+      with implementation.ast;
+      recordDereference {
+        key = string "k1";
+        record = identifier "kvs";
+      };
   };
-  testRenderReformattedKeysRecord = {
-    expr = implementation.render reformattedKeysRecord;
-    expected = "{[ [[foo_bar_biz]] ]=[[value of fooBarBiz]]}";
+
+  testRenderReformattedKeysRecord = testCase {
+    expectedCode = "{[ [[foo_bar_biz]] ]=[[value of fooBarBiz]]}";
+    node =
+      with implementation.ast;
+      record {
+        entries = {
+          fooBarBiz = string "value of fooBarBiz";
+        };
+        formatKeys = true;
+      };
   };
-  testRenderString = {
-    expr = implementation.render string;
-    expected = "[[abc]]";
+
+  testRenderString = testCase {
+    node = with implementation.ast; string "abc";
+    expectedCode = "[[abc]]";
   };
 }

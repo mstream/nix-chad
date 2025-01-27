@@ -1,6 +1,7 @@
 {
   chadLib,
   nodeTypes,
+  validators,
   ...
 }:
 let
@@ -13,11 +14,20 @@ let
   );
 
   render =
-    node:
-    let
-      renderNode = nodeTypes.mapWith renderers node.nodeType;
-    in
-    renderNode node;
+    (
+      with chadLib.yants;
+      defun [
+        (either validators.anyNode validators.rawNode)
+        string
+      ]
+    )
+      (
+        node:
+        let
+          renderNode = nodeTypes.mapWith renderers node.nodeType;
+        in
+        renderNode node
+      );
 
   renderers = chadLib.fixedPoints.fix (self: {
     array =
@@ -27,27 +37,39 @@ let
       in
       "{${bodyRep}}";
 
+    arrayDereference =
+      { array, index, ... }:
+      let
+        arrayRep = render array;
+        indexRep = render index;
+      in
+      "${arrayRep}[ ${indexRep} ]";
+
     boolean = { value, ... }: if value then "true" else "false";
 
     functionDefinition =
-      { arguments, bodyStatements, ... }:
+      { arguments, body, ... }:
       let
         argumentsRep = chadLib.strings.concatStringsSep "," arguments;
-        bodyStatementsRep =
-          chadLib.strings.concatMapStringsSep " " render
-            bodyStatements;
+
+        bodyRep =
+          if chadLib.core.isList body then
+            chadLib.strings.concatMapStringsSep " " render body
+          else
+            self.raw body;
+
       in
-      "function(${argumentsRep}) ${bodyStatementsRep} end";
+      "function(${argumentsRep}) ${bodyRep} end";
 
     functionInvocation =
-      { functionExpression, parameterExpressions, ... }:
+      { function, parameters, ... }:
       let
-        functionExpressionRep = render functionExpression;
-        parameterExpressionsRep =
+        functionRep = render function;
+        parametersRep =
           chadLib.strings.concatMapStringsSep "," render
-            parameterExpressions;
+            parameters;
       in
-      "${functionExpressionRep}(${parameterExpressionsRep})";
+      "${functionRep}(${parametersRep})";
 
     identifier = { name, ... }: name;
 
@@ -56,31 +78,31 @@ let
     raw = { blob, ... }: blob;
 
     record =
-      { attrs, formatKeys, ... }:
+      { entries, formatKeys, ... }:
       let
         renderKey = chadLib.functions.compose [
           (if formatKeys then camelToSnakeCase else chadLib.functions.identity)
           (value: self.string { inherit value; })
         ];
 
-        bodyRep = chadLib.strings.concatMapStringsSep "," (
+        payloadRep = chadLib.strings.concatMapStringsSep "," (
           { name, value }:
           let
             keyRep = renderKey name;
             nodeRep = render value;
           in
           "[ ${keyRep} ]=${nodeRep}"
-        ) (chadLib.attrsets.attrsToList attrs);
+        ) (chadLib.attrsets.attrsToList entries);
       in
-      "{${bodyRep}}";
+      "{${payloadRep}}";
 
     recordDereference =
-      { keyExpression, recordExpression, ... }:
+      { key, record, ... }:
       let
-        keyExpressionRep = render keyExpression;
-        recordExpressionRep = render recordExpression;
+        keyRep = render key;
+        recordRep = render record;
       in
-      "${recordExpressionRep}[ ${keyExpressionRep} ]";
+      "${recordRep}[ ${keyRep} ]";
 
     string = { value, ... }: "[[${value}]]";
   });

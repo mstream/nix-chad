@@ -1,11 +1,24 @@
 { chadLib, keymaps, ... }:
 let
+  validators = with chadLib.yants; rec {
+    keymapEntries = list sequenceEntry;
+    keymaps = attrs keymapEntries;
+    keymapsAst = defun [
+      keymaps
+      (list (attrs any))
+    ];
+    sequenceEntry = struct "sequenceEntry" {
+      description = string;
+      sequence = string;
+    };
+  };
+
   categoryAst =
     categoryTitle: entries:
     chadLib.core.foldl'
       (
         acc:
-        { combination, description }:
+        { sequence, description }:
         acc
         ++ [
           {
@@ -13,7 +26,7 @@ let
             c = [
               {
                 t = "Str";
-                c = "${combination} - ${description}";
+                c = "${sequence} - ${description}";
               }
             ];
           }
@@ -39,8 +52,12 @@ let
         }
       ]
       entries;
+
+  keymapsAst = validators.keymapsAst (
+    chadLib.attrsets.foldlAttrs (
+      acc: categoryTitle: entries:
+      acc ++ (categoryAst categoryTitle entries)
+    ) [ ]
+  );
 in
-chadLib.attrsets.foldlAttrs (
-  acc: key: val:
-  acc ++ (categoryAst key val)
-) [ ] keymaps
+keymapsAst keymaps

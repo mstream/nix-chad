@@ -1,23 +1,43 @@
 { chadLib, ... }:
 let
+  validators = with chadLib.yants; rec {
+    mkCategorizedOptionsGroup = defun [
+      string
+      string
+      (attrs suffixEntry)
+      (attrs any)
+    ];
+    sequenceEntry = {
+      description = string;
+      sequence = string;
+    };
+    suffixEntry = struct "suffixEntry" {
+      description = string;
+      suffix = string;
+    };
+  };
+
   mkUncategorizedSequenceOption =
     description: default:
-    chadLib.options.makeOption {
+    chadLib.options.mkOption {
       inherit default description;
-      type = with chadLib.types; string;
+      type = with chadLib.types; str;
     };
 
   mkUncategorizedOptionsGroup = chadLib.core.mapAttrs (
-    { description, sequence }:
-    mkUncategorizedSequenceOption description sequence
+    chadLib.functions.constant (
+      { description, sequence }:
+      mkUncategorizedSequenceOption description sequence
+    )
   );
 
   mkCategorizedSuffixOption =
-    prefix: description: default:
-    chadLib.options.makeOption {
+    prefix:
+    { default, description }:
+    chadLib.options.mkOption {
       inherit default description;
-      apply = v: "<leader>${prefix}${v}";
-      type = with chadLib.types; string;
+      apply = s: "<leader>${prefix}${s}";
+      type = with chadLib.types; str;
     };
 
   mkCategorizedPrefixOption =
@@ -27,29 +47,41 @@ let
       inherit description;
       default = prefix;
       readOnly = true;
-      type = with chadLib.types; string;
+      type = with chadLib.types; str;
       visible = true;
     };
 
-  mkCategorizedOptionsGroup = prefix: description: entries: {
-    prefix = mkCategorizedPrefixOption prefix description;
-    suffixes = chadLib.core.mapAttrs (
-      { description, suffix }:
-      mkCategorizedSuffixOption prefix suffix description
-    ) entries;
-  };
-
+  mkCategorizedOptionsGroup = validators.mkCategorizedOptionsGroup (
+    prefix: description: entries:
+    let
+      mkSuffixOption = mkCategorizedSuffixOption prefix;
+    in
+    {
+      prefix = mkCategorizedPrefixOption prefix description;
+      suffixes = chadLib.core.mapAttrs (chadLib.functions.constant (
+        { description, suffix }:
+        mkSuffixOption {
+          inherit description;
+          default = suffix;
+        }
+      )) entries;
+    }
+  );
 in
 {
   categorized = {
     close = mkCategorizedOptionsGroup "x" "Closing things." {
       currentBuffer = {
         description = "close the current buffer";
-        suffic = "bc";
+        suffix = "bc";
       };
     };
 
     comment = mkCategorizedOptionsGroup "/" "Commenting things." {
+      addEndOfLine = {
+        description = "add at the end of line";
+        suffix = "lA";
+      };
       addLineAbove = {
         description = "add line above";
         suffix = "lO";
@@ -57,10 +89,6 @@ in
       addLineBelow = {
         description = "add line below";
         suffix = "lo";
-      };
-      addEndOfLine = {
-        description = "add at the end of line";
-        suffix = "lA";
       };
       block = {
         description = "block operator-pending";
@@ -180,6 +208,7 @@ in
       };
     };
   };
+
   uncategorized = mkUncategorizedOptionsGroup {
     cancel = {
       description = "Cancels current selection or mode.";

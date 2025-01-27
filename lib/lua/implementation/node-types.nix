@@ -5,6 +5,7 @@
 chadLib.enum.create {
   memberNames = [
     "array"
+    "arrayDereference"
     "boolean"
     "functionDefinition"
     "functionInvocation"

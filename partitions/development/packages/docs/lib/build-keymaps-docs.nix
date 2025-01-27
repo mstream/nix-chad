@@ -4,54 +4,34 @@ let
   neovimKeymapConfig = evaluatedModules.config.chad.editor.keyMappings;
 
   neovimKeymaps = {
-    "Comment" = chadLib.core.map (
-      { description, combination }:
-      {
-        combination = "c${combination}";
-        description = "Comment ${description}";
-      }
-    ) (chadLib.core.attrValues neovimKeymapConfig.comment);
-    "Directory Tree" = chadLib.core.map (
-      { description, combination }:
-      {
-        combination = "t${combination}";
-        description = "Directory tree ${description}";
-      }
-    ) (chadLib.core.attrValues neovimKeymapConfig.directoryTree);
-    "Find" = chadLib.core.map (
-      { description, combination }:
-      {
-        combination = "f${combination}";
-        description = "Find ${description}";
-      }
-    ) (chadLib.core.attrValues neovimKeymapConfig.find);
-    "Go To" = chadLib.core.map (
-      { description, combination }:
-      {
-        combination = "g${combination}";
-        description = "Go to ${description}";
-      }
-    ) (chadLib.core.attrValues neovimKeymapConfig.goTo);
-    "Refactor" = chadLib.core.map (
-      { description, combination }:
-      {
-        combination = "r${combination}";
-        description = "Refactor ${description}";
-      }
-    ) (chadLib.core.attrValues neovimKeymapConfig.refactor);
-    "Select" = chadLib.core.map (
-      { description, combination }:
-      {
-        combination = "s${combination}";
-        description = "Select ${description}";
-      }
-    ) (chadLib.core.attrValues neovimKeymapConfig.select);
-    "Miscellaneous" = chadLib.core.map (
-      { description, combination }:
-      {
-        inherit description combination;
-      }
-    ) (chadLib.core.attrValues neovimKeymapConfig.topLevel);
+    "Close" = chadLib.core.map (sequence: {
+      inherit sequence;
+      description = "TODO";
+    }) (chadLib.core.attrValues neovimKeymapConfig.categorized.close);
+    "Comment" = chadLib.core.map (sequence: {
+      inherit sequence;
+      description = "TODO";
+    }) (chadLib.core.attrValues neovimKeymapConfig.categorized.comment);
+    "Find" = chadLib.core.map (sequence: {
+      inherit sequence;
+      description = "TODO";
+    }) (chadLib.core.attrValues neovimKeymapConfig.categorized.find);
+    "Go To" = chadLib.core.map (sequence: {
+      inherit sequence;
+      description = "TODO";
+    }) (chadLib.core.attrValues neovimKeymapConfig.categorized.goTo);
+    "Refactor" = chadLib.core.map (sequence: {
+      inherit sequence;
+      description = "TODO";
+    }) (chadLib.core.attrValues neovimKeymapConfig.categorized.refactor);
+    "Select" = chadLib.core.map (sequence: {
+      inherit sequence;
+      description = "TODO";
+    }) (chadLib.core.attrValues neovimKeymapConfig.categorized.select);
+    "Miscellaneous" = chadLib.core.map (sequence: {
+      inherit sequence;
+      description = "TODO";
+    }) (chadLib.core.attrValues neovimKeymapConfig.uncategorized);
   };
 
   programHeaderAst = programName: {

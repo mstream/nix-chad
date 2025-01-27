@@ -12,7 +12,7 @@ in
       highlight.enable = true;
       incremental_selection = {
         enable = true;
-        keymaps = with kms.categorized.select; {
+        keymaps = with kms.categorized.select.suffixes; {
           init_selection = initialize;
           node_decremental = decrement;
           node_incremental = increment;
