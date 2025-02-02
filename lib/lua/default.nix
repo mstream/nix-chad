@@ -1,4 +1,5 @@
 chadLib: rec {
+  description = "lua code generation helpers";
   implementation = import ./implementation chadLib;
-  tests = import ./tests.nix implementation;
+  tests = import ./tests implementation;
 }

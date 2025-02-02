@@ -1,4 +1,5 @@
 chadLib: rec {
+  description = "macOS keyboard shortcuts configuration support";
   implementation = import ./implementation chadLib;
-  tests = import ./tests.nix implementation;
+  tests = import ./tests implementation;
 }

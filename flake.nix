@@ -1,63 +1,19 @@
 {
+
   description = "An opinionated MacOS setup.";
 
   inputs = {
     flake-parts = {
       inputs.nixpkgs-lib.follows = "nixpkgs";
-      url = "github:hercules-ci/flake-parts/main";
+      url = "github:hercules-ci/flake-parts?rev=b905f6fc23a9051a6e1b741e1438dbfc0634c6de";
     };
-    flake-utils.url = "github:numtide/flake-utils/main";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
+    flake-utils.url = "github:numtide/flake-utils?rev=11707dc2f618dd54ca8739b309ec4fc024de578b";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=a6fb7237cd4b325a8a75e0eab9e43caa94fcd3f1";
     yants = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:divnix/yants/main";
+      url = "github:divnix/yants?rev=8f0da0dba57149676aa4817ec0c880fbde7a648d";
     };
   };
 
-  outputs =
-    inputs@{
-      flake-parts,
-      flake-utils,
-      nixpkgs,
-      yants,
-      ...
-    }:
-    let
-      ciSystems = with flake-utils.lib.system; [
-        aarch64-darwin
-        x86_64-darwin
-        x86_64-linux
-      ];
-
-      chadLibBundle = import ./lib {
-        inherit yants;
-        nixpkgsLib = nixpkgs.lib;
-      };
-
-      chadLib = chadLibBundle.implementation;
-
-      partitions = import ./partitions { inherit chadLib; };
-
-      partitionFlakeOutputs = import ./partition-flake-outputs.nix {
-        inherit chadLib partitions;
-      };
-    in
-    flake-parts.lib.mkFlake
-      {
-        inherit inputs;
-        specialArgs = {
-          inherit chadLib;
-        };
-      }
-      (
-        _:
-        chadLib.attrsets.merge partitionFlakeOutputs {
-          debug = true;
-          imports = [
-            flake-parts.flakeModules.partitions
-            (_: { flake.tests.chadLib = chadLibBundle.tests; })
-          ];
-          systems = ciSystems;
-        }
-      );
+  outputs = inputs: import ./outputs inputs;
 }

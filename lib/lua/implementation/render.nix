@@ -5,14 +5,6 @@
   ...
 }:
 let
-  camelToSnakeCase = chadLib.strings.stringAsChars (
-    char:
-    if chadLib.strings.toUpper char == char then
-      "_${chadLib.strings.toLower char}"
-    else
-      char
-  );
-
   render =
     (
       with chadLib.yants;
@@ -81,7 +73,12 @@ let
       { entries, formatKeys, ... }:
       let
         renderKey = chadLib.functions.compose [
-          (if formatKeys then camelToSnakeCase else chadLib.functions.identity)
+          (
+            if formatKeys then
+              chadLib.strings.camelToSnakeCase
+            else
+              chadLib.functions.identity
+          )
           (value: self.string { inherit value; })
         ];
 

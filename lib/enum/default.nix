@@ -1,4 +1,5 @@
 chadLib: rec {
-  implementation = import ./implementation.nix chadLib;
-  tests = import ./tests.nix implementation;
+  description = "enumerations";
+  implementation = import ./implementation chadLib;
+  tests = import ./tests implementation;
 }

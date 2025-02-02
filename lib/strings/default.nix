@@ -1,5 +1,5 @@
 chadLib: rec {
-  description = "various constants";
+  description = "strings manipulation";
   implementation = import ./implementation chadLib;
   tests = import ./tests implementation;
 }

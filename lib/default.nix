@@ -1,12 +1,13 @@
 {
-  nixpkgsLib,
+  nixpkgs,
   yants,
   ...
 }:
 let
   core = builtins;
+  nixpkgsLib = nixpkgs.lib;
 
-  attrsets = import ./attrsets.nix {
+  attrsets = import ./attrsets {
     inherit core yants;
     nixpkgsLibAttrsets = nixpkgsLib.attrsets;
   };
@@ -19,15 +20,17 @@ let
     inherit yants;
   };
 
-  mergedLib = attrsets.implementation.merge externalLib localLibImplementations;
+  mergedLib = attrsets.implementation.merge externalLib implementation;
 
   bash = import ./bash mergedLib;
   constants = import ./constants mergedLib;
   enum = import ./enum mergedLib;
   functions = import ./functions mergedLib;
   lua = import ./lua mergedLib;
+  markdown = import ./markdown mergedLib;
   nixCli = import ./nix-cli mergedLib;
   shortcuts = import ./shortcuts mergedLib;
+  strings = import ./strings mergedLib;
 
   localLibBundles = {
     inherit
@@ -37,21 +40,20 @@ let
       enum
       functions
       lua
+      markdown
       nixCli
       shortcuts
+      strings
       ;
   };
 
-  localLibImplementations = core.mapAttrs (
-    functions.implementation.constant
-    (bundle: bundle.implementation)
-  ) localLibBundles;
+  mapLocalLibBundles =
+    f: core.mapAttrs (functions.implementation.constant f) localLibBundles;
 
-  localLibTests = core.mapAttrs (functions.implementation.constant (
-    bundle: bundle.tests
-  )) localLibBundles;
+  implementation = mapLocalLibBundles (bundle: bundle.implementation);
 in
 {
-  tests = localLibTests;
   implementation = mergedLib;
+  descriptions = mapLocalLibBundles (bundle: bundle.description);
+  tests = mapLocalLibBundles (bundle: bundle.tests);
 }

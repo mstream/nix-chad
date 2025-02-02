@@ -81,15 +81,8 @@ let
   updateAppleSymbolicHotKeysBashScriptSource = ''
     "${updateShortcutsScript}" "${shortcutsSpecFile}"
 
-    # dummy write to make settings activation work
-    defaults \
-      write \
-      com.apple.symbolichotkeys.plist \
-      AppleSymbolicHotKeys \
-      -dict-add 999 \
-      "<dict><key>enabled</key><false/></dict>"
-
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    killall -u ${cfg.user.name} cfprefsd
   '';
 in
 {

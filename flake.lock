@@ -16,8 +16,8 @@
       },
       "original": {
         "owner": "hercules-ci",
-        "ref": "main",
         "repo": "flake-parts",
+        "rev": "b905f6fc23a9051a6e1b741e1438dbfc0634c6de",
         "type": "github"
       }
     },
@@ -35,23 +35,23 @@
       },
       "original": {
         "owner": "numtide",
-        "ref": "main",
         "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1736949135,
-        "narHash": "sha256-HGSacCG66FNt/oQjxXsp+2og657hZFjBDAhUGzPoyn4=",
+        "lastModified": 1738086921,
+        "narHash": "sha256-ROPyVvAP9oK0fUdA3PRtYP4d3yfU4z7/7Nq7BasqTqs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5a141918f8b3ea128746881b6c099a6df569a51e",
+        "rev": "a6fb7237cd4b325a8a75e0eab9e43caa94fcd3f1",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixpkgs-24.11-darwin",
+        "ref": "a6fb7237cd4b325a8a75e0eab9e43caa94fcd3f1",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -95,8 +95,8 @@
       },
       "original": {
         "owner": "divnix",
-        "ref": "main",
         "repo": "yants",
+        "rev": "8f0da0dba57149676aa4817ec0c880fbde7a648d",
         "type": "github"
       }
     }
