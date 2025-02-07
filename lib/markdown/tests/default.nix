@@ -37,7 +37,7 @@ in
       };
   };
   testRenderNestedList = testCase {
-    expectedCode = "- foo\n- bar";
+    expectedCode = "- foo\n  - bar\n  - biz";
     node =
       with implementation.ast;
       list {
@@ -45,9 +45,16 @@ in
           (listItem paragraph [
             (text "foo")
           ])
-          (listItem (paragraph [
-            (text "bar")
-          ]))
+          (listItem (list {
+            items = [
+              (listItem paragraph [
+                (text "bar")
+              ])
+              (listItem (paragraph [
+                (text "biz")
+              ]))
+            ];
+          }))
         ];
       };
   };

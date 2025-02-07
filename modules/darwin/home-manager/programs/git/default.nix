@@ -17,6 +17,7 @@ in
       core = {
         autocrlf = "input";
         editor = "vim";
+        ignorecase = false;
       };
       init = {
         defaultBranch = "master";

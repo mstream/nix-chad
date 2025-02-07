@@ -4,6 +4,7 @@
 }:
 chadLib.enum.create {
   memberNames = [
+    "break"
     "heading"
     "link"
     "list"
