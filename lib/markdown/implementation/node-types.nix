@@ -4,8 +4,8 @@
 }:
 chadLib.enum.create {
   memberNames = [
-    "break"
     "heading"
+    "lineBreak"
     "link"
     "list"
     "listItem"

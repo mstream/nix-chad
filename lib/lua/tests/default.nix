@@ -111,12 +111,12 @@ in
   };
 
   testRenderReformattedKeysRecord = testCase {
-    expectedCode = "{[ [[foo_bar_biz]] ]=[[value of fooBarBiz]]}";
+    expectedCode = "{[ [[foo_bar_baz]] ]=[[value of fooBarBaz]]}";
     node =
       with implementation.ast;
       record {
         entries = {
-          fooBarBiz = string "value of fooBarBiz";
+          fooBarBaz = string "value of fooBarBaz";
         };
         formatKeys = true;
       };

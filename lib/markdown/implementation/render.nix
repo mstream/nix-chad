@@ -5,8 +5,15 @@
   ...
 }:
 let
+  incrementIndentation =
+    lineBreakIndentation: parentPrefix:
+    let
+      alignment = chadLib.strings.stringAsChars (chadLib.functions.constant " ") parentPrefix;
+    in
+    "${lineBreakIndentation}${alignment}";
+
   render =
-    lineBreak:
+    lineBreakIndentation:
     (
       with chadLib.yants;
       defun [
@@ -17,20 +24,14 @@ let
       (
         node:
         let
-          renderNode = nodeTypes.mapWith (renderers lineBreak) node.nodeType;
+          renderNode = nodeTypes.mapWith (renderers lineBreakIndentation) node.nodeType;
         in
         renderNode node
       );
 
   renderers =
-    lineBreak:
+    lineBreakIndentation:
     chadLib.fixedPoints.fix (self: {
-      break =
-        _:
-        let
-          twoSpaces = "  ";
-        in
-        "${twoSpaces}${lineBreak}";
       heading =
         { depth, text, ... }:
         let
@@ -39,33 +40,43 @@ let
           );
         in
         "${prefix} ${text}";
+      lineBreak =
+        _:
+        let
+          twoSpaces = "  ";
+        in
+        "${twoSpaces}${lineBreakIndentation}";
       link = { text, url, ... }: "[${text}](${url})";
       list =
         { items, ordered, ... }:
         let
-          prefix = if ordered then "1." else "-";
-          itemsIndentation = chadLib.strings.stringAsChars (chadLib.functions.constant " ") prefix;
-          renderItem = render (lineBreak + itemsIndentation);
+          prefix = if ordered then "1. " else "- ";
+          renderItem = render (incrementIndentation lineBreakIndentation prefix);
         in
-        chadLib.strings.concatMapStringsSep lineBreak (chadLib.functions.compose
+        chadLib.strings.concatMapStringsSep lineBreakIndentation (
+          chadLib.functions.compose
           [
             renderItem
-            (s: "${prefix} ${s}")
+            (s: "${prefix}${s}")
           ]
         ) items;
       listItem =
         { children, ... }:
         let
-          renderChild = render lineBreak;
+          renderChild = render lineBreakIndentation;
         in
-        chadLib.strings.concatMapStrings renderChild children;
+        chadLib.strings.concatMapStringsSep lineBreakIndentation renderChild
+          children;
       paragraph =
         { children, ... }:
         let
-          renderChild = render lineBreak;
+          renderChild = render lineBreakIndentation;
         in
         chadLib.strings.concatMapStrings renderChild children;
       text = { value, ... }: value;
     });
 in
-render "\n"
+chadLib.functions.compose [
+  (render "\n")
+  (s: "${s}\n")
+]

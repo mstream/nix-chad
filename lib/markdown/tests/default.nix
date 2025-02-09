@@ -9,17 +9,22 @@ let
 in
 {
   testRenderBreak = testCase {
-    expectedCode = "foo  \nbar";
+    expectedCode = ''
+      foo  
+      bar
+    '';
     node =
       with implementation.ast;
       paragraph [
         (text "foo")
-        break
+        lineBreak
         (text "bar")
       ];
   };
   testRenderHeading = testCase {
-    expectedCode = "### foo bar";
+    expectedCode = ''
+      ### foo bar
+    '';
     node =
       with implementation.ast;
       heading {
@@ -28,7 +33,9 @@ in
       };
   };
   testRenderLink = testCase {
-    expectedCode = "[foo](https://example.com)";
+    expectedCode = ''
+      [foo](https://example.com)
+    '';
     node =
       with implementation.ast;
       link {
@@ -37,29 +44,47 @@ in
       };
   };
   testRenderNestedList = testCase {
-    expectedCode = "- foo\n  - bar\n  - biz";
+    expectedCode = ''
+      - foo
+      - bar
+        - baz
+        - qux
+    '';
     node =
       with implementation.ast;
       list {
         items = [
-          (listItem paragraph [
-            (text "foo")
+          (listItem [
+            (paragraph [
+              (text "foo")
+            ])
           ])
-          (listItem (list {
-            items = [
-              (listItem paragraph [
-                (text "bar")
-              ])
-              (listItem (paragraph [
-                (text "biz")
-              ]))
-            ];
-          }))
+          (listItem [
+            (paragraph [
+              (text "bar")
+            ])
+            (list {
+              items = [
+                (listItem [
+                  (paragraph [
+                    (text "baz")
+                  ])
+                ])
+                (listItem [
+                  (paragraph [
+                    (text "qux")
+                  ])
+                ])
+              ];
+            })
+          ])
         ];
       };
   };
   testRenderParagraph = testCase {
-    expectedCode = "foo bar";
+    expectedCode = ''
+      foo bar
+    '';
     node =
       with implementation.ast;
       paragraph [
@@ -67,37 +92,53 @@ in
       ];
   };
   testRenderText = testCase {
-    expectedCode = "foo";
+    expectedCode = ''
+      foo
+    '';
     node = with implementation.ast; text "foo";
   };
   testRenderOrderedList = testCase {
-    expectedCode = "1. foo\n1. bar";
+    expectedCode = ''
+      1. foo
+      1. bar
+    '';
     node =
       with implementation.ast;
       list {
         items = [
-          (listItem (paragraph [
-            (text "foo")
-          ]))
-          (listItem (paragraph [
-            (text "bar")
-          ]))
+          (listItem [
+            (paragraph [
+              (text "foo")
+            ])
+          ])
+          (listItem [
+            (paragraph [
+              (text "bar")
+            ])
+          ])
         ];
         ordered = true;
       };
   };
   testRenderUnorderedList = testCase {
-    expectedCode = "- foo\n- bar";
+    expectedCode = ''
+      - foo
+      - bar
+    '';
     node =
       with implementation.ast;
       list {
         items = [
-          (listItem (paragraph [
-            (text "foo")
-          ]))
-          (listItem (paragraph [
-            (text "bar")
-          ]))
+          (listItem [
+            (paragraph [
+              (text "foo")
+            ])
+          ])
+          (listItem [
+            (paragraph [
+              (text "bar")
+            ])
+          ])
         ];
       };
   };

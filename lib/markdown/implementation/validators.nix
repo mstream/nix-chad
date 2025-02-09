@@ -7,15 +7,13 @@ with chadLib.yants;
 rec {
   anyNode = eitherN [
     headingNode
+    lineBreakNode
     linkNode
+    listItemNode
     listNode
     paragraphNode
     textNode
   ];
-
-  breakNode = struct "breakNode" {
-    nodeType = nodeTypeOf nodeTypes.members.break;
-  };
 
   depth = restrict "depth" (i: i >= 1 && i <= 6) int;
 
@@ -28,6 +26,10 @@ rec {
     inherit depth;
     nodeType = nodeTypeOf nodeTypes.members.heading;
     text = string;
+  };
+
+  lineBreakNode = struct "lineBreakNode" {
+    nodeType = nodeTypeOf nodeTypes.members.lineBreak;
   };
 
   linkNode = struct "linkNode" {
@@ -48,9 +50,9 @@ rec {
   };
 
   nodeCreatingFunctions =
-    chadLib.core.mapAttrs (chadLib.functions.constant defun)
+    chadLib.core.mapAttrs
+      (name: f: if name == "lineBreak" then f else defun f)
       {
-        break = [ breakNode ];
         heading = [
           (struct "headingNodeArgs" {
             inherit depth;
@@ -58,18 +60,17 @@ rec {
           })
           headingNode
         ];
+        lineBreak = [ breakNode ];
         list = [
           (struct "listNodeArgs" {
-            items = list flowContentNode;
+            items = list listItemNode;
             ordered = option bool;
           })
           listNode
         ];
         listItem = [
-          (struct "listItemNodeArgs")
-          {
-            children = list flowContentNode;
-          }
+          (list flowContentNode)
+          listItemNode
         ];
         link = [
           (struct "linkNodeArgs" {
@@ -98,6 +99,7 @@ rec {
   };
 
   phrasingContentNode = eitherN [
+    lineBreakNode
     linkNode
     textNode
   ];

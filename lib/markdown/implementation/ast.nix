@@ -6,7 +6,11 @@
 }:
 let
   withValidation = chadLib.core.mapAttrs (
-    functionName: validators.nodeCreatingFunctions.${functionName}
+    name: f:
+    if name == "lineBreak" then
+      f
+    else
+      validators.nodeCreatingFunctions.${name} f
   );
 in
 withValidation {
@@ -19,6 +23,10 @@ withValidation {
       inherit depth text;
       nodeType = nodeTypes.members.heading;
     };
+
+  lineBreak = {
+    nodeType = nodeTypes.members.lineBreak;
+  };
   link =
     {
       text,
