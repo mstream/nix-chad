@@ -21,6 +21,7 @@
     ./globals.nix
     ./keymaps.nix
     ./options
+    ./performance.nix
     ./plugins
   ];
 }

@@ -104,6 +104,14 @@ in
         "abbr"
         "menu"
       ];
+      performance = {
+        async_budget = 2;
+        confirm_resolve_timeout = 80;
+        debounce = 1;
+        fetching_timeout = 500;
+        max_view_entries = 50;
+        throttle = 50;
+      };
       snippet.expand = chadLib.lua.render (
         snippetExpandLuaFunction (
           with chadLib.lua.ast;
