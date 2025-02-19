@@ -7,7 +7,7 @@
 let
   withValidation = chadLib.core.mapAttrs (
     name: f:
-    if name == "lineBreak" then
+    if name == "lineBreak" || name == "thematicBreak" then
       f
     else
       validators.nodeCreatingFunctions.${name} f
@@ -23,7 +23,6 @@ withValidation {
       inherit depth text;
       nodeType = nodeTypes.members.heading;
     };
-
   lineBreak = {
     nodeType = nodeTypes.members.lineBreak;
   };
@@ -56,5 +55,8 @@ withValidation {
   text = value: {
     inherit value;
     nodeType = nodeTypes.members.text;
+  };
+  thematicBreak = {
+    nodeType = nodeTypes.members.thematicBreak;
   };
 }

@@ -18,7 +18,7 @@
     };
     nixpkgs-firefox-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=aa67b010a2783e5ba889cf9b54857b99dbfd023f";
+      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=1d8947326870364f8876cc4781013f45e0220a95";
     };
     nixpkgs.url = "github:nixos/nixpkgs?rev=a6fb7237cd4b325a8a75e0eab9e43caa94fcd3f1";
     nur = {

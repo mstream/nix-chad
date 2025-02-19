@@ -12,7 +12,7 @@ let
     in
     "${lineBreakIndentation}${alignment}";
 
-  render =
+  renderAnyNode =
     lineBreakIndentation:
     (
       with chadLib.yants;
@@ -27,6 +27,24 @@ let
           renderNode = nodeTypes.mapWith (renderers lineBreakIndentation) node.nodeType;
         in
         renderNode node
+      );
+
+  renderFlowContentNodes =
+    lineBreakIndentation:
+    (
+      with chadLib.yants;
+      defun [
+        (list validators.flowContentNode)
+        string
+      ]
+    )
+      (
+        nodes:
+        let
+          renderNode = renderAnyNode lineBreakIndentation;
+        in
+        chadLib.strings.concatMapStringsSep lineBreakIndentation renderNode
+          nodes
       );
 
   renderers =
@@ -51,7 +69,9 @@ let
         { items, ordered, ... }:
         let
           prefix = if ordered then "1. " else "- ";
-          renderItem = render (incrementIndentation lineBreakIndentation prefix);
+          renderItem = renderAnyNode (
+            incrementIndentation lineBreakIndentation prefix
+          );
         in
         chadLib.strings.concatMapStringsSep lineBreakIndentation (
           chadLib.functions.compose
@@ -63,20 +83,26 @@ let
       listItem =
         { children, ... }:
         let
-          renderChild = render lineBreakIndentation;
+          renderChild = renderAnyNode lineBreakIndentation;
         in
         chadLib.strings.concatMapStringsSep lineBreakIndentation renderChild
           children;
       paragraph =
         { children, ... }:
         let
-          renderChild = render lineBreakIndentation;
+          renderChild = renderAnyNode lineBreakIndentation;
         in
         chadLib.strings.concatMapStrings renderChild children;
       text = { value, ... }: value;
+      thematicBreak =
+        _:
+        let
+          threeDashes = "---";
+        in
+        threeDashes;
     });
 in
 chadLib.functions.compose [
-  (render "\n")
+  (renderFlowContentNodes "\n")
   (s: "${s}\n")
 ]

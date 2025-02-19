@@ -31,8 +31,15 @@ let
       .nodes.nixpkgs.original.ref;
   };
 
+  chadLibCategoryBaseFileName = chadLib.strings.camelToKebabCase;
+
+  summary = import ./lib/build-summary.nix {
+    inherit chadLib chadLibBundle chadLibCategoryBaseFileName;
+  };
+
   chadLibDocs = import ./lib/build-lib-docs.nix {
     inherit chadLib chadLibBundle pkgs;
+    categoryBaseFileName = chadLibCategoryBaseFileName;
   };
 
   validationBashFunction =

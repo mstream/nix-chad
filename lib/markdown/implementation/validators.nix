@@ -13,13 +13,16 @@ rec {
     listNode
     paragraphNode
     textNode
+    thematicBreakNode
   ];
 
   depth = restrict "depth" (i: i >= 1 && i <= 6) int;
 
   flowContentNode = eitherN [
+    headingNode
     listNode
     paragraphNode
+    thematicBreakNode
   ];
 
   headingNode = struct "headingNode" {
@@ -51,7 +54,10 @@ rec {
 
   nodeCreatingFunctions =
     chadLib.core.mapAttrs
-      (name: f: if name == "lineBreak" then f else defun f)
+      (
+        name: f:
+        if name == "lineBreak" || name == "thematicBreak" then f else defun f
+      )
       {
         heading = [
           (struct "headingNodeArgs" {
@@ -60,7 +66,7 @@ rec {
           })
           headingNode
         ];
-        lineBreak = [ breakNode ];
+        lineBreak = [ lineBreakNode ];
         list = [
           (struct "listNodeArgs" {
             items = list listItemNode;
@@ -87,6 +93,7 @@ rec {
           string
           textNode
         ];
+        thematicBreak = [ thematicBreakNode ];
       };
 
   nodeTypeOf =
@@ -107,5 +114,8 @@ rec {
   textNode = struct "textNode" {
     nodeType = nodeTypeOf nodeTypes.members.text;
     value = string;
+  };
+  thematicBreakNode = struct "thematicBreakNode" {
+    nodeType = nodeTypeOf nodeTypes.members.thematicBreak;
   };
 }

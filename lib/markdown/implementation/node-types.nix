@@ -11,6 +11,7 @@ chadLib.enum.create {
     "listItem"
     "paragraph"
     "text"
+    "thematicBreak"
   ];
   name = "nodeTypes";
 }
