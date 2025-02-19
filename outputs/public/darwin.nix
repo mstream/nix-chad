@@ -7,8 +7,8 @@
   */
   makeSystem =
     {
-      darwin,
       home-manager,
+      nix-darwin,
       nixpkgs-firefox-darwin,
       nixvim,
       nur,
@@ -27,7 +27,7 @@
           ;
       };
     in
-    darwin.lib.darwinSystem {
+    nix-darwin.lib.darwinSystem {
       inherit specialArgs system;
       modules = [
         # FIXME I could make nixvim work as a hm module because of

@@ -2,9 +2,9 @@
   description = "Public partition inputs.";
 
   inputs = {
-    darwin = {
+    nix-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:LnL7/nix-darwin?rev=cae8d1c4a3bd37be5887203fe3b0c3a860c53a07";
+      url = "github:LnL7/nix-darwin?rev=353846417f985e74fdc060555f17939e4472ea2c";
     };
     flake-compat = {
       url = "github:edolstra/flake-compat?rev=4f910c9827911b1ec2bf26b5a062cd09f8d89f85";
@@ -23,9 +23,9 @@
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager?rev=bd65bc3cde04c16755955630b344bc9e35272c56";
+      url = "github:nix-community/home-manager?rev=9d3d080aec2a35e05a15cedd281c2384767c2cfe";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?ref=a6fb7237cd4b325a8a75e0eab9e43caa94fcd3f1";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=41bc1723c8789e9c46a1bb4897022f80d2cf147d";
     nixpkgs-firefox-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=1d8947326870364f8876cc4781013f45e0220a95";
@@ -36,12 +36,12 @@
         flake-parts.follows = "flake-parts";
         git-hooks.follows = "git-hooks";
         home-manager.follows = "home-manager";
-        nix-darwin.follows = "darwin";
+        nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
         nuschtosSearch.follows = "nuschtosSearch";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/nixvim?rev=841155edf9c4578f2f9a7bd6993e1da2ce73b35c";
+      url = "github:nix-community/nixvim?rev=6b2c62b91a10a773e705f55e8b34a19c8b1f3728";
     };
     nur = {
       inputs = {
