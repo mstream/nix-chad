@@ -9,7 +9,7 @@ in
   programs.nixvim.opts = {
     colorcolumn = builtins.toString colorColumn;
     cursorline = true;
-    cursorlineopt = "number";
+    cursorlineopt = "both";
     cursorcolumn = true;
     expandtab = true;
     fileencoding = "utf-8";
@@ -26,7 +26,7 @@ in
     scrolloff = 99;
     shiftwidth = tabWidth;
     showmode = false;
-    signcolumn = "auto";
+    signcolumn = "yes";
     smartcase = true;
     smartindent = true;
     spell = false;

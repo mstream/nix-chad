@@ -9,16 +9,7 @@
       };
       disable_underline = true;
       flavour = "mocha";
-      integrations = {
-        barbar = true;
-        cmp = true;
-        flash = true;
-        gitsigns = true;
-        telescope = true;
-        treesitter = true;
-        treesitter_context = true;
-        which_key = true;
-      };
+      integrations = import ./integrations.nix;
       kitty = true;
       show_end_of_buffer = true;
       styles = {

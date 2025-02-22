@@ -1,7 +1,6 @@
 { chadLib, ... }:
 chadLib.enum.create {
   mappings = {
-
     extraInputsFlakePath = {
       development = ./development;
       public = ./public;

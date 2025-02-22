@@ -14,7 +14,10 @@
       jsonls.enable = true;
       ltex.enable = true;
       lua_ls.enable = true;
-      nixd.enable = true;
+      nixd = {
+        autostart = true;
+        enable = true;
+      };
       purescriptls = {
         enable = true;
         package = pkgs.nodePackages.purescript-language-server;

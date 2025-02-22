@@ -5,7 +5,7 @@ let
 in
 {
   programs.nixvim.plugins.barbar = {
-    enable = true;
+    enable = false;
     keymaps = with kms.uncategorized; {
       next.key = switchToNextTab;
       previous.key = switchToPreviousTab;

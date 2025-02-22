@@ -4,7 +4,7 @@
     ./barbar.nix
     ./cmp/default.nix
     ./comment.nix
-    ./conform-nvim.nix
+    ./conform-nvim
     ./flash.nix
     ./friendly-snippets.nix
     ./fugitive.nix
@@ -13,8 +13,10 @@
     ./lint.nix
     ./lsp.nix
     ./lsp-format.nix
+    ./lsp-status.nix
     ./lspkind.nix
-    ./lualine.nix
+    ./lspsaga.nix
+    ./lualine
     ./luasnip.nix
     ./none-ls.nix
     ./nvim-lightbulb.nix

@@ -6,6 +6,10 @@
 }:
 chadLib.attrsets.generate
   [
+    "codeDefinitions"
+    "codeImplementations"
+    "codeReferences"
+    "codeTypeDefinitions"
     "gitBranches"
     "gitCommits"
     "gitLocalChanges"

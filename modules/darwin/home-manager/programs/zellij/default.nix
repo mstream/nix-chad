@@ -2,6 +2,7 @@
 let
   actions = chadLib.enum.create {
     memberNames = [
+      "breakPane"
       "closeFocus"
       "closeTab"
       "goToTab"
@@ -113,10 +114,11 @@ in
     enableZshIntegration = false;
     settings = presets.custom // {
       auto_layout = true;
+      copy_on_select = true;
       default_layout = "default";
       disable_session_metadata = false;
       mirror_session = false;
-      mouse_mode = false;
+      mouse_mode = true;
       on_force_close = "quit";
       scroll_buffer_size = 20000;
       serialize_pane_viewport = false;

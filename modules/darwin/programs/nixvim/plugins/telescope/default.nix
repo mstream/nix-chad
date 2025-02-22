@@ -24,6 +24,10 @@ let
   pickers = chadLib.enum.create {
     mappings = {
       id = {
+        codeDefinitions = "lsp_definitions";
+        codeImplementations = "lsp_implementations";
+        codeReferences = "lsp_references";
+        codeTypeDefinitions = "lsp_type_definitions";
         files = "find_files";
         gitBranches = "git_branches";
         gitCommits = "git_commits";
@@ -36,6 +40,10 @@ let
       };
     };
     memberNames = [
+      "codeDefinitions"
+      "codeImplementations"
+      "codeReferences"
+      "codeTypeDefinitions"
       "files"
       "gitBranches"
       "gitCommits"

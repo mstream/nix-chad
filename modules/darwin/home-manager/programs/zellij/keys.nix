@@ -25,6 +25,7 @@ let
     in
     "${name} ${argsString}";
   showActionValue = actions.mapWith {
+    breakPane = "BreakPane";
     closeFocus = "CloseFocus";
     closeTab = "CloseTab";
     goToTab = "GoToTab";
@@ -75,6 +76,9 @@ in
       args = combinations;
       name = "bind";
     };
+  breakPane = kdlKey {
+    name = showActionValue actions.members.breakPane;
+  };
   closeFocus = kdlKey {
     name = showActionValue actions.members.closeFocus;
   };

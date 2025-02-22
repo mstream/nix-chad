@@ -1,5 +1,4 @@
 {
-
   description = "An opinionated MacOS setup.";
 
   inputs = {

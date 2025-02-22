@@ -4,7 +4,7 @@ let
 in
 {
   programs.nixvim.plugins.none-ls = {
-    enable = true;
+    enable = false;
     enableLspFormat = true;
     settings = {
       debounce = 500;
@@ -26,7 +26,8 @@ in
       };
       diagnostics = {
         actionlint.enable = true;
-        commitlint.enable = true;
+        commitlint.enable = false;
+        #commitlint.enable = true;
         deadnix.enable = true;
         editorconfig_checker.enable = true;
         markdownlint.enable = true;

@@ -109,9 +109,21 @@ in
     };
 
     find = mkCategorizedOptionsGroup "f" "Finding things." {
-      definitions = {
-        suffix = "d";
-        description = "definitions";
+      codeDefinitions = {
+        suffix = "cd";
+        description = "code definitions";
+      };
+      codeImplementations = {
+        suffix = "ci";
+        description = "code implementations";
+      };
+      codeReferences = {
+        suffix = "cr";
+        description = "code references";
+      };
+      codeTypeDefinitions = {
+        suffix = "ct";
+        description = "code type definitions";
       };
       files = {
         suffix = "f";

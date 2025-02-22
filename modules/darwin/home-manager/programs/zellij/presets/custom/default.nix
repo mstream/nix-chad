@@ -83,6 +83,10 @@
         ${keys.bind [ "Tab" ]} = {
           ${keys.toggleTab} = { };
         };
+        ${keys.bind [ "b" ]} = {
+          ${keys.breakPane} = { };
+          ${keys.switchToMode modes.members.normal} = { };
+        };
         ${keys.bind [ "n" ]} = {
           ${keys.newTab} = { };
           ${keys.switchToMode modes.members.normal} = { };

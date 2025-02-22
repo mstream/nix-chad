@@ -17,7 +17,7 @@
   };
 
   imports = [
-    ./color-schemes.nix
+    ./color-schemes
     ./globals.nix
     ./keymaps.nix
     ./options
