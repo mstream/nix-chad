@@ -5,7 +5,7 @@
       enable = true;
       initLua = true;
       nvimRuntime = true;
-      plugins = false;
+      plugins = true;
     };
     combinePlugins = {
       enable = false;
