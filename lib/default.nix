@@ -26,6 +26,7 @@ let
   constants = import ./constants mergedLib;
   enum = import ./enum mergedLib;
   functions = import ./functions mergedLib;
+  lists = import ./lists mergedLib;
   lua = import ./lua mergedLib;
   markdown = import ./markdown mergedLib;
   nixCli = import ./nix-cli mergedLib;
@@ -39,6 +40,7 @@ let
       constants
       enum
       functions
+      lists
       lua
       markdown
       nixCli

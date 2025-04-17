@@ -11,22 +11,18 @@ let
       (groupName: "[group('${groupName}')]")
     ]
   );
-  showBeforeHooks =
-    beforeHooks:
-    if beforeHooks == null then
-      ""
-    else
-      chadLib.strings.concatStringsSep " " beforeHooks;
+  showBeforeHooks = chadLib.strings.concatStringsSep " ";
   showAfterHooks =
     afterHooks:
-    if afterHooks == null then
+    if chadLib.lists.isEmpty afterHooks then
       ""
     else
       "&& " + chadLib.strings.concatStringsSep " " afterHooks;
+  showArguments = chadLib.strings.concatStringsSep " ";
   showHooks =
     {
-      after ? { },
-      before ? { },
+      after ? [ ],
+      before ? [ ],
     }:
     chadLib.concatStringsSep " " [
       (showBeforeHooks before)
@@ -37,18 +33,25 @@ let
     enable = true;
     justfile =
       let
-        declarationLines =
-          if chadLib.hasAttr "declarations" spec then spec.declarations else "";
+        argumentsRep =
+          if chadLib.core.hasAttr "arguments" spec then
+            " ${showArguments spec.arguments}"
+          else
+            "";
+        hooksRep =
+          if chadLib.core.hasAttr "hooks" spec then
+            " ${showHooks spec.hooks}"
+          else
+            "";
+
         commentLine = "# ${spec.comment}";
-        groupsLine = showGroups spec.groups;
-        recipeHeaderLine =
-          "${recipeName}:"
-          + (
-            if chadLib.core.hasAttr "hooks" spec then
-              " ${showHooks spec.hooks}"
-            else
-              ""
-          );
+        groupsBlock = showGroups spec.groups;
+        privateLine =
+          if chadLib.core.hasAttr "isPrivate" spec && spec.isPrivate then
+            "[private]"
+          else
+            "";
+        recipeHeaderLine = "${recipeName}${argumentsRep}:${hooksRep}";
         recipeBashShebangLine = "#!/usr/bin/env bash";
         recipeBashOptionsLine = "set -eoux pipefail";
         recipeBodyLines = ''
@@ -58,13 +61,46 @@ let
         '';
       in
       ''
-        ${declarationLines}
         ${commentLine}
-        ${groupsLine}
+        ${privateLine}
+        ${groupsBlock}
         ${recipeHeaderLine}
         ${indent recipeBodyLines}
       '';
   };
 
+  declarationsFeature =
+    declarations:
+    let
+      showDeclarations = chadLib.attrsets.foldlAttrs (
+        acc: name: value:
+        "${acc}\n${name} := ${value}"
+      ) "";
+
+    in
+    {
+      enable = true;
+      justfile = ''
+        ${showDeclarations declarations}
+      '';
+    };
 in
-chadLib.attrsets.mapAttrs recipeSpecToFeature
+chadLib.functions.compose [
+  (chadLib.attrsets.mapAttrs recipeSpecToFeature)
+  (chadLib.attrsets.merge {
+    _declarations = declarationsFeature {
+      ci = ''
+        env_var_or_default("CI", "false")
+      '';
+      conf_attr = ''
+        "darwinConfigurations.macbook.aarch64-darwin.system"
+      '';
+      github_repo = ''
+        "mstream/nix-chad"
+      '';
+      repo_root = ''
+        justfile_directory()
+      '';
+    };
+  })
+]
