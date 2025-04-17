@@ -8,7 +8,7 @@
       plugins = true;
     };
     combinePlugins = {
-      enable = false;
+      enable = true;
     };
   };
 }
