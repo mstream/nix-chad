@@ -20,6 +20,7 @@ in
         extra-platforms = ${system}
         experimental-features = nix-command flakes
         build-users-group = nixbld
+        download-buffer-size = 134217728
       '';
       package = pkgs.nix;
       registry = {
