@@ -45,6 +45,23 @@ in
       general = {
         live_config_reload = true;
       };
+      hints = {
+        alphabet = "jfkdls;ahgurieowpq";
+        enabled = [
+          {
+            binding = {
+              key = "O";
+              mods = "Control|Shift";
+            };
+            command = "open";
+            hyperlinks = true;
+            mouse.enabled = true;
+            persist = false;
+            post_processing = true;
+            regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+";
+          }
+        ];
+      };
       keyboard.bindings = cfg.terminal.keyBindings;
       scrolling = {
         history = 0;
