@@ -1,5 +1,6 @@
 __pycache__
 .psc-ide-port
+**/flake.backup.nix
 just-flake.just
 mermaid-filter.err
 node_modules

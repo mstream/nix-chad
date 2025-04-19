@@ -24,9 +24,12 @@
       generateFeatures = import ./generate-features.nix {
         inherit chadLib groups;
       };
+      nixBuildCommand = import ./nix-build-command.nix {
+        inherit chadLib;
+      };
       standardFeatures = { };
       customFeatures = generateFeatures (
-        import ./recipes.nix { inherit chadLib groups; }
+        import ./recipes.nix { inherit chadLib groups nixBuildCommand; }
       );
     in
     {

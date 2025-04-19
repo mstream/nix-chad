@@ -4,7 +4,7 @@
   inputs = {
     flake-parts = {
       inputs.nixpkgs-lib.follows = "nixpkgs";
-      url = "github:hercules-ci/flake-parts?rev=b905f6fc23a9051a6e1b741e1438dbfc0634c6de";
+      url = "github:hercules-ci/flake-parts?rev=c621e8422220273271f52058f618c94e405bb0f5";
     };
     flake-utils.url = "github:numtide/flake-utils?rev=11707dc2f618dd54ca8739b309ec4fc024de578b";
     nixpkgs.url = "github:nixos/nixpkgs?ref=86484f6076aac9141df2bfcddbf7dcfce5e0c6bb";

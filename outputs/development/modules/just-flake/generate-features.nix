@@ -45,7 +45,9 @@ let
             "";
 
         commentLine = "# ${spec.comment}";
-        groupsBlock = showGroups spec.groups;
+        groupsBlock = showGroups (
+          if chadLib.core.hasAttr "groups" spec then spec.groups else [ ]
+        );
         privateLine =
           if chadLib.core.hasAttr "isPrivate" spec && spec.isPrivate then
             "[private]"
@@ -89,6 +91,9 @@ chadLib.functions.compose [
   (chadLib.attrsets.mapAttrs recipeSpecToFeature)
   (chadLib.attrsets.merge {
     _declarations = declarationsFeature {
+      call_recipe = ''
+        just_executable() + " --justfile=" + justfile()
+      '';
       ci = ''
         env_var_or_default("CI", "false")
       '';

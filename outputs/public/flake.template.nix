@@ -38,7 +38,7 @@
         home-manager.follows = "home-manager";
         nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
-        nuschtosSearch.follows = "nuschtosSearch";
+        nuschtos-search.follows = "nuschtos-search";
         treefmt-nix.follows = "treefmt-nix";
       };
       url = "github:nix-community/nixvim?rev=$NIXVIM";

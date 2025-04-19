@@ -1,20 +1,9 @@
-{ chadLib, groups, ... }:
-let
-  nixBuildCommand =
-    installables:
-    let
-      command = chadLib.strings.concatStringsSep " " [
-        "build"
-        "--print-build-logs"
-        "--show-trace"
-        installables
-      ];
-    in
-    chadLib.nixCli.runCommand {
-      inherit command;
-      showFullLogsOnError = true;
-    };
-in
+{
+  chadLib,
+  groups,
+  nixBuildCommand,
+  ...
+}:
 {
   check-debug = {
     comment = "Check if flake debug is disabled.";
@@ -61,6 +50,18 @@ in
       ${nixBuildCommand ".#docs"}
       cp -r result/* docs/
       chmod -R +w docs/*
+    '';
+  };
+
+  get-commit-id = {
+    arguments = [
+      "repo"
+      "branch"
+    ];
+    comment = "Gets commit ID by reference.";
+    isPrivate = false;
+    script = ''
+      git ls-remote "https://github.com/{{repo}}.git" | grep refs/heads/{{branch}}$ | cut -f 1
     '';
   };
 
@@ -129,15 +130,58 @@ in
     groups = with groups.members; [
       generation
     ];
-    hooks = {
-      before = [
-        "(update-flake-inputs-at \"/\")"
-        "(update-flake-inputs-at \"/outputs/development/\")"
-        "(update-flake-inputs-at \"/outputs/development/\")"
-      ];
-    };
     script = ''
-      echo "Flake inputs update has finished successfully."
+      FLAKE_COMPAT=$({{call_recipe}} get-commit-id edolstra/flake-compat master)
+      export FLAKE_COMPAT
+
+      FLAKE_PARTS=$({{call_recipe}} get-commit-id hercules-ci/flake-parts main)
+      export FLAKE_PARTS
+
+      FLAKE_UTILS=$({{call_recipe}} get-commit-id numtide/flake-utils main)
+      export FLAKE_UTILS
+
+      GIT_HOOKS=$({{call_recipe}} get-commit-id cachix/git-hooks.nix master)
+      export GIT_HOOKS
+
+      HOME_MANAGER=$({{call_recipe}} get-commit-id nix-community/home-manager release-24.11)
+      export HOME_MANAGER
+
+      JUST_FLAKE=$({{call_recipe}} get-commit-id juspay/just-flake main)
+      export JUST_FLAKE
+
+      LINT_NIX=$({{call_recipe}} get-commit-id xc-jp/lint.nix master)
+      export LINT_NIX
+
+      NIX_DARWIN=$({{call_recipe}} get-commit-id nix-darwin/nix-darwin nix-darwin-24.11)
+      export NIX_DARWIN
+
+      NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit main)
+      export NIX_UNIT
+
+      NIXPKGS_FIREFOX_DARWIN=$({{call_recipe}} get-commit-id bandithedoge/nixpkgs-firefox-darwin main)
+      export NIXPKGS_FIREFOX_DARWIN
+
+      NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixpkgs-24.11-darwin)
+      export NIXPKGS
+
+      NIXVIM=$({{call_recipe}} get-commit-id nix-community/nixvim nixos-24.11)
+      export NIXVIM
+
+      NUR=$({{call_recipe}} get-commit-id nix-community/NUR main)
+      export NUR
+
+      NUSCHTOS_SEARCH=$({{call_recipe}} get-commit-id NuschtOS/search main)
+      export NUSCHTOS_SEARCH
+
+      TREEFMT_NIX=$({{call_recipe}} get-commit-id numtide/treefmt-nix main)
+      export TREEFMT_NIX
+
+      YANTS=$({{call_recipe}} get-commit-id divnix/yants main)
+      export YANTS
+
+      {{call_recipe}} update-flake-inputs-at /
+      {{call_recipe}} update-flake-inputs-at /outputs/development/
+      {{call_recipe}} update-flake-inputs-at /outputs/public/
     '';
   };
 
@@ -149,27 +193,14 @@ in
     ];
     isPrivate = true;
     script = ''
-      export FLAKE_COMPAT=4f910c9827911b1ec2bf26b5a062cd09f8d89f85
-      export FLAKE_PARTS=b905f6fc23a9051a6e1b741e1438dbfc0634c6de
-      export FLAKE_UTILS=11707dc2f618dd54ca8739b309ec4fc024de578b
-      export GIT_HOOKS=9364dc02281ce2d37a1f55b6e51f7c0f65a75f17
-      export HOME_MANAGER=c61bfe3ae692f42ce688b5865fac9e0de58e1387;
-      export JUST_FLAKE=0e33952a4bcd16cd54ee3aba8111606c237d4526
-      export LINT_NIX=a3e8324baec349dd65c3bd8f84a56ab295ff507f
-      export NIX_DARWIN=fc843893cecc1838a59713ee3e50e9e7edc6207c
-      export NIX_UNIT=d867d72d21da3b7d83f0feef73b0ac7f72b16437
-      export NIXPKGS_FIREFOX_DARWIN=15af0f840ee472125a4dfc81944122f3545eb5ef;
-      export NIXPKGS=86484f6076aac9141df2bfcddbf7dcfce5e0c6bb
-      export NIXVIM=a22fbed4c4784e6a9761f9a896d31da98c3117b2
-      export NUR=5bf59d957faa081789670c5a464bce4a5d6bd01a;
-      export NUSCHTOS_SEARCH=374adb7fb2c751f679519f8db532f726488293a0
-      export TREEFMT_NIX=bebf27d00f7d10ba75332a0541ac43676985dea3
-      export YANTS=8f0da0dba57149676aa4817ec0c880fbde7a648d
       directory="{{repo_root}}{{repo_path}}"
       flake_template_path="''${directory}flake.template.nix" 
+      flake_backup_path="''${directory}flake.backup.nix" 
       flake_path="''${directory}flake.nix"
-      cat $flake_template_path | envsubst > $flake_path 
-      nix flake lock $directory
+      cp $flake_path $flake_backup_path
+      cat $flake_template_path | envsubst --no-empty > $flake_path 
+      nix flake lock $directory || cp $flake_backup_path $flake_path
+      rm $flake_backup_path
     '';
   };
 
