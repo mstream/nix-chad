@@ -37,7 +37,7 @@ let
     "pandoc_references"
     "vimtex"
     "vimwiki-tags"
-    "zsh"
+    #"zsh"
     "fuzzy_buffer"
     "fuzzy_path"
     "rg"
