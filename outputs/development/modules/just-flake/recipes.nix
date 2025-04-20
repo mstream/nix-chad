@@ -48,6 +48,8 @@
     ];
     script = ''
       ${nixBuildCommand ".#docs"}
+      rm -f docs 
+      mkdir docs
       cp -r result/* docs/
       chmod -R +w docs/*
     '';
