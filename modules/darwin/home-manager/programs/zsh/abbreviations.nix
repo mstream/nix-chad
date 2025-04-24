@@ -94,7 +94,6 @@ in
 {
   inherit mergeAbbreviations;
   defaultAbbreviations = mergeAbbreviations [
-    aws
     cd
     docker
     git
