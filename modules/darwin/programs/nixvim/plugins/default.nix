@@ -18,6 +18,7 @@
     ./lspsaga.nix
     ./lualine
     ./luasnip.nix
+    ./neoscroll.nix
     ./none-ls.nix
     ./nvim-lightbulb.nix
     ./telescope

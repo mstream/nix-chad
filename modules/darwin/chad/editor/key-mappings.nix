@@ -255,12 +255,20 @@ in
       sequence = "<C-k>";
     };
     scrollDown = {
-      description = "Sroll content down";
+      description = "Sroll content down (half a page)";
       sequence = "<C-d>";
     };
+    scrollDownFullPage = {
+      description = "Sroll content down (full page)";
+      sequence = "<C-f>";
+    };
     scrollUp = {
-      description = "Scroll content up";
+      description = "Scroll content up (half a page)";
       sequence = "<C-u>";
+    };
+    scrollUpFullPage = {
+      description = "Scroll content up (full page)";
+      sequence = "<C-b>";
     };
     selectNext = {
       description = "Select next item on a list";
