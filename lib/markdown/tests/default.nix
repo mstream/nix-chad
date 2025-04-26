@@ -19,6 +19,48 @@ in
       ### foo bar
     '';
   };
+  testRenderMultipleHeading = testCase {
+    document = with implementation.ast; [
+      (heading {
+        depth = 1;
+        text = "foo bar";
+      })
+      (heading {
+        depth = 2;
+        text = "foo bar";
+      })
+      (heading {
+        depth = 3;
+        text = "foo bar";
+      })
+    ];
+    expectedCode = ''
+      # foo bar
+
+      ## foo bar
+
+      ### foo bar
+    '';
+  };
+  testRenderHeadingAfterParagraph = testCase {
+    document = with implementation.ast; [
+      (paragraph [
+        (link {
+          text = "foo bar";
+          url = "file://foo/bar";
+        })
+      ])
+      (heading {
+        depth = 2;
+        text = "foo bar";
+      })
+    ];
+    expectedCode = ''
+      [foo bar](file://foo/bar)
+
+      ## foo bar
+    '';
+  };
   testRenderLineBreak = testCase {
     document = with implementation.ast; [
       (paragraph [
@@ -31,7 +73,6 @@ in
       foo  
       bar
     '';
-
   };
   testRenderLink = testCase {
     document = with implementation.ast; [

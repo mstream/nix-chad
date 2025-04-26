@@ -21,15 +21,55 @@
         ];
         name = "groups";
       };
+      recipes = chadLib.enum.create {
+        mappings = {
+          name = {
+            checkDebug = "check-debug";
+            checkGeneration = "check-generation";
+            generateDocumentation = "generate-documentation";
+            generateWebsite = "generate-website";
+            getCommitId = "get-commit-id";
+            listFlakeInputs = "list-flake-inputs";
+            runIntegrationTests = "run-integration-tests";
+            runLints = "run-lints";
+            runUnitTests = "run-unit-tests";
+            updateFlakeInputs = "update-flake-inputs";
+            updateFlakeInputsAt = "update-flake-inputs-at";
+            validateProject = "validate-project";
+          };
+        };
+        memberNames = [
+          "checkDebug"
+          "checkGeneration"
+          "generateDocumentation"
+          "generateWebsite"
+          "getCommitId"
+          "listFlakeInputs"
+          "runIntegrationTests"
+          "runLints"
+          "runUnitTests"
+          "updateFlakeInputs"
+          "updateFlakeInputsAt"
+          "validateProject"
+        ];
+        name = "recipes";
+      };
       generateFeatures = import ./generate-features.nix {
-        inherit chadLib groups;
+        inherit chadLib groups recipes;
       };
       nixBuildCommand = import ./nix-build-command.nix {
         inherit chadLib;
       };
       standardFeatures = { };
       customFeatures = generateFeatures (
-        import ./recipes.nix { inherit chadLib groups nixBuildCommand; }
+        import ./recipes {
+          inherit
+            chadLib
+            groups
+            nixBuildCommand
+            recipes
+            ;
+        }
       );
     in
     {

@@ -6,54 +6,65 @@
   ...
 }:
 let
-  bulletPoint = categoryName: ''
-    - [${categoryName}](./${chadLib.strings.camelToKebabCase categoryName}.md)
-  '';
-
-  genCategoryBashCommands = chadLib.attrsets.mapAttrsToList (
-    categoryName: categoryDescription:
-    let
-      descriptionRep = chadLib.strings.escapeShellArg categoryDescription;
-      srcLocationRep = "$src/${chadLib.strings.camelToKebabCase categoryName}/implementation/default.nix";
-      docLocationRep = "$out/${chadLib.strings.camelToKebabCase categoryName}.md";
-      bulletPointRep = chadLib.strings.escapeShellArg (
-        bulletPoint categoryName
-      );
-    in
-    ''
-      doc_gen ${categoryName} ${descriptionRep} ${srcLocationRep} ${docLocationRep} ${bulletPointRep}
-    ''
-  ) chadLibBundle.descriptions;
-
-  genCategoriesBash = chadLib.strings.concatStrings genCategoryBashCommands;
-
+  ast = with chadLib.markdown.ast; [
+    (heading {
+      depth = 1;
+      text = "Summary";
+    })
+    (paragraph [
+      (link {
+        text = "Introduction";
+        url = "README.md";
+      })
+    ])
+    (heading {
+      depth = 1;
+      text = "User Guide";
+    })
+    (heading {
+      depth = 1;
+      text = "Reference Guide";
+    })
+    (list {
+      items = [
+        (listItem [
+          (paragraph [
+            (link {
+              text = "Options";
+              url = "options.generated.md";
+            })
+          ])
+        ])
+        (listItem [
+          (paragraph [
+            (link {
+              text = "Key Mappings";
+              url = "keymaps.generated.md";
+            })
+          ])
+        ])
+        (listItem [
+          (paragraph [
+            (link {
+              text = "For Developers";
+              url = "for-developers/README.md";
+            })
+          ])
+        ])
+      ];
+      ordered = false;
+    })
+  ];
+  summaryFile = pkgs.writeTextFile {
+    name = "SUMMARY.md";
+    text = chadLib.markdown.render ast;
+  };
 in
 pkgs.stdenv.mkDerivation {
   installPhase = ''
-    function doc_gen {
-      local name=$1
-      local description=$2
-      local src_location=$3
-      local doc_location=$4
-      local bullet_point=$5
-      
-      nixdoc \
-        --description "$description" \
-        --category "$name" \
-        --prefix "lib" \
-        --file "$src_location"
-        > "$doc_location"
-
-      echo "$bullet_point" >> $out/README.md
-    }
-
-    mkdir $out
-    echo "# Chad Library" > $out/README.md
-    echo "" >> $out/README.md
-    export RUST_BACKTRACE=full
-    ${genCategoriesBash}
+    mkdir -p $out
+    cp ${summaryFile} $out/SUMMARY.md
   '';
-  name = "nix-chad-lib-docs";
-  nativeBuildInputs = with pkgs; [ nixdoc ];
+  name = "nix-chad-summary";
   src = ../../../../../lib;
 }

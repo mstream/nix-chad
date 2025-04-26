@@ -1,8 +1,14 @@
-{ chadLib, ... }:
+{ chadLib, config, ... }:
+let
+  cfg = config.chad;
+in
 {
   options = with chadLib.options; {
     chad.editor = {
-      keyMappings = import ./key-mappings.nix { inherit chadLib; };
+      keyMappings = import ./key-mappings.nix {
+        inherit chadLib;
+        inherit (cfg) selectNextKey selectPreviousKey;
+      };
       documentWidth = mkOption {
         type = with chadLib.types; int;
         default = 72;

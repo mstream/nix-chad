@@ -34,7 +34,12 @@ let
   chadLibCategoryBaseFileName = chadLib.strings.camelToKebabCase;
 
   summary = import ./lib/build-summary.nix {
-    inherit chadLib chadLibBundle chadLibCategoryBaseFileName;
+    inherit
+      chadLib
+      chadLibBundle
+      chadLibCategoryBaseFileName
+      pkgs
+      ;
   };
 
   chadLibDocs = import ./lib/build-lib-docs.nix {
@@ -83,6 +88,7 @@ pkgs.stdenv.mkDerivation {
     cp ${chadLibDocs}/*.md src/for-developers/chad-library
     cp $src/markdownlint.json .markdownlint.json
     cp -r $src/markdown/* src/
+    cp ${summary}/SUMMARY.md src/
     cp -r $src/assets src/
     cat ${keymapsDocs.keymapsCommonMark} > src/keymaps.generated.md
     cat ${optionsDocs.optionsCommonMark} > src/options.generated.md

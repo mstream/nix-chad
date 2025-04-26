@@ -52,6 +52,18 @@ in
       visible = false;
       example = "24.05";
     };
+    selectNextKey = mkOption {
+      default = "n";
+      readOnly = true;
+      type = with chadLib.types; str;
+      visible = false;
+    };
+    selectPreviousKey = mkOption {
+      default = "p";
+      readOnly = true;
+      type = with chadLib.types; str;
+      visible = false;
+    };
     sslCertFilePath = mkOption {
       type = with chadLib.types; str;
       readOnly = true;

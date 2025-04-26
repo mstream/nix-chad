@@ -42,9 +42,35 @@ let
         nodes:
         let
           renderNode = renderAnyNode lineBreakIndentation;
+          renderSep =
+            previousNode: currentNode:
+            if previousNode == null then
+              ""
+            else if currentNode.nodeType == nodeTypes.members.heading then
+              "${lineBreakIndentation}${lineBreakIndentation}"
+            else if previousNode.nodeType == nodeTypes.members.heading then
+              "${lineBreakIndentation}${lineBreakIndentation}"
+            else
+              lineBreakIndentation;
         in
-        chadLib.strings.concatMapStringsSep lineBreakIndentation renderNode
+        (chadLib.core.foldl'
+          (
+            acc: node:
+            let
+              nodeRep = renderNode node;
+              sep = renderSep acc.previousNode node;
+            in
+            {
+              nodesRep = "${acc.nodesRep}${sep}${nodeRep}";
+              previousNode = node;
+            }
+          )
+          {
+            nodesRep = "";
+            previousNode = null;
+          }
           nodes
+        ).nodesRep
       );
 
   renderers =

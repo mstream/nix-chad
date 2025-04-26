@@ -1,4 +1,8 @@
-{ chadLib, osConfig, ... }:
+{
+  chadLib,
+  osConfig,
+  ...
+}:
 let
   inherit (import ./abbreviations.nix { inherit chadLib; })
     defaultAbbreviations
@@ -27,7 +31,9 @@ let
   ];
 
   defaultEnvText = builtins.readFile ./default-env.zsh;
-  defaultInitText = builtins.readFile ./default-init.zsh;
+  defaultInitText = import ./default-init.zsh.nix {
+    inherit (cfg) selectNextKey selectPreviousKey;
+  };
 in
 {
   programs.zsh = {

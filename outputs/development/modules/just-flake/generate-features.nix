@@ -1,5 +1,31 @@
-{ chadLib, groups, ... }:
+{
+  chadLib,
+  groups,
+  recipes,
+  ...
+}:
 let
+  validators = with chadLib.yants; rec {
+    feature = {
+      enable = bool;
+      justfile = string;
+    };
+    hooks = struct "hooks" {
+      after = list (eitherN (chadLib.core.attrNames groups.members));
+      before = list (eitherN (chadLib.core.attrNames groups.members));
+    };
+    recipeSpec = struct "recipeSpec" {
+      inherit hooks;
+      comment = string;
+      groups = list (eitherN (chadLib.core.attrNames groups.members));
+      script = string;
+    };
+    recipeSpecToFeature = defun [
+      recipeSpec
+      feature
+    ];
+  };
+
   indent = chadLib.functions.compose [
     (chadLib.strings.splitString "\n")
     (chadLib.strings.concatStringsSep "\n  ")

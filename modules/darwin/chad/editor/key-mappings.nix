@@ -1,4 +1,9 @@
-{ chadLib, ... }:
+{
+  chadLib,
+  selectNextKey,
+  selectPreviousKey,
+  ...
+}:
 let
   validators = with chadLib.yants; rec {
     mkCategorizedOptionsGroup = defun [
@@ -272,11 +277,11 @@ in
     };
     selectNext = {
       description = "Select next item on a list";
-      sequence = "<C-n>";
+      sequence = "<C-${selectNextKey}>";
     };
     selectPrevious = {
       description = "Select previous item on a list";
-      sequence = "<C-p>";
+      sequence = "<C-${selectPreviousKey}>";
     };
     showKeyMappings = {
       description = "Show key mappings";
