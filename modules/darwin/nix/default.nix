@@ -1,4 +1,5 @@
 {
+  chadLib,
   config,
   pkgs,
   system,
@@ -6,6 +7,22 @@
 }:
 let
   cfg = config.chad;
+  substitutersInfo = {
+    "https://cache.nixos.org" =
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
+
+    "https://nix-community.cachix.org" =
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+
+    "https://cache.garnix.io" =
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=";
+  };
+
+  substituterPublicKeys = chadLib.core.attrValues substitutersInfo;
+
+  substituterUrls = chadLib.lists.imap1 (
+    idx: url: "${url}?priority=${chadLib.core.toString idx}"
+  ) (chadLib.core.attrNames substitutersInfo);
 in
 {
   imports = [
@@ -41,27 +58,9 @@ in
         auto-optimise-store = false;
         sandbox = false;
         ssl-cert-file = cfg.sslCertFilePath;
-        substituters = [
-          "https://cache.garnix.io/"
-          "https://cache.iog.io/"
-          "https://cache.nixos.org/"
-          "https://nix-community.cachix.org"
-          "https://typelevel.cachix.org/"
-        ];
-        trusted-public-keys = [
-          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "typelevel.cachix.org-1:UnD9fMAIpeWfeil1V/xWUZa2g758ZHk8DvGCd/keAkg="
-        ];
-        trusted-substituters = [
-          "https://cache.garnix.io/"
-          "https://cache.iog.io/"
-          "https://cache.nixos.org/"
-          "https://nix-community.cachix.org"
-          "https://typelevel.cachix.org/"
-        ];
+        substituters = substituterUrls;
+        trusted-public-keys = substituterPublicKeys;
+        trusted-substituters = substituterUrls;
       };
     };
   };
