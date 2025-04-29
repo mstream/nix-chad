@@ -16,6 +16,7 @@ in
         scrollUp
         scrollUpFullPage
       ];
+      performance_mode = false;
       respect_scrolloff = false;
       stop_eof = true;
     };
