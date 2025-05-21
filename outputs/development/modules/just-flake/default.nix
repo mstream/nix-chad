@@ -24,6 +24,7 @@
       recipes = chadLib.enum.create {
         mappings = {
           name = {
+            applyTemplate = "apply-template";
             checkDebug = "check-debug";
             checkGeneration = "check-generation";
             generateDocumentation = "generate-documentation";
@@ -34,11 +35,12 @@
             runLints = "run-lints";
             runUnitTests = "run-unit-tests";
             updateFlakeInputs = "update-flake-inputs";
-            updateFlakeInputsAt = "update-flake-inputs-at";
+            updateGithubWorkflows = "update-github-workflows";
             validateProject = "validate-project";
           };
         };
         memberNames = [
+          "applyTemplate"
           "checkDebug"
           "checkGeneration"
           "generateDocumentation"
@@ -49,7 +51,7 @@
           "runLints"
           "runUnitTests"
           "updateFlakeInputs"
-          "updateFlakeInputsAt"
+          "updateGithubWorkflows"
           "validateProject"
         ];
         name = "recipes";

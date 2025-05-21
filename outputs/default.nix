@@ -5,6 +5,7 @@ inputs@{
   yants,
   ...
 }:
+nixosVersion:
 let
   ciSystems = with flake-utils.lib.system; [
     aarch64-darwin
@@ -19,7 +20,7 @@ let
 
   args = {
     inherit inputs;
-    specialArgs = { inherit chadLib chadLibBundle; };
+    specialArgs = { inherit chadLib chadLibBundle nixosVersion; };
   };
 
   module = import ./mk-module.nix {

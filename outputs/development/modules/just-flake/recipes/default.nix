@@ -39,8 +39,11 @@ in
   ${recipes.mapTo.name recipes.members.updateFlakeInputs} =
     import ./update-flake-inputs.nix dependencies;
 
-  ${recipes.mapTo.name recipes.members.updateFlakeInputsAt} =
-    import ./update-flake-inputs-at.nix dependencies;
+  ${recipes.mapTo.name recipes.members.updateGithubWorkflows} =
+    import ./update-github-workflows.nix dependencies;
+
+  ${recipes.mapTo.name recipes.members.applyTemplate} =
+    import ./apply-template.nix dependencies;
 
   ${recipes.mapTo.name recipes.members.validateProject} =
     import ./validate-project.nix dependencies;

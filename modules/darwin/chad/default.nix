@@ -1,11 +1,16 @@
-{ chadLib, config, ... }:
+{
+  chadLib,
+  config,
+  nixosVersion,
+  ...
+}:
 let
   cfg = config.chad;
 in
 {
   config = {
     chad = {
-      nixpkgsReleaseVersion = "24.11";
+      nixpkgsReleaseVersion = nixosVersion;
       sslCertFilePath = "/etc/nix/ca_cert.pem";
     };
     users.users."${cfg.user.name}" = {

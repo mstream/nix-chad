@@ -9,7 +9,11 @@
     }:
     let
       localPackages = chadLib.core.attrValues self'.packages;
-      justFlakeDependencies = with pkgs; [ envsubst ];
+      justFlakeDependencies = with pkgs; [
+        envsubst
+        nix
+        yq
+      ];
     in
     {
       devShells.default = pkgs.mkShell {

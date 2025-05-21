@@ -4,10 +4,10 @@
   inputs = {
     nix-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:LnL7/nix-darwin?rev=fc843893cecc1838a59713ee3e50e9e7edc6207c";
+      url = "github:LnL7/nix-darwin?rev=74ecd01d2c122f8a4a48066ab1d48f3e01671671";
     };
     flake-compat = {
-      url = "github:edolstra/flake-compat?rev=ff81ac966bb2cae68946d5ed5fc4994f96d0ffec";
+      url = "github:edolstra/flake-compat?rev=9100a0f413b0c601e0533d1d94ffd501ce2e7885";
     };
     flake-parts = {
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -19,29 +19,24 @@
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
       };
-      url = "github:cachix/git-hooks.nix?rev=dcf5072734cb576d2b0c59b2ac44f5050b5eac82";
+      url = "github:cachix/git-hooks.nix?rev=80479b6ec16fefd9c1db3ea13aeb038c60530f46";
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager?rev=c61bfe3ae692f42ce688b5865fac9e0de58e1387";
+      url = "github:nix-community/home-manager?rev=d0bbd221482c2713cccb80220f3c9d16a6e20a33";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?rev=86484f6076aac9141df2bfcddbf7dcfce5e0c6bb";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=e041816285df65c0e53bcc951782a2a69869a443";
     nixpkgs-firefox-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=75898093fd957ea3d1b453fe1660d62587b3ca5d";
+      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=214f1e0b31352897f61274a140fd79737245c803";
     };
     nixvim = {
       inputs = {
-        flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
-        git-hooks.follows = "git-hooks";
-        home-manager.follows = "home-manager";
-        nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
-        nuschtos-search.follows = "nuschtos-search";
-        treefmt-nix.follows = "treefmt-nix";
+        nuschtosSearch.follows = "nuschtos-search";
       };
-      url = "github:nix-community/nixvim?rev=d35dc6dfcae3ff1a0c72f2d59491a7d83e5505a3";
+      url = "github:nix-community/nixvim?rev=6ef96cb478bfe4388472746f2b356467e83b7a88";
     };
     nur = {
       inputs = {
@@ -49,7 +44,7 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/NUR?rev=c6f3ba2de525cf64a8acfe28002e7d1fb457f09b";
+      url = "github:nix-community/NUR?rev=44f48704dcbda797c6fe472d7635e7c54eaf3cb9";
     };
     nuschtos-search = {
       url = "github:NuschtOS/search?rev=066afe8643274470f4a294442aadd988356a478f";
@@ -57,7 +52,7 @@
     };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:numtide/treefmt-nix?rev=8d404a69efe76146368885110f29a2ca3700bee6";
+      url = "github:numtide/treefmt-nix?rev=ab0378b61b0d85e73a8ab05d5c6029b5bd58c9fb";
     };
     yants = {
       inputs.nixpkgs.follows = "nixpkgs";

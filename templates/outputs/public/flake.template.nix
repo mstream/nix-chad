@@ -32,14 +32,9 @@
     };
     nixvim = {
       inputs = {
-        flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
-        git-hooks.follows = "git-hooks";
-        home-manager.follows = "home-manager";
-        nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
-        nuschtos-search.follows = "nuschtos-search";
-        treefmt-nix.follows = "treefmt-nix";
+        nuschtosSearch.follows = "nuschtos-search";
       };
       url = "github:nix-community/nixvim?rev=$NIXVIM";
     };
