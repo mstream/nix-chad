@@ -6,6 +6,14 @@
 }:
 let
   cfg = config.chad;
+  universalKeyOption =
+    key:
+    chadLib.options.mkOption {
+      default = "n";
+      readOnly = true;
+      type = with chadLib.types; str;
+      visible = false;
+    };
 in
 {
   config = {
@@ -51,24 +59,20 @@ in
         A desired font size in tools that have means to set it fixed.
       '';
     };
+    moveDownKey = universalKeyOption "j";
+    moveLeftKey = universalKeyOption "h";
+    moveRightKey = universalKeyOption "l";
+    moveUpKey = universalKeyOption "k";
     nixpkgsReleaseVersion = mkOption {
       type = with chadLib.types; str;
       readOnly = true;
       visible = false;
       example = "24.05";
     };
-    selectNextKey = mkOption {
-      default = "n";
-      readOnly = true;
-      type = with chadLib.types; str;
-      visible = false;
-    };
-    selectPreviousKey = mkOption {
-      default = "p";
-      readOnly = true;
-      type = with chadLib.types; str;
-      visible = false;
-    };
+    scrollDownKey = universalKeyOption "d";
+    scrollUpKey = universalKeyOption "u";
+    selectNextKey = universalKeyOption "n";
+    selectPreviousKey = universalKeyOption "p";
     sslCertFilePath = mkOption {
       type = with chadLib.types; str;
       readOnly = true;

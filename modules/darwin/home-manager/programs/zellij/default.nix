@@ -1,5 +1,7 @@
-{ chadLib, ... }:
+{ chadLib, config, ... }:
 let
+  cfg = config.chad;
+
   actions = chadLib.enum.create {
     memberNames = [
       "breakPane"
@@ -116,7 +118,18 @@ in
       auto_layout = true;
       copy_on_select = true;
       default_layout = "default";
+      default_mode = modes.mapTo.key modes.members.normal;
       disable_session_metadata = false;
+      keybinds = import ./keybinds.nix {
+        inherit
+          chadLib
+          directions
+          keys
+          modes
+          searchOptions
+          ;
+        kms = cfg.editor.keyMappings;
+      };
       mirror_session = false;
       mouse_mode = true;
       on_force_close = "quit";

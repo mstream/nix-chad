@@ -9,9 +9,10 @@ let
   repoRootPath = ../../../..;
   chadModulePath = repoRootPath + /modules/darwin/chad;
   inherit (import ./lib { inherit chadLib pkgs; })
+    buildKeymapsDocs
     buildOptionsDocs
     ;
-  evaluatedModules = chadLib.modules.evalModules {
+  chadEvaluatedModules = chadLib.modules.evalModules {
     class = "chad";
     modules = [
       {
@@ -21,11 +22,11 @@ let
     ];
     specialArgs = { inherit chadLib; };
   };
-  keymapsDocs = {
-    keymapsCommonMark = "";
+  keymapsDocs = buildKeymapsDocs {
+    inherit chadEvaluatedModules;
   };
   optionsDocs = buildOptionsDocs {
-    inherit evaluatedModules;
+    inherit chadEvaluatedModules;
     nixpkgsRef =
       (chadLib.core.fromJSON (chadLib.core.readFile ../../../../flake.lock))
       .nodes.nixpkgs.original.ref;

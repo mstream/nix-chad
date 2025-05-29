@@ -31,7 +31,7 @@ let
     goToTab = "GoToTab";
     halfPageScrollDown = "HalfPageScrollDown";
     halfPageScrollUp = "HalfPageScrollUp";
-    moveFocusOrTab = "MoveFocusOrTab";
+    moveFocus = "MoveFocus";
     newPane = "NewPane";
     newTab = "NewTab";
     scrollDown = "ScrollDown";
@@ -101,13 +101,13 @@ in
     name = showActionValue actions.members.halfPageScrollUp;
   };
   locked = kdlKey { name = modes.mapTo.key modes.members.locked; };
-  moveFocusOrTab =
+  moveFocus =
     direction:
     kdlKey {
       args = [
         (showDirectionValue direction)
       ];
-      name = showActionValue actions.members.moveFocusOrTab;
+      name = showActionValue actions.members.moveFocus;
     };
 
   newPane = kdlKey { name = showActionValue actions.members.newPane; };

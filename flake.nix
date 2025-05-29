@@ -14,5 +14,5 @@
     };
   };
 
-  outputs = inputs: import ./outputs inputs "";
+  outputs = inputs: import ./outputs inputs "25.05";
 }

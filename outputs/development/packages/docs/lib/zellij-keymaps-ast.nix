@@ -5,8 +5,8 @@
   ...
 }:
 let
-  categoryAst =
-    categoryTitle: entries:
+  modeAst =
+    modeTitle: entries:
     chadLib.core.foldl'
       (
         acc:
@@ -37,7 +37,7 @@ let
             [
               {
                 t = "Str";
-                c = categoryTitle;
+                c = modeTitle;
               }
             ]
           ];
@@ -48,13 +48,13 @@ let
   keymapsAst = validators.keymapsAst (
     { categorized, uncategorized }:
     let
-      categorizedAst = chadLib.attrsets.foldlAttrs (
-        acc: categoryTitle: entries:
-        acc ++ (categoryAst categoryTitle entries)
+      modalAst = chadLib.attrsets.foldlAttrs (
+        acc: modeTitle: entries:
+        acc ++ (modeAst modeTitle entries)
       ) [ ] categorized;
-      uncategorizedAst = categoryAst "Miscellaneous" uncategorized;
+      sharedAst = modeAst "Shared" uncategorized;
     in
-    categorizedAst ++ uncategorizedAst
+    modalAst ++ sharedAst
   );
 in
 keymapsAst keymaps

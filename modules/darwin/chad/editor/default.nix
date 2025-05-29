@@ -7,7 +7,16 @@ in
     chad.editor = {
       keyMappings = import ./key-mappings.nix {
         inherit chadLib;
-        inherit (cfg) selectNextKey selectPreviousKey;
+        inherit (cfg)
+          moveDownKey
+          moveLeftKey
+          moveRightKey
+          moveUpKey
+          scrollDownKey
+          scrollUpKey
+          selectNextKey
+          selectPreviousKey
+          ;
       };
       documentWidth = mkOption {
         type = with chadLib.types; int;

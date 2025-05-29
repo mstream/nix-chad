@@ -1,5 +1,11 @@
 {
   chadLib,
+  moveDownKey,
+  moveLeftKey,
+  moveRightKey,
+  moveUpKey,
+  scrollDownKey,
+  scrollUpKey,
   selectNextKey,
   selectPreviousKey,
   ...
@@ -12,7 +18,11 @@ let
       (attrs suffixEntry)
       (attrs any)
     ];
-    sequenceEntry = {
+    mkUncategorizedOptionsGroup = defun [
+      (attrs sequenceEntry)
+      (attrs any)
+    ];
+    sequenceEntry = struct "sequenceEntry" {
       description = string;
       sequence = string;
     };
@@ -29,13 +39,6 @@ let
       type = with chadLib.types; str;
     };
 
-  mkUncategorizedOptionsGroup = chadLib.core.mapAttrs (
-    chadLib.functions.constant (
-      { description, sequence }:
-      mkUncategorizedSequenceOption description sequence
-    )
-  );
-
   mkCategorizedSuffixOption =
     prefix:
     { default, description }:
@@ -47,13 +50,12 @@ let
 
   mkCategorizedPrefixOption =
     prefix: description:
-    with chadLib.options;
-    mkOption {
+    chadLib.options.mkOption {
       inherit description;
       default = prefix;
       readOnly = true;
       type = with chadLib.types; str;
-      visible = true;
+      visible = false;
     };
 
   mkCategorizedOptionsGroup = validators.mkCategorizedOptionsGroup (
@@ -72,17 +74,26 @@ let
       )) entries;
     }
   );
+
+  mkUncategorizedOptionsGroup = validators.mkUncategorizedOptionsGroup (
+    chadLib.core.mapAttrs (
+      chadLib.functions.constant (
+        { description, sequence }:
+        mkUncategorizedSequenceOption description sequence
+      )
+    )
+  );
 in
 {
   categorized = {
-    close = mkCategorizedOptionsGroup "x" "Closing things." {
+    close = mkCategorizedOptionsGroup "x" "Closing things" {
       currentBuffer = {
         description = "close the current buffer";
         suffix = "bc";
       };
     };
 
-    comment = mkCategorizedOptionsGroup "/" "Commenting things." {
+    comment = mkCategorizedOptionsGroup "/" "Commenting things" {
       addEndOfLine = {
         description = "add at the end of line";
         suffix = "lA";
@@ -113,7 +124,7 @@ in
       };
     };
 
-    find = mkCategorizedOptionsGroup "f" "Finding things." {
+    find = mkCategorizedOptionsGroup "f" "Finding things" {
       codeDefinitions = {
         suffix = "cd";
         description = "code definitions";
@@ -172,7 +183,7 @@ in
       };
     };
 
-    goTo = mkCategorizedOptionsGroup "g" "Moving cursor to places." {
+    goTo = mkCategorizedOptionsGroup "g" "Moving cursor to places" {
       declaration = {
         suffix = "D";
         description = "declaration";
@@ -195,7 +206,7 @@ in
       };
     };
 
-    refactor = mkCategorizedOptionsGroup "r" "Refactoring code." {
+    refactor = mkCategorizedOptionsGroup "r" "Refactoring code" {
       action = {
         suffix = "a";
         description = "action";
@@ -210,7 +221,7 @@ in
       };
     };
 
-    select = mkCategorizedOptionsGroup "s" "Selecting text." {
+    select = mkCategorizedOptionsGroup "s" "Selecting text" {
       decrement = {
         suffix = "d";
         description = "decrement selection";
@@ -228,40 +239,40 @@ in
 
   uncategorized = mkUncategorizedOptionsGroup {
     cancel = {
-      description = "Cancels current selection or mode.";
+      description = "Cancel current selection or mode";
       sequence = "<ESC>";
     };
     confirm = {
-      description = "Confirms current selection.";
+      description = "Confirm current selection";
       sequence = "<CR>";
     };
     jumpToNextDiagnostic = {
-      description = "Jump to a line with the next diagnostic message.";
+      description = "Jump to a line with the next diagnostic message";
       sequence = "]d";
     };
     jumpToPreviousDiagnostic = {
-      description = "Jump to a line with the previous diagnostic message.";
+      description = "Jump to a line with the previous diagnostic message";
       sequence = "[d";
     };
     moveToBottomWindow = {
       description = "Move to window on the bottom";
-      sequence = "<C-j>";
+      sequence = "<C-${moveDownKey}>";
     };
     moveToLeftWindow = {
       description = "Move to window on the left";
-      sequence = "<C-h>";
+      sequence = "<C-${moveLeftKey}>";
     };
     moveToRightWindow = {
       description = "Move to window on the right";
-      sequence = "<C-l>";
+      sequence = "<C-${moveRightKey}>";
     };
     moveToTopWindow = {
       description = "Move to window on the top";
-      sequence = "<C-k>";
+      sequence = "<C-${moveUpKey}>";
     };
     scrollDown = {
       description = "Sroll content down (half a page)";
-      sequence = "<C-d>";
+      sequence = "<C-${scrollDownKey}>";
     };
     scrollDownFullPage = {
       description = "Sroll content down (full page)";
@@ -269,7 +280,7 @@ in
     };
     scrollUp = {
       description = "Scroll content up (half a page)";
-      sequence = "<C-u>";
+      sequence = "<C-${scrollUpKey}>";
     };
     scrollUpFullPage = {
       description = "Scroll content up (full page)";

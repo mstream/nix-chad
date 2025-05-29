@@ -1,4 +1,7 @@
-{ chadLib, ... }:
+{ chadLib, config, ... }:
+let
+  cfg = config.chad;
+in
 {
   options = with chadLib.options; {
     chad.terminal = {
@@ -25,6 +28,19 @@
         };
       };
       keyBindings = import ./key-bindings.nix { inherit chadLib; };
+      keyMappings = import ./key-mappings.nix {
+        inherit chadLib;
+        inherit (cfg)
+          moveDownKey
+          moveLeftKey
+          moveRightKey
+          moveUpKey
+          scrollDownKey
+          scrollUpKey
+          selectNextKey
+          selectPreviousKey
+          ;
+      };
       zshInitExtra = mkOption {
         type = with chadLib.types; lines;
         default = "";

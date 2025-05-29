@@ -13,9 +13,9 @@ let
       name = "<${repo}/${subpath}>";
     };
 in
-{ evaluatedModules, nixpkgsRef }:
+{ chadEvaluatedModules, nixpkgsRef }:
 pkgs.buildPackages.nixosOptionsDoc {
-  options = chadLib.core.removeAttrs evaluatedModules.options [
+  options = chadLib.core.removeAttrs chadEvaluatedModules.options [
     "_module"
   ];
   transformOptions =
