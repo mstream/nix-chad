@@ -53,6 +53,30 @@ let
     returnCode = "cmd_ret";
   };
 
+  /**
+    Generate bash code which executes a sequence of commands and
+    stores their standard output and return code in cmd_out and
+    cmd_ret variables.
+
+    # Example
+
+    ```nix
+    catchErrorExec ["foo" "bar" "baz"]
+    =>
+    "set +e;cmd_out=$(foo bar baz 2>&1);cmd_ret=$?;set -e"
+    ```
+
+    # Type
+
+    ```
+    catchErrorExec :: [String] -> String
+    ```
+
+    # Arguments
+
+    commands
+    : List of commands to be executed
+  */
   catchErrorExec = validators.catchErrorExec (
     commands:
     let
@@ -66,8 +90,52 @@ let
     ]
   );
 
+  /**
+    Generate bash code which matches a text against a pattern
+
+    # Example
+
+    ```nix
+    matchPattern {pattern="a([[:lower:]])c?";text="ab";}
+    =>
+    "[p \"ab\" =~ a([[:lower:]])c? ]]"
+    ```
+
+    # Type
+
+    ```
+    echoError :: AttrSet -> String
+    ```
+
+    # Arguments
+
+    config
+    : Configuration including pattern and text
+  */
   matchPattern = { pattern, text }: "[[ \"${text}\" =~ ${pattern} ]]";
 
+  /**
+    Generate bash code printing a message into standard error stream
+
+    # Example
+
+    ```nix
+    echoError "foo bar"
+    =>
+    "echo \"foo bar\" >&2"
+    ```
+
+    # Type
+
+    ```
+    echoError :: String -> String
+    ```
+
+    # Arguments
+
+    message
+    : Message to be printed
+  */
   echoError = message: "echo \"${message}\" >&2";
 
   variableReference = validators.variableReference (

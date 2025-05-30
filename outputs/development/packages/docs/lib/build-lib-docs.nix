@@ -40,7 +40,7 @@ pkgs.stdenv.mkDerivation {
         --description "$description" \
         --category "$name" \
         --prefix "lib" \
-        --file "$src_location"
+        --file "$src_location" \
         > "$doc_location"
 
       echo "$bullet_point" >> $out/README.md

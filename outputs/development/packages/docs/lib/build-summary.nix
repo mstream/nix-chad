@@ -6,6 +6,36 @@
   ...
 }:
 let
+  chadLibraryListAst =
+    with chadLib.markdown.ast;
+    list {
+      items = [
+        (listItem [
+          (paragraph [
+            (link {
+              text = "Chad Library";
+              url = "for-developers/chad-library/README.md";
+            })
+          ])
+          (list {
+            items = chadLib.attrsets.mapAttrsToList (
+              moduleBundleName: moduleBundle:
+              listItem [
+                (paragraph [
+                  (link {
+                    text = moduleBundleName;
+                    url = "for-developers/chad-library/${chadLibCategoryBaseFileName moduleBundleName}.md";
+                  })
+                ])
+              ]
+            ) chadLibBundle.descriptions;
+            ordered = false;
+          })
+        ])
+      ];
+      ordered = false;
+    };
+
   ast = with chadLib.markdown.ast; [
     (heading {
       depth = 1;
@@ -50,6 +80,7 @@ let
               url = "for-developers/README.md";
             })
           ])
+          chadLibraryListAst
         ])
       ];
       ordered = false;

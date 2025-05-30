@@ -6,8 +6,17 @@ let
         inherit memberNames name;
         mappings = option mappings;
       })
-      (struct "returnValue" { inherit mapTo mapWith members; })
+      (struct "returnValue" {
+        inherit
+          enum
+          mapTo
+          mapWith
+          members
+          ;
+      })
     ];
+
+    enum = any;
 
     mapTo = attrs function;
 
@@ -49,7 +58,12 @@ let
       members = chadLib.attrsets.genAttrs memberNames enum;
     in
     {
-      inherit mapTo mapWith members;
+      inherit
+        enum
+        mapTo
+        mapWith
+        members
+        ;
     }
   );
 in
