@@ -1,4 +1,9 @@
-{ chadLib, inputs, ... }:
+{
+  chadLib,
+  inputs,
+  nixosVersion,
+  ...
+}:
 let
   makeChadOutputs =
     { config, system }:
@@ -11,7 +16,7 @@ let
       };
 
       darwinConfigurations.macbook.${system} =
-        (import ../darwin.nix).makeSystem inputs chadLib system
+        (import ../darwin.nix).makeSystem inputs chadLib system nixosVersion
           config;
     };
 

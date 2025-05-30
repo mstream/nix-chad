@@ -65,7 +65,7 @@ in
       ${keys.switchToMode modes.members.normal} = { };
     };
   };
-  ${keys.search} = with kms.modal.search.etries; {
+  ${keys.search} = with kms.modal.search.entries; {
     ${keys.bind [ halfPageScrollDown ]} = {
       ${keys.halfPageScrollDown} = { };
     };
@@ -82,8 +82,8 @@ in
       ${keys.halfPageScrollUp} = { };
     };
   };
-  ${keys.modal.tab} =
-    with kms.tab.entries;
+  ${keys.tab} =
+    with kms.modal.tab.entries;
     {
       ${keys.bind [ toggleTab ]} = {
         ${keys.toggleTab} = { };
@@ -104,7 +104,7 @@ in
     // foldIntegersBetween1And9IntoAttrs (idx: {
       ${
         keys.bind [
-          (chadLib.core.getAttr "goToTab${(toString idx)}" kms.modal.tab)
+          (chadLib.core.getAttr "goToTab${(toString idx)}" kms.modal.tab.entries)
         ]
       } =
         {
@@ -112,7 +112,7 @@ in
           ${keys.switchToMode modes.members.normal} = { };
         };
     });
-  ${keys.scroll} = with kms.modal.scroll; {
+  ${keys.scroll} = with kms.modal.scroll.entries; {
     ${keys.bind [ halfPageScrollDown ]} = {
       ${keys.halfPageScrollDown} = { };
     };
@@ -134,19 +134,19 @@ in
     };
   };
   ${keys.sharedExcept (with modes.members; [ locked ])} = {
-    ${keys.bind [ kms.common.moveFocusLeft ]} = {
+    ${keys.bind [ kms.shared.moveFocusLeft ]} = {
       ${keys.moveFocus directions.members.left} = { };
     };
-    ${keys.bind [ kms.common.moveFocusDown ]} = {
+    ${keys.bind [ kms.shared.moveFocusDown ]} = {
       ${keys.moveFocus directions.members.down} = { };
     };
-    ${keys.bind [ kms.common.moveFocusUp ]} = {
+    ${keys.bind [ kms.shared.moveFocusUp ]} = {
       ${keys.moveFocus directions.members.up} = { };
     };
-    ${keys.bind [ kms.common.moveFocusRight ]} = {
+    ${keys.bind [ kms.shared.moveFocusRight ]} = {
       ${keys.moveFocus directions.members.right} = { };
     };
-    ${keys.bind [ kms.common.toggleFrames ]} = {
+    ${keys.bind [ kms.shared.toggleFrames ]} = {
       ${keys.togglePaneFrames} = { };
     };
   };

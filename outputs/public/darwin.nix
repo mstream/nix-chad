@@ -14,12 +14,13 @@
       nur,
       ...
     }:
-    chadLib: system: chadConfig:
+    chadLib: system: nixosVersion: chadConfig:
     let
       specialArgs = {
         inherit
           chadLib
           home-manager
+          nixosVersion
           nixpkgs-firefox-darwin
           nixvim
           nur

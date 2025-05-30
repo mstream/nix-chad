@@ -31,7 +31,6 @@ in
   ];
   config = {
     nix = {
-      configureBuildUsers = true;
       extraOptions = ''
         system = ${system}
         extra-platforms = ${system}

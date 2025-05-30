@@ -31,7 +31,7 @@ let
       partitions
       ;
 
-    debug = true;
+    debug = false;
   };
 in
 flake-parts.lib.mkFlake args module

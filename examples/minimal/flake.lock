@@ -8,17 +8,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1736143030,
-        "narHash": "sha256-+hu54pAoLDEZT9pjHlqL9DNzWz0NbUn8NEAHP7PQPzU=",
+        "lastModified": 1743550720,
+        "narHash": "sha256-hIshGgKZCgWh6AYJpJmRgFdR3WUbkY04o82X05xqQiY=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "b905f6fc23a9051a6e1b741e1438dbfc0634c6de",
+        "rev": "c621e8422220273271f52058f618c94e405bb0f5",
         "type": "github"
       },
       "original": {
         "owner": "hercules-ci",
-        "ref": "main",
         "repo": "flake-parts",
+        "rev": "c621e8422220273271f52058f618c94e405bb0f5",
         "type": "github"
       }
     },
@@ -36,8 +36,8 @@
       },
       "original": {
         "owner": "numtide",
-        "ref": "main",
         "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       }
     },
@@ -49,28 +49,27 @@
         "yants": "yants"
       },
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-V2tRZ173uJlc6q0IE1kKa5tumO62d5PauwZG6gkIrSg=",
         "path": "../..",
         "type": "path"
       },
       "original": {
         "path": "../..",
         "type": "path"
-      }
+      },
+      "parent": []
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1736949135,
-        "narHash": "sha256-HGSacCG66FNt/oQjxXsp+2og657hZFjBDAhUGzPoyn4=",
+        "lastModified": 1747726630,
+        "narHash": "sha256-T9vSS8udPyNx8KPxgJvbffxWmzp+aDmtIzYreqk+hLc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5a141918f8b3ea128746881b6c099a6df569a51e",
+        "rev": "e041816285df65c0e53bcc951782a2a69869a443",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixpkgs-24.11-darwin",
+        "ref": "e041816285df65c0e53bcc951782a2a69869a443",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -112,8 +111,8 @@
       },
       "original": {
         "owner": "divnix",
-        "ref": "main",
         "repo": "yants",
+        "rev": "8f0da0dba57149676aa4817ec0c880fbde7a648d",
         "type": "github"
       }
     }

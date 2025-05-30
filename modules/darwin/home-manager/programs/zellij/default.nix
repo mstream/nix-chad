@@ -1,6 +1,6 @@
-{ chadLib, config, ... }:
+{ chadLib, osConfig, ... }:
 let
-  cfg = config.chad;
+  cfg = osConfig.chad;
 
   actions = chadLib.enum.create {
     memberNames = [
@@ -10,7 +10,7 @@ let
       "goToTab"
       "halfPageScrollDown"
       "halfPageScrollUp"
-      "moveFocusOrTab"
+      "moveFocus"
       "newPane"
       "newTab"
       "scrollDown"
@@ -98,15 +98,6 @@ let
       searchOptions
       ;
   };
-  presets = import ./presets {
-    inherit
-      chadLib
-      directions
-      keys
-      modes
-      searchOptions
-      ;
-  };
 in
 {
   programs.zellij = {
@@ -114,7 +105,7 @@ in
     enableBashIntegration = false;
     enableFishIntegration = false;
     enableZshIntegration = false;
-    settings = presets.custom // {
+    settings = {
       auto_layout = true;
       copy_on_select = true;
       default_layout = "default";
@@ -128,7 +119,7 @@ in
           modes
           searchOptions
           ;
-        kms = cfg.editor.keyMappings;
+        kms = cfg.terminal.keyMappings;
       };
       mirror_session = false;
       mouse_mode = true;

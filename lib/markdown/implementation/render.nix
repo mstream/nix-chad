@@ -75,7 +75,7 @@ let
 
   renderers =
     lineBreakIndentation:
-    chadLib.fixedPoints.fix (self: {
+    chadLib.fixedPoints.fix (_: {
       heading =
         { depth, text, ... }:
         let

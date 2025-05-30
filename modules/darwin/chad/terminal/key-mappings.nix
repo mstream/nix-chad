@@ -118,7 +118,7 @@ let
     };
     halfPageScrollUp = {
       description = "Scroll up by half a page";
-      sequence = scrollDownKey;
+      sequence = scrollUpKey;
     };
     singleLineScrollDown = {
       description = "Scroll down by a single line";

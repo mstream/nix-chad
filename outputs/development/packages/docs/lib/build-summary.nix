@@ -19,11 +19,11 @@ let
           ])
           (list {
             items = chadLib.attrsets.mapAttrsToList (
-              moduleBundleName: moduleBundle:
+              moduleBundleName: moduleBundleDescription:
               listItem [
                 (paragraph [
                   (link {
-                    text = moduleBundleName;
+                    text = "${moduleBundleDescription} (${moduleBundleName})";
                     url = "for-developers/chad-library/${chadLibCategoryBaseFileName moduleBundleName}.md";
                   })
                 ])

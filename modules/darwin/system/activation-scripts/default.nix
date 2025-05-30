@@ -79,18 +79,15 @@ let
   '';
 
   updateAppleSymbolicHotKeysBashScriptSource = ''
-    "${updateShortcutsScript}" "${shortcutsSpecFile}"
-
-    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    killall -u ${cfg.user.name} cfprefsd
+    sudo -u ${cfg.user.name} "${updateShortcutsScript}" "${shortcutsSpecFile}"
+    sudo /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    sudo killall -u ${cfg.user.name} cfprefsd
   '';
 in
 {
   system.activationScripts = {
     postActivation.text = ''
       ${copySystemCertificatesToNixBashScriptSource}
-    '';
-    postUserActivation.text = ''
       ${updateAppleSymbolicHotKeysBashScriptSource}
     '';
   };

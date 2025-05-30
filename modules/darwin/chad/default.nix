@@ -9,7 +9,7 @@ let
   universalKeyOption =
     key:
     chadLib.options.mkOption {
-      default = "n";
+      default = key;
       readOnly = true;
       type = with chadLib.types; str;
       visible = false;
@@ -17,10 +17,6 @@ let
 in
 {
   config = {
-    chad = {
-      nixpkgsReleaseVersion = nixosVersion;
-      sslCertFilePath = "/etc/nix/ca_cert.pem";
-    };
     users.users."${cfg.user.name}" = {
       inherit (cfg.user) name;
       home = "/Users/${cfg.user.name}";
@@ -64,6 +60,7 @@ in
     moveRightKey = universalKeyOption "l";
     moveUpKey = universalKeyOption "k";
     nixpkgsReleaseVersion = mkOption {
+      default = nixosVersion;
       type = with chadLib.types; str;
       readOnly = true;
       visible = false;
@@ -74,6 +71,7 @@ in
     selectNextKey = universalKeyOption "n";
     selectPreviousKey = universalKeyOption "p";
     sslCertFilePath = mkOption {
+      default = "/etc/nix/ca_cert.pem";
       type = with chadLib.types; str;
       readOnly = true;
       visible = false;

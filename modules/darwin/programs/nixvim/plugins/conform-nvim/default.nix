@@ -15,7 +15,7 @@ let
   };
   formatters = import ./formatters.nix {
     inherit chadLib pkgs;
-    documentWidth = cfg.editor.documentWidth;
+    inherit (cfg.editor) documentWidth;
   };
   allFormatterMembers = chadLib.core.attrValues formatters.members;
   generateWithFormatters = chadLib.attrsets.generate allFormatterMembers;

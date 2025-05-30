@@ -58,7 +58,7 @@ in
       size = 20000;
     };
     historySubstringSearch = { };
-    initExtra = ''
+    initContent = ''
       ${defaultInitText}
       hidutil property --set '{"UserKeyMapping":${builtins.toJSON userKeyMapping}}' > /dev/null
       ${cfg.terminal.zshInitExtra}

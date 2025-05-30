@@ -1,4 +1,11 @@
+{
+  config,
+  ...
+}:
 let
+  cfg = config.chad;
+in
+{
   config = {
     system = {
       keyboard = {
@@ -13,12 +20,10 @@ let
         #}] else
         #  [ ];
       };
+      primaryUser = cfg.user.name;
       stateVersion = 4;
     };
   };
-in
-{
-  inherit config;
   imports = [
     ./activation-scripts
     ./defaults.nix
