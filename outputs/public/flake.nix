@@ -4,7 +4,7 @@
   inputs = {
     nix-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:LnL7/nix-darwin?rev=74ecd01d2c122f8a4a48066ab1d48f3e01671671";
+      url = "github:LnL7/nix-darwin?rev=75b99daa12b1fffd646d6c3cf13b06f1fa5cef63";
     };
     flake-compat = {
       url = "github:edolstra/flake-compat?rev=9100a0f413b0c601e0533d1d94ffd501ce2e7885";
@@ -23,12 +23,12 @@
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager?rev=d0bbd221482c2713cccb80220f3c9d16a6e20a33";
+      url = "github:nix-community/home-manager?rev=282e1e029cb6ab4811114fc85110613d72771dea";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?rev=e041816285df65c0e53bcc951782a2a69869a443";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=4f992ca40503578342726bebca5ebda5b0a01387";
     nixpkgs-firefox-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=214f1e0b31352897f61274a140fd79737245c803";
+      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=a384c7ffe001a45980b48c741eeef64bf237475c";
     };
     nixvim = {
       inputs = {
@@ -36,7 +36,7 @@
         nixpkgs.follows = "nixpkgs";
         nuschtosSearch.follows = "nuschtos-search";
       };
-      url = "github:nix-community/nixvim?rev=6ef96cb478bfe4388472746f2b356467e83b7a88";
+      url = "github:nix-community/nixvim?rev=cfea16cdbe4f13b5d39dfe3df747092448252c9d";
     };
     nur = {
       inputs = {
@@ -44,15 +44,15 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/NUR?rev=44f48704dcbda797c6fe472d7635e7c54eaf3cb9";
+      url = "github:nix-community/NUR?rev=e07eb426b07efc1859d6a7de51e77250d2d7e57f";
     };
     nuschtos-search = {
-      url = "github:NuschtOS/search?rev=066afe8643274470f4a294442aadd988356a478f";
+      url = "github:NuschtOS/search?rev=f8a1c221afb8b4c642ed11ac5ee6746b0fe1d32f";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:numtide/treefmt-nix?rev=ab0378b61b0d85e73a8ab05d5c6029b5bd58c9fb";
+      url = "github:numtide/treefmt-nix?rev=1f3f7b784643d488ba4bf315638b2b0a4c5fb007";
     };
     yants = {
       inputs.nixpkgs.follows = "nixpkgs";
