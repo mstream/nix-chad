@@ -41,7 +41,7 @@ let
     import plistlib
     import sys
 
-    path = expanduser('~/Library/Preferences/com.apple.symbolichotkeys.plist')
+    path = '/Users/${cfg.user.name}/Library/Preferences/com.apple.symbolichotkeys.plist'
 
     with open(path, 'rb') as f:
       plist = plistlib.load(f)
