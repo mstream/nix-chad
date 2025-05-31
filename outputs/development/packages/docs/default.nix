@@ -27,9 +27,6 @@ let
   };
   optionsDocs = buildOptionsDocs {
     inherit chadEvaluatedModules;
-    nixpkgsRef =
-      (chadLib.core.fromJSON (chadLib.core.readFile ../../../../flake.lock))
-      .nodes.nixpkgs.original.ref;
   };
 
   chadLibCategoryBaseFileName = chadLib.strings.camelToKebabCase;

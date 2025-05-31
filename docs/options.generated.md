@@ -40,7 +40,7 @@ Browser bookmarks\.
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/browser\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/browser.nix)
+ - [\<nix-chad/modules/darwin/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/browser.nix)
 
 
 
@@ -70,7 +70,7 @@ exts: with exts; [ grammarly ];
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/browser\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/browser.nix)
+ - [\<nix-chad/modules/darwin/chad/browser\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/browser.nix)
 
 
 
@@ -91,28 +91,7 @@ signed integer
 ` 72 `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
-
-
-
-## chad\.editor\.keyMappings\.categorized\.close\.prefix
-
-
-
-Closing things\.
-
-
-
-*Type:*
-string *(read only)*
-
-
-
-*Default:*
-` "x" `
-
-*Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -133,28 +112,7 @@ string
 ` "bc" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
-
-
-
-## chad\.editor\.keyMappings\.categorized\.comment\.prefix
-
-
-
-Commenting things\.
-
-
-
-*Type:*
-string *(read only)*
-
-
-
-*Default:*
-` "/" `
-
-*Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -175,7 +133,7 @@ string
 ` "lA" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -196,7 +154,7 @@ string
 ` "lO" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -217,7 +175,7 @@ string
 ` "lo" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -238,7 +196,7 @@ string
 ` "b" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -259,7 +217,7 @@ string
 ` "l" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -280,7 +238,7 @@ string
 ` "tb" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -301,28 +259,7 @@ string
 ` "tl" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
-
-
-
-## chad\.editor\.keyMappings\.categorized\.find\.prefix
-
-
-
-Finding things\.
-
-
-
-*Type:*
-string *(read only)*
-
-
-
-*Default:*
-` "f" `
-
-*Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -343,7 +280,7 @@ string
 ` "cd" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -364,7 +301,7 @@ string
 ` "ci" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -385,7 +322,7 @@ string
 ` "cr" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -406,7 +343,7 @@ string
 ` "ct" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -427,7 +364,7 @@ string
 ` "f" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -448,7 +385,7 @@ string
 ` "gb" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -469,7 +406,7 @@ string
 ` "gc" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -490,7 +427,7 @@ string
 ` "gl" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -511,7 +448,7 @@ string
 ` "gs" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -532,7 +469,7 @@ string
 ` "i" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -553,7 +490,7 @@ string
 ` "vb" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -574,7 +511,7 @@ string
 ` "vc" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -595,7 +532,7 @@ string
 ` "vh" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -616,28 +553,7 @@ string
 ` "w" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
-
-
-
-## chad\.editor\.keyMappings\.categorized\.goTo\.prefix
-
-
-
-Moving cursor to places\.
-
-
-
-*Type:*
-string *(read only)*
-
-
-
-*Default:*
-` "g" `
-
-*Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -658,7 +574,7 @@ string
 ` "D" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -679,7 +595,7 @@ string
 ` "d" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -700,7 +616,7 @@ string
 ` "i" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -721,7 +637,7 @@ string
 ` "]" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -742,28 +658,7 @@ string
 ` "[" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
-
-
-
-## chad\.editor\.keyMappings\.categorized\.refactor\.prefix
-
-
-
-Refactoring code\.
-
-
-
-*Type:*
-string *(read only)*
-
-
-
-*Default:*
-` "r" `
-
-*Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -784,7 +679,7 @@ string
 ` "a" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -805,7 +700,7 @@ string
 ` "f" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -826,28 +721,7 @@ string
 ` "n" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
-
-
-
-## chad\.editor\.keyMappings\.categorized\.select\.prefix
-
-
-
-Selecting text\.
-
-
-
-*Type:*
-string *(read only)*
-
-
-
-*Default:*
-` "s" `
-
-*Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -868,7 +742,7 @@ string
 ` "d" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -889,7 +763,7 @@ string
 ` "i" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -910,7 +784,7 @@ string
 ` "s" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -918,7 +792,7 @@ string
 
 
 
-Cancels current selection or mode\.
+Cancel current selection or mode
 
 
 
@@ -931,7 +805,7 @@ string
 ` "<ESC>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -939,7 +813,7 @@ string
 
 
 
-Confirms current selection\.
+Confirm current selection
 
 
 
@@ -952,7 +826,7 @@ string
 ` "<CR>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -960,7 +834,7 @@ string
 
 
 
-Jump to a line with the next diagnostic message\.
+Jump to a line with the next diagnostic message
 
 
 
@@ -973,7 +847,7 @@ string
 ` "]d" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -981,7 +855,7 @@ string
 
 
 
-Jump to a line with the previous diagnostic message\.
+Jump to a line with the previous diagnostic message
 
 
 
@@ -994,7 +868,7 @@ string
 ` "[d" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1015,7 +889,7 @@ string
 ` "<C-j>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1036,7 +910,7 @@ string
 ` "<C-h>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1057,7 +931,7 @@ string
 ` "<C-l>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1078,7 +952,7 @@ string
 ` "<C-k>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1086,7 +960,7 @@ string
 
 
 
-Sroll content down
+Sroll content down (half a page)
 
 
 
@@ -1099,7 +973,28 @@ string
 ` "<C-d>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.scrollDownFullPage
+
+
+
+Sroll content down (full page)
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-f>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1107,7 +1002,7 @@ string
 
 
 
-Scroll content up
+Scroll content up (half a page)
 
 
 
@@ -1120,7 +1015,28 @@ string
 ` "<C-u>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.scrollUpFullPage
+
+
+
+Scroll content up (full page)
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-b>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1141,7 +1057,7 @@ string
 ` "<C-n>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1162,7 +1078,7 @@ string
 ` "<C-p>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1183,7 +1099,7 @@ string
 ` "\\" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1204,7 +1120,7 @@ string
 ` "K" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1225,7 +1141,7 @@ string
 ` "<TAB>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1246,7 +1162,7 @@ string
 ` "<S-TAB>" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1268,7 +1184,7 @@ one of “absolute”, “relative”
 ` "relative" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1289,7 +1205,7 @@ signed integer
 ` 2 `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/editor)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -1319,7 +1235,7 @@ pkgs: with pkgs; [ cowsay ];
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad)
+ - [\<nix-chad/modules/darwin/chad>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad)
 
 
 
@@ -1345,7 +1261,7 @@ signed integer
 ` 16 `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad)
+ - [\<nix-chad/modules/darwin/chad>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad)
 
 
 
@@ -1380,7 +1296,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git.nix)
+ - [\<nix-chad/modules/darwin/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix)
 
 
 
@@ -1396,7 +1312,7 @@ Git repository path\.
 string
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git.nix)
+ - [\<nix-chad/modules/darwin/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix)
 
 
 
@@ -1412,7 +1328,7 @@ Path to a SSH private key\.
 string
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git.nix)
+ - [\<nix-chad/modules/darwin/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix)
 
 
 
@@ -1428,7 +1344,7 @@ Key\.
 string
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/git.nix)
+ - [\<nix-chad/modules/darwin/chad/git\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix)
 
 
 
@@ -1457,7 +1373,7 @@ null or string
 ` "BE318F09150F6CB0724FFEC0319EE1D7FC029354" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/gpg\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/gpg.nix)
+ - [\<nix-chad/modules/darwin/chad/gpg\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/gpg.nix)
 
 
 
@@ -1478,7 +1394,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard.nix)
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
 
 
 
@@ -1499,7 +1415,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard.nix)
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
 
 
 
@@ -1520,7 +1436,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard.nix)
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
 
 
 
@@ -1552,7 +1468,7 @@ attribute set of (submodule) *(read only)*
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard.nix)
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
 
 
 
@@ -1579,7 +1495,7 @@ list of (one of “command”, “control”, “option”, “shift”) *(read 
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard.nix)
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
 
 
 
@@ -1600,7 +1516,7 @@ one of “0”, “1”, “2”, “3”, “4”, “5”, “6”, “7”, �
 ` "S" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/keyboard.nix)
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
 
 
 
@@ -1622,7 +1538,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows.nix)
+ - [\<nix-chad/modules/darwin/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix)
 
 
 
@@ -1662,7 +1578,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows.nix)
+ - [\<nix-chad/modules/darwin/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix)
 
 
 
@@ -1683,7 +1599,7 @@ string
 ` "^Discord$" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows.nix)
+ - [\<nix-chad/modules/darwin/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix)
 
 
 
@@ -1709,7 +1625,7 @@ string
 ` ".*Dialog$" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/manage-windows.nix)
+ - [\<nix-chad/modules/darwin/chad/manage-windows\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/manage-windows.nix)
 
 
 
@@ -1730,7 +1646,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/mouse\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/mouse.nix)
+ - [\<nix-chad/modules/darwin/chad/mouse\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/mouse.nix)
 
 
 
@@ -1751,7 +1667,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/software\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/software.nix)
+ - [\<nix-chad/modules/darwin/chad/software\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/software.nix)
 
 
 
@@ -1772,7 +1688,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -1806,7 +1722,7 @@ attribute set of string
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -1841,7 +1757,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -1857,7 +1773,7 @@ Substitution\.
 string
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -1873,7 +1789,7 @@ Key\.
 string
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -1889,7 +1805,7 @@ Modifier key(s)\.
 string
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -1921,7 +1837,7 @@ strings concatenated with “\\n”
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/terminal)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -1957,7 +1873,7 @@ list of string
 ```
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/user\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/user.nix)
+ - [\<nix-chad/modules/darwin/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix)
 
 
 
@@ -1978,6 +1894,6 @@ string
 ` "bob" `
 
 *Declared by:*
- - [/nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/user\.nix](file:///nix/store/lm3qizjgr21gyrc3r11b6q9589p3hwqp-source/modules/darwin/chad/user.nix)
+ - [\<nix-chad/modules/darwin/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix)
 
 

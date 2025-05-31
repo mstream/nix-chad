@@ -1,6 +1,5 @@
 { chadLib, pkgs, ... }:
 let
-  chadPath = chadLib.core.toString ../../..;
   gitHubDeclaration =
     {
       ref,
@@ -13,7 +12,7 @@ let
       name = "<${repo}/${subpath}>";
     };
 in
-{ chadEvaluatedModules, nixpkgsRef }:
+{ chadEvaluatedModules }:
 pkgs.buildPackages.nixosOptionsDoc {
   options = chadLib.core.removeAttrs chadEvaluatedModules.options [
     "_module"
@@ -23,21 +22,25 @@ pkgs.buildPackages.nixosOptionsDoc {
     let
       substituteDeclaration =
         decl:
-        if chadLib.strings.hasPrefix chadPath (chadLib.core.toString decl) then
+        let
+          declPathSegments = chadLib.strings.splitString "/" (
+            chadLib.core.toString decl
+          );
+        in
+        if
+          chadLib.lists.take 3 declPathSegments == [
+            ""
+            "nix"
+            "store"
+          ]
+        then
           gitHubDeclaration {
             ref = "main";
             repo = "nix-chad";
-            subpath = chadLib.strings.removePrefix "/" (
-              chadLib.strings.removePrefix chadPath (chadLib.core.toString decl)
+            subpath = chadLib.strings.concatStringsSep "/" (
+              chadLib.lists.drop 4 declPathSegments
             );
             user = "mstream";
-          }
-        else if decl == "lib/modules.nix" then
-          gitHubDeclaration {
-            ref = nixpkgsRef;
-            repo = "nixpkgs";
-            subpath = decl;
-            user = "NixOS";
           }
         else
           decl;

@@ -12,12 +12,14 @@
             check = "check";
             generation = "generation";
             test = "test";
+            utils = "utils";
           };
         };
         memberNames = [
           "check"
           "generation"
           "test"
+          "utils"
         ];
         name = "groups";
       };

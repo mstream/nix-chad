@@ -14,12 +14,33 @@ let
       string
     ];
 
+    command = defun [
+      (struct "commandConf" {
+        flags = option flags;
+        parameters = option parameters;
+        program = string;
+      })
+      string
+    ];
+
     commands = list singleLineString;
 
     echoError = defun [
       singleLineString
       string
     ];
+
+    flags = list string;
+
+    options = defun [
+      (struct "optionsConf" {
+        flags = option flags;
+        parameters = option parameters;
+      })
+      string
+    ];
+
+    parameters = attrs string;
 
     singleLineString = restrict "single line" (chadLib.functions.compose [
       chadLib.strings.stringToCharacters
@@ -28,6 +49,7 @@ let
     ]) string;
 
     textRef = string;
+
     refs = attrs (either arrayRef textRef);
 
     variableName = restrict "valid Bash variable name" (
@@ -138,6 +160,92 @@ let
   */
   echoError = message: "echo \"${message}\" >&2";
 
+  /**
+    Generate bash code representing command options
+
+    # Example
+
+    ```nix
+    options {flags=["foo"];parameters={bar="baz";};}
+    =>
+    "--foo --bar baz"
+    ```
+
+    # Type
+
+    ```
+    options :: AttrSet -> String
+    ```
+
+    # Arguments
+
+    config
+    : Configuration including flags and parameters
+  */
+  options = validators.options (
+    conf:
+    let
+      flags =
+        if chadLib.attrsets.hasAttr "flags" conf then conf.flags else [ ];
+
+      parameters =
+        if chadLib.attrsets.hasAttr "parameters" conf then
+          conf.parameters
+        else
+          { };
+
+      flagsRep = chadLib.strings.concatMapStringsSep " " (
+        name:
+        if chadLib.core.stringLength name == 1 then "-${name}" else "--${name}"
+      ) flags;
+
+      parametersRep = chadLib.strings.concatStringsSep " " (
+        chadLib.attrsets.mapAttrsToList (
+          name: argument: "--${name} ${argument}"
+        ) parameters
+      );
+    in
+    "${flagsRep} ${parametersRep}"
+  );
+
+  /**
+    Generate bash code representing program invocation command
+
+    # Example
+
+    ```nix
+    command {flags=["foo"];parameters={bar="baz";};program="qux";}
+    =>
+    "qux --foo --bar baz"
+    ```
+
+    # Type
+
+    ```
+    options :: AttrSet -> String
+    ```
+
+    # Arguments
+
+    config
+    : Configuration including flags and parameters and program path
+  */
+  command = validators.command (
+    conf:
+    let
+      optionsRep = options {
+        flags =
+          if chadLib.attrsets.hasAttr "flags" conf then conf.flags else [ ];
+        parameters =
+          if chadLib.attrsets.hasAttr "parameters" conf then
+            conf.parameters
+          else
+            { };
+      };
+    in
+    "${conf.program} ${optionsRep}"
+  );
+
   variableReference = validators.variableReference (
     variableName: "$" + "{${variableName}}"
   );
@@ -159,8 +267,10 @@ in
 {
   inherit
     catchErrorExec
+    command
     echoError
     matchPattern
+    options
     refs
     ;
 }

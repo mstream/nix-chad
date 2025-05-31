@@ -5,27 +5,56 @@
     let
       linters = {
         deadnix = {
-          cmd = "${pkgs.deadnix}/bin/deadnix --fail --hidden $filename";
+          cmd =
+            chadLib.bash.command {
+              flags = [
+                "fail"
+                "hidden"
+              ];
+              program = "${pkgs.deadnix}/bin/deadnix";
+            }
+            + " $filename";
           ext = ".nix";
         };
         luacheck = {
-          cmd = "${pkgs.luajitPackages.luacheck}/bin/luacheck --no-max-comment-line-length --no-max-line-length $filename";
+          cmd =
+            chadLib.bash.command {
+              flags = [
+                "no-max-comment-line-length"
+                "no-max-line-length"
+              ];
+              program = "${pkgs.luajitPackages.luacheck}/bin/luacheck";
+            }
+            + " $filename";
           ext = ".lua";
         };
         markdown-link-check = {
-          cmd = "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check -v $filename || echo 'disabling because of missing cacerts issue'";
+          cmd =
+            chadLib.bash.command {
+              flags = [
+                "verbose"
+              ];
+              program = "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check";
+            }
+            + " $filename || echo 'disabling because multiple issues'";
           ext = ".md";
         };
         shellcheck = {
-          cmd = "${pkgs.shellcheck}/bin/shellcheck $filename";
+          cmd =
+            chadLib.bash.command { program = "${pkgs.shellcheck}/bin/shellcheck"; }
+            + " $filename";
           ext = ".sh";
         };
         statix = {
-          cmd = "${pkgs.statix}/bin/statix check -- $filename";
+          cmd =
+            chadLib.bash.command { program = "${pkgs.statix}/bin/statix"; }
+            + "check -- $filename";
           ext = ".nix";
         };
         typos = {
-          cmd = "${pkgs.typos}/bin/typos $filename";
+          cmd =
+            chadLib.bash.command { program = "${pkgs.typos}/bin/typos"; }
+            + " $filename";
           ext = ".md";
         };
       };
