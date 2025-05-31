@@ -7,7 +7,7 @@ let
     function apply_configuration() {
       local CONFIGURATION=".#macbook.${system}"
 
-      ./result/sw/bin/darwin-rebuild switch \
+      sudo ./result/sw/bin/darwin-rebuild switch \
         --flake \
         "$CONFIGURATION"
     }
