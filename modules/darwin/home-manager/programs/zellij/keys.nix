@@ -4,26 +4,11 @@
   directions,
   modes,
   modeGroups,
+  plugins,
   searchOptions,
   ...
 }:
 let
-  kdlKey =
-    {
-      args ? [ ],
-      name,
-    }:
-    let
-      argToString =
-        arg:
-        if chadLib.core.isString arg then
-          "\"${arg}\""
-        else
-          "${chadLib.core.toString arg}";
-
-      argsString = chadLib.strings.concatMapStringsSep " " argToString args;
-    in
-    "${name} ${argsString}";
   showActionValue = actions.mapWith {
     breakPane = "BreakPane";
     closeFocus = "CloseFocus";
@@ -72,100 +57,116 @@ in
 {
   bind =
     combinations:
-    kdlKey {
+    chadLib.kdl.key {
       args = combinations;
       name = "bind";
     };
-  breakPane = kdlKey {
+  breakPane = chadLib.kdl.key {
     name = showActionValue actions.members.breakPane;
   };
-  closeFocus = kdlKey {
+  closeFocus = chadLib.kdl.key {
     name = showActionValue actions.members.closeFocus;
   };
-  closeTab = kdlKey {
+  closeTab = chadLib.kdl.key {
     name = showActionValue actions.members.closeTab;
   };
-  enterSearch = kdlKey {
+  enterSearch = chadLib.kdl.key {
     name = modes.mapTo.key modes.members.enterSearch;
   };
   goToTab =
     tabIndex:
-    kdlKey {
+    chadLib.kdl.key {
       args = [ tabIndex ];
       name = showActionValue actions.members.goToTab;
     };
-  halfPageScrollDown = kdlKey {
+  halfPageScrollDown = chadLib.kdl.key {
     name = showActionValue actions.members.halfPageScrollDown;
   };
-  halfPageScrollUp = kdlKey {
+  halfPageScrollUp = chadLib.kdl.key {
     name = showActionValue actions.members.halfPageScrollUp;
   };
-  locked = kdlKey { name = modes.mapTo.key modes.members.locked; };
+  locked = chadLib.kdl.key {
+    name = modes.mapTo.key modes.members.locked;
+  };
   moveFocus =
     direction:
-    kdlKey {
+    chadLib.kdl.key {
       args = [
         (showDirectionValue direction)
       ];
       name = showActionValue actions.members.moveFocus;
     };
-
-  newPane = kdlKey { name = showActionValue actions.members.newPane; };
-  newTab = kdlKey { name = showActionValue actions.members.newTab; };
-  normal = kdlKey { name = modes.mapTo.key modes.members.normal; };
-  pane = kdlKey { name = modes.mapTo.key modes.members.pane; };
-  scroll = kdlKey { name = modes.mapTo.key modes.members.scroll; };
-  scrollDown = kdlKey {
+  newPane = chadLib.kdl.key {
+    name = showActionValue actions.members.newPane;
+  };
+  newTab = chadLib.kdl.key {
+    name = showActionValue actions.members.newTab;
+  };
+  normal = chadLib.kdl.key {
+    name = modes.mapTo.key modes.members.normal;
+  };
+  pane = chadLib.kdl.key { name = modes.mapTo.key modes.members.pane; };
+  scroll = chadLib.kdl.key {
+    name = modes.mapTo.key modes.members.scroll;
+  };
+  scrollDown = chadLib.kdl.key {
     name = showActionValue actions.members.scrollDown;
   };
-  scrollUp = kdlKey { name = showActionValue actions.members.scrollUp; };
-  search = kdlKey { name = modes.mapTo.key modes.members.search; };
-  searchDown = kdlKey {
+  scrollUp = chadLib.kdl.key {
+    name = showActionValue actions.members.scrollUp;
+  };
+  search = chadLib.kdl.key {
+    name = modes.mapTo.key modes.members.search;
+  };
+  searchDown = chadLib.kdl.key {
     args = [ "down" ];
     name = showActionValue actions.members.search;
   };
-  searchUp = kdlKey {
+  searchUp = chadLib.kdl.key {
     args = [ "up" ];
     name = showActionValue actions.members.search;
   };
   searchInput =
     index:
-    kdlKey {
+    chadLib.kdl.key {
       args = [ index ];
       name = showActionValue actions.members.searchInput;
     };
   searchToggleOption =
     option:
-    kdlKey {
+    chadLib.kdl.key {
       args = [ (showSearchOptionValue option) ];
       name = showActionValue actions.members.searchToggleOption;
     };
   sharedAmong =
     includedModes:
-    kdlKey {
+    chadLib.kdl.key {
       args = chadLib.core.map modes.mapTo.key includedModes;
       name = modeGroups.mapTo.key modeGroups.members.sharedAmong;
     };
   sharedExcept =
     excludedModes:
-    kdlKey {
+    chadLib.kdl.key {
       args = chadLib.core.map modes.mapTo.key excludedModes;
       name = modeGroups.mapTo.key modeGroups.members.sharedExcept;
     };
   switchToMode =
     mode:
-    kdlKey {
+    chadLib.kdl.key {
       args = [ (showModeValue mode) ];
       name = showActionValue actions.members.switchToMode;
     };
-  tab = kdlKey { name = modes.mapTo.key modes.members.tab; };
-  toggleFocusFullScreen = kdlKey {
+  tab = chadLib.kdl.key { name = modes.mapTo.key modes.members.tab; };
+  toggleFocusFullScreen = chadLib.kdl.key {
     name = showActionValue actions.members.toggleFocusFullScreen;
   };
-  togglePaneFrames = kdlKey {
+  togglePaneFrames = chadLib.kdl.key {
     name = showActionValue actions.members.togglePaneFrames;
   };
-  toggleTab = kdlKey {
+  toggleTab = chadLib.kdl.key {
     name = showActionValue actions.members.toggleTab;
+  };
+  welcomeScreen = chadLib.kdl.key {
+    name = plugins.mapTo.key plugins.members.welcomeScreen;
   };
 }

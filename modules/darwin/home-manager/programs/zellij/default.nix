@@ -82,6 +82,17 @@ let
     ];
     name = "modeGroups";
   };
+  plugins = chadLib.enum.create {
+    mappings = {
+      key = {
+        welcomeScreen = "welcome-screen";
+      };
+    };
+    memberNames = [
+      "welcomeScreen"
+    ];
+    name = "plugins";
+  };
   searchOptions = chadLib.enum.create {
     memberNames = [
       "caseSensitivity"
@@ -95,6 +106,7 @@ let
       directions
       modes
       modeGroups
+      plugins
       searchOptions
       ;
   };
@@ -124,6 +136,7 @@ in
       mirror_session = false;
       mouse_mode = true;
       on_force_close = "quit";
+      plugins = import ./plugins.nix { inherit keys; };
       scroll_buffer_size = 20000;
       serialize_pane_viewport = false;
       session_serialization = true;
