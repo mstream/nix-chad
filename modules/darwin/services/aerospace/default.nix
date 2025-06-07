@@ -23,6 +23,8 @@ in
   services.aerospace = {
     inherit enable;
     settings = {
+      accordion-padding = 90;
+      after-startup-command = [ "layout tiles" ];
       automatically-unhide-macos-hidden-apps = true;
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
