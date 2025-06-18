@@ -35,12 +35,12 @@ in
     ];
     includes = builtins.map (
       {
-        repositoryPath,
+        repositoryUrl,
         sshKeyPath,
         userEmail,
       }:
       {
-        condition = "gitdir:${repositoryPath}";
+        condition = "hasconfig:remote.*.url:${repositoryUrl}";
         contents = {
           core.sshCommand = "ssh -i ${sshKeyPath}";
           user.email = userEmail;

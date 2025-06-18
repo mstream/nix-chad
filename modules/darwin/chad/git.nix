@@ -2,9 +2,9 @@
 let
   gitIdentityModule = {
     options = with chadLib.options; {
-      repositoryPath = mkOption {
+      repositoryUrl = mkOption {
         description = ''
-          Git repository path.
+          Git repository URL.
         '';
         type = with chadLib.types; str;
       };
@@ -31,9 +31,9 @@ in
         default = [ ];
         example = [
           {
-            repositoryPath = "~/work/project-1";
+            repositoryUrl = "git@github.com:somecompany/**";
             sshKeyPath = "~/.ssh/work_id_rsa";
-            userEmail = "me@mail.com";
+            userEmail = "me@somecompany.com";
           }
         ];
         description = ''
