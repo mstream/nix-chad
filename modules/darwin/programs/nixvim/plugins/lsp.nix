@@ -21,6 +21,11 @@
       purescriptls = {
         enable = true;
         package = pkgs.nodePackages.purescript-language-server;
+        settings = {
+          purescript = {
+            addSpagoSources = true;
+          };
+        };
       };
       sqls.enable = true;
       ts_ls.enable = true;

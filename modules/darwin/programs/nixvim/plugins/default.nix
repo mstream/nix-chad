@@ -26,6 +26,7 @@
     ./treesitter-context.nix
     ./treesitter-refactor.nix
     ./treesitter-textobjects
+    ./trouble.nix
     ./web-devicons.nix
     ./which-key.nix
   ];
