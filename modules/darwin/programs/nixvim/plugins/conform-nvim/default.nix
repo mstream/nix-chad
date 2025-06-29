@@ -39,21 +39,16 @@ in
           ${formatterName} = formatterConfig;
         }
       );
-      formatters_by_ft = {
-        bash = [ "shfmt" ];
-        css = [ "prettier" ];
-        dhall = [ "dhall" ];
-        html = [ "prettier" ];
-        java = [ "google-java-format" ];
-        javascript = [ "prettier" ];
-        json = [ "prettier" ];
-        markdown = [ "prettier" ];
-        nix = [ "nixfmt" ];
-        python = [ "ruff" ];
-        sh = [ "shfmt" ];
-        typescript = [ "prettier" ];
-        yaml = [ "prettier" ];
-      };
+      formatters_by_ft = generateWithFormatters (
+        formatter:
+        let
+          formatterName = formatters.mapTo.name formatter;
+          formatterFileTypes = formatters.mapTo.fileTypes formatter;
+        in
+        chadLib.attrsets.generate formatterFileTypes (fileType: {
+          ${fileType} = [formatterName];
+        })
+      );
     };
   };
 }

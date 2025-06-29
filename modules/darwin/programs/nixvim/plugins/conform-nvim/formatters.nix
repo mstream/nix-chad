@@ -24,6 +24,23 @@ chadLib.enum.create {
       prettier = {
         command = chadLib.meta.getExe pkgs.nodePackages.prettier;
       };
+      pursTidy = {
+        args = [
+          "format"
+          "--arrow-first"
+          "--config-prefer"
+          "--import-sort-ide"
+          "--import-wrap-auto"
+          "--indent"
+          "2"
+          "--ribbon"
+          "1"
+          "--unicode-always"
+          "--width"
+          (builtins.toString documentWidth)
+        ];
+        command = chadLib.meta.getExe pkgs.nodePackages.purs-tidy;
+      };
       ruff = {
         args = [
           "format"
@@ -42,6 +59,7 @@ chadLib.enum.create {
       googleJavaFormat = [ "java" ];
       nixfmt = [ "nix" ];
       prettier = [ "css" ];
+      pursTidy = [ "purescript" ];
       ruff = [ "python" ];
       shfmt = [
         "bash"
@@ -54,6 +72,7 @@ chadLib.enum.create {
       googleJavaFormat = "google-java-format";
       nixfmt = "nixfmt";
       prettier = "prettier";
+      pursTidy = "purs-tidy";
       ruff = "ruff";
       shfmt = "shftmt";
     };
@@ -64,6 +83,7 @@ chadLib.enum.create {
     "googleJavaFormat"
     "nixfmt"
     "prettier"
+    "pursTidy"
     "ruff"
     "shfmt"
   ];
