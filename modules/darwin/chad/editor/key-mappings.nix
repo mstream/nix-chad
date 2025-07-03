@@ -124,6 +124,13 @@ in
       };
     };
 
+    debug = mkCategorizedOptionsGroup "d" "Debug code" {
+      toggleDiagnosticsWindow = {
+        suffix = "x";
+        description = "toggle diagnostics window";
+      };
+    };
+
     find = mkCategorizedOptionsGroup "f" "Finding things" {
       codeDefinitions = {
         suffix = "cd";
