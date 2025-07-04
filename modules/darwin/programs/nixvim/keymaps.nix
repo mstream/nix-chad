@@ -50,8 +50,8 @@ in
         "${kms.uncategorized.moveToLeftWindow}" = "<C-w>h";
         "${kms.uncategorized.moveToRightWindow}" = "<C-w>l";
         "${kms.uncategorized.moveToTopWindow}" = "<C-w>k";
-        "${kms.uncategorized.scrollDown}" = "<C-d>zz";
-        "${kms.uncategorized.scrollUp}" = "<C-u>zz";
+        #"${kms.uncategorized.scrollDown}" = "<C-d>zz";
+        #"${kms.uncategorized.scrollUp}" = "<C-u>zz";
         "${kms.categorized.close.suffixes.currentBuffer}" =
           "<Cmd>BufferClose<CR>";
         "${kms.categorized.refactor.suffixes.action}" =
