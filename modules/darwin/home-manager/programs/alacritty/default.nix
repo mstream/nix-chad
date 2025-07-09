@@ -67,7 +67,7 @@ in
         decorations = "full";
         dynamic_padding = true;
         dynamic_title = true;
-        opacity = 0.67;
+        opacity = 0.6;
         option_as_alt = "Both";
         resize_increments = true;
         startup_mode = "Windowed";
