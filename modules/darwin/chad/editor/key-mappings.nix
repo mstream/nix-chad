@@ -253,14 +253,6 @@ in
       description = "Confirm current selection";
       sequence = "<CR>";
     };
-    jumpToNextDiagnostic = {
-      description = "Jump to a line with the next diagnostic message";
-      sequence = "]d";
-    };
-    jumpToPreviousDiagnostic = {
-      description = "Jump to a line with the previous diagnostic message";
-      sequence = "[d";
-    };
     moveToBottomWindow = {
       description = "Move to window on the bottom";
       sequence = "<C-${moveDownKey}>";
