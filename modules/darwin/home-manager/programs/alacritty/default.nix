@@ -45,7 +45,13 @@ in
       general = {
         live_config_reload = true;
       };
-      keyboard.bindings = cfg.terminal.keyBindings;
+      keyboard.bindings = cfg.terminal.keyBindings ++ [
+        {
+          action = "None";
+          key = "T";
+          mods = "Command";
+        }
+      ];
       scrolling = {
         history = 0;
         multiplier = 0;
