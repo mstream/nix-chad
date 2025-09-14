@@ -1,4 +1,4 @@
-{ chadLib, config, ... }:
+{ config, ... }:
 let
   cfg = config.chad;
   kms = cfg.editor.keyMappings;

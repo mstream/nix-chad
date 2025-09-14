@@ -1,5 +1,4 @@
 {
-  chadLib,
   config,
   pkgs,
   ...
