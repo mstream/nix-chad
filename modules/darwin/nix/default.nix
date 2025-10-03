@@ -39,6 +39,7 @@ in
         build-users-group = nixbld
         download-buffer-size = 134217728
         trusted-users = ${userName}
+        builders = @/etc/nix/machines
       '';
       package = pkgs.nix;
       registry = {
