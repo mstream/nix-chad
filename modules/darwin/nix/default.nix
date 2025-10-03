@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.chad;
+  userName = "${cfg.user.name}";
   substitutersInfo = {
     "https://cache.nixos.org" =
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
@@ -37,6 +38,7 @@ in
         experimental-features = nix-command flakes
         build-users-group = nixbld
         download-buffer-size = 134217728
+        trusted-users = ${userName}
       '';
       package = pkgs.nix;
       registry = {
