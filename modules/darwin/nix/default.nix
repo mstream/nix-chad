@@ -39,8 +39,10 @@ in
         build-users-group = nixbld
         download-buffer-size = 134217728
         trusted-users = ${userName}
-        builders = @/etc/nix/machines
       '';
+      # This is only needed to bootstrap nix-rosetta-builder
+      # These two builders cannot co-exist
+      # linux-builder.enable = true;
       package = pkgs.nix;
       registry = {
         nixpkgs = {

@@ -9,6 +9,7 @@
     {
       home-manager,
       nix-darwin,
+      nix-rosetta-builder,
       nixpkgs-firefox-darwin,
       nixvim,
       nur,
@@ -20,6 +21,7 @@
         inherit
           chadLib
           home-manager
+          nix-rosetta-builder
           nixosVersion
           nixpkgs-firefox-darwin
           nixvim
@@ -38,6 +40,14 @@
         {
           chad = chadConfig;
           home-manager.extraSpecialArgs = specialArgs;
+          nix-rosetta-builder = {
+            cores = 4;
+            diskSize = "32GiB";
+            enable = true;
+            memory = "16GiB";
+            onDemand = true;
+            onDemandLingerMinutes = 180;
+          };
         }
         ../../modules/darwin
       ];

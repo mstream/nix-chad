@@ -15,8 +15,8 @@
   ];
   isPrivate = true;
   script = ''
-    template_path="{{repo_root}}/templates/{{repo_dir}}/{{file_base_name}}.template.{{file_extension}}" 
-    output_dir="{{repo_root}}/{{repo_dir}}"
+    template_path="{{repo_root}}/templates{{repo_dir}}/{{file_base_name}}.template.{{file_extension}}" 
+    output_dir="{{repo_root}}{{repo_dir}}"
     backup_path="''${output_dir}/{{file_base_name}}.backup.{{file_extension}}" 
     output_path="''${output_dir}/{{file_base_name}}.{{file_extension}}" 
     cp ''${output_path} ''${backup_path}

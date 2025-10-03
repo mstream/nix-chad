@@ -23,6 +23,6 @@
     UBUNTU="24.04"
     export UBUNTU
 
-    {{call_recipe}} apply-template ".github/workflows" "check" "yml" "actionlint"
+    {{call_recipe}} apply-template "/.github/workflows" "check" "yml" "actionlint"
   '';
 }

@@ -4,7 +4,7 @@
   inputs = {
     flake-parts = {
       inputs.nixpkgs-lib.follows = "nixpkgs";
-      url = "github:hercules-ci/flake-parts?rev=af66ad14b28a127c5c0f3bbb298218fc63528a18";
+      url = "github:hercules-ci/flake-parts?rev=758cf7296bee11f1706a574c77d072b8a7baa881";
     };
     just-flake.url = "github:juspay/just-flake?rev=0e33952a4bcd16cd54ee3aba8111606c237d4526";
     lint-nix.url = "github:xc-jp/lint.nix?rev=a3e8324baec349dd65c3bd8f84a56ab295ff507f";
@@ -14,12 +14,12 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/nix-unit?rev=f0f20d931fa043905bc5fd50c5afa73f8eab67b3";
+      url = "github:nix-community/nix-unit?rev=7a952131cbef9cb21953ae70ad09249541848f07";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?rev=7ce605d5c3f86b4ce9745348be42429b6c1b1739";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=b2f842e4d99dc35a0951b9582c64bb26789e929d";
     nixpkgs-firefox-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=bb04824eba653c7c3ef64ee07a9d8bf7af4e17af";
+      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=e5086dd493a96bf57f512c48b7850f2b5783ded1";
     };
     nur = {
       inputs = {
@@ -27,11 +27,11 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/NUR?rev=08179897d21692cb0342bb5a97c358487a2ba79a";
+      url = "github:nix-community/NUR?rev=a5dd0f24eb9be5eaeb478ab90ec14caf5619d276";
     };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:numtide/treefmt-nix?rev=1298185c05a56bff66383a20be0b41a307f52228";
+      url = "github:numtide/treefmt-nix?rev=5eda4ee8121f97b218f7cc73f5172098d458f1d1";
     };
   };
 

@@ -32,6 +32,9 @@
     NIX_DARWIN=$({{call_recipe}} get-commit-id nix-darwin/nix-darwin nix-darwin-25.05)
     export NIX_DARWIN
 
+    NIX_ROSETTA_BUILDER=$({{call_recipe}} get-commit-id cpick/nix-rosetta-builder main)
+    export NIX_ROSETTA_BUILDER
+
     NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit main)
     export NIX_UNIT
 
@@ -59,8 +62,8 @@
     YANTS=$({{call_recipe}} get-commit-id divnix/yants main)
     export YANTS
 
-    {{call_recipe}} apply-template "" "flake" "nix" "nix flake lock" 
-    {{call_recipe}} apply-template "outputs/development" "flake" "nix" "nix flake lock"
-    {{call_recipe}} apply-template "outputs/public" "flake" "nix" "nix flake lock"
+    {{call_recipe}} apply-template "/" "flake" "nix" "nix flake lock" 
+    {{call_recipe}} apply-template "/outputs/development" "flake" "nix" "nix flake lock"
+    {{call_recipe}} apply-template "/outputs/public" "flake" "nix" "nix flake lock"
   '';
 }
