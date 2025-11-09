@@ -3,6 +3,7 @@
     ./arrow.nix
     ./barbar.nix
     ./cmp/default.nix
+    ./codecompanion.nix
     ./comment.nix
     ./conform-nvim
     ./flash.nix
