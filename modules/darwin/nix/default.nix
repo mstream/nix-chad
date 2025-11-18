@@ -60,6 +60,7 @@ in
       };
       settings = {
         auto-optimise-store = false;
+        fallback = true;
         sandbox = false;
         ssl-cert-file = cfg.sslCertFilePath;
         substituters = substituterUrls;
