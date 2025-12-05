@@ -1,5 +1,6 @@
 {
   groups,
+  nixOsVersion,
   ...
 }:
 {
@@ -14,8 +15,8 @@
     CACHIX_INSTALL_NIX_ACTION="30"
     export CACHIX_INSTALL_NIX_ACTION
 
-    NIXOS="25.05"
-    export NIXOS_VERSION
+    NIXOS="${nixOsVersion}"
+    export NIXOS
 
     PEACEIRIS_ACTIONS_GH_PAGES=
     export PEACEIRIS_ACTIONS_GH_PAGES="4"

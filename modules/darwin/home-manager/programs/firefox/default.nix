@@ -19,7 +19,7 @@ in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-devedition;
+    package = pkgs.firefox-esr;
     policies = {
       # FIXME
       # policies do not seem to work, at least not with non-standard

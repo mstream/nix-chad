@@ -15,6 +15,7 @@
     - [various constants (constants)](for-developers/chad-library/constants.md)
     - [enumerations (enum)](for-developers/chad-library/enum.md)
     - [functions (functions)](for-developers/chad-library/functions.md)
+    - [KDL file format utils (kdl)](for-developers/chad-library/kdl.md)
     - [lists manipulation (lists)](for-developers/chad-library/lists.md)
     - [lua code generation helpers (lua)](for-developers/chad-library/lua.md)
     - [markdown code generation helpers (markdown)](for-developers/chad-library/markdown.md)

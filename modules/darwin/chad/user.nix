@@ -3,6 +3,13 @@ with lib;
 {
   options = {
     chad.user = {
+      email = mkOption {
+        type = types.str;
+        example = "bob@example.com";
+        description = ''
+          User's e-mail address.
+        '';
+      };
       homeDirectories = mkOption {
         type = types.listOf types.str;
         default = [ ];
@@ -22,7 +29,7 @@ with lib;
         type = types.str;
         example = "bob";
         description = ''
-          User name.
+          User's name.
         '';
       };
     };

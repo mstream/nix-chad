@@ -263,6 +263,27 @@ string
 
 
 
+## chad\.editor\.keyMappings\.categorized\.debug\.suffixes\.toggleDiagnosticsWindow
+
+
+
+toggle diagnostics window
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "x" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
 ## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.codeDefinitions
 
 
@@ -830,48 +851,6 @@ string
 
 
 
-## chad\.editor\.keyMappings\.uncategorized\.jumpToNextDiagnostic
-
-
-
-Jump to a line with the next diagnostic message
-
-
-
-*Type:*
-string
-
-
-
-*Default:*
-` "]d" `
-
-*Declared by:*
- - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
-
-
-
-## chad\.editor\.keyMappings\.uncategorized\.jumpToPreviousDiagnostic
-
-
-
-Jump to a line with the previous diagnostic message
-
-
-
-*Type:*
-string
-
-
-
-*Default:*
-` "[d" `
-
-*Declared by:*
- - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
-
-
-
 ## chad\.editor\.keyMappings\.uncategorized\.moveToBottomWindow
 
 
@@ -960,7 +939,7 @@ string
 
 
 
-Sroll content down (half a page)
+Scroll content down (half a page)
 
 
 
@@ -981,7 +960,7 @@ string
 
 
 
-Sroll content down (full page)
+Scroll content down (full page)
 
 
 
@@ -1288,9 +1267,9 @@ list of (submodule)
 ```
 [
   {
-    repositoryPath = "~/work/project-1";
+    repositoryUrl = "git@github.com:somecompany/**";
     sshKeyPath = "~/.ssh/work_id_rsa";
-    userEmail = "me@mail.com";
+    userEmail = "me@somecompany.com";
   }
 ]
 ```
@@ -1300,11 +1279,11 @@ list of (submodule)
 
 
 
-## chad\.git\.alternativeGitIdentities\.\*\.repositoryPath
+## chad\.git\.alternativeGitIdentities\.\*\.repositoryUrl
 
 
 
-Git repository path\.
+Git repository URL\.
 
 
 
@@ -1841,6 +1820,27 @@ strings concatenated with “\\n”
 
 
 
+## chad\.user\.email
+
+
+
+User’s e-mail address\.
+
+
+
+*Type:*
+string
+
+
+
+*Example:*
+` "bob@example.com" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix)
+
+
+
 ## chad\.user\.homeDirectories
 
 
@@ -1881,7 +1881,7 @@ list of string
 
 
 
-User name\.
+User’s name\.
 
 
 

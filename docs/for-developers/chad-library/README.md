@@ -10,6 +10,8 @@
 
 - [functions](./functions.md)
 
+- [kdl](./kdl.md)
+
 - [lists](./lists.md)
 
 - [lua](./lua.md)

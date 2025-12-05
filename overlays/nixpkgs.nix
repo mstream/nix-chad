@@ -1,5 +1,4 @@
-{ nixpkgs-firefox-darwin, nur, ... }:
+{ nur, ... }:
 [
-  nixpkgs-firefox-darwin.overlay
   nur.overlays.default
 ]

@@ -4,16 +4,9 @@ let
 in
 {
   programs.git = {
-    aliases = { };
     enable = true;
-    delta = {
-      enable = true;
-      options = {
-        syntax-theme = "GitHub";
-        line-numbers = true;
-      };
-    };
-    extraConfig = {
+    settings = {
+      aliases = { };
       core = {
         autocrlf = "input";
         editor = "vim";
@@ -25,6 +18,9 @@ in
       push = {
         autoSetupRemote = true;
         default = "simple";
+      };
+      user = {
+        inherit (cfg.user) email name;
       };
     };
     ignores = [
@@ -47,7 +43,5 @@ in
         };
       }
     ) cfg.git.alternativeGitIdentities;
-    userEmail = "maciej.laciak@gmail.com";
-    userName = cfg.user.name;
   };
 }

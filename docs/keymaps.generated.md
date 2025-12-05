@@ -126,6 +126,10 @@ toggle block - &lt;leader&gt;/tb
 
 toggle line - &lt;leader&gt;/tl
 
+### Debug code
+
+toggle diagnostics window - &lt;leader&gt;dx
+
 ### Finding things
 
 code definitions - &lt;leader&gt;fcd
@@ -190,10 +194,6 @@ Cancel current selection or mode - &lt;ESC&gt;
 
 Confirm current selection - &lt;CR&gt;
 
-Jump to a line with the next diagnostic message - \]d
-
-Jump to a line with the previous diagnostic message - \[d
-
 Move to window on the bottom - &lt;C-j&gt;
 
 Move to window on the left - &lt;C-h&gt;
@@ -202,9 +202,9 @@ Move to window on the right - &lt;C-l&gt;
 
 Move to window on the top - &lt;C-k&gt;
 
-Sroll content down (half a page) - &lt;C-d&gt;
+Scroll content down (half a page) - &lt;C-d&gt;
 
-Sroll content down (full page) - &lt;C-f&gt;
+Scroll content down (full page) - &lt;C-f&gt;
 
 Scroll content up (half a page) - &lt;C-u&gt;
 

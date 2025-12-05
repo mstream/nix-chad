@@ -52,8 +52,10 @@ in
       mru-spaces = true;
       orientation = "bottom";
       show-process-indicators = true;
-      showhidden = true;
       show-recents = false;
+      showDesktopGestureEnabled = false;
+      showhidden = true;
+      showMissionControlGestureEnabled = !cfg.manageWindows.enable;
       static-only = false;
       tilesize = 2 * cfg.fontSize;
       wvous-bl-corner = 1;
@@ -122,5 +124,4 @@ in
       */
     };
   };
-  imports = [ ./extra-defaults.nix ];
 }

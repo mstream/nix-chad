@@ -21,11 +21,13 @@ in
 {
   programs.nixvim.plugins.treesitter-textobjects = {
     enable = true;
-    lspInterop = {
-      border = "rounded";
-      enable = true;
+    settings = {
+      lsp_interop = {
+        border = "rounded";
+        enable = true;
+      };
+      move = import ./move.nix { inherit targets; };
+      select = import ./select.nix { inherit targets; };
     };
-    move = import ./move.nix { inherit targets; };
-    select = import ./select.nix { inherit targets; };
   };
 }

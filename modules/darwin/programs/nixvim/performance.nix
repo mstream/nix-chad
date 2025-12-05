@@ -9,7 +9,10 @@
     };
     combinePlugins = {
       enable = true;
-      standalonePlugins = [ "nvim-treesitter" ];
+      standalonePlugins = [
+        "friendly-snippets"
+        "nvim-treesitter"
+      ];
     };
   };
 }

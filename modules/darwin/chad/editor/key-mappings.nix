@@ -270,11 +270,11 @@ in
       sequence = "<C-${moveUpKey}>";
     };
     scrollDown = {
-      description = "Sroll content down (half a page)";
+      description = "Scroll content down (half a page)";
       sequence = "<C-${scrollDownKey}>";
     };
     scrollDownFullPage = {
-      description = "Sroll content down (full page)";
+      description = "Scroll content down (full page)";
       sequence = "<C-f>";
     };
     scrollUp = {

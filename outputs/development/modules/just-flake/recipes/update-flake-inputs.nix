@@ -1,5 +1,6 @@
 {
   groups,
+  nixOsVersion,
   ...
 }:
 {
@@ -20,7 +21,7 @@
     GIT_HOOKS=$({{call_recipe}} get-commit-id cachix/git-hooks.nix master)
     export GIT_HOOKS
 
-    HOME_MANAGER=$({{call_recipe}} get-commit-id nix-community/home-manager release-25.05)
+    HOME_MANAGER=$({{call_recipe}} get-commit-id nix-community/home-manager release-${nixOsVersion})
     export HOME_MANAGER
 
     JUST_FLAKE=$({{call_recipe}} get-commit-id juspay/just-flake main)
@@ -29,7 +30,7 @@
     LINT_NIX=$({{call_recipe}} get-commit-id xc-jp/lint.nix master)
     export LINT_NIX
 
-    NIX_DARWIN=$({{call_recipe}} get-commit-id nix-darwin/nix-darwin nix-darwin-25.05)
+    NIX_DARWIN=$({{call_recipe}} get-commit-id nix-darwin/nix-darwin nix-darwin-${nixOsVersion})
     export NIX_DARWIN
 
     NIX_ROSETTA_BUILDER=$({{call_recipe}} get-commit-id cpick/nix-rosetta-builder main)
@@ -38,16 +39,13 @@
     NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit main)
     export NIX_UNIT
 
-    NIXPKGS_FIREFOX_DARWIN=$({{call_recipe}} get-commit-id bandithedoge/nixpkgs-firefox-darwin main)
-    export NIXPKGS_FIREFOX_DARWIN
-
-    NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixpkgs-25.05-darwin)
+    NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixpkgs-${nixOsVersion}-darwin)
     export NIXPKGS
 
-    NIXOS="25.05"
+    NIXOS="${nixOsVersion}"
     export NIXOS
 
-    NIXVIM=$({{call_recipe}} get-commit-id nix-community/nixvim nixos-25.05)
+    NIXVIM=$({{call_recipe}} get-commit-id nix-community/nixvim nixos-${nixOsVersion})
     export NIXVIM
 
     NUR=$({{call_recipe}} get-commit-id nix-community/NUR main)

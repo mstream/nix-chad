@@ -6,7 +6,10 @@
   ...
 }:
 let
-  dependencies = { inherit chadLib groups nixBuildCommand; };
+  dependencies = {
+    inherit chadLib groups nixBuildCommand;
+    nixOsVersion = "25.11";
+  };
 in
 {
   ${recipes.mapTo.name recipes.members.checkDebug} =

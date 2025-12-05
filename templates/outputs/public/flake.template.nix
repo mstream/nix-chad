@@ -31,10 +31,6 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs?rev=$NIXPKGS";
-    nixpkgs-firefox-darwin = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:bandithedoge/nixpkgs-firefox-darwin?rev=$NIXPKGS_FIREFOX_DARWIN";
-    };
     nixvim = {
       inputs = {
         flake-parts.follows = "flake-parts";

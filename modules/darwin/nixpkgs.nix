@@ -1,6 +1,5 @@
 {
   config,
-  nixpkgs-firefox-darwin,
   nur,
   ...
 }:
@@ -14,7 +13,7 @@ in
       allowUnfree = !cfg.software.openSourceOnly;
     };
     overlays = import ../../overlays/nixpkgs.nix {
-      inherit nixpkgs-firefox-darwin nur;
+      inherit nur;
     };
   };
 }

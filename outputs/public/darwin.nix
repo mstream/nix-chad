@@ -10,7 +10,6 @@
       home-manager,
       nix-darwin,
       nix-rosetta-builder,
-      nixpkgs-firefox-darwin,
       nixvim,
       nur,
       ...
@@ -23,7 +22,6 @@
           home-manager
           nix-rosetta-builder
           nixosVersion
-          nixpkgs-firefox-darwin
           nixvim
           nur
           system

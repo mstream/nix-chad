@@ -1,19 +1,18 @@
 {
   programs.nixvim.plugins.lspsaga = {
-    beacon = {
-      enable = true;
-      frequency = 7;
-    };
     enable = false;
-    lightbulb = {
-      debounce = 10;
-      enable = true;
-      sign = true;
-      signPriority = 40;
-      virtualText = true;
-    };
-    scrollPreview = {
-
+    settings = {
+      beacon = {
+        enable = true;
+        frequency = 7;
+      };
+      lightbulb = {
+        debounce = 10;
+        enable = true;
+        sign = true;
+        sign_priority = 40;
+        virtual_text = true;
+      };
     };
   };
 }

@@ -13,33 +13,35 @@ let
 in
 {
   programs.nixvim.plugins.lspkind = {
-    cmp = {
-      after = chadLib.lua.render (
-        afterLuaFunctionDefinition (
-          chadLib.lua.ast._raw ''
-            local strings = vim.split(kind.kind, " ") 
-
-            if #strings == 1 then
-              kind.kind = "   "
-              kind.menu = "    (" .. strings[1] .. ")"
-            else
-              kind.kind = " " .. strings[1] .. " " 
-              if strings[2] == nil then
-                kind.menu = ""
-              else
-                kind.menu = "    (" .. strings[2] .. ")"
-              end
-            end
-
-            return kind
-          ''
-        )
-      );
-      ellipsisChar = "...";
-      enable = true;
-      maxWidth = 16;
-    };
     enable = true;
-    mode = "symbol_text";
+    settings = {
+      cmp = {
+        after = chadLib.lua.render (
+          afterLuaFunctionDefinition (
+            chadLib.lua.ast._raw ''
+              local strings = vim.split(kind.kind, " ") 
+
+              if #strings == 1 then
+                kind.kind = "   "
+                kind.menu = "    (" .. strings[1] .. ")"
+              else
+                kind.kind = " " .. strings[1] .. " " 
+                if strings[2] == nil then
+                  kind.menu = ""
+                else
+                  kind.menu = "    (" .. strings[2] .. ")"
+                end
+              end
+
+              return kind
+            ''
+          )
+        );
+        ellipsis_char = "...";
+        enable = true;
+        max_width = 16;
+      };
+      mode = "symbol_text";
+    };
   };
 }
