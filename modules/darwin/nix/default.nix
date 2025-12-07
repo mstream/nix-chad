@@ -61,7 +61,7 @@ in
       settings = {
         auto-optimise-store = false;
         fallback = true;
-        sandbox = false;
+        sandbox = true;
         ssl-cert-file = cfg.sslCertFilePath;
         substituters = substituterUrls;
         trusted-public-keys = substituterPublicKeys;
