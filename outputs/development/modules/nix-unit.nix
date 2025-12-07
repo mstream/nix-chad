@@ -6,7 +6,11 @@
   perSystem = _: {
     nix-unit = {
       inherit inputs;
-      allowNetwork = false;
+      # TODO: restore once
+      # https://github.com/nix-community/nix-unit/issues/270
+      # is fixed
+      # allowNetwork = false;
+      allowNetwork = true;
       enableSystemAgnostic = true;
     };
   };
