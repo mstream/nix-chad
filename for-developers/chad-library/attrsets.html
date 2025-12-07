@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>For Developers - PureScript JSON Schema</title>
+        <title>attribute sets (attrsets) - PureScript JSON Schema</title>
 
 
         <!-- Custom HTML head -->
@@ -12,34 +12,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../";
+            const path_to_root = "../../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex.js";
+            window.path_to_searchindex_js = "../../searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc.js"></script>
+        <script src="../../toc.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -106,7 +106,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -141,7 +141,7 @@
                     <h1 class="menu-title">PureScript JSON Schema</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -175,39 +175,47 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="for-developers"><a class="header" href="#for-developers">For Developers</a></h1>
-<h2 id="flake-inputs"><a class="header" href="#flake-inputs">Flake inputs</a></h2>
-<h3 id="choosing-version"><a class="header" href="#choosing-version">Choosing version</a></h3>
-<p>Since this project uses flake-parts partitions module, flake inputs
-are stored separately per each partition. This introduces possibility
-of using different versions of inputs when evaluating different
-flake output attributes. This is possible even when inputs share a
-reference to the same branch. This is because commit revision is being
-resolved and stored in the repo at the time of running <code>nix flake lock</code>
-command, and this may happen at different times. In order to guarantee
-that they share the same versions, use these rules:</p>
-<ol>
-<li>If the input repository uses tags - use them.</li>
-<li>If the input repository does not use tags - use commit hashes.</li>
-<li>For <code>nixpkgs</code> use commit hashes from the branch which is appropriate for this project, namely <code>nixpkgs-{NIXOS_RELEASE_VERSION}-darwin</code>.</li>
-<li>For <code>home-manager</code> use commit hashes from the branch which corresponds to the <code>nixpkgs</code> version, namely <code>release-${NIXOS_RELEASE_VERSION}</code>.</li>
-<li>For <code>nix-darwin</code> use commit hashes from the branch which corresponds to the <code>nixpkgs</code> version, namely <code>nix-darwin-${NIXOS_RELEASE_VERSION}</code>.</li>
-<li>For <code>nixvim</code> use commit hashes from the branch which corresponds to the <code>nixpkgs</code> version, namely <code>nixos-${NIXOS_RELEASE_VERSION}</code>.</li>
-</ol>
-<h3 id="control-version-of-transitive-dependencies"><a class="header" href="#control-version-of-transitive-dependencies">Control version of transitive dependencies</a></h3>
-<p>For each input of a flake type, identify its dependencies, define them
-as this project's inputs and make them being used by the input with the
-help of <code>inputs.{NAME_OF_TRANSITIVE_INPUT}.follows</code> property.</p>
+                        <h1 id="sec-functions-library-attrsets"><a class="header" href="#sec-functions-library-attrsets">attribute sets</a></h1>
+<h2 id="function-library-lib.attrsets.generate"><a class="header" href="#function-library-lib.attrsets.generate"><code>lib.attrsets.generate</code></a></h2>
+<p>Generate an attribute set from a list of values</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<pre><code class="language-nix">generate ["a" "b" "c"] (v: {"${v}1"=v;"${v}2"=v;})
+=&gt;
+{a1="a";a2="a";b1="b";b2="b";c1="c";c2="c";}
+</code></pre>
+<h3 id="type"><a class="header" href="#type">Type</a></h3>
+<pre><code>generate :: [Any] -&gt; (Any -&gt; AttrSet) -&gt; AttrSet
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<p>values
+: List of values</p>
+<p>generator
+: A function transforming a single value into an attribute set</p>
+<h2 id="function-library-lib.attrsets.merge"><a class="header" href="#function-library-lib.attrsets.merge"><code>lib.attrsets.merge</code></a></h2>
+<p>Deep merge two attribute sets</p>
+<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<pre><code class="language-nix">merge {a="a";c={c1="c1";}} {b="b";c={c2="c2";}}
+=&gt;
+{a="a";b="b";c={c1="c1";c2="c2";}}
+</code></pre>
+<h3 id="type-1"><a class="header" href="#type-1">Type</a></h3>
+<pre><code>merge :: AttrSet -&gt; AttrSet -&gt; AttrSet
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<p>left
+: Left attribute set</p>
+<p>right
+: Right attribute set</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../keymaps.generated.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../for-developers/chad-library/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../for-developers/chad-library/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../for-developers/chad-library/bash.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -217,11 +225,11 @@ help of <code>inputs.{NAME_OF_TRANSITIVE_INPUT}.follows</code> property.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../keymaps.generated.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../for-developers/chad-library/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../for-developers/chad-library/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../for-developers/chad-library/bash.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -236,17 +244,17 @@ help of <code>inputs.{NAME_OF_TRANSITIVE_INPUT}.follows</code> property.</p>
         </script>
 
 
-        <script src="../elasticlunr.min.js"></script>
-        <script src="../mark.min.js"></script>
-        <script src="../searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="../clipboard.min.js"></script>
-        <script src="../highlight.js"></script>
-        <script src="../book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../mermaid.min.js"></script>
-        <script src="../mermaid-init.js"></script>
+        <script src="../../mermaid.min.js"></script>
+        <script src="../../mermaid-init.js"></script>
 
 
 

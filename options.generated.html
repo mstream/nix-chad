@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,70 +72,51 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="options.generated.html" class="active"><strong aria-hidden="true">1.</strong> Options</a></li><li class="chapter-item expanded "><a href="keymaps.generated.html"><strong aria-hidden="true">2.</strong> Key Mappings</a></li><li class="chapter-item expanded "><a href="for-developers/index.html"><strong aria-hidden="true">3.</strong> For Developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="for-developers/library.generated.html"><strong aria-hidden="true">3.1.</strong> Library</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="contributors.html">Contributors</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -130,13 +126,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -153,7 +150,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -227,7 +229,507 @@ signed integer</p>
 <code>72</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix">&lt;nix-chad/modules/darwin/chad/editor.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedclosesuffixescurrentbuffer"><a class="header" href="#chadeditorkeymappingscategorizedclosesuffixescurrentbuffer">chad.editor.keyMappings.categorized.close.suffixes.currentBuffer</a></h2>
+<p>close the current buffer</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"bc"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedcommentsuffixesaddendofline"><a class="header" href="#chadeditorkeymappingscategorizedcommentsuffixesaddendofline">chad.editor.keyMappings.categorized.comment.suffixes.addEndOfLine</a></h2>
+<p>add at the end of line</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"lA"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedcommentsuffixesaddlineabove"><a class="header" href="#chadeditorkeymappingscategorizedcommentsuffixesaddlineabove">chad.editor.keyMappings.categorized.comment.suffixes.addLineAbove</a></h2>
+<p>add line above</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"lO"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedcommentsuffixesaddlinebelow"><a class="header" href="#chadeditorkeymappingscategorizedcommentsuffixesaddlinebelow">chad.editor.keyMappings.categorized.comment.suffixes.addLineBelow</a></h2>
+<p>add line below</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"lo"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedcommentsuffixesblock"><a class="header" href="#chadeditorkeymappingscategorizedcommentsuffixesblock">chad.editor.keyMappings.categorized.comment.suffixes.block</a></h2>
+<p>block operator-pending</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"b"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedcommentsuffixesline"><a class="header" href="#chadeditorkeymappingscategorizedcommentsuffixesline">chad.editor.keyMappings.categorized.comment.suffixes.line</a></h2>
+<p>line operator-pending</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"l"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedcommentsuffixestoggleblock"><a class="header" href="#chadeditorkeymappingscategorizedcommentsuffixestoggleblock">chad.editor.keyMappings.categorized.comment.suffixes.toggleBlock</a></h2>
+<p>toggle block</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"tb"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedcommentsuffixestoggleline"><a class="header" href="#chadeditorkeymappingscategorizedcommentsuffixestoggleline">chad.editor.keyMappings.categorized.comment.suffixes.toggleLine</a></h2>
+<p>toggle line</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"tl"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizeddebugsuffixestogglediagnosticswindow"><a class="header" href="#chadeditorkeymappingscategorizeddebugsuffixestogglediagnosticswindow">chad.editor.keyMappings.categorized.debug.suffixes.toggleDiagnosticsWindow</a></h2>
+<p>toggle diagnostics window</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"x"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixescodedefinitions"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixescodedefinitions">chad.editor.keyMappings.categorized.find.suffixes.codeDefinitions</a></h2>
+<p>code definitions</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"cd"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixescodeimplementations"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixescodeimplementations">chad.editor.keyMappings.categorized.find.suffixes.codeImplementations</a></h2>
+<p>code implementations</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"ci"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixescodereferences"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixescodereferences">chad.editor.keyMappings.categorized.find.suffixes.codeReferences</a></h2>
+<p>code references</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"cr"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixescodetypedefinitions"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixescodetypedefinitions">chad.editor.keyMappings.categorized.find.suffixes.codeTypeDefinitions</a></h2>
+<p>code type definitions</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"ct"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesfiles"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesfiles">chad.editor.keyMappings.categorized.find.suffixes.files</a></h2>
+<p>files</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"f"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesgitbranches"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesgitbranches">chad.editor.keyMappings.categorized.find.suffixes.gitBranches</a></h2>
+<p>Git branches</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"gb"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesgitcommits"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesgitcommits">chad.editor.keyMappings.categorized.find.suffixes.gitCommits</a></h2>
+<p>Git commits</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"gc"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesgitlocalchanges"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesgitlocalchanges">chad.editor.keyMappings.categorized.find.suffixes.gitLocalChanges</a></h2>
+<p>Git local changes</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"gl"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesgitstash"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesgitstash">chad.editor.keyMappings.categorized.find.suffixes.gitStash</a></h2>
+<p>Git stashed changes</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"gs"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesimplementations"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesimplementations">chad.editor.keyMappings.categorized.find.suffixes.implementations</a></h2>
+<p>implementations</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"i"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesvimbuffers"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesvimbuffers">chad.editor.keyMappings.categorized.find.suffixes.vimBuffers</a></h2>
+<p>Vim buffers</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"vb"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesvimcommands"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesvimcommands">chad.editor.keyMappings.categorized.find.suffixes.vimCommands</a></h2>
+<p>Vim commands</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"vc"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixesvimhelp"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixesvimhelp">chad.editor.keyMappings.categorized.find.suffixes.vimHelp</a></h2>
+<p>Vim help topics</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"vh"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedfindsuffixeswords"><a class="header" href="#chadeditorkeymappingscategorizedfindsuffixeswords">chad.editor.keyMappings.categorized.find.suffixes.words</a></h2>
+<p>words across files</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"w"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedgotosuffixesdeclaration"><a class="header" href="#chadeditorkeymappingscategorizedgotosuffixesdeclaration">chad.editor.keyMappings.categorized.goTo.suffixes.declaration</a></h2>
+<p>declaration</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"D"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedgotosuffixesdefinition"><a class="header" href="#chadeditorkeymappingscategorizedgotosuffixesdefinition">chad.editor.keyMappings.categorized.goTo.suffixes.definition</a></h2>
+<p>definition</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"d"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedgotosuffixesimplementation"><a class="header" href="#chadeditorkeymappingscategorizedgotosuffixesimplementation">chad.editor.keyMappings.categorized.goTo.suffixes.implementation</a></h2>
+<p>implementation</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"i"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedgotosuffixesnextproblem"><a class="header" href="#chadeditorkeymappingscategorizedgotosuffixesnextproblem">chad.editor.keyMappings.categorized.goTo.suffixes.nextProblem</a></h2>
+<p>next problem</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"]"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedgotosuffixespreviousproblem"><a class="header" href="#chadeditorkeymappingscategorizedgotosuffixespreviousproblem">chad.editor.keyMappings.categorized.goTo.suffixes.previousProblem</a></h2>
+<p>previous problem</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"["</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedrefactorsuffixesaction"><a class="header" href="#chadeditorkeymappingscategorizedrefactorsuffixesaction">chad.editor.keyMappings.categorized.refactor.suffixes.action</a></h2>
+<p>action</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"a"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedrefactorsuffixesformat"><a class="header" href="#chadeditorkeymappingscategorizedrefactorsuffixesformat">chad.editor.keyMappings.categorized.refactor.suffixes.format</a></h2>
+<p>format</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"f"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedrefactorsuffixesname"><a class="header" href="#chadeditorkeymappingscategorizedrefactorsuffixesname">chad.editor.keyMappings.categorized.refactor.suffixes.name</a></h2>
+<p>name</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"n"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedselectsuffixesdecrement"><a class="header" href="#chadeditorkeymappingscategorizedselectsuffixesdecrement">chad.editor.keyMappings.categorized.select.suffixes.decrement</a></h2>
+<p>decrement selection</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"d"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedselectsuffixesincrement"><a class="header" href="#chadeditorkeymappingscategorizedselectsuffixesincrement">chad.editor.keyMappings.categorized.select.suffixes.increment</a></h2>
+<p>increment selection</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"i"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingscategorizedselectsuffixesinitialize"><a class="header" href="#chadeditorkeymappingscategorizedselectsuffixesinitialize">chad.editor.keyMappings.categorized.select.suffixes.initialize</a></h2>
+<p>initialize selection</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"s"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedcancel"><a class="header" href="#chadeditorkeymappingsuncategorizedcancel">chad.editor.keyMappings.uncategorized.cancel</a></h2>
+<p>Cancel current selection or mode</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;ESC&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedconfirm"><a class="header" href="#chadeditorkeymappingsuncategorizedconfirm">chad.editor.keyMappings.uncategorized.confirm</a></h2>
+<p>Confirm current selection</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;CR&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedmovetobottomwindow"><a class="header" href="#chadeditorkeymappingsuncategorizedmovetobottomwindow">chad.editor.keyMappings.uncategorized.moveToBottomWindow</a></h2>
+<p>Move to window on the bottom</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-j&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedmovetoleftwindow"><a class="header" href="#chadeditorkeymappingsuncategorizedmovetoleftwindow">chad.editor.keyMappings.uncategorized.moveToLeftWindow</a></h2>
+<p>Move to window on the left</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-h&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedmovetorightwindow"><a class="header" href="#chadeditorkeymappingsuncategorizedmovetorightwindow">chad.editor.keyMappings.uncategorized.moveToRightWindow</a></h2>
+<p>Move to window on the right</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-l&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedmovetotopwindow"><a class="header" href="#chadeditorkeymappingsuncategorizedmovetotopwindow">chad.editor.keyMappings.uncategorized.moveToTopWindow</a></h2>
+<p>Move to window on the top</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-k&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedscrolldown"><a class="header" href="#chadeditorkeymappingsuncategorizedscrolldown">chad.editor.keyMappings.uncategorized.scrollDown</a></h2>
+<p>Scroll content down (half a page)</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-d&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedscrolldownfullpage"><a class="header" href="#chadeditorkeymappingsuncategorizedscrolldownfullpage">chad.editor.keyMappings.uncategorized.scrollDownFullPage</a></h2>
+<p>Scroll content down (full page)</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-f&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedscrollup"><a class="header" href="#chadeditorkeymappingsuncategorizedscrollup">chad.editor.keyMappings.uncategorized.scrollUp</a></h2>
+<p>Scroll content up (half a page)</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-u&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedscrollupfullpage"><a class="header" href="#chadeditorkeymappingsuncategorizedscrollupfullpage">chad.editor.keyMappings.uncategorized.scrollUpFullPage</a></h2>
+<p>Scroll content up (full page)</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-b&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedselectnext"><a class="header" href="#chadeditorkeymappingsuncategorizedselectnext">chad.editor.keyMappings.uncategorized.selectNext</a></h2>
+<p>Select next item on a list</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-n&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedselectprevious"><a class="header" href="#chadeditorkeymappingsuncategorizedselectprevious">chad.editor.keyMappings.uncategorized.selectPrevious</a></h2>
+<p>Select previous item on a list</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;C-p&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedshowkeymappings"><a class="header" href="#chadeditorkeymappingsuncategorizedshowkeymappings">chad.editor.keyMappings.uncategorized.showKeyMappings</a></h2>
+<p>Show key mappings</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"\\"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedshowsymbolinfo"><a class="header" href="#chadeditorkeymappingsuncategorizedshowsymbolinfo">chad.editor.keyMappings.uncategorized.showSymbolInfo</a></h2>
+<p>Show information about the symbol under the cursor</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"K"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedswitchtonexttab"><a class="header" href="#chadeditorkeymappingsuncategorizedswitchtonexttab">chad.editor.keyMappings.uncategorized.switchToNextTab</a></h2>
+<p>switch to next tab</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;TAB&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
+</ul>
+<h2 id="chadeditorkeymappingsuncategorizedswitchtoprevioustab"><a class="header" href="#chadeditorkeymappingsuncategorizedswitchtoprevioustab">chad.editor.keyMappings.uncategorized.switchToPreviousTab</a></h2>
+<p>switch to previous tab</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Default:</em>
+<code>"&lt;S-TAB&gt;"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
 </ul>
 <h2 id="chadeditorlinenumbering"><a class="header" href="#chadeditorlinenumbering">chad.editor.lineNumbering</a></h2>
 <p>Absolute: line numbers counted from the beginning of the document
@@ -238,7 +740,7 @@ one of “absolute”, “relative”</p>
 <code>"relative"</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix">&lt;nix-chad/modules/darwin/chad/editor.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
 </ul>
 <h2 id="chadeditortabwidth"><a class="header" href="#chadeditortabwidth">chad.editor.tabWidth</a></h2>
 <p>Tabulation width measured in number of characters.</p>
@@ -248,7 +750,7 @@ signed integer</p>
 <code>2</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix">&lt;nix-chad/modules/darwin/chad/editor.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor">&lt;nix-chad/modules/darwin/chad/editor&gt;</a></li>
 </ul>
 <h2 id="chadextrapackages"><a class="header" href="#chadextrapackages">chad.extraPackages</a></h2>
 <p>Additional nixpkgs packages to be accessible for the user.</p>
@@ -262,7 +764,7 @@ null or (function that evaluates to a(n) list of package)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/default.nix">&lt;nix-chad/modules/darwin/chad/default.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad">&lt;nix-chad/modules/darwin/chad&gt;</a></li>
 </ul>
 <h2 id="chadfontsize"><a class="header" href="#chadfontsize">chad.fontSize</a></h2>
 <p>A desired font size in tools that have means to set it fixed.</p>
@@ -274,7 +776,7 @@ signed integer</p>
 <code>16</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/default.nix">&lt;nix-chad/modules/darwin/chad/default.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad">&lt;nix-chad/modules/darwin/chad&gt;</a></li>
 </ul>
 <h2 id="chadgitalternativegitidentities"><a class="header" href="#chadgitalternativegitidentities">chad.git.alternativeGitIdentities</a></h2>
 <p>Alternative Git identities for selected repositories.</p>
@@ -285,9 +787,9 @@ list of (submodule)</p>
 <p><em>Example:</em></p>
 <pre><code>[
   {
-    repositoryPath = "~/work/project-1";
+    repositoryUrl = "git@github.com:somecompany/**";
     sshKeyPath = "~/.ssh/work_id_rsa";
-    userEmail = "me@mail.com";
+    userEmail = "me@somecompany.com";
   }
 ]
 </code></pre>
@@ -295,8 +797,8 @@ list of (submodule)</p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/git.nix">&lt;nix-chad/modules/darwin/chad/git.nix&gt;</a></li>
 </ul>
-<h2 id="chadgitalternativegitidentitiesrepositorypath"><a class="header" href="#chadgitalternativegitidentitiesrepositorypath">chad.git.alternativeGitIdentities.*.repositoryPath</a></h2>
-<p>Git repository path.</p>
+<h2 id="chadgitalternativegitidentitiesrepositoryurl"><a class="header" href="#chadgitalternativegitidentitiesrepositoryurl">chad.git.alternativeGitIdentities.*.repositoryUrl</a></h2>
+<p>Git repository URL.</p>
 <p><em>Type:</em>
 string</p>
 <p><em>Declared by:</em></p>
@@ -364,8 +866,52 @@ boolean</p>
 <ul>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix">&lt;nix-chad/modules/darwin/chad/keyboard.nix&gt;</a></li>
 </ul>
+<h2 id="chadkeyboardshortcuts"><a class="header" href="#chadkeyboardshortcuts">chad.keyboard.shortcuts</a></h2>
+<p>A set of macOS desktop-level shortcuts.</p>
+<p><em>Type:</em>
+attribute set of (submodule) <em>(read only)</em></p>
+<p><em>Default:</em></p>
+<pre><code>{
+  screenshot = {
+    modifierKeys = [
+      "command"
+      "shift"
+    ];
+    otherKey = "S";
+  };
+}
+</code></pre>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix">&lt;nix-chad/modules/darwin/chad/keyboard.nix&gt;</a></li>
+</ul>
+<h2 id="chadkeyboardshortcutsnamemodifierkeys"><a class="header" href="#chadkeyboardshortcutsnamemodifierkeys">chad.keyboard.shortcuts.&lt;name&gt;.modifierKeys</a></h2>
+<p>A list of modifier keys.</p>
+<p><em>Type:</em>
+list of (one of “command”, “control”, “option”, “shift”) <em>(read only)</em></p>
+<p><em>Example:</em></p>
+<pre><code>[
+  "command"
+  "shift"
+]
+</code></pre>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix">&lt;nix-chad/modules/darwin/chad/keyboard.nix&gt;</a></li>
+</ul>
+<h2 id="chadkeyboardshortcutsnameotherkey"><a class="header" href="#chadkeyboardshortcutsnameotherkey">chad.keyboard.shortcuts.&lt;name&gt;.otherKey</a></h2>
+<p>A non-modifier key.</p>
+<p><em>Type:</em>
+one of “0”, “1”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, “9”, “A”, “B”, “C”, “D”, “E”, “F”, “G”, “H”, “I”, “J”, “K”, “L”, “M”, “N”, “O”, “P”, “Q”, “R”, “S”, “T”, “U”, “V”, “W”, “X”, “Y”, “Z” <em>(read only)</em></p>
+<p><em>Example:</em>
+<code>"S"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix">&lt;nix-chad/modules/darwin/chad/keyboard.nix&gt;</a></li>
+</ul>
 <h2 id="chadmanagewindowsenable"><a class="header" href="#chadmanagewindowsenable">chad.manageWindows.enable</a></h2>
-<p>Keep windows occupy maximum available share of space on desktop.</p>
+<p>Keep windows occupy maximum available share of space on desktop.
+Uses own emulation of multiple desktops/spaces.</p>
 <p><em>Type:</em>
 boolean</p>
 <p><em>Default:</em>
@@ -446,7 +992,7 @@ boolean</p>
 <code>true</code></p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal">&lt;nix-chad/modules/darwin/chad/terminal&gt;</a></li>
 </ul>
 <h2 id="chadterminalabbreviationsextraabbreviations"><a class="header" href="#chadterminalabbreviationsextraabbreviations">chad.terminal.abbreviations.extraAbbreviations</a></h2>
 <p>An attribute set that maps aliases (the top level attribute names
@@ -464,7 +1010,7 @@ attribute set of string</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal">&lt;nix-chad/modules/darwin/chad/terminal&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindings"><a class="header" href="#chadterminalkeybindings">chad.terminal.keyBindings</a></h2>
 <p>Additional key bindings for terminal emulator.</p>
@@ -483,7 +1029,7 @@ list of (submodule)</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal">&lt;nix-chad/modules/darwin/chad/terminal&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingschars"><a class="header" href="#chadterminalkeybindingschars">chad.terminal.keyBindings.*.chars</a></h2>
 <p>Substitution.</p>
@@ -491,7 +1037,7 @@ list of (submodule)</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal">&lt;nix-chad/modules/darwin/chad/terminal&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingskey"><a class="header" href="#chadterminalkeybindingskey">chad.terminal.keyBindings.*.key</a></h2>
 <p>Key.</p>
@@ -499,7 +1045,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal">&lt;nix-chad/modules/darwin/chad/terminal&gt;</a></li>
 </ul>
 <h2 id="chadterminalkeybindingsmods"><a class="header" href="#chadterminalkeybindingsmods">chad.terminal.keyBindings.*.mods</a></h2>
 <p>Modifier key(s).</p>
@@ -507,7 +1053,7 @@ string</p>
 string</p>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal">&lt;nix-chad/modules/darwin/chad/terminal&gt;</a></li>
 </ul>
 <h2 id="chadterminalzshinitextra"><a class="header" href="#chadterminalzshinitextra">chad.terminal.zshInitExtra</a></h2>
 <p>Additional initialization for ZSH sessions.</p>
@@ -523,7 +1069,17 @@ strings concatenated with “\n”</p>
 </code></pre>
 <p><em>Declared by:</em></p>
 <ul>
-<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix">&lt;nix-chad/modules/darwin/chad/terminal.nix&gt;</a></li>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal">&lt;nix-chad/modules/darwin/chad/terminal&gt;</a></li>
+</ul>
+<h2 id="chaduseremail"><a class="header" href="#chaduseremail">chad.user.email</a></h2>
+<p>User’s e-mail address.</p>
+<p><em>Type:</em>
+string</p>
+<p><em>Example:</em>
+<code>"bob@example.com"</code></p>
+<p><em>Declared by:</em></p>
+<ul>
+<li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix">&lt;nix-chad/modules/darwin/chad/user.nix&gt;</a></li>
 </ul>
 <h2 id="chaduserhomedirectories"><a class="header" href="#chaduserhomedirectories">chad.user.homeDirectories</a></h2>
 <p>A list of desirect directories to be created in the home
@@ -546,7 +1102,7 @@ list of string</p>
 <li><a href="https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix">&lt;nix-chad/modules/darwin/chad/user.nix&gt;</a></li>
 </ul>
 <h2 id="chadusername"><a class="header" href="#chadusername">chad.user.name</a></h2>
-<p>User name.</p>
+<p>User’s name.</p>
 <p><em>Type:</em>
 string</p>
 <p><em>Example:</em>
@@ -604,6 +1160,7 @@ string</p>
         <!-- Custom JS scripts -->
         <script src="mermaid.min.js"></script>
         <script src="mermaid-init.js"></script>
+
 
 
     </div>

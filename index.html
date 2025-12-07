@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,70 +72,51 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="options.generated.html"><strong aria-hidden="true">1.</strong> Options</a></li><li class="chapter-item expanded "><a href="keymaps.generated.html"><strong aria-hidden="true">2.</strong> Key Mappings</a></li><li class="chapter-item expanded "><a href="for-developers/index.html"><strong aria-hidden="true">3.</strong> For Developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="for-developers/library.generated.html"><strong aria-hidden="true">3.1.</strong> Library</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="contributors.html">Contributors</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -130,13 +126,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -153,7 +150,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -176,8 +178,8 @@
                         <h1 id="nix-chad"><a class="header" href="#nix-chad">Nix Chad</a></h1>
 <p><a href="https://mstream.github.io/nix-chad/"><img src="https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Project Website" /></a></p>
 <hr />
-<p><img src="nix-chad.png" alt="nix-chad logo" /></p>
-<p>An opinionated MacOS setup focused on software development.</p>
+<p><img src="./assets/nix-chad.png" alt="nix-chad logo" /></p>
+<p>An opinionated macOS setup focused on software development.</p>
 <h2 id="features"><a class="header" href="#features">Features</a></h2>
 <h3 id="firefox"><a class="header" href="#firefox">Firefox</a></h3>
 <h4 id="discoverable-key-mappings"><a class="header" href="#discoverable-key-mappings">discoverable key mappings</a></h4>
@@ -185,7 +187,7 @@
 appears.</p>
 <h3 id="neovim"><a class="header" href="#neovim">Neovim</a></h3>
 <h4 id="programmingconfiguration-languages-support"><a class="header" href="#programmingconfiguration-languages-support">programming/configuration languages support</a></h4>
-<p><img src="nvim-dhall-example.png" alt="nvim dhall example screenshot" /></p>
+<p><img src="./assets/nvim-dhall-example.png" alt="nvim dhall example screenshot" /></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">language</th><th style="text-align: center">actions</th><th style="text-align: center">completion</th><th style="text-align: center">diagnostics</th><th style="text-align: center">formatting</th><th style="text-align: center">highlighting</th></tr></thead><tbody>
 <tr><td style="text-align: left">bash</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
 <tr><td style="text-align: left">dhall</td><td style="text-align: center">☒</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td><td style="text-align: center">☑</td></tr>
@@ -206,7 +208,7 @@ appears.</p>
 </div>
 <h4 id="discoverable-key-mappings-1"><a class="header" href="#discoverable-key-mappings-1">discoverable key mappings</a></h4>
 <p>After pressing <code>\</code> key a window enumerating all key mappings appears.
-The same windows shows when user starts but does not finish a key
+The same window shows when user starts but does not finish a key
 sequence which has some action assigned to it.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
 <ul>
@@ -218,15 +220,42 @@ sequence which has some action assigned to it.</p>
 <pre><code class="language-bash">nix flake init --template github:mstream/nix-chad/main#default
 </code></pre>
 <h3 id="tweaking"><a class="header" href="#tweaking">Tweaking</a></h3>
-<p>Update any config entries to your liking like in
+<p>Update any config entries to your liking, like in
 <a href="https://github.com/mstream/nix-chad/blob/main/examples/custom/flake.nix">this</a> example.</p>
 <h3 id="applying"><a class="header" href="#applying">Applying</a></h3>
 <p>After any change to configuration, run from the directory where
 <code>flake.nix</code> file resides:</p>
 <pre><code class="language-bash">nix run .#switch
 </code></pre>
+<h4 id="warning"><a class="header" href="#warning">Warning</a></h4>
+<p>While it is easy to roll back unwanted/broken configuration by either
+reverting your configuration changes or using a different <code>nix-chad</code>
+flake revision, there are some classes of misconfigurations that are
+more difficult to undo.</p>
+<p>One of them is one that results in an error during ZSH shell
+initialization. If that results in, e.g. <code>PATH</code> environmental variable
+not being properly set, you may lose easy access to your binaries.</p>
+<p>In this situation, to recover back to working state, you may need to:</p>
+<ul>
+<li>switch to Bash using an absolute binary path</li>
+<li>use GUI tools (maybe enough to edit but not enough to rebuild Nix
+configuration)</li>
+<li>set <code>PATH</code> environmental variable manually (requires knowledge about
+Nix)</li>
+<li>install needed binaries without nix (an overkill just for recovery)</li>
+<li>using absolute <code>nix store</code> paths (very fiddly)</li>
+</ul>
+<p>None of these options are convenient and most of them require
+relatively broad administrative knowledge. Thus, <strong>after every switch,
+it is highly recommended to:</strong></p>
+<ul>
+<li>leave current shell session open</li>
+<li>create a new one,</li>
+<li>observe if initialization scripts do not produce any errors,</li>
+<li>and if so, use the previous session to fix the issues</li>
+</ul>
 <h2 id="updating"><a class="header" href="#updating">Updating</a></h2>
-<p>To stay up to date witch changes to Nix Chad, run periodically:</p>
+<p>To stay up-to-date witch changes to Nix Chad, run periodically:</p>
 <pre><code class="language-bash">nix flake update
 </code></pre>
 
@@ -272,6 +301,7 @@ sequence which has some action assigned to it.</p>
         <!-- Custom JS scripts -->
         <script src="mermaid.min.js"></script>
         <script src="mermaid-init.js"></script>
+
 
 
     </div>

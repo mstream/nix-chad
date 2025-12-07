@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,70 +72,51 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="options.generated.html"><strong aria-hidden="true">1.</strong> Options</a></li><li class="chapter-item expanded "><a href="keymaps.generated.html" class="active"><strong aria-hidden="true">2.</strong> Key Mappings</a></li><li class="chapter-item expanded "><a href="for-developers/index.html"><strong aria-hidden="true">3.</strong> For Developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="for-developers/library.generated.html"><strong aria-hidden="true">3.1.</strong> Library</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="contributors.html">Contributors</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -130,13 +126,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -153,7 +150,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -174,72 +176,141 @@
                 <div id="content" class="content">
                     <main>
                         <ul>
-<li><a href="#alacritty">Alacritty</a></li>
-<li><a href="#neovim">NeoVim</a>
+<li><a href="#terminal-workspace-zellij">Terminal Workspace (Zellij)</a>
 <ul>
-<li><a href="#comment">Comment</a></li>
-<li><a href="#directory-tree">Directory Tree</a></li>
-<li><a href="#find">Find</a></li>
-<li><a href="#go-to">Go To</a></li>
+<li><a href="#enter-search">Enter Search</a></li>
+<li><a href="#normal">Normal</a></li>
+<li><a href="#pane">Pane</a></li>
+<li><a href="#scroll">Scroll</a></li>
+<li><a href="#search">Search</a></li>
+<li><a href="#tab">Tab</a></li>
+<li><a href="#shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="#editor-neovim">Editor (NeoVim)</a>
+<ul>
+<li><a href="#closing-things">Closing things</a></li>
+<li><a href="#commenting-things">Commenting things</a></li>
+<li><a href="#debug-code">Debug code</a></li>
+<li><a href="#finding-things">Finding things</a></li>
+<li><a href="#moving-cursor-to-places">Moving cursor to places</a></li>
+<li><a href="#refactoring-code">Refactoring code</a></li>
+<li><a href="#selecting-text">Selecting text</a></li>
 <li><a href="#miscellaneous">Miscellaneous</a></li>
-<li><a href="#refactor">Refactor</a></li>
-<li><a href="#select">Select</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="alacritty"><a class="header" href="#alacritty">Alacritty</a></h2>
-<h2 id="neovim"><a class="header" href="#neovim">NeoVim</a></h2>
-<h3 id="comment"><a class="header" href="#comment">Comment</a></h3>
-<p>clA - Comment add at the end of line</p>
-<p>clO - Comment add line above</p>
-<p>clo - Comment add line below</p>
-<p>cb - Comment block operator-pending</p>
-<p>cl - Comment line operator-pending</p>
-<p>ctb - Comment toggle block</p>
-<p>ctl - Comment toggle line</p>
-<h3 id="directory-tree"><a class="header" href="#directory-tree">Directory Tree</a></h3>
-<p>tf - Directory tree focus</p>
-<p>tt - Directory tree toggle</p>
-<h3 id="find"><a class="header" href="#find">Find</a></h3>
-<p>fd - Find definitions</p>
-<p>ff - Find files</p>
-<p>fgb - Find Git branches</p>
-<p>fgc - Find Git commits</p>
-<p>fgl - Find Git local changes</p>
-<p>fgs - Find Git stashed changes</p>
-<p>fi - Find implementations</p>
-<p>fvb - Find Vim buffers</p>
-<p>fvc - Find Vim commands</p>
-<p>fvh - Find Vim help topics</p>
-<p>fw - Find words across files</p>
-<h3 id="go-to"><a class="header" href="#go-to">Go To</a></h3>
-<p>gD - Go to declaration</p>
-<p>gd - Go to definition</p>
-<p>gi - Go to implementation</p>
-<p>g] - Go to next problem</p>
-<p>g[ - Go to previous problem</p>
+<h2 id="terminal-workspace-zellij"><a class="header" href="#terminal-workspace-zellij">Terminal Workspace (Zellij)</a></h2>
+<h3 id="enter-search"><a class="header" href="#enter-search">Enter Search</a></h3>
+<p>Switch to Scroll mode - Esc</p>
+<p>Switch to Search mode - Enter</p>
+<h3 id="normal"><a class="header" href="#normal">Normal</a></h3>
+<p>Switch to Pane mode - Ctrl a</p>
+<p>Switch to Scroll mode - Ctrl s</p>
+<p>Switch to Tab mode - Ctrl t</p>
+<h3 id="pane"><a class="header" href="#pane">Pane</a></h3>
+<p>Close currently focused pane - x</p>
+<p>Move focus to a pane to the left - j</p>
+<p>Move focus to a pane to the left - h</p>
+<p>Move focus to a pane to the right - l</p>
+<p>Move focus to a pane to the left - k</p>
+<p>Create a new pane - n</p>
+<p>Toggle frames rendering for panes - z</p>
+<p>Toggle fullscreen mode of the focused pane - f</p>
+<h3 id="scroll"><a class="header" href="#scroll">Scroll</a></h3>
+<p>Scroll down by half a page - d</p>
+<p>Scroll up by half a page - u</p>
+<p>Scroll down by a single line - j</p>
+<p>Scroll up by a single line - k</p>
+<p>Switch to Enter Search mode - s</p>
+<h3 id="search"><a class="header" href="#search">Search</a></h3>
+<p>Scroll down by half a page - d</p>
+<p>Scroll up by half a page - u</p>
+<p>Go to the next matched word - n</p>
+<p>Go to the previous matched word - p</p>
+<p>Toggle word match case sensitivity - c</p>
+<h3 id="tab"><a class="header" href="#tab">Tab</a></h3>
+<p>Break the focused pane into a new tab - b</p>
+<p>Close the current tab - x</p>
+<p>Switch to tab under index of 1 - 1</p>
+<p>Switch to tab under index of 2 - 2</p>
+<p>Switch to tab under index of 3 - 3</p>
+<p>Switch to tab under index of 4 - 4</p>
+<p>Switch to tab under index of 5 - 5</p>
+<p>Switch to tab under index of 6 - 6</p>
+<p>Switch to tab under index of 7 - 7</p>
+<p>Switch to tab under index of 8 - 8</p>
+<p>Switch to tab under index of 9 - 9</p>
+<p>Create a new tab - n</p>
+<p>Switch between two most recently used tabs - Tab</p>
+<h3 id="shared"><a class="header" href="#shared">Shared</a></h3>
+<p>Close currently focused pane - Alt x</p>
+<p>Move focus to a pane to the left - Alt j</p>
+<p>Move focus to a pane to the left - Alt h</p>
+<p>Move focus to a pane to the right - Alt l</p>
+<p>Move focus to a pane to the left - Alt k</p>
+<p>Create a new pane - Alt n</p>
+<p>Toggle frames rendering for panes - Alt z</p>
+<p>Toggle fullscreen mode of the focused pane - Alt f</p>
+<h2 id="editor-neovim"><a class="header" href="#editor-neovim">Editor (NeoVim)</a></h2>
+<h3 id="closing-things"><a class="header" href="#closing-things">Closing things</a></h3>
+<p>close the current buffer - &lt;leader&gt;xbc</p>
+<h3 id="commenting-things"><a class="header" href="#commenting-things">Commenting things</a></h3>
+<p>add at the end of line - &lt;leader&gt;/lA</p>
+<p>add line above - &lt;leader&gt;/lO</p>
+<p>add line below - &lt;leader&gt;/lo</p>
+<p>block operator-pending - &lt;leader&gt;/b</p>
+<p>line operator-pending - &lt;leader&gt;/l</p>
+<p>toggle block - &lt;leader&gt;/tb</p>
+<p>toggle line - &lt;leader&gt;/tl</p>
+<h3 id="debug-code"><a class="header" href="#debug-code">Debug code</a></h3>
+<p>toggle diagnostics window - &lt;leader&gt;dx</p>
+<h3 id="finding-things"><a class="header" href="#finding-things">Finding things</a></h3>
+<p>code definitions - &lt;leader&gt;fcd</p>
+<p>code implementations - &lt;leader&gt;fci</p>
+<p>code references - &lt;leader&gt;fcr</p>
+<p>code type definitions - &lt;leader&gt;fct</p>
+<p>files - &lt;leader&gt;ff</p>
+<p>Git branches - &lt;leader&gt;fgb</p>
+<p>Git commits - &lt;leader&gt;fgc</p>
+<p>Git local changes - &lt;leader&gt;fgl</p>
+<p>Git stashed changes - &lt;leader&gt;fgs</p>
+<p>implementations - &lt;leader&gt;fi</p>
+<p>Vim buffers - &lt;leader&gt;fvb</p>
+<p>Vim commands - &lt;leader&gt;fvc</p>
+<p>Vim help topics - &lt;leader&gt;fvh</p>
+<p>words across files - &lt;leader&gt;fw</p>
+<h3 id="moving-cursor-to-places"><a class="header" href="#moving-cursor-to-places">Moving cursor to places</a></h3>
+<p>declaration - &lt;leader&gt;gD</p>
+<p>definition - &lt;leader&gt;gd</p>
+<p>implementation - &lt;leader&gt;gi</p>
+<p>next problem - &lt;leader&gt;g]</p>
+<p>previous problem - &lt;leader&gt;g[</p>
+<h3 id="refactoring-code"><a class="header" href="#refactoring-code">Refactoring code</a></h3>
+<p>action - &lt;leader&gt;ra</p>
+<p>format - &lt;leader&gt;rf</p>
+<p>name - &lt;leader&gt;rn</p>
+<h3 id="selecting-text"><a class="header" href="#selecting-text">Selecting text</a></h3>
+<p>decrement selection - &lt;leader&gt;sd</p>
+<p>increment selection - &lt;leader&gt;si</p>
+<p>initialize selection - &lt;leader&gt;ss</p>
 <h3 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h3>
-<p>&lt;ESC&gt; - Cancels current selection or mode.</p>
-<p>&lt;C-j&gt; - Move to window on the bottom</p>
-<p>&lt;C-h&gt; - Move to window on the left</p>
-<p>&lt;C-l&gt; - Move to window on the right</p>
-<p>&lt;C-k&gt; - Move to window on the top</p>
-<p>&lt;C-d&gt; - Sroll content down</p>
-<p>&lt;C-u&gt; - Scroll content up</p>
-<p>&lt;C-n&gt; - Select next item on a list</p>
-<p>&lt;C-p&gt; - Select previous item on a list</p>
-<p>\- Show key mappings</p>
-<p>K - Show information about the symbol under the cursor</p>
-<p>&lt;TAB&gt; - switch to next tab</p>
-<p>&lt;S-TAB&gt; - switch to previous tab</p>
-<h3 id="refactor"><a class="header" href="#refactor">Refactor</a></h3>
-<p>ra - Refactor action</p>
-<p>rf - Refactor format</p>
-<p>rn - Refactor name</p>
-<h3 id="select"><a class="header" href="#select">Select</a></h3>
-<p>sd - Select decrement selection</p>
-<p>si - Select increment selection</p>
-<p>ss - Select initialize selection</p>
+<p>Cancel current selection or mode - &lt;ESC&gt;</p>
+<p>Confirm current selection - &lt;CR&gt;</p>
+<p>Move to window on the bottom - &lt;C-j&gt;</p>
+<p>Move to window on the left - &lt;C-h&gt;</p>
+<p>Move to window on the right - &lt;C-l&gt;</p>
+<p>Move to window on the top - &lt;C-k&gt;</p>
+<p>Scroll content down (half a page) - &lt;C-d&gt;</p>
+<p>Scroll content down (full page) - &lt;C-f&gt;</p>
+<p>Scroll content up (half a page) - &lt;C-u&gt;</p>
+<p>Scroll content up (full page) - &lt;C-b&gt;</p>
+<p>Select next item on a list - &lt;C-n&gt;</p>
+<p>Select previous item on a list - &lt;C-p&gt;</p>
+<p>Show key mappings - \</p>
+<p>Show information about the symbol under the cursor - K</p>
+<p>switch to next tab - &lt;TAB&gt;</p>
+<p>switch to previous tab - &lt;S-TAB&gt;</p>
 
                     </main>
 
@@ -289,6 +360,7 @@
         <!-- Custom JS scripts -->
         <script src="mermaid.min.js"></script>
         <script src="mermaid-init.js"></script>
+
 
 
     </div>
