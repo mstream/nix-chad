@@ -77,6 +77,8 @@
         };
 
         user = {
+          email = "my-user.example.com";
+
           # A list of desirect directories to be created in the home
           # directory of the user.
           # It is up to the user to provide the contents of these

@@ -9,7 +9,10 @@
     { nix-chad, ... }:
     let
       config = {
-        user.name = "mstream";
+        user = {
+          email = "maciej.laciak@gmail.com";
+          name = "mstream";
+        };
       };
     in
     nix-chad.lib.chad config;
