@@ -91,7 +91,1057 @@ signed integer
 ` 72 `
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.close\.suffixes\.currentBuffer
+
+
+
+close the current buffer
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "bc" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.comment\.suffixes\.addEndOfLine
+
+
+
+add at the end of line
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "lA" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.comment\.suffixes\.addLineAbove
+
+
+
+add line above
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "lO" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.comment\.suffixes\.addLineBelow
+
+
+
+add line below
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "lo" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.comment\.suffixes\.block
+
+
+
+block operator-pending
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "b" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.comment\.suffixes\.line
+
+
+
+line operator-pending
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "l" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.comment\.suffixes\.toggleBlock
+
+
+
+toggle block
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "tb" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.comment\.suffixes\.toggleLine
+
+
+
+toggle line
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "tl" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.debug\.suffixes\.toggleDiagnosticsWindow
+
+
+
+toggle diagnostics window
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "x" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.codeDefinitions
+
+
+
+code definitions
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "cd" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.codeImplementations
+
+
+
+code implementations
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "ci" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.codeReferences
+
+
+
+code references
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "cr" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.codeTypeDefinitions
+
+
+
+code type definitions
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "ct" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.files
+
+
+
+files
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "f" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.gitBranches
+
+
+
+Git branches
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "gb" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.gitCommits
+
+
+
+Git commits
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "gc" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.gitLocalChanges
+
+
+
+Git local changes
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "gl" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.gitStash
+
+
+
+Git stashed changes
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "gs" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.implementations
+
+
+
+implementations
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "i" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.vimBuffers
+
+
+
+Vim buffers
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "vb" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.vimCommands
+
+
+
+Vim commands
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "vc" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.vimHelp
+
+
+
+Vim help topics
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "vh" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.find\.suffixes\.words
+
+
+
+words across files
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "w" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.goTo\.suffixes\.declaration
+
+
+
+declaration
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "D" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.goTo\.suffixes\.definition
+
+
+
+definition
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "d" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.goTo\.suffixes\.implementation
+
+
+
+implementation
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "i" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.goTo\.suffixes\.nextProblem
+
+
+
+next problem
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "]" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.goTo\.suffixes\.previousProblem
+
+
+
+previous problem
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "[" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.refactor\.suffixes\.action
+
+
+
+action
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "a" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.refactor\.suffixes\.format
+
+
+
+format
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "f" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.refactor\.suffixes\.name
+
+
+
+name
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "n" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.select\.suffixes\.decrement
+
+
+
+decrement selection
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "d" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.select\.suffixes\.increment
+
+
+
+increment selection
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "i" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.categorized\.select\.suffixes\.initialize
+
+
+
+initialize selection
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "s" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.cancel
+
+
+
+Cancel current selection or mode
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<ESC>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.confirm
+
+
+
+Confirm current selection
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<CR>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.moveToBottomWindow
+
+
+
+Move to window on the bottom
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-j>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.moveToLeftWindow
+
+
+
+Move to window on the left
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-h>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.moveToRightWindow
+
+
+
+Move to window on the right
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-l>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.moveToTopWindow
+
+
+
+Move to window on the top
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-k>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.scrollDown
+
+
+
+Scroll content down (half a page)
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-d>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.scrollDownFullPage
+
+
+
+Scroll content down (full page)
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-f>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.scrollUp
+
+
+
+Scroll content up (half a page)
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-u>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.scrollUpFullPage
+
+
+
+Scroll content up (full page)
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-b>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.selectNext
+
+
+
+Select next item on a list
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-n>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.selectPrevious
+
+
+
+Select previous item on a list
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<C-p>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.showKeyMappings
+
+
+
+Show key mappings
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "\\" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.showSymbolInfo
+
+
+
+Show information about the symbol under the cursor
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "K" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.switchToNextTab
+
+
+
+switch to next tab
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<TAB>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
+## chad\.editor\.keyMappings\.uncategorized\.switchToPreviousTab
+
+
+
+switch to previous tab
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+` "<S-TAB>" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -113,7 +1163,7 @@ one of “absolute”, “relative”
 ` "relative" `
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -134,7 +1184,7 @@ signed integer
 ` 2 `
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/editor\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor.nix)
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
 
 
 
@@ -164,7 +1214,7 @@ pkgs: with pkgs; [ cowsay ];
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/default.nix)
+ - [\<nix-chad/modules/darwin/chad>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad)
 
 
 
@@ -190,7 +1240,7 @@ signed integer
 ` 16 `
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/default\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/default.nix)
+ - [\<nix-chad/modules/darwin/chad>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad)
 
 
 
@@ -217,9 +1267,9 @@ list of (submodule)
 ```
 [
   {
-    repositoryPath = "~/work/project-1";
+    repositoryUrl = "git@github.com:somecompany/**";
     sshKeyPath = "~/.ssh/work_id_rsa";
-    userEmail = "me@mail.com";
+    userEmail = "me@somecompany.com";
   }
 ]
 ```
@@ -229,11 +1279,11 @@ list of (submodule)
 
 
 
-## chad\.git\.alternativeGitIdentities\.\*\.repositoryPath
+## chad\.git\.alternativeGitIdentities\.\*\.repositoryUrl
 
 
 
-Git repository path\.
+Git repository URL\.
 
 
 
@@ -369,11 +1419,92 @@ boolean
 
 
 
+## chad\.keyboard\.shortcuts
+
+
+
+A set of macOS desktop-level shortcuts\.
+
+
+
+*Type:*
+attribute set of (submodule) *(read only)*
+
+
+
+*Default:*
+
+```
+{
+  screenshot = {
+    modifierKeys = [
+      "command"
+      "shift"
+    ];
+    otherKey = "S";
+  };
+}
+```
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
+
+
+
+## chad\.keyboard\.shortcuts\.\<name>\.modifierKeys
+
+
+
+A list of modifier keys\.
+
+
+
+*Type:*
+list of (one of “command”, “control”, “option”, “shift”) *(read only)*
+
+
+
+*Example:*
+
+```
+[
+  "command"
+  "shift"
+]
+```
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
+
+
+
+## chad\.keyboard\.shortcuts\.\<name>\.otherKey
+
+
+
+A non-modifier key\.
+
+
+
+*Type:*
+one of “0”, “1”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, “9”, “A”, “B”, “C”, “D”, “E”, “F”, “G”, “H”, “I”, “J”, “K”, “L”, “M”, “N”, “O”, “P”, “Q”, “R”, “S”, “T”, “U”, “V”, “W”, “X”, “Y”, “Z” *(read only)*
+
+
+
+*Example:*
+` "S" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/keyboard\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/keyboard.nix)
+
+
+
 ## chad\.manageWindows\.enable
 
 
 
 Keep windows occupy maximum available share of space on desktop\.
+Uses own emulation of multiple desktops/spaces\.
 
 
 
@@ -536,7 +1667,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -570,7 +1701,7 @@ attribute set of string
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -605,7 +1736,7 @@ list of (submodule)
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -621,7 +1752,7 @@ Substitution\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -637,7 +1768,7 @@ Key\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -653,7 +1784,7 @@ Modifier key(s)\.
 string
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
 
 
 
@@ -685,7 +1816,28 @@ strings concatenated with “\\n”
 ```
 
 *Declared by:*
- - [\<nix-chad/modules/darwin/chad/terminal\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal.nix)
+ - [\<nix-chad/modules/darwin/chad/terminal>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/terminal)
+
+
+
+## chad\.user\.email
+
+
+
+User’s e-mail address\.
+
+
+
+*Type:*
+string
+
+
+
+*Example:*
+` "bob@example.com" `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/user\.nix>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/user.nix)
 
 
 
@@ -729,7 +1881,7 @@ list of string
 
 
 
-User name\.
+User’s name\.
 
 
 

@@ -4,6 +4,6 @@ _: {
     interval = {
       Minute = 30;
     };
-    options = "--delete-older-than 28d";
+    options = "--delete-older-than 28d --max 1G";
   };
 }

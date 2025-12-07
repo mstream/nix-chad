@@ -3,8 +3,9 @@
     ./arrow.nix
     ./barbar.nix
     ./cmp/default.nix
+    ./codecompanion.nix
     ./comment.nix
-    ./conform-nvim.nix
+    ./conform-nvim
     ./flash.nix
     ./friendly-snippets.nix
     ./fugitive.nix
@@ -13,16 +14,20 @@
     ./lint.nix
     ./lsp.nix
     ./lsp-format.nix
+    ./lsp-status.nix
     ./lspkind.nix
-    ./lualine.nix
+    ./lspsaga.nix
+    ./lualine
     ./luasnip.nix
+    ./neoscroll.nix
     ./none-ls.nix
     ./nvim-lightbulb.nix
-    ./telescope.nix
+    ./telescope
     ./treesitter.nix
     ./treesitter-context.nix
     ./treesitter-refactor.nix
     ./treesitter-textobjects
+    ./trouble.nix
     ./web-devicons.nix
     ./which-key.nix
   ];

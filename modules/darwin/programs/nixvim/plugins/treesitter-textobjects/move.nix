@@ -1,21 +1,21 @@
 { targets, ... }:
 {
   enable = true;
-  gotoNextEnd = {
+  goto_next_end = {
     "]C" = targets.mapTo.query targets.members.classOuter;
     "]F" = targets.mapTo.query targets.members.functionOuter;
   };
-  gotoNextStart = {
+  goto_next_start = {
     "]c" = targets.mapTo.query targets.members.classOuter;
     "]f" = targets.mapTo.query targets.members.functionOuter;
   };
-  gotoPreviousEnd = {
+  goto_previous_end = {
     "[C" = targets.mapTo.query targets.members.classOuter;
     "[F" = targets.mapTo.query targets.members.functionOuter;
   };
-  gotoPreviousStart = {
+  goto_previous_start = {
     "[c" = targets.mapTo.query targets.members.classOuter;
     "[f" = targets.mapTo.query targets.members.functionOuter;
   };
-  setJumps = true;
+  set_jumps = true;
 }

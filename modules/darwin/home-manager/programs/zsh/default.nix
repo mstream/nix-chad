@@ -1,4 +1,8 @@
-{ chadLib, osConfig, ... }:
+{
+  chadLib,
+  osConfig,
+  ...
+}:
 let
   inherit (import ./abbreviations.nix { inherit chadLib; })
     defaultAbbreviations
@@ -27,7 +31,9 @@ let
   ];
 
   defaultEnvText = builtins.readFile ./default-env.zsh;
-  defaultInitText = builtins.readFile ./default-init.zsh;
+  defaultInitText = import ./default-init.zsh.nix {
+    inherit (cfg) selectNextKey selectPreviousKey;
+  };
 in
 {
   programs.zsh = {
@@ -44,6 +50,7 @@ in
       ${defaultEnvText}
     '';
     history = {
+      append = true;
       ignoreDups = true;
       ignoreSpace = true;
       save = 20000;
@@ -51,7 +58,7 @@ in
       size = 20000;
     };
     historySubstringSearch = { };
-    initExtra = ''
+    initContent = ''
       ${defaultInitText}
       hidutil property --set '{"UserKeyMapping":${builtins.toJSON userKeyMapping}}' > /dev/null
       ${cfg.terminal.zshInitExtra}

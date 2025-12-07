@@ -10,19 +10,21 @@ jobs:
   linting-and-testing:
     runs-on: ubuntu-24.04
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Set up Nix
         uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             substituters = https://cache.nixos.org/
-          nix_path: nixpkgs=channel:nixos-24.11
+          nix_path: nixpkgs=channel:nixos-
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up direnv
+        uses: HatsuneMiku3939/direnv-action@v1
       - name: Run tests and linters
-        run: nix develop --command just validate-project
+        run: nix develop --command just --list && nix develop --command just validate-project
       - name: Generate documentation markdown documents
         run: nix develop --command just generate-documentation
       - name: Check if all generated files have been already commited

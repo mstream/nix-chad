@@ -13,9 +13,6 @@ let
       chadLib.core.length duplicates > 0
     ) "Duplicate abbreviations: ${chadLib.core.toString duplicates}")
       (chadLib.attrsets.mergeAttrsList xs);
-  aws = {
-    aws = "aws --profile \"%\" %";
-  };
   cd = {
     "\\-" = "cd -";
     "1" = "cd +1";
@@ -97,7 +94,6 @@ in
 {
   inherit mergeAbbreviations;
   defaultAbbreviations = mergeAbbreviations [
-    aws
     cd
     docker
     git

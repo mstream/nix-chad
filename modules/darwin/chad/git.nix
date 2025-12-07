@@ -1,40 +1,39 @@
-{ lib, ... }:
-with lib;
+{ chadLib, ... }:
 let
   gitIdentityModule = {
-    options = {
-      repositoryPath = mkOption {
-        type = types.str;
+    options = with chadLib.options; {
+      repositoryUrl = mkOption {
         description = ''
-          Git repository path.
+          Git repository URL.
         '';
+        type = with chadLib.types; str;
       };
       sshKeyPath = mkOption {
-        type = types.str;
         description = ''
           Path to a SSH private key.
         '';
+        type = with chadLib.types; str;
       };
       userEmail = mkOption {
-        type = types.str;
         description = ''
           Key.
         '';
+        type = with chadLib.types; str;
       };
     };
   };
 in
 {
-  options = {
+  options = with chadLib.options; {
     chad.git = {
       alternativeGitIdentities = mkOption {
-        type = types.listOf (types.submodule gitIdentityModule);
+        type = with chadLib.types; listOf (submodule gitIdentityModule);
         default = [ ];
         example = [
           {
-            repositoryPath = "~/work/project-1";
+            repositoryUrl = "git@github.com:somecompany/**";
             sshKeyPath = "~/.ssh/work_id_rsa";
-            userEmail = "me@mail.com";
+            userEmail = "me@somecompany.com";
           }
         ];
         description = ''

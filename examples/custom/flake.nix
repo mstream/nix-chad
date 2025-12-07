@@ -93,6 +93,7 @@
           '';
         };
         user = {
+          email = "bob@mail.com";
           homeDirectories = [
             "Development/exercises"
             "Development/presentations"

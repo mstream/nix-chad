@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./aerospace.nix
+    ./aerospace
     ./nix-daemon.nix
     ./yabai.nix
   ];

@@ -1,13 +1,15 @@
 {
   home-manager,
+  nix-rosetta-builder,
   nixvim,
   ...
 }:
 {
   imports = [
     home-manager.darwinModules.home-manager
+    nix-rosetta-builder.darwinModules.default
     nixvim.nixDarwinModules.nixvim
-    ./chad/default.nix
+    ./chad
     ./documentation.nix
     ./environment.nix
     ./fonts.nix
@@ -16,6 +18,6 @@
     ./nixpkgs.nix
     ./programs
     ./services/default.nix
-    ./system.nix
+    ./system
   ];
 }

@@ -1,13 +1,16 @@
-{ chadLib, ... }:
+{ chadLib, osConfig, ... }:
 let
+  cfg = osConfig.chad;
+
   actions = chadLib.enum.create {
     memberNames = [
+      "breakPane"
       "closeFocus"
       "closeTab"
       "goToTab"
       "halfPageScrollDown"
       "halfPageScrollUp"
-      "moveFocusOrTab"
+      "moveFocus"
       "newPane"
       "newTab"
       "scrollDown"
@@ -79,6 +82,17 @@ let
     ];
     name = "modeGroups";
   };
+  plugins = chadLib.enum.create {
+    mappings = {
+      key = {
+        welcomeScreen = "welcome-screen";
+      };
+    };
+    memberNames = [
+      "welcomeScreen"
+    ];
+    name = "plugins";
+  };
   searchOptions = chadLib.enum.create {
     memberNames = [
       "caseSensitivity"
@@ -92,15 +106,7 @@ let
       directions
       modes
       modeGroups
-      searchOptions
-      ;
-  };
-  presets = import ./presets {
-    inherit
-      chadLib
-      directions
-      keys
-      modes
+      plugins
       searchOptions
       ;
   };
@@ -111,13 +117,26 @@ in
     enableBashIntegration = false;
     enableFishIntegration = false;
     enableZshIntegration = false;
-    settings = presets.custom // {
+    settings = {
       auto_layout = true;
+      copy_on_select = true;
       default_layout = "default";
+      default_mode = modes.mapTo.key modes.members.normal;
       disable_session_metadata = false;
+      keybinds = import ./keybinds.nix {
+        inherit
+          chadLib
+          directions
+          keys
+          modes
+          searchOptions
+          ;
+        kms = cfg.terminal.keyMappings;
+      };
       mirror_session = false;
-      mouse_mode = false;
+      mouse_mode = true;
       on_force_close = "quit";
+      plugins = import ./plugins.nix { inherit keys; };
       scroll_buffer_size = 20000;
       serialize_pane_viewport = false;
       session_serialization = true;

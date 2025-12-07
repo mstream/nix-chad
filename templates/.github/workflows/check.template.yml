@@ -1,0 +1,36 @@
+---
+name: Check
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  packages: write
+  contents: write
+jobs:
+  linting-and-testing:
+    runs-on: ubuntu-$UBUNTU
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v$ACTIONS_CHECKOUT
+        with:
+          fetch-depth: 0
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v$CACHIX_INSTALL_NIX_ACTION
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            substituters = https://cache.nixos.org/
+          nix_path: nixpkgs=channel:nixos-$NIXOS
+      - name: Run tests and linters
+        run: nix develop --command just validate-project
+      - name: Generate documentation markdown documents
+        run: nix develop --command just generate-documentation
+      - name: Check if all generated files have been already commited
+        run: nix develop --command just check-generation
+      - name: Generate documentation website
+        run: nix build .#website
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v$PEACEIRIS_ACTIONS_GH_PAGES
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./result/html/

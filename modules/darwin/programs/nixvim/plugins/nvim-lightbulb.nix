@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins.nvim-lightbulb = {
-    enable = true;
+    enable = false;
     settings = {
       action_kinds = null;
       autocmd.enabled = true;

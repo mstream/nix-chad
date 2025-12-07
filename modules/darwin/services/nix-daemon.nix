@@ -1,1 +1,6 @@
-_: { services.nix-daemon.enable = true; }
+_: {
+  services.nix-daemon = {
+    enableSocketListener = false;
+    tempDir = null;
+  };
+}

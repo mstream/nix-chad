@@ -45,7 +45,13 @@ in
       general = {
         live_config_reload = true;
       };
-      keyboard.bindings = cfg.terminal.keyBindings;
+      keyboard.bindings = cfg.terminal.keyBindings ++ [
+        {
+          action = "None";
+          key = "T";
+          mods = "Command";
+        }
+      ];
       scrolling = {
         history = 0;
         multiplier = 0;
@@ -67,7 +73,7 @@ in
         decorations = "full";
         dynamic_padding = true;
         dynamic_title = true;
-        opacity = 0.8;
+        opacity = 0.6;
         option_as_alt = "Both";
         resize_increments = true;
         startup_mode = "Windowed";

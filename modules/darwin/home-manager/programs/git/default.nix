@@ -4,19 +4,13 @@ let
 in
 {
   programs.git = {
-    aliases = { };
     enable = true;
-    delta = {
-      enable = true;
-      options = {
-        syntax-theme = "GitHub";
-        line-numbers = true;
-      };
-    };
-    extraConfig = {
+    settings = {
+      aliases = { };
       core = {
         autocrlf = "input";
         editor = "vim";
+        ignorecase = false;
       };
       init = {
         defaultBranch = "master";
@@ -24,6 +18,9 @@ in
       push = {
         autoSetupRemote = true;
         default = "simple";
+      };
+      user = {
+        inherit (cfg.user) email name;
       };
     };
     ignores = [
@@ -34,19 +31,17 @@ in
     ];
     includes = builtins.map (
       {
-        repositoryPath,
+        repositoryUrl,
         sshKeyPath,
         userEmail,
       }:
       {
-        condition = "gitdir:${repositoryPath}";
+        condition = "hasconfig:remote.*.url:${repositoryUrl}";
         contents = {
           core.sshCommand = "ssh -i ${sshKeyPath}";
           user.email = userEmail;
         };
       }
     ) cfg.git.alternativeGitIdentities;
-    userEmail = "maciej.laciak@gmail.com";
-    userName = cfg.user.name;
   };
 }

@@ -1,107 +1,223 @@
 <!-- toc -->
 
-## Alacritty
+## Terminal Workspace (Zellij)
 
-## NeoVim
+### Enter Search
 
-### Comment
+Switch to Scroll mode - Esc
 
-clA - Comment add at the end of line
+Switch to Search mode - Enter
 
-clO - Comment add line above
+### Normal
 
-clo - Comment add line below
+Switch to Pane mode - Ctrl a
 
-cb - Comment block operator-pending
+Switch to Scroll mode - Ctrl s
 
-cl - Comment line operator-pending
+Switch to Tab mode - Ctrl t
 
-ctb - Comment toggle block
+### Pane
 
-ctl - Comment toggle line
+Close currently focused pane - x
 
-### Directory Tree
+Move focus to a pane to the left - j
 
-tf - Directory tree focus
+Move focus to a pane to the left - h
 
-tt - Directory tree toggle
+Move focus to a pane to the right - l
 
-### Find
+Move focus to a pane to the left - k
 
-fd - Find definitions
+Create a new pane - n
 
-ff - Find files
+Toggle frames rendering for panes - z
 
-fgb - Find Git branches
+Toggle fullscreen mode of the focused pane - f
 
-fgc - Find Git commits
+### Scroll
 
-fgl - Find Git local changes
+Scroll down by half a page - d
 
-fgs - Find Git stashed changes
+Scroll up by half a page - u
 
-fi - Find implementations
+Scroll down by a single line - j
 
-fvb - Find Vim buffers
+Scroll up by a single line - k
 
-fvc - Find Vim commands
+Switch to Enter Search mode - s
 
-fvh - Find Vim help topics
+### Search
 
-fw - Find words across files
+Scroll down by half a page - d
 
-### Go To
+Scroll up by half a page - u
 
-gD - Go to declaration
+Go to the next matched word - n
 
-gd - Go to definition
+Go to the previous matched word - p
 
-gi - Go to implementation
+Toggle word match case sensitivity - c
 
-g\] - Go to next problem
+### Tab
 
-g\[ - Go to previous problem
+Break the focused pane into a new tab - b
+
+Close the current tab - x
+
+Switch to tab under index of 1 - 1
+
+Switch to tab under index of 2 - 2
+
+Switch to tab under index of 3 - 3
+
+Switch to tab under index of 4 - 4
+
+Switch to tab under index of 5 - 5
+
+Switch to tab under index of 6 - 6
+
+Switch to tab under index of 7 - 7
+
+Switch to tab under index of 8 - 8
+
+Switch to tab under index of 9 - 9
+
+Create a new tab - n
+
+Switch between two most recently used tabs - Tab
+
+### Shared
+
+Close currently focused pane - Alt x
+
+Move focus to a pane to the left - Alt j
+
+Move focus to a pane to the left - Alt h
+
+Move focus to a pane to the right - Alt l
+
+Move focus to a pane to the left - Alt k
+
+Create a new pane - Alt n
+
+Toggle frames rendering for panes - Alt z
+
+Toggle fullscreen mode of the focused pane - Alt f
+
+## Editor (NeoVim)
+
+### Closing things
+
+close the current buffer - &lt;leader&gt;xbc
+
+### Commenting things
+
+add at the end of line - &lt;leader&gt;/lA
+
+add line above - &lt;leader&gt;/lO
+
+add line below - &lt;leader&gt;/lo
+
+block operator-pending - &lt;leader&gt;/b
+
+line operator-pending - &lt;leader&gt;/l
+
+toggle block - &lt;leader&gt;/tb
+
+toggle line - &lt;leader&gt;/tl
+
+### Debug code
+
+toggle diagnostics window - &lt;leader&gt;dx
+
+### Finding things
+
+code definitions - &lt;leader&gt;fcd
+
+code implementations - &lt;leader&gt;fci
+
+code references - &lt;leader&gt;fcr
+
+code type definitions - &lt;leader&gt;fct
+
+files - &lt;leader&gt;ff
+
+Git branches - &lt;leader&gt;fgb
+
+Git commits - &lt;leader&gt;fgc
+
+Git local changes - &lt;leader&gt;fgl
+
+Git stashed changes - &lt;leader&gt;fgs
+
+implementations - &lt;leader&gt;fi
+
+Vim buffers - &lt;leader&gt;fvb
+
+Vim commands - &lt;leader&gt;fvc
+
+Vim help topics - &lt;leader&gt;fvh
+
+words across files - &lt;leader&gt;fw
+
+### Moving cursor to places
+
+declaration - &lt;leader&gt;gD
+
+definition - &lt;leader&gt;gd
+
+implementation - &lt;leader&gt;gi
+
+next problem - &lt;leader&gt;g\]
+
+previous problem - &lt;leader&gt;g\[
+
+### Refactoring code
+
+action - &lt;leader&gt;ra
+
+format - &lt;leader&gt;rf
+
+name - &lt;leader&gt;rn
+
+### Selecting text
+
+decrement selection - &lt;leader&gt;sd
+
+increment selection - &lt;leader&gt;si
+
+initialize selection - &lt;leader&gt;ss
 
 ### Miscellaneous
 
-&lt;ESC&gt; - Cancels current selection or mode.
+Cancel current selection or mode - &lt;ESC&gt;
 
-&lt;C-j&gt; - Move to window on the bottom
+Confirm current selection - &lt;CR&gt;
 
-&lt;C-h&gt; - Move to window on the left
+Move to window on the bottom - &lt;C-j&gt;
 
-&lt;C-l&gt; - Move to window on the right
+Move to window on the left - &lt;C-h&gt;
 
-&lt;C-k&gt; - Move to window on the top
+Move to window on the right - &lt;C-l&gt;
 
-&lt;C-d&gt; - Sroll content down
+Move to window on the top - &lt;C-k&gt;
 
-&lt;C-u&gt; - Scroll content up
+Scroll content down (half a page) - &lt;C-d&gt;
 
-&lt;C-n&gt; - Select next item on a list
+Scroll content down (full page) - &lt;C-f&gt;
 
-&lt;C-p&gt; - Select previous item on a list
+Scroll content up (half a page) - &lt;C-u&gt;
 
-\\- Show key mappings
+Scroll content up (full page) - &lt;C-b&gt;
 
-K - Show information about the symbol under the cursor
+Select next item on a list - &lt;C-n&gt;
 
-&lt;TAB&gt; - switch to next tab
+Select previous item on a list - &lt;C-p&gt;
 
-&lt;S-TAB&gt; - switch to previous tab
+Show key mappings - \\
 
-### Refactor
+Show information about the symbol under the cursor - K
 
-ra - Refactor action
+switch to next tab - &lt;TAB&gt;
 
-rf - Refactor format
-
-rn - Refactor name
-
-### Select
-
-sd - Select decrement selection
-
-si - Select increment selection
-
-ss - Select initialize selection
+switch to previous tab - &lt;S-TAB&gt;

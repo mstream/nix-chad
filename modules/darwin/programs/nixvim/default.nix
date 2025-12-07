@@ -1,12 +1,4 @@
 {
-  imports = [
-    ./color-schemes.nix
-    ./globals.nix
-    ./keymaps.nix
-    ./options
-    ./plugins
-  ];
-
   config = {
     programs.nixvim = {
       enable = true;
@@ -23,4 +15,13 @@
       vimAlias = true;
     };
   };
+
+  imports = [
+    ./color-schemes
+    ./globals.nix
+    ./keymaps.nix
+    ./options
+    ./performance.nix
+    ./plugins
+  ];
 }

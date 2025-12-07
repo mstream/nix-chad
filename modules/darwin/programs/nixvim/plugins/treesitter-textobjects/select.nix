@@ -1,7 +1,7 @@
 { targets, ... }:
 {
   enable = true;
-  includeSurroundingWhitespace = false;
+  include_surrounding_whitespace = false;
   lookahead = true;
   keymaps = {
     "ac" = targets.mapTo.query targets.members.classOuter;

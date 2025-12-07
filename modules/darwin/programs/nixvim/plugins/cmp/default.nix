@@ -1,21 +1,18 @@
 {
   chadLib,
   config,
-  nix-to-lua,
   ...
 }:
 let
   cfg = config.chad;
   kms = cfg.editor.keyMappings;
-  mapping = import ./mapping.nix { inherit chadLib kms nix-to-lua; };
-  snippetExpand =
+  mapping = import ./mapping.nix { inherit chadLib kms; };
+  snippetExpandLuaFunction =
     body:
-    nix-to-lua.uglyLua (
-      nix-to-lua.inline.types.function-unsafe.mk {
-        inherit body;
-        args = [ "args" ];
-      }
-    );
+    chadLib.lua.ast.functionDefinition {
+      inherit body;
+      arguments = [ "args" ];
+    };
 
   # their order influences the menu order priority
   sourceNames = [
@@ -40,11 +37,19 @@ let
     "pandoc_references"
     "vimtex"
     "vimwiki-tags"
-    "zsh"
+    #"zsh"
     "fuzzy_buffer"
     "fuzzy_path"
     "rg"
   ];
+
+  requireLuaFunctionInvocation =
+    moduleName:
+    with chadLib.lua.ast;
+    functionInvocation {
+      function = identifier "require";
+      parameters = [ (string moduleName) ];
+    };
 in
 {
   programs.nixvim.plugins.cmp = {
@@ -62,7 +67,12 @@ in
       };
       ":" = {
         mapping = {
-          __raw = "cmp.mapping.preset.cmdline()";
+          __raw = ''
+            cmp.mapping.preset.cmdline({
+                ["<C-n>"] = { c = cmp.mapping.select_next_item() },
+                ["<C-p>"] = { c = cmp.mapping.select_prev_item() },
+            })
+          '';
         };
         sources = [
           {
@@ -94,20 +104,55 @@ in
         "abbr"
         "menu"
       ];
-      snippet.expand = snippetExpand "require('luasnip').lsp_expand(args.body)";
+      performance = {
+        async_budget = 2;
+        confirm_resolve_timeout = 80;
+        debounce = 1;
+        fetching_timeout = 500;
+        max_view_entries = 50;
+        throttle = 50;
+      };
+      snippet.expand = chadLib.lua.render (
+        snippetExpandLuaFunction (
+          with chadLib.lua.ast;
+          [
+            (functionInvocation {
+              function = recordDereference {
+                key = identifier "lsp_expand";
+                record = requireLuaFunctionInvocation "luasnip";
+              };
+              parameters = [
+                (recordDereference {
+                  key = identifier "body";
+                  record = identifier "args";
+                })
+              ];
+            })
+          ]
+        )
+      );
       sorting = {
-        comparators = [
-          "require('cmp_fuzzy_buffer.compare')"
-          "require('cmp_fuzzy_path.compare')"
-          "require('cmp.config.compare').offset"
-          "require('cmp.config.compare').exact"
-          "require('cmp.config.compare').score"
-          "require('cmp.config.compare').recently_used"
-          "require('cmp.config.compare').locality"
-          "require('cmp.config.compare').kind"
-          "require('cmp.config.compare').length"
-          "require('cmp.config.compare').order"
-        ];
+        comparators =
+          let
+            builtIn =
+              name:
+              chadLib.lua.ast.recordDereference {
+                key = chadLib.lua.ast.identifier name;
+                record = requireLuaFunctionInvocation "cmp.config.compare";
+              };
+          in
+          chadLib.core.map chadLib.lua.render [
+            (requireLuaFunctionInvocation "cmp_fuzzy_buffer.compare")
+            (requireLuaFunctionInvocation "cmp_fuzzy_path.compare")
+            (builtIn "offset")
+            (builtIn "exact")
+            (builtIn "score")
+            (builtIn "locality")
+            (builtIn "recently_used")
+            (builtIn "kind")
+            (builtIn "length")
+            (builtIn "order")
+          ];
         priority_weight = 3;
       };
       sources = builtins.map (name: {

@@ -19,7 +19,7 @@ in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-devedition-bin;
+    package = pkgs.firefox-esr;
     policies = {
       # FIXME
       # policies do not seem to work, at least not with non-standard
@@ -29,8 +29,11 @@ in
     };
     profiles = {
       "${username}" = {
-        inherit (cfg.browser) bookmarks;
-        extensions = defaultExtensions ++ customExtensions;
+        bookmarks = {
+          force = true;
+          settings = cfg.browser.bookmarks;
+        };
+        extensions.packages = defaultExtensions ++ customExtensions;
         id = 0;
         isDefault = true;
         name = username;
