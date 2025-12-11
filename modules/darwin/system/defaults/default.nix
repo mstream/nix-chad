@@ -26,44 +26,6 @@ in
       NSAutomaticSpellingCorrectionEnabled = false;
       NSWindowResizeTime = 0.1;
     };
-    SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
-    WindowManager = {
-      GloballyEnabled = false;
-    };
-    finder = {
-      _FXEnableColumnAutoSizing = true;
-      _FXShowPosixPathInTitle = false;
-      _FXSortFoldersFirst = true;
-      _FXSortFoldersFirstOnDesktop = true;
-      AppleShowAllExtensions = true;
-      AppleShowAllFiles = true;
-      CreateDesktop = false;
-      FXDefaultSearchScope = "SCcf";
-      FXEnableExtensionChangeWarning = false;
-      FXPreferredViewStyle = "Nlsv";
-      FXRemoveOldTrashItems = false;
-      NewWindowTarget = "Computer";
-      NewWindowTargetPath = null;
-      QuitMenuItem = true;
-      ShowExternalHardDrivesOnDesktop = false;
-      ShowHardDrivesOnDesktop = false;
-      ShowMountedServersOnDesktop = false;
-      ShowPathbar = true;
-      ShowRemovableMediaOnDesktop = false;
-      ShowStatusBar = true;
-    };
-    loginwindow = {
-      SHOWFULLNAME = false;
-      autoLoginUser = "Off";
-      GuestEnabled = false;
-      PowerOffDisabledWhileLoggedIn = false;
-      ShutDownDisabled = false;
-      ShutDownDisabledWhileLoggedIn = false;
-      SleepDisabled = false;
-      RestartDisabled = false;
-      RestartDisabledWhileLoggedIn = false;
-      DisableConsoleAccess = false;
-    };
     magicmouse.MouseButtonMode = null;
     menuExtraClock = {
       Show24Hour = true;
@@ -77,10 +39,6 @@ in
       show-thumbnail = false;
       target = "file";
       type = "png";
-    };
-    screensaver = {
-      askForPassword = true;
-      askForPasswordDelay = 5;
     };
     spaces.spans-displays = cfg.manageWindows.enable;
     universalaccess = {
@@ -96,6 +54,9 @@ in
   imports = [
     ./dock.nix
     ./finder.nix
+    ./screen-capture.nix
+    ./screen-saver.nix
+    ./software-update.nix
     ./trackpad.nix
     ./window-manager.nix
   ];
