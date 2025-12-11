@@ -34,12 +34,6 @@ in
       ShowDayOfWeek = true;
       ShowSeconds = false;
     };
-    screencapture = {
-      include-date = true;
-      show-thumbnail = false;
-      target = "file";
-      type = "png";
-    };
     spaces.spans-displays = cfg.manageWindows.enable;
     universalaccess = {
       /*
@@ -54,6 +48,7 @@ in
   imports = [
     ./dock.nix
     ./finder.nix
+    ./hitoolbox.nix
     ./screen-capture.nix
     ./screen-saver.nix
     ./software-update.nix
