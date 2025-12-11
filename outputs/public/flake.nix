@@ -4,10 +4,10 @@
   inputs = {
     nix-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:LnL7/nix-darwin?rev=e95de00a471d07435e0527ff4db092c84998698e";
+      url = "github:LnL7/nix-darwin?rev=688427b1aab9afb478ca07989dc754fa543e03d5";
     };
     flake-compat = {
-      url = "github:edolstra/flake-compat?rev=3b279e4317ccfa4865356387935310531357d919";
+      url = "github:edolstra/flake-compat?rev=65f23138d8d09a92e30f1e5c87611b23ef451bf3";
     };
     flake-parts = {
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -19,25 +19,25 @@
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
       };
-      url = "github:cachix/git-hooks.nix?rev=50b9238891e388c9fdc6a5c49e49c42533a1b5ce";
+      url = "github:cachix/git-hooks.nix?rev=46600f39dd738b2e7fa9da358d21684e2d493845";
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager?rev=f63d0fe9d81d36e5fc95497217a72e02b8b7bcab";
+      url = "github:nix-community/home-manager?rev=44777152652bc9eacf8876976fa72cc77ca8b9d8";
     };
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder?rev=ebb7162a975074fb570a2c3ac02bc543ff2e9df4";
       # TODO: remove when logind.settings is backported to the darwin branch of nixpkgs
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?rev=77e2319b4114312eeeebfbc72bed0ae7fccfb112";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=62cac6c5d5b70601ff3da3e6573cb2d461f86953";
     nixvim = {
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         nuschtosSearch.follows = "nuschtos-search";
       };
-      url = "github:nix-community/nixvim?rev=64d9e2616f4ee2acee380d61ccf1f3d610e7e969";
+      url = "github:nix-community/nixvim?rev=a9d0e063bcbb43f18f5baf42713ba240f3a8ab22";
     };
     nur = {
       inputs = {
@@ -45,7 +45,7 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/NUR?rev=7c0ea8ab53727e9f22e01b88ed5ce8f84310fb17";
+      url = "github:nix-community/NUR?rev=72bffdb9666817f9bae30ebfbf858a83de20776b";
     };
     nuschtos-search = {
       url = "github:NuschtOS/search?rev=e29de6db0cb3182e9aee75a3b1fd1919d995d85b";

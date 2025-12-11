@@ -26,6 +26,6 @@ in
   };
   imports = [
     ./activation-scripts
-    ./defaults.nix
+    ./defaults
   ];
 }

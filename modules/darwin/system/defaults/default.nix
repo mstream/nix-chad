@@ -17,13 +17,6 @@ in
       AppleShowAllExtensions = true;
       AppleShowAllFiles = false;
       AppleTemperatureUnit = "Celsius";
-      "com.apple.mouse.tapBehavior" = null;
-      "com.apple.springing.enabled" = true;
-      "com.apple.springing.delay" = 0.5;
-      "com.apple.swipescrolldirection" = cfg.mouse.naturalScrollDirection;
-      "com.apple.trackpad.enableSecondaryClick" = true;
-      "com.apple.trackpad.scaling" = 1.0;
-      "com.apple.trackpad.trackpadCornerClickBehavior" = null;
       InitialKeyRepeat = if cfg.keyboard.disableKeyRepeat then 0 else 25;
       KeyRepeat = if cfg.keyboard.disableKeyRepeat then 0 else 6;
       NSAutomaticCapitalizationEnabled = false;
@@ -105,30 +98,6 @@ in
       askForPasswordDelay = 5;
     };
     spaces.spans-displays = cfg.manageWindows.enable;
-    trackpad = {
-      ActuateDetents = true;
-      ActuationStrength = 1;
-      Clicking = false;
-      DragLock = false;
-      Dragging = false;
-      FirstClickThreshold = 1;
-      ForceSuppressed = true;
-      SecondClickThreshold = 1;
-      TrackpadCornerSecondaryClick = 0;
-      TrackpadFourFingerHorizSwipeGesture = 0;
-      TrackpadFourFingerPinchGesture = 2;
-      TrackpadFourFingerVertSwipeGesture = 0;
-      TrackpadMomentumScroll = true;
-      TrackpadPinch = false;
-      TrackpadRightClick = true;
-      TrackpadRotate = false;
-      TrackpadThreeFingerDrag = false;
-      TrackpadThreeFingerHorizSwipeGesture = 1;
-      TrackpadThreeFingerTapGesture = 0;
-      TrackpadThreeFingerVertSwipeGesture = 0;
-      TrackpadTwoFingerDoubleTapGesture = false;
-      TrackpadTwoFingerFromRightEdgeSwipeGesture = 0;
-    };
     universalaccess = {
       /*
         closeViewScrollWheelToggle = false;
@@ -139,4 +108,5 @@ in
       */
     };
   };
+  imports = [ ./trackpad.nix ];
 }
