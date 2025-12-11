@@ -49,6 +49,7 @@ in
     ./dock.nix
     ./finder.nix
     ./hitoolbox.nix
+    ./login-window.nix
     ./screen-capture.nix
     ./screen-saver.nix
     ./software-update.nix
