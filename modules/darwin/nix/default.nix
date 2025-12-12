@@ -26,10 +26,6 @@ let
   ) (chadLib.core.attrNames substitutersInfo);
 in
 {
-  imports = [
-    ./gc.nix
-    ./optimise.nix
-  ];
   config = {
     nix = {
       extraOptions = ''
@@ -69,4 +65,9 @@ in
       };
     };
   };
+
+  imports = [
+    ./gc.nix
+    ./optimise.nix
+  ];
 }
