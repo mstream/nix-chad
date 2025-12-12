@@ -1,59 +1,26 @@
-{ config, ... }:
-let
-  cfg = config.chad;
-in
-{
-  config.system.defaults = {
-    NSGlobalDomain = {
-      _HIHideMenuBar = false;
-      AppleFontSmoothing = 2;
-      AppleICUForce24HourTime = true;
-      AppleInterfaceStyle = "Dark";
-      AppleInterfaceStyleSwitchesAutomatically = false;
-      AppleKeyboardUIMode = 3;
-      AppleMeasurementUnits = "Centimeters";
-      AppleMetricUnits = 1;
-      ApplePressAndHoldEnabled = false;
-      AppleShowAllExtensions = true;
-      AppleShowAllFiles = false;
-      AppleTemperatureUnit = "Celsius";
-      InitialKeyRepeat = if cfg.keyboard.disableKeyRepeat then 0 else 25;
-      KeyRepeat = if cfg.keyboard.disableKeyRepeat then 0 else 6;
-      NSAutomaticCapitalizationEnabled = false;
-      NSAutomaticDashSubstitutionEnabled = false;
-      NSAutomaticPeriodSubstitutionEnabled = false;
-      NSAutomaticQuoteSubstitutionEnabled = false;
-      NSAutomaticSpellingCorrectionEnabled = false;
-      NSWindowResizeTime = 0.1;
-    };
-    magicmouse.MouseButtonMode = null;
-    menuExtraClock = {
-      Show24Hour = true;
-      ShowDate = 0;
-      ShowDayOfMonth = true;
-      ShowDayOfWeek = true;
-      ShowSeconds = false;
-    };
-    spaces.spans-displays = cfg.manageWindows.enable;
-    universalaccess = {
-      /*
-        closeViewScrollWheelToggle = false;
-        closeViewZoomFollowsFocus = false;
-        mouseDriverCursorSize = 1.0;
-        reduceMotion = false;
-        reduceTransparency = false;
-      */
-    };
-  };
+_: {
   imports = [
+    ./activity-monitor.nix
+    ./calendar.nix
+    ./clock.nix
+    ./control-center.nix
+    ./custom-system-preferences.nix
+    ./custom-user-preferences.nix
     ./dock.nix
     ./finder.nix
+    ./global-preferences.nix
     ./hitoolbox.nix
+    ./launch-services.nix
     ./login-window.nix
+    ./magic-mouse.nix
+    ./ns-global-domain.nix
     ./screen-capture.nix
     ./screen-saver.nix
+    ./smb.nix
+    ./spaces.nix
     ./software-update.nix
     ./trackpad.nix
+    ./universal-access.nix
     ./window-manager.nix
   ];
 }
