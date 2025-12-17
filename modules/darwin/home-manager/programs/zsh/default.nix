@@ -61,12 +61,15 @@ in
     initContent = ''
       ${defaultInitText}
       hidutil property --set '{"UserKeyMapping":${builtins.toJSON userKeyMapping}}' > /dev/null
+      unsetopt BG_NICE
       ${cfg.terminal.zshInitExtra}
     '';
     initExtraBeforeCompInit = "";
     initExtraFirst = "";
     localVariables = { };
-    loginExtra = "";
+    loginExtra = ''
+      unsetopt BG_NICE
+    '';
     logoutExtra = "";
     oh-my-zsh = { };
     plugins = [ ];
