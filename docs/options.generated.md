@@ -1356,6 +1356,27 @@ null or string
 
 
 
+## chad\.initialSetup
+
+
+
+Should be enabled when the switch is run for the first time
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad)
+
+
+
 ## chad\.keyboard\.disableKeyRepeat
 
 

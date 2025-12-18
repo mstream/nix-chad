@@ -1,8 +1,4 @@
-{ config, ... }:
-let
-  cfg = config.chad;
-in
-{
+_: {
   config.system.defaults.SoftwareUpdate = {
     AutomaticallyInstallMacOSUpdates = false;
   };
