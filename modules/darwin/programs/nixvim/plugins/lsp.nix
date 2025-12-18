@@ -35,6 +35,9 @@ in
       purescriptls = {
         enable = true;
         package = pkgs.nodePackages.purescript-language-server;
+        rootMarkers = [
+          "spago.lock"
+        ];
         settings = {
           purescript = {
             addSpagoSources = true;
