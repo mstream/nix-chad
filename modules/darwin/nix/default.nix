@@ -26,10 +26,6 @@ let
   ) (chadLib.core.attrNames substitutersInfo);
 in
 {
-  imports = [
-    ./gc.nix
-    ./optimise.nix
-  ];
   config = {
     nix = {
       extraOptions = ''
@@ -40,9 +36,7 @@ in
         download-buffer-size = 134217728
         trusted-users = ${userName}
       '';
-      # This is only needed to bootstrap nix-rosetta-builder
-      # These two builders cannot co-exist
-      # linux-builder.enable = true;
+      linux-builder.enable = cfg.chad.initialSetup;
       package = pkgs.nix;
       registry = {
         nixpkgs = {
@@ -69,4 +63,9 @@ in
       };
     };
   };
+
+  imports = [
+    ./gc.nix
+    ./optimise.nix
+  ];
 }

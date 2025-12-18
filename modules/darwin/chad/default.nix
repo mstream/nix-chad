@@ -55,6 +55,15 @@ in
         A desired font size in tools that have means to set it fixed.
       '';
     };
+    initialSetup = mkOption {
+      default = false;
+      description = ''
+        Should be enabled when the switch is run for the first time
+      '';
+      type = with chadLib.types; bool;
+      readOnly = false;
+      visible = true;
+    };
     moveDownKey = universalKeyOption "j";
     moveLeftKey = universalKeyOption "h";
     moveRightKey = universalKeyOption "l";

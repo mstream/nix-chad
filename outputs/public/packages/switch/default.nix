@@ -2,21 +2,23 @@
 let
   script = ''
     set -e
-    set -E
+    set -x
 
     function apply_configuration() {
       local CONFIGURATION=".#macbook.${system}"
 
       sudo ./result/sw/bin/darwin-rebuild switch \
-        --flake \
-        "$CONFIGURATION"
+        --flake "$CONFIGURATION" \
+        --print-build-logs \
+        --show-trace 
+        
     }
 
     function build_configuration() {
       local INSTALLABLE=".#darwinConfigurations.macbook.${system}.system"
-
       nix build \
         --experimental-features 'nix-command flakes' \
+        --print-build-logs \
         --show-trace \
         "$INSTALLABLE"
     }

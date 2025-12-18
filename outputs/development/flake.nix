@@ -16,14 +16,14 @@
       };
       url = "github:nix-community/nix-unit?rev=1c9ab50554eed0b768f9e5b6f646d63c9673f0f7";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?rev=77e2319b4114312eeeebfbc72bed0ae7fccfb112";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=62cac6c5d5b70601ff3da3e6573cb2d461f86953";
     nur = {
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/NUR?rev=7c0ea8ab53727e9f22e01b88ed5ce8f84310fb17";
+      url = "github:nix-community/NUR?rev=72bffdb9666817f9bae30ebfbf858a83de20776b";
     };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";

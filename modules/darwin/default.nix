@@ -16,6 +16,7 @@
     ./home-manager/default.nix
     ./nix/default.nix
     ./nixpkgs.nix
+    ./power.nix
     ./programs
     ./services/default.nix
     ./system
