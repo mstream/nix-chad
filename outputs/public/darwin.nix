@@ -32,7 +32,7 @@
       inherit specialArgs system;
       modules = [
         # FIXME I could make nixvim work as a hm module because of
-        # an infiite recursion issue.
+        # an infinite recursion issue.
         # It feels like it should belong there so different users
         # could have different vim configurations.
         {
@@ -41,7 +41,7 @@
           nix-rosetta-builder = {
             cores = 4;
             diskSize = "32GiB";
-            enable = true;
+            enable = !chadConfig.initialSetup;
             memory = "16GiB";
             onDemand = true;
             onDemandLingerMinutes = 180;

@@ -36,7 +36,7 @@ in
         download-buffer-size = 134217728
         trusted-users = ${userName}
       '';
-      linux-builder.enable = cfg.chad.initialSetup;
+      linux-builder.enable = cfg.initialSetup;
       package = pkgs.nix;
       registry = {
         nixpkgs = {
