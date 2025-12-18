@@ -22,7 +22,6 @@ let
 
   supportedDarwinSystems = with inputs.flake-utils.lib.system; [
     aarch64-darwin
-    x86_64-darwin
   ];
 in
 {

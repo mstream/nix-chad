@@ -8,10 +8,10 @@ let
       local CONFIGURATION=".#macbook.${system}"
 
       sudo ./result/sw/bin/darwin-rebuild switch \
-        --flake \
+        --flake "$CONFIGURATION" \
         --print-build-logs \
-        --show-trace \
-        "$CONFIGURATION" 
+        --show-trace 
+        
     }
 
     function build_configuration() {
