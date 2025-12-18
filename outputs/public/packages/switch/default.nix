@@ -14,9 +14,9 @@ let
 
     function build_configuration() {
       local INSTALLABLE=".#darwinConfigurations.macbook.${system}.system"
-
       nix build \
         --experimental-features 'nix-command flakes' \
+        --print-build-logs \
         --show-trace \
         "$INSTALLABLE"
     }
