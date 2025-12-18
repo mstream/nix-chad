@@ -9,7 +9,9 @@ let
 
       sudo ./result/sw/bin/darwin-rebuild switch \
         --flake \
-        "$CONFIGURATION"
+        --print-build-logs \
+        --show-trace \
+        "$CONFIGURATION" 
     }
 
     function build_configuration() {
