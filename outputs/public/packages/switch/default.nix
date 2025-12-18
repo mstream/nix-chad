@@ -2,7 +2,7 @@
 let
   script = ''
     set -e
-    set -E
+    set -x
 
     function apply_configuration() {
       local CONFIGURATION=".#macbook.${system}"
