@@ -33,6 +33,10 @@ in
       model_verbosity = "high";
       review_model = codexModelIds.max;
       sandbox_mode = "workspace-write";
+      sandbox_workspace_write.writable_roots = [
+        "~/.cache"
+        "~/.local"
+      ];
       show_raw_agent_reasoning = false;
       tool_output_token_limit = 10000;
       tui = {
