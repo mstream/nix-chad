@@ -92,6 +92,7 @@ in
     ./programs/codex
     ./programs/direnv
     ./programs/firefox
+    ./programs/gemini-cli
     ./programs/git
     ./programs/gpg
     ./programs/jq
