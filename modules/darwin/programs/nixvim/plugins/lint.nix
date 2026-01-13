@@ -11,20 +11,22 @@ let
   valeConfigHomePath = "Library/Application Support/vale/.vale.ini";
 in
 {
-  home-manager.users."${userName}".home.file = {
-    "${commitLintConfigHomePath}" = {
-      recursive = true;
-      text = ''
-        rules: {}
-      '';
-    };
-    "${valeConfigHomePath}" = {
-      recursive = true;
-      text = ''
-        MinAlertLevel = suggestion
-        [formats]
-        [*]
-      '';
+  home-manager.users."${userName}".home = {
+    file = {
+      "${commitLintConfigHomePath}" = {
+        recursive = true;
+        text = ''
+          rules: {}
+        '';
+      };
+      "${valeConfigHomePath}" = {
+        recursive = true;
+        text = ''
+          MinAlertLevel = suggestion
+          [formats]
+          [*]
+        '';
+      };
     };
   };
   programs.nixvim.plugins.lint = {

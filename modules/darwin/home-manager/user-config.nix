@@ -70,7 +70,20 @@ let
         };
       };
 
-  homeFiles = pkgs.lib.recursiveUpdate gnupgDirectories userDefinedDirectories;
+  npmGlobalDirectoryPath = ".cache/npm/global";
+
+  npmFiles = {
+    ".npmrc" = {
+      text = ''
+        prefix=/Users/${cfg.user.name}/${npmGlobalDirectoryPath}
+        registry=https://registry.npmjs.org/
+      '';
+    };
+  };
+
+  homeFiles =
+    pkgs.lib.recursiveUpdate gnupgDirectories userDefinedDirectories
+    // npmFiles;
 in
 {
   imports = [
@@ -93,6 +106,9 @@ in
       enableNixpkgsReleaseCheck = true;
       file = homeFiles;
       packages = otherPackages ++ customPackages;
+      sessionPath = [
+        "$HOME/${npmGlobalDirectoryPath}/bin"
+      ];
       sessionVariables = {
         DIRENV_WARN_TIMEOUT = "30s";
       };
