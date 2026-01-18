@@ -6,12 +6,12 @@
 }:
 let
   cfg = config.chad;
-  userName = "${cfg.user.name}";
+  userName = cfg.user.name;
   commitLintConfigHomePath = "Library/Application Support/commitlint/.commitlintrc.yml";
   valeConfigHomePath = "Library/Application Support/vale/.vale.ini";
 in
 {
-  home-manager.users."${userName}".home = {
+  home-manager.users.${userName}.home = {
     file = {
       "${commitLintConfigHomePath}" = {
         recursive = true;

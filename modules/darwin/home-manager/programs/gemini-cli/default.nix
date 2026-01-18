@@ -1,8 +1,24 @@
-_:
+{ chadLib, ... }:
 let
-  modelIds = {
-    flash = "gemini-3-flash-preview";
-    pro = "gemini-3-pro-preview";
+  allowedCommandPrefixes = [
+    "cat"
+    "cd"
+    "diff"
+    "echo"
+    "find"
+    "git grep"
+    "git log"
+    "git status"
+    "grep"
+    "head"
+    "ls"
+    "nix develop"
+    "printf"
+    "sed"
+    "tail"
+  ];
+  policyText = import ./policy.nix {
+    inherit chadLib allowedCommandPrefixes;
   };
   context = {
     discoveryMaxDirs = 1000;
@@ -78,6 +94,12 @@ let
   };
 in
 {
+  home.file = {
+    ".gemini/policies/custom.toml" = {
+      recursive = true;
+      text = policyText;
+    };
+  };
   programs.gemini-cli = {
     enable = true;
     settings = {
