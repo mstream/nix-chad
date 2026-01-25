@@ -28,6 +28,7 @@ in
 {
   config = {
     nix = {
+      checkConfig = true;
       extraOptions = ''
         system = ${system}
         extra-platforms = ${system}
