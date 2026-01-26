@@ -3,6 +3,7 @@
     byteCompileLua = {
       configs = true;
       enable = true;
+      excludedPlugins = [ ];
       initLua = true;
       nvimRuntime = true;
       plugins = true;
