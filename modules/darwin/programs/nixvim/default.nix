@@ -7,10 +7,6 @@
         register = "unnamedplus";
       };
       luaLoader.enable = true;
-      #performance = {
-      #  byteCompuleLua.enable = true;
-      #  combinePlugins = true;
-      #};
       viAlias = true;
       vimAlias = true;
     };

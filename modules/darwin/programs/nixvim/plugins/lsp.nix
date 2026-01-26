@@ -8,6 +8,7 @@ let
   kms = cfg.editor.keyMappings;
 in
 {
+  environment.systemPackages = with pkgs; [ nodePackages.purs-tidy ];
   programs.nixvim.plugins.lsp = {
     enable = true;
     inlayHints = true;
@@ -40,7 +41,15 @@ in
         ];
         settings = {
           purescript = {
+            autocompleteAddImport = true;
+            autocompleteAllModules = true;
+            autocompleteGrouped = true;
             addSpagoSources = true;
+            buildOpenedFiles = true;
+            # declarationTypeCodeLens = true;
+            # exportsCodeLens = true;
+            fastRebuild = true;
+            formatter = "purs-tidy";
           };
         };
       };

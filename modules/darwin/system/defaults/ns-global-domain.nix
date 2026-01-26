@@ -11,7 +11,7 @@ in
     "com.apple.sound.beep.volume" = 0.0;
     "com.apple.springing.delay" = 0.5;
     "com.apple.springing.enabled" = true;
-    "com.apple.swipescrolldirection" = true;
+    "com.apple.swipescrolldirection" = cfg.mouse.naturalScrollDirection;
     "com.apple.trackpad.enableSecondaryClick" = true;
     "com.apple.trackpad.forceClick" = false;
     "com.apple.trackpad.trackpadCornerClickBehavior" = null;

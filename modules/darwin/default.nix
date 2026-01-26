@@ -6,6 +6,9 @@
 }:
 {
   imports = [
+    {
+      _module.check = true;
+    }
     home-manager.darwinModules.home-manager
     nix-rosetta-builder.darwinModules.default
     nixvim.nixDarwinModules.nixvim
