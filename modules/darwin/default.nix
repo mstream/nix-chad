@@ -21,6 +21,7 @@
     ./nixpkgs.nix
     ./power.nix
     ./programs
+    ./security.nix
     ./services/default.nix
     ./system
   ];

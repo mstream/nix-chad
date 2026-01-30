@@ -4,11 +4,7 @@ _: {
     settings = {
       autoshare = false;
       autoupdate = false;
-      compaction = {
-        auto = true;
-        prune = true;
-      };
-      model = "google/gemini-3-flash-preview";
+      # model = "google/gemini-3-flash-preview";
       permission = {
         bash = "ask";
         edit = "ask";
@@ -25,20 +21,22 @@ _: {
         write = "ask";
       };
       plugin = [ "opencode-gemini-auth@v1.3.8" ];
-      provider = {
-        google = {
-          models = {
-            "gemini-3-flash-preview" = {
-              options = {
-                thinkingConfig = {
-                  thinkingLevel = "high";
-                  includeThoughts = true;
+      /*
+        provider = {
+          google = {
+            models = {
+              "gemini-3-flash-preview" = {
+                options = {
+                  thinkingConfig = {
+                    thinkingLevel = "high";
+                    includeThoughts = true;
+                  };
                 };
               };
             };
           };
         };
-      };
+      */
       theme = "gruvbox";
       tui = {
         diff_style = "stacked";
