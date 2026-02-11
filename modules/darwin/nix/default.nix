@@ -52,6 +52,18 @@ in
             type = "github";
           };
         };
+        nixpkgs-unstable = {
+          from = {
+            id = "nixpkgs-unstable";
+            type = "indirect";
+          };
+          to = {
+            owner = "NixOS";
+            ref = "master";
+            repo = "nixpkgs";
+            type = "github";
+          };
+        };
       };
       settings = {
         auto-optimise-store = false;
