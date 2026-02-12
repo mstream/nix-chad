@@ -4,7 +4,7 @@ _: {
     settings = {
       autoshare = false;
       autoupdate = false;
-      # model = "google/gemini-3-flash-preview";
+      model = "google/gemini-3-flash-preview";
       permission = {
         bash = "ask";
         edit = "ask";
