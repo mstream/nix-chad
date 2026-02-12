@@ -2,45 +2,18 @@
 let
   cfg = config.chad;
   kms = cfg.editor.keyMappings;
-
-  modes = chadLib.enum.create {
-    mappings = {
-      id = {
-        command = "c";
-        insert = "i";
-        normal = "n";
-        visual = "v";
-      };
-    };
-    memberNames = [
-      "command"
-      "insert"
-      "normal"
-      "visual"
-    ];
-    name = "vimModes";
-  };
-
   foldModeSpecificKeymaps = chadLib.attrsets.foldlAttrs (
     acc: mode: keymaps:
-    let
-      keymapsWithArrowKeysDisabled = chadLib.attrsets.merge keymaps {
-        "<Down>" = "<NOP>";
-        "<Left>" = "<NOP>";
-        "<Right>" = "<NOP>";
-        "<Up>" = "<NOP>";
-      };
-    in
     acc
     ++ (chadLib.attrsets.mapAttrsToList (key: action: {
       inherit action key;
-      mode = modes.mapTo.id mode;
-    }) keymapsWithArrowKeysDisabled)
+      mode = chadLib.constants.nvim.modes.mapTo.id mode;
+    }) keymaps)
   ) [ ];
 in
 {
   programs.nixvim.keymaps = foldModeSpecificKeymaps (
-    with modes.members;
+    with chadLib.constants.nvim.modes.members;
     {
       ${command} = { };
       ${insert} = { };
