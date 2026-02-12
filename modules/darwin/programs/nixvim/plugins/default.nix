@@ -11,6 +11,7 @@
     ./fugitive.nix
     ./gitsigns.nix
     ./guess-indent.nix
+    ./hardtime.nix
     ./lint.nix
     ./lsp.nix
     ./lsp-format.nix
@@ -21,6 +22,7 @@
     ./luasnip.nix
     ./neoscroll.nix
     ./none-ls.nix
+    ./notify.nix
     ./nvim-lightbulb.nix
     ./telescope
     ./treesitter.nix

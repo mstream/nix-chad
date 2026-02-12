@@ -21,6 +21,8 @@
     ./nixpkgs.nix
     ./power.nix
     ./programs
+    ./nix-rosetta-builder.nix
+    ./security.nix
     ./services/default.nix
     ./system
   ];

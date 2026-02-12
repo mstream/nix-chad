@@ -46,6 +46,7 @@
           extraExtensions = exts: [ exts.grammarly ];
         };
         editor = {
+          extremeMeasures = true;
           lineNumbering = "absolute";
         };
         extraPackages = pkgs: [ pkgs.cowsay ];

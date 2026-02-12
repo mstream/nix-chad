@@ -92,6 +92,7 @@ in
     ./programs/git
     ./programs/gpg
     ./programs/jq
+    ./programs/opencode
     ./programs/password-store
     ./programs/vscode
     ./programs/zellij

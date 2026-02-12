@@ -38,14 +38,6 @@
         {
           chad = chadConfig;
           home-manager.extraSpecialArgs = specialArgs;
-          nix-rosetta-builder = {
-            cores = 4;
-            diskSize = "32GiB";
-            enable = !chadConfig.initialSetup;
-            memory = "16GiB";
-            onDemand = true;
-            onDemandLingerMinutes = 180;
-          };
         }
         ../../modules/darwin
       ];

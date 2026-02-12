@@ -5,6 +5,14 @@ in
 {
   options = with chadLib.options; {
     chad.editor = {
+      extremeMeasures = mkOption {
+        type = with chadLib.types; bool;
+        default = false;
+        description = ''
+          Make editor block repetitive actions that could be replaced
+          with more robust alternative.
+        '';
+      };
       keyMappings = import ./key-mappings.nix {
         inherit chadLib;
         inherit (cfg)

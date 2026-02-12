@@ -95,6 +95,28 @@ signed integer
 
 
 
+## chad\.editor\.extremeMeasures
+
+
+
+Make editor block repetitive actions that could be replaced
+with more robust alternative\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+*Declared by:*
+ - [\<nix-chad/modules/darwin/chad/editor>](https://github.com/mstream/nix-chad/blob/main/modules/darwin/chad/editor)
+
+
+
 ## chad\.editor\.keyMappings\.categorized\.close\.suffixes\.currentBuffer
 
 
