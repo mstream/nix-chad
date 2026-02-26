@@ -110,9 +110,9 @@ let
         in
         chadLib.core.map chadLib.lua.render [
           (builtIn "exact")
+          (builtIn "kind")
           (builtIn "offset")
           (builtIn "score")
-          (builtIn "kind")
           (builtIn "locality")
           (builtIn "recently_used")
           (builtIn "sort_text")
