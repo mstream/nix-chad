@@ -101,7 +101,7 @@ in
     };
   };
   programs.gemini-cli = {
-    enable = true;
+    enable = false;
     settings = {
       inherit
         context
