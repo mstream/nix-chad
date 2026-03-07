@@ -33,7 +33,7 @@
     NIX_DARWIN=$({{call_recipe}} get-commit-id nix-darwin/nix-darwin nix-darwin-${nixOsVersion})
     export NIX_DARWIN
 
-    NIX_ROSETTA_BUILDER=$({{call_recipe}} get-commit-id cpick/nix-rosetta-builder 1e074bef6a409bb90c0e894ec5bf5f670f48074b)
+    NIX_ROSETTA_BUILDER=ebb7162a975074fb570a2c3ac02bc543ff2e9df4
     export NIX_ROSETTA_BUILDER
 
     NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit main)
