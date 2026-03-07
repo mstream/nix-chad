@@ -33,13 +33,13 @@
     NIX_DARWIN=$({{call_recipe}} get-commit-id nix-darwin/nix-darwin nix-darwin-${nixOsVersion})
     export NIX_DARWIN
 
-    NIX_ROSETTA_BUILDER=ebb7162a975074fb570a2c3ac02bc543ff2e9df4
+    NIX_ROSETTA_BUILDER=$({{call_recipe}} get-commit-id cpick/nix-rosetta-builder main)
     export NIX_ROSETTA_BUILDER
 
     NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit main)
     export NIX_UNIT
 
-    NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixpkgs-${nixOsVersion}-darwin)
+    NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixos-${nixOsVersion})
     export NIXPKGS
 
     NIXOS="${nixOsVersion}"

@@ -27,8 +27,7 @@
     };
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder?rev=$NIX_ROSETTA_BUILDER";
-      # TODO: remove when logind.settings is backported to the darwin branch of nixpkgs
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs?rev=$NIXPKGS";
     nixvim = {

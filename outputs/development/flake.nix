@@ -16,7 +16,7 @@
       };
       url = "github:nix-community/nix-unit?rev=1c9ab50554eed0b768f9e5b6f646d63c9673f0f7";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?rev=fabb8c9deee281e50b1065002c9828f2cf7b2239";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=71caefce12ba78d84fe618cf61644dce01cf3a96";
     nur = {
       inputs = {
         flake-parts.follows = "flake-parts";
