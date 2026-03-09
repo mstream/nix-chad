@@ -54,7 +54,7 @@ in
     remapCapsLock = mkOption {
       default = true;
       description = ''
-        Treat Caps Lock key as Escape key.
+        Swap Tab with Esc key for better Escape access.
       '';
       type = with chadLib.types; bool;
     };

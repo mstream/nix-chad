@@ -16,6 +16,11 @@ let
     HIDKeyboardModifierMappingDst = 30064771113;
   };
 
+  escRemap = {
+    HIDKeyboardModifierMappingSrc = 30064771113;
+    HIDKeyboardModifierMappingDst = 30064771129;
+  };
+
   leftArrowRemap = {
     HIDKeyboardModifierMappingSrc = 30064771152;
     HIDKeyboardModifierMappingDst = 30064771300;
@@ -23,7 +28,15 @@ let
 
   userKeyMapping =
     (if cfg.keyboard.remapLeftArrow then [ leftArrowRemap ] else [ ])
-    ++ (if cfg.keyboard.remapCapsLock then [ capsLockRemap ] else [ ]);
+    ++ (
+      if cfg.keyboard.remapCapsLock then
+        [
+          capsLockRemap
+          escRemap
+        ]
+      else
+        [ ]
+    );
 
   abbreviations = mergeAbbreviations [
     defaultAbbreviations
