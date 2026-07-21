@@ -54,6 +54,9 @@
     NUSCHTOS_SEARCH=$({{call_recipe}} get-commit-id NuschtOS/search main)
     export NUSCHTOS_SEARCH
 
+    PURESCRIPT_OVERLAY=$({{call_recipe}} get-commit-id thomashoneyman/purescript-overlay main)
+    export PURESCRIPT_OVERLAY
+
     TREEFMT_NIX=$({{call_recipe}} get-commit-id numtide/treefmt-nix main)
     export TREEFMT_NIX
 

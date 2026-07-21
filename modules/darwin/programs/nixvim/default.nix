@@ -7,6 +7,7 @@
         register = "unnamedplus";
       };
       luaLoader.enable = true;
+      nixpkgs.config.allowUnfree = true;
       viAlias = true;
       vimAlias = true;
     };

@@ -15,7 +15,6 @@ let
       editorconfig-checker
       gawk
       nmap
-      node2nix
       nodejs
       tldr
       tree

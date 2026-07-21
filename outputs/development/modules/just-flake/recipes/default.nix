@@ -8,7 +8,7 @@
 let
   dependencies = {
     inherit chadLib groups nixBuildCommand;
-    nixOsVersion = "25.11";
+    nixOsVersion = "26.05";
   };
 in
 {

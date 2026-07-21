@@ -12,6 +12,7 @@
       nix-rosetta-builder,
       nixvim,
       nur,
+      purescript-overlay,
       ...
     }:
     chadLib: system: nixosVersion: chadConfig:
@@ -24,6 +25,7 @@
           nixosVersion
           nixvim
           nur
+          purescript-overlay
           system
           ;
       };

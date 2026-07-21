@@ -50,6 +50,10 @@
       url = "github:NuschtOS/search?rev=$NUSCHTOS_SEARCH";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    purescript-overlay = {
+      url = "github:thomashoneyman/purescript-overlay?rev=$PURESCRIPT_OVERLAY";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:numtide/treefmt-nix?rev=$TREEFMT_NIX";

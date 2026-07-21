@@ -34,7 +34,7 @@
               flags = [
                 "verbose"
               ];
-              program = "${pkgs.nodePackages.markdown-link-check}/bin/markdown-link-check";
+              program = "${pkgs.markdown-link-check}/bin/markdown-link-check";
             }
             + " $filename || echo 'disabling because multiple issues'";
           ext = ".md";

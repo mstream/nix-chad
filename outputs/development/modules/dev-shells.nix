@@ -10,6 +10,7 @@
     let
       localPackages = chadLib.core.attrValues self'.packages;
       justFlakeDependencies = with pkgs; [
+        actionlint
         envsubst
         nix
         yq
@@ -20,7 +21,8 @@
         buildInputs = justFlakeDependencies;
         inputsFrom = [
           config.just-flake.outputs.devShell
-        ] ++ localPackages;
+        ]
+        ++ localPackages;
         name = "nix-chad-dev";
       };
     };

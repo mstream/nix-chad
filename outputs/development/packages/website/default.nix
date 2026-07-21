@@ -2,7 +2,7 @@
 pkgs.stdenv.mkDerivation {
   nativeBuildInputs = with pkgs; [
     mdbook
-    mdbook-linkcheck
+    mdbook-linkcheck2
     mdbook-mermaid
     mdbook-toc
   ];

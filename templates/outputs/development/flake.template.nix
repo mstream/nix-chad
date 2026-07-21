@@ -25,6 +25,10 @@
       };
       url = "github:nix-community/NUR?rev=$NUR";
     };
+    purescript-overlay = {
+      url = "github:thomashoneyman/purescript-overlay?rev=$PURESCRIPT_OVERLAY";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:numtide/treefmt-nix?rev=$TREEFMT_NIX";

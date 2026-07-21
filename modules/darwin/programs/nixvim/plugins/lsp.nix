@@ -8,7 +8,7 @@ let
   kms = cfg.editor.keyMappings;
 in
 {
-  environment.systemPackages = with pkgs; [ nodePackages.purs-tidy ];
+  environment.systemPackages = with pkgs; [ purs-tidy ];
   programs.nixvim.plugins.lsp = {
     enable = true;
     inlayHints = true;
@@ -35,7 +35,7 @@ in
       };
       purescriptls = {
         enable = true;
-        package = pkgs.nodePackages.purescript-language-server;
+        package = pkgs.purescript-language-server;
         rootMarkers = [
           "spago.lock"
         ];
