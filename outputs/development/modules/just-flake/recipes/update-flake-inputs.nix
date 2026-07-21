@@ -36,7 +36,7 @@
     NIX_ROSETTA_BUILDER=$({{call_recipe}} get-commit-id cpick/nix-rosetta-builder main)
     export NIX_ROSETTA_BUILDER
 
-    NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit main)
+    NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit v2.34.2)
     export NIX_UNIT
 
     NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixos-${nixOsVersion})

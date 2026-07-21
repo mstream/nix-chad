@@ -44,7 +44,7 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/NUR?rev=164cb0317169a70f0a93c8cc605c3309d35fec9b";
+      url = "github:nix-community/NUR?rev=645f9f776aa240e1d2a3a42c6b09b0769bf1c940";
     };
     nuschtos-search = {
       url = "github:NuschtOS/search?rev=36d55b5d41b1f0abd71ecdcee91553480689c376";

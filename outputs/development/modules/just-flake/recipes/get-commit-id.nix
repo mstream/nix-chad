@@ -2,7 +2,7 @@
 {
   arguments = [
     "repo"
-    "branch"
+    "branch_or_tag"
   ];
   comment = "Gets commit ID by reference.";
   groups = with groups.members; [
@@ -10,6 +10,6 @@
   ];
   isPrivate = false;
   script = ''
-    git ls-remote "https://github.com/{{repo}}.git" | grep refs/heads/{{branch}}$ | cut -f 1
+    git ls-remote "https://github.com/{{repo}}.git" | grep -e 'refs/heads/{{branch_or_tag}}$' -e 'refs/tags/{{branch_or_tag}}$' | cut -f 1
   '';
 }
