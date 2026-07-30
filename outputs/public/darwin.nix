@@ -10,6 +10,7 @@
       home-manager,
       nix-darwin,
       nix-rosetta-builder,
+      nixpkgs,
       nixvim,
       nur,
       purescript-overlay,
@@ -23,6 +24,7 @@
           home-manager
           nix-rosetta-builder
           nixosVersion
+          nixpkgs
           nixvim
           nur
           purescript-overlay

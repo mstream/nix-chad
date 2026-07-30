@@ -41,6 +41,7 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
       };
       url = "github:nix-community/NUR?rev=6ee22a245ffa87cdb1b0f42bea2dacdc2365d4f6";
     };
