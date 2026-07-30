@@ -33,7 +33,6 @@
     nixvim = {
       inputs = {
         flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
         nuschtosSearch.follows = "nuschtos-search";
       };
       url = "github:nix-community/nixvim?rev=$NIXVIM";
@@ -42,7 +41,6 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
       };
       url = "github:nix-community/NUR?rev=$NUR";
     };

@@ -10,20 +10,18 @@
     lint-nix.url = "github:xc-jp/lint.nix?rev=a3e8324baec349dd65c3bd8f84a56ab295ff507f";
     nix-unit = {
       inputs = {
-        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
       url = "github:nix-community/nix-unit?rev=3a484e17e4911ed97d56e37506f22e294c7c0ccd";
     };
-    nixpkgs.url = "github:nixos/nixpkgs?rev=fd1462031fdee08f65fd0b4c6b64e22239a77870";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=21ea275a7c46aef9d4d6ddc962e6d562e9d94183";
     nur = {
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
       };
-      url = "github:nix-community/NUR?rev=645f9f776aa240e1d2a3a42c6b09b0769bf1c940";
+      url = "github:nix-community/NUR?rev=6ee22a245ffa87cdb1b0f42bea2dacdc2365d4f6";
     };
     purescript-overlay = {
       url = "github:thomashoneyman/purescript-overlay?rev=1cf88ab9d83596db0e0c0d304a16809c410e2917";
@@ -31,7 +29,7 @@
     };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:numtide/treefmt-nix?rev=df3c0640565d04a0261253cdd89fce78ec50168a";
+      url = "github:numtide/treefmt-nix?rev=d1187f8bc71fb8aab02395869ec3f5c1920f75c0";
     };
   };
 
