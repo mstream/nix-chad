@@ -117,6 +117,7 @@ in
         "git"
         "node"
         "docker"
+        "python"
       ];
       prompt = {
         pwdLength = "short";

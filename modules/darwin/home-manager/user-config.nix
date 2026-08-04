@@ -16,6 +16,7 @@ let
       gawk
       nmap
       nodejs
+      (python3.withPackages (ppkgs: with ppkgs; [ pip ]))
       tldr
       tree
       unixtools.watch
