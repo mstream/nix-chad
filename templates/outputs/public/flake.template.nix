@@ -27,14 +27,12 @@
     };
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder?rev=$NIX_ROSETTA_BUILDER";
-      # TODO: remove when logind.settings is backported to the darwin branch of nixpkgs
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs?rev=$NIXPKGS";
     nixvim = {
       inputs = {
         flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
         nuschtosSearch.follows = "nuschtos-search";
       };
       url = "github:nix-community/nixvim?rev=$NIXVIM";
@@ -49,6 +47,10 @@
     };
     nuschtos-search = {
       url = "github:NuschtOS/search?rev=$NUSCHTOS_SEARCH";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    purescript-overlay = {
+      url = "github:thomashoneyman/purescript-overlay?rev=$PURESCRIPT_OVERLAY";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix = {

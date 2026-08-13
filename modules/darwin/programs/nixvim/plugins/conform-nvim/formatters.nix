@@ -19,10 +19,10 @@ chadLib.enum.create {
           "--width"
           (builtins.toString documentWidth)
         ];
-        command = chadLib.meta.getExe pkgs.nixfmt-rfc-style;
+        command = chadLib.meta.getExe pkgs.nixfmt;
       };
       prettier = {
-        command = chadLib.meta.getExe pkgs.nodePackages.prettier;
+        command = chadLib.meta.getExe pkgs.prettier;
       };
       pursTidy = {
         args = [
@@ -39,7 +39,7 @@ chadLib.enum.create {
           "--width"
           (builtins.toString documentWidth)
         ];
-        command = chadLib.meta.getExe pkgs.nodePackages.purs-tidy;
+        command = chadLib.meta.getExe pkgs.purs-tidy;
       };
       ruff = {
         args = [

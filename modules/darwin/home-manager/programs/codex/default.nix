@@ -7,7 +7,7 @@ let
 in
 {
   programs.codex = {
-    enable = true;
+    enable = false;
     settings = {
       approval_policy = "on-request";
       check_for_update_on_startup = false;

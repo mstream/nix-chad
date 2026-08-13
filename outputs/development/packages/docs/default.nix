@@ -65,7 +65,7 @@ let
 in
 pkgs.stdenv.mkDerivation {
   nativeBuildInputs = with pkgs; [
-    nodePackages.markdownlint-cli2
+    markdownlint-cli2
     vale
   ];
   checkPhase = ''

@@ -36,10 +36,10 @@
     NIX_ROSETTA_BUILDER=$({{call_recipe}} get-commit-id cpick/nix-rosetta-builder main)
     export NIX_ROSETTA_BUILDER
 
-    NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit main)
+    NIX_UNIT=$({{call_recipe}} get-commit-id nix-community/nix-unit v2.34.2)
     export NIX_UNIT
 
-    NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixpkgs-${nixOsVersion}-darwin)
+    NIXPKGS=$({{call_recipe}} get-commit-id NixOS/nixpkgs nixos-${nixOsVersion})
     export NIXPKGS
 
     NIXOS="${nixOsVersion}"
@@ -53,6 +53,9 @@
 
     NUSCHTOS_SEARCH=$({{call_recipe}} get-commit-id NuschtOS/search main)
     export NUSCHTOS_SEARCH
+
+    PURESCRIPT_OVERLAY=$({{call_recipe}} get-commit-id thomashoneyman/purescript-overlay main)
+    export PURESCRIPT_OVERLAY
 
     TREEFMT_NIX=$({{call_recipe}} get-commit-id numtide/treefmt-nix main)
     export TREEFMT_NIX

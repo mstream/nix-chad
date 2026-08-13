@@ -1,7 +1,6 @@
 [book]
 authors = ["mstream"]
 language = "en"
-multilingual = false
 src = "src"
 title = "PureScript JSON Schema"
 
@@ -19,5 +18,5 @@ renderer = ["html"]
 [output.html]
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
 
-[output.linkcheck]
+[output.linkcheck2]
 warning-policy = "error"

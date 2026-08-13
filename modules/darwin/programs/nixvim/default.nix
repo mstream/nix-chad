@@ -1,3 +1,4 @@
+{ nixpkgs, ... }:
 {
   config = {
     programs.nixvim = {
@@ -7,6 +8,13 @@
         register = "unnamedplus";
       };
       luaLoader.enable = true;
+      nixpkgs = {
+        config = {
+          allowBroken = false;
+          allowUnfree = true;
+        };
+        source = nixpkgs;
+      };
       viAlias = true;
       vimAlias = true;
     };

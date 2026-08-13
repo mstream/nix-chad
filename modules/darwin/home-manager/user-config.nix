@@ -15,8 +15,8 @@ let
       editorconfig-checker
       gawk
       nmap
-      node2nix
       nodejs
+      (python3.withPackages (ppkgs: with ppkgs; [ pip ]))
       tldr
       tree
       unixtools.watch
@@ -88,7 +88,7 @@ in
     ./programs/codex
     ./programs/direnv
     ./programs/firefox
-    ./programs/gemini-cli
+    ./programs/antigravity-cli
     ./programs/git
     ./programs/gpg
     ./programs/jq

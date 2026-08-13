@@ -14,9 +14,6 @@ let
 
     "https://nix-community.cachix.org" =
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
-
-    "https://cache.garnix.io" =
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=";
   };
 
   substituterPublicKeys = chadLib.core.attrValues substitutersInfo;

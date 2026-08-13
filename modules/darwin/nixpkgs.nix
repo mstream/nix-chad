@@ -1,6 +1,7 @@
 {
   config,
   nur,
+  purescript-overlay,
   ...
 }:
 let
@@ -13,7 +14,7 @@ in
       allowUnfree = !cfg.software.openSourceOnly;
     };
     overlays = import ../../overlays/nixpkgs.nix {
-      inherit nur;
+      inherit nur purescript-overlay;
     };
   };
 }

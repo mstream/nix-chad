@@ -100,8 +100,8 @@ in
       text = policyText;
     };
   };
-  programs.gemini-cli = {
-    enable = true;
+  programs.antigravity-cli = {
+    enable = false;
     settings = {
       inherit
         context

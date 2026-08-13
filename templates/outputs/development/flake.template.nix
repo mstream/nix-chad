@@ -10,7 +10,6 @@
     lint-nix.url = "github:xc-jp/lint.nix?rev=$LINT_NIX";
     nix-unit = {
       inputs = {
-        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
       };
@@ -21,9 +20,12 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
       };
       url = "github:nix-community/NUR?rev=$NUR";
+    };
+    purescript-overlay = {
+      url = "github:thomashoneyman/purescript-overlay?rev=$PURESCRIPT_OVERLAY";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";

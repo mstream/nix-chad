@@ -42,7 +42,11 @@ in
       enable = true;
     };
     cdpath = [ ];
-    completionInit = "autoload -U compinit && compinit";
+    completionInit = ''
+      autoload -Uz compinit && compinit
+      autoload -Uz bashcompinit && bashcompinit
+      source <(dhall --bash-completion-script dhall)
+    '';
     dirHashes = { };
     enable = true;
     enableCompletion = true;
@@ -113,6 +117,7 @@ in
         "git"
         "node"
         "docker"
+        "python"
       ];
       prompt = {
         pwdLength = "short";

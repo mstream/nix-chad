@@ -21,7 +21,13 @@
     output_path="''${output_dir}/{{file_base_name}}.{{file_extension}}" 
     cp ''${output_path} ''${backup_path}
     cat $template_path | envsubst --no-empty > ''${output_path}
-    {{validation_command}} ''${output_path} || cp ''${backup_path} ''${output_path}
+    if {{validation_command}} ''${output_path}; then
+      ret=0
+    else
+      ret=1
+      cp ''${backup_path} ''${output_path}
+    fi
     rm ''${backup_path}
+    exit ''${ret}
   '';
 }
